@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios开发 | 冷漠叻荭颜’s Blog]]></title>
   <link href="http://lengmolehongyan.github.io/blog/categories/ioskai-fa/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-05-26T23:09:21+08:00</updated>
+  <updated>2015-05-26T23:24:51+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -39,7 +39,6 @@ view.backgroudColor = UIColor.redColor()
 <ul>
 <li>swift是一个对变量类型要求及其严格的语言</li>
 <li>任何数据类型之间，都不能隐式转换，如果要在不同类型之间进行计算，必须转换格式</li>
-<li>整数的格式是<code>Int</code>对应于OC中的<code>long</code>(64位的)，小数的格式是<code>Double</code>，OC中默认的小数格式<code>CGFloat</code></li>
 <li>数据类型的推导是在给变量设置初始值的时候，根据“右边”来判断的</li>
 <li>在真正初始化的时候，才能决定变量的准确类型</li>
 </ul>
