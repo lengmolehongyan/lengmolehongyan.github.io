@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios开发 | 冷漠叻荭颜’s Blog]]></title>
   <link href="http://lengmolehongyan.github.io/blog/categories/ioskai-fa/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-05-27T22:41:58+08:00</updated>
+  <updated>2015-05-27T22:47:20+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -34,7 +34,7 @@ view.backgroudColor = UIColor.redColor()
 </code></pre>
 
 <ul>
-<li><p>注意点:</p>
+<li>注意点:
 
 <ul>
 <li>swift是一个对变量类型要求及其严格的语言</li>
