@@ -114,7 +114,7 @@ let view = UIView(frame: CGRectMake(0, 0, 100, &hellip;">
 
 
 <ul>
-<li>注意点:
+<li><p>注意点:</p>
 
 <ul>
 <li>swift是一个对变量类型要求及其严格的语言</li>
@@ -596,6 +596,35 @@ let view = UIView(frame: CGRectMake(0, 0, 100, &hellip;">
       </li>
     
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/lengmolehongyan">@lengmolehongyan</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lengmolehongyan',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
