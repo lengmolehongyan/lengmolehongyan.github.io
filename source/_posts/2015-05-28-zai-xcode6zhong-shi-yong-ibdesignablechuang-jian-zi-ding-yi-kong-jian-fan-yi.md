@@ -3,7 +3,7 @@ layout: post
 title: "在Xcode6中使用IBDesignable创建自定义控件(翻译)"
 date: 2015-05-28 00:16:31 +0800
 comments: true
-categories: "iOS开发"
+category: 
 ---
 
 [英文原文地址](http://www.appcoda.com/ibdesignable-ibinspectable-tutorial/)

@@ -3,7 +3,7 @@ layout: post
 title: "swift基础语法学习"
 date: 2015-05-26 22:12:42 +0800
 comments: true
-categories: "iOS开发"
+category: 
 ---
 
 ### 变量和常量
