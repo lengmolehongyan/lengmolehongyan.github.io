@@ -94,10 +94,14 @@
 
 <h3>开始</h3>
 
-<p>创建自定义转场必须遵循以下三个步骤：
-1. 创建一个类，遵守 <code>UIViewControllerAnimatedTransitioning</code> 协议，并实现协议中的方法。在这个类中，将编写执行动画的代码，这个类被用做动画控制器。
-2. 在 <code>present</code> 控制器前，需设置一个类作为其转场代理。这个代理用于当 <code>present</code> 控制器时，从动画控制器中回调。
-3. 实现回调方法，返回一个第一步中的动画控制器实例对象。</p>
+<p>创建自定义转场必须遵循以下三个步骤：</p>
+
+<ol>
+<li>创建一个类，遵守 <code>UIViewControllerAnimatedTransitioning</code> 协议，并实现协议中的方法。在这个类中，将编写执行动画的代码，这个类被用做动画控制器。</li>
+<li>在 <code>present</code> 控制器前，需设置一个类作为其转场代理。这个代理用于当 <code>present</code> 控制器时，从动画控制器中回调。</li>
+<li>实现回调方法，返回一个第一步中的动画控制器实例对象。</li>
+</ol>
+
 
 <p>运行初始项目你会看到一组 items 的 tableView，在导航栏右边有一个 <code>Action</code> 按钮，当你点击它，会以默认 <code>modal</code> 样式从底部 <code>present</code> 出一个控制器，我们将为这个视图转场编写自定义转场。</p>
 
@@ -399,7 +403,7 @@
 
 <p><img src="http://i1.tietuku.com/b42fc6619b716079.gif" alt="" /></p>
 
-<p>显然，这并不是我们想要的动画。from view 的消失动画使我们想要的，但是图片 image 的相对位置没有变化。这是因为，我们改变的是 from view 的 frame，这并不会影响到它的子视图。我们将用 UIView 的快照 <code>snapshot</code> 来修复这个 bug。</p>
+<p>显然，这并不是我们想要的动画。from view 的消失动画是我们想要的，但是图片 image 的相对位置没有变化。这是因为，我们改变的是 from view 的 frame，这并不会影响到它的子视图。我们将用 UIView 的快照 <code>snapshot</code> 来修复这个 bug。</p>
 
 <p>UIView 快照是对当前存在的 UIView 截图让它成为一个轻量级的 UIView，我们将在动画中使用快照而不是真正的 view。</p>
 
