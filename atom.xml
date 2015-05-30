@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜’s Blog]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-05-28T18:44:37+08:00</updated>
+  <updated>2015-05-30T21:43:58+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,6 +12,416 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[自定义转场动画介绍(翻译)]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/"/>
+    <updated>2015-05-30T21:37:02+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi</id>
+    <content type="html"><![CDATA[<h2>自定义转场动画介绍(翻译)</h2>
+
+<p><a href="http://www.appcoda.com/custom-view-controller-transitions-tutorial/">英文原文地址</a></p>
+
+<p>仔细观察 iOS 设备上苹果内置的 app，你会发现各种视图控制器转场动画。iOS7 介绍了自定义控制器转场，使开发人员能够在他们的应用中创建自己的转场动画。在本教程中，我们将看到如何做到这一点。我们还将了解怎样通过手势进行交互式转场 <code>interactive transitions</code>。</p>
+
+<p><img src="http://i1.tietuku.com/41b836336adda5e8.jpg" alt="" /></p>
+
+<!--more-->
+
+
+<h3>开始</h3>
+
+<p>创建自定义转场必须遵循以下三个步骤：
+1. 创建一个类，遵守 <code>UIViewControllerAnimatedTransitioning</code> 协议，并实现协议中的方法。在这个类中，将编写执行动画的代码，这个类被用做动画控制器。
+2. 在 <code>present</code> 控制器前，需设置一个类作为其转场代理。这个代理用于当 <code>present</code> 控制器时，从动画控制器中回调。
+3. 实现回调方法，返回一个第一步中的动画控制器实例对象。</p>
+
+<p>运行初始项目你会看到一组 items 的 tableView，在导航栏右边有一个 <code>Action</code> 按钮，当你点击它，会以默认 <code>modal</code> 样式从底部 <code>present</code> 出一个控制器，我们将为这个视图转场编写自定义转场。</p>
+
+<p><img src="http://i1.tietuku.com/86214a9a01cf1d06.gif" alt="" /></p>
+
+<h3>自定义 Present 转场</h3>
+
+<p>如前所述，接下来做的第一件事是创建动画控制器。创建一个 <code>CustomPresentAnimationController</code> 类继承自 <code>NSObject</code>，并遵守 <code>UIViewControllerAnimatedTransitioning</code> 协议。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">class</span> <span class="nl">CustomPresentAnimationController</span><span class="p">:</span> <span class="bp">NSObject</span><span class="p">,</span> <span class="bp">UIViewControllerAnimatedTransitioning</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>UIViewControllerAnimatedTransitioning</code> 协议有两个必须实现的方法，在这个类中添加以下代码。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">动画持续时间</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="nf">transitionDuration</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NSTimeInterval</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mf">2.5</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">转场动画</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="n">animateTransition</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">let</span> <span class="n">fromViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextFromViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">toViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextToViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">finalFrameForVC</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">finalFrameForViewController</span><span class="p">(</span><span class="n">toViewController</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">containerView</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">containerView</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">bounds</span> <span class="o">=</span> <span class="bp">UIScreen</span><span class="p">.</span><span class="n">mainScreen</span><span class="p">().</span><span class="n">bounds</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置目标控制器的 frame</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectOffset</span><span class="p">(</span><span class="n">finalFrameForVC</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bounds</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">// 将目标控制器的根 view 添加至容器视图 containerView</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置动画代码</span>
+</span><span class='line'>    <span class="bp">UIView</span><span class="p">.</span><span class="n">animateWithDuration</span><span class="p">(</span><span class="n">transitionDuration</span><span class="p">(</span><span class="n">transitionContext</span><span class="p">),</span> <span class="nl">delay</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nl">usingSpringWithDamping</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nl">initialSpringVelocity</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">options</span><span class="p">:</span> <span class="n">UIViewAnimationOptions</span><span class="p">.</span><span class="n">CurveLinear</span><span class="p">,</span> <span class="nl">animations</span><span class="p">:</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+</span><span class='line'>        <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">finalFrameForVC</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// 动画结束后 通知转场上下文转场结束</span>
+</span><span class='line'>        <span class="n">transitionContext</span><span class="p">.</span><span class="n">completeTransition</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.0</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第一方法是设置转场<em>动画时长</em>，这个 Demo 中我们设置2.5秒，但是在实际应用中，你应该设置一个比这个数小的数。</p>
+
+<p>第二个方法，我们通过转场上下文 <code>transitionContext</code> 取得<em>来源控制器</em> fromVC、<em>目标控制器</em> toVC、动画结束后终止 frame，以及给 fromVC 和 toVC 转场切换视图提供容器的<em>容器视图</em> <code>containerView</code>。</p>
+
+<p>接下来我们设置 toView 在屏幕的底部，然后将 toView 添加至容器视图和动画的闭包中，让 toView 动画至设定的最终位置。同时也设置了 fromView 的透明度动画，以至于随着 toView 的向上滑动 fromView 逐渐淡出。动画时间通过 <code>transitionDuration(transitionContext)</code> 获得。在完成闭包中，我们通知转场上下文转场结束，接着让 fromView 的透明度恢复正常。容器视图将会移除 fromView。</p>
+
+<p>动画控制器类里面的任务已经完成，下一步我们需要将它和 <code>storyboard segue</code> 连接起来。</p>
+
+<p>打开 ItemsTableViewController.swift 文件，遵守 <code>UIViewControllerTransitioningDelegate</code> 协议。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">class</span> <span class="nl">ItemsTableViewController</span><span class="p">:</span> <span class="bp">UITableViewController</span><span class="p">,</span> <span class="bp">UIViewControllerTransitioningDelegate</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>UIViewController 有一个 <code>transitionDelegate</code> 属性，支持自定义转场。当转场至一个控制器时，会通过这个属性查看自定义转场是否使用。<code>UIViewControllerTransitioningDelegate</code> 提供自定义转场。</p>
+
+<p>打开 Main.storyboard 文件，选择 <code>Present modally segue to Action View Controller</code>，在属性检查器中，设置它的 Identifier 为 <code>showAction</code>。</p>
+
+<p><img src="http://i1.tietuku.com/f710e825b83b99be.png" alt="" /></p>
+
+<p>回到 ItemsTableViewController.swift 文件，添加如下代码。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">/// 实例化一个 Present 动画控制器</span>
+</span><span class='line'><span class="k">let</span> <span class="n">customPresentAnimationController</span> <span class="o">=</span> <span class="n">CustomPresentAnimationController</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">override</span> <span class="k">func</span> <span class="n">prepareForSegue</span><span class="p">(</span><span class="nl">segue</span><span class="p">:</span> <span class="bp">UIStoryboardSegue</span><span class="p">,</span> <span class="nl">sender</span><span class="p">:</span> <span class="n">AnyObject</span><span class="o">?</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span>  <span class="n">segue</span><span class="p">.</span><span class="n">identifier</span> <span class="o">==</span> <span class="s">&quot;showAction&quot;</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">let</span> <span class="n">toViewController</span> <span class="o">=</span> <span class="n">segue</span><span class="p">.</span><span class="n">destinationViewController</span> <span class="kt">as</span><span class="o">!</span> <span class="bp">UIViewController</span>
+</span><span class='line'>        <span class="c1">// 设置目标控制器的转场代理为当前控制器</span>
+</span><span class='line'>        <span class="n">toViewController</span><span class="p">.</span><span class="n">transitioningDelegate</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在这里我们实例化一个 Present 动画控制器，在 <code>prepareForSegue()</code> 函数中，设置目标控制器的 <code>transitioningDelegate</code> 属性。</p>
+
+<p>继续添加如下代码，返回自定义 <code>Present</code> 动画控制器实例对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">返回自定义 Present 动画对象</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="n">animationControllerForPresentedController</span><span class="p">(</span><span class="nl">presented</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="n">presentingController</span> <span class="nl">presenting</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="n">sourceController</span> <span class="nl">source</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">UIViewControllerAnimatedTransitioning</span><span class="o">?</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">customPresentAnimationController</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行程序，你会看到下图效果，Action view 在屏幕底部向上缓慢滑动，停止前会有小的弹簧效果。</p>
+
+<p><img src="http://i1.tietuku.com/ca3edd567594f674.gif" alt="" /></p>
+
+<p>在 CustomPresentAnimationController.swift 更改代码如下，你会看到一个稍微不同的效果，目标控制器的初始位置是在屏幕上方。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectOffset</span><span class="p">(</span><span class="n">finalFrameForVC</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">bounds</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行程序，这次 Action view 是从屏幕顶部缓慢落下。</p>
+
+<h3>自定义 Dismiss 转场</h3>
+
+<p>我们已经实现了自定义 <code>present</code> 转场动画，但是 <code>dismiss</code> 转场动画还是使用的苹果默认的。</p>
+
+<p><code>UIViewControllerTransitioningDelegate</code> 协议允许同时设置负责 <code>dismiss</code> 和 <code>present</code> 控制器的转场动画控制器。</p>
+
+<p>创建一个 <code>CustomDismissAnimationController</code> 类，继承自 <code>NSObject</code>，并遵守 <code>UIViewControllerAnimatedTransitioning</code> 协议。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">class</span> <span class="nl">CustomDismissAnimationController</span><span class="p">:</span> <span class="bp">NSObject</span><span class="p">,</span> <span class="bp">UIViewControllerAnimatedTransitioning</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在这个类添加如下代码。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">动画持续时间</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="nf">transitionDuration</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NSTimeInterval</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mf">2.0</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">转场动画</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="n">animateTransition</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">let</span> <span class="n">fromViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextFromViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">toViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextToViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">finalFrameForVC</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">finalFrameForViewController</span><span class="p">(</span><span class="n">toViewController</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">containerView</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">containerView</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置 toVC 的根 view 的 frame 以及透明度</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">finalFrameForVC</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+</span><span class='line'>    <span class="c1">// 将目标控制器的根 view 添加至容器视图 containerView</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">sendSubviewToBack</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置动画代码</span>
+</span><span class='line'>    <span class="bp">UIView</span><span class="p">.</span><span class="n">animateWithDuration</span><span class="p">(</span><span class="n">transitionDuration</span><span class="p">(</span><span class="n">transitionContext</span><span class="p">),</span> <span class="nl">animations</span><span class="p">:</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectInset</span><span class="p">(</span><span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">,</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// 动画结束后 通知转场上下文转场结束</span>
+</span><span class='line'>        <span class="n">transitionContext</span><span class="p">.</span><span class="n">completeTransition</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这段代码和 <code>present</code> 转场动画代码实现方式很相似。在 <code>animateTransition()</code> 函数中，拿到当前转场上下文的 toVC 和 fromVC。现在的 toVC 是表视图控制器，我们设置了它的根视图的 alpha 值，动画开始后，将逐渐淡入。然后将 toVC 的根 view 添加至容器视图，并放在 fromVC 的根 view 的后面。</p>
+
+<p>在动画闭包中，设置了 fromVC 的根 view 的宽和高动画到0，并保持在屏幕的中心，这会产生一个 from view 缩小到消失的动画效果，同时 to view 逐渐可见。</p>
+
+<p>在 ItemsTableViewController.swift 文件中添加下面这个属性。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">/// 实例化一个负责 Dismiss 转场动画控制器</span>
+</span><span class='line'><span class="k">let</span> <span class="n">customDismissAnimationController</span> <span class="o">=</span> <span class="n">CustomDismissAnimationController</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>同时实现下面这个代理方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">返回负责自定义 Dismiss 转场动画对象</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="n">animationControllerForDismissedController</span><span class="p">(</span><span class="nl">dismissed</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">UIViewControllerAnimatedTransitioning</span><span class="o">?</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">customDismissAnimationController</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>UIViewControllerTransitioningDelegate</code> 协议提供了上面这个函数，可以设置负责 dismiss 转场动画的控制器。</p>
+
+<p>运行程序，你会看到下面的动画。</p>
+
+<p><img src="http://i1.tietuku.com/b42fc6619b716079.gif" alt="" /></p>
+
+<p>显然，这并不是我们想要的动画。from view 的消失动画使我们想要的，但是图片 image 的相对位置没有变化。这是因为，我们改变的是 from view 的 frame，这并不会影响到它的子视图。我们将用 UIView 的快照 <code>snapshot</code> 来修复这个 bug。</p>
+
+<p>UIView 快照是对当前存在的 UIView 截图让它成为一个轻量级的 UIView，我们将在动画中使用快照而不是真正的 view。</p>
+
+<p>修改 <code>animateTransition()</code> 函数内部如下。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">func</span> <span class="nf">animateTransition</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">let</span> <span class="n">fromViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextFromViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">toViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextToViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">finalFrameForVC</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">finalFrameForViewController</span><span class="p">(</span><span class="n">toViewController</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">containerView</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">containerView</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置 toVC 的根 view 的 frame 以及透明度</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">finalFrameForVC</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+</span><span class='line'>    <span class="c1">// 将目标控制器的根 view 添加至容器视图 containerView</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">sendSubviewToBack</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 生成快照 并添加到容器视图</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">snapshotView</span> <span class="o">=</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">snapshotViewAfterScreenUpdates</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">snapshotView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">snapshotView</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 移除 fromVC 的根 view</span>
+</span><span class='line'>    <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">removeFromSuperview</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置动画代码</span>
+</span><span class='line'>    <span class="bp">UIView</span><span class="p">.</span><span class="n">animateWithDuration</span><span class="p">(</span><span class="n">transitionDuration</span><span class="p">(</span><span class="n">transitionContext</span><span class="p">),</span> <span class="nl">animations</span><span class="p">:</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">snapshotView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectInset</span><span class="p">(</span><span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">,</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// 动画结束后 通知转场上下文转场结束 并移除快照</span>
+</span><span class='line'>        <span class="n">snapshotView</span><span class="p">.</span><span class="n">removeFromSuperview</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">transitionContext</span><span class="p">.</span><span class="n">completeTransition</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里我们创建了一个 fromVC 的根 view 的快照，添加到容器视图，并移除 fromVC 的根 view。转场动画中缩放快照，动画完成后将快照从容器视图中移除。</p>
+
+<p>运行程序，转场动画一切正常。</p>
+
+<p><img src="http://i1.tietuku.com/c7d1a6eb3c4a7645.gif" alt="" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在Xcode6中使用IBDesignable创建自定义控件(翻译)]]></title>
