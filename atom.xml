@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜’s Blog]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-05-30T21:45:19+08:00</updated>
+  <updated>2015-05-30T21:46:43+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -18,9 +18,7 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/"/>
     <updated>2015-05-30T21:37:02+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi</id>
-    <content type="html"><![CDATA[<h2>自定义转场动画介绍(翻译)</h2>
-
-<p><a href="http://www.appcoda.com/custom-view-controller-transitions-tutorial/">英文原文地址</a></p>
+    <content type="html"><![CDATA[<p><a href="http://www.appcoda.com/custom-view-controller-transitions-tutorial/">英文原文地址</a></p>
 
 <p>仔细观察 iOS 设备上苹果内置的 app，你会发现各种视图控制器转场动画。iOS7 介绍了自定义控制器转场，使开发人员能够在他们的应用中创建自己的转场动画。在本教程中，我们将看到如何做到这一点。我们还将了解怎样通过手势进行交互式转场 <code>interactive transitions</code>。</p>
 
