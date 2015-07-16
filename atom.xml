@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜’s Blog]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-05-30T22:04:15+08:00</updated>
+  <updated>2015-07-16T17:39:08+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,6 +12,103 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS8下定位问题]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/"/>
+    <updated>2015-07-16T16:50:38+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti</id>
+    <content type="html"><![CDATA[<p>Xcode6 下，对于系统版本 iOS8 以上版本定位需要自己写授权，不然没有权限定位，即 <code>CLLocationManagerDelegate</code> 代理方法不会执行。</p>
+
+<p>解决方法：</p>
+
+<p>步骤一：需要在 <code>info.plist</code> 文件中加入下面两个缺省字段，值设置为 <code>YES</code>。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSLocationWhenInUseUsageDescription</span> <span class="c1">// 允许在前台获取 GPS 的描述</span>
+</span><span class='line'><span class="n">NSLocationAlwaysUsageDescription</span> <span class="c1">// 允许在前、后台获取 GPS 的描述 </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>步骤二：判断设备系统版本，如果系统版本大于8.0，设置定位权限。代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &quot;ViewController.h&quot;</span>
+</span><span class='line'><span class="cp">#import &lt;CoreLocation/CoreLocation.h&gt;</span>
+</span><span class='line'><span class="k">@interface</span> <span class="nc">ViewController</span> <span class="p">()</span><span class="o">&lt;</span><span class="bp">CLLocationManagerDelegate</span><span class="o">&gt;</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="bp">CLLocationManager</span> <span class="o">*</span><span class="n">locationManager</span><span class="p">;</span>
+</span><span class='line'><span class="k">@end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@implementation</span> <span class="nc">ViewController</span>
+</span><span class='line'><span class="c1">// 懒加载初始化 self.locationManager</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="bp">CLLocationManager</span> <span class="o">*</span><span class="p">)</span><span class="nf">locationManager</span><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">_locationManager</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">_locationManager</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CLLocationManager</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">_locationManager</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_locationManager</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 调用请求</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">([[[</span><span class="bp">UIDevice</span> <span class="n">currentDevice</span><span class="p">]</span> <span class="n">systemVersion</span><span class="p">]</span> <span class="n">doubleValue</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">8.0</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// 设置定位权限仅 iOS8 有意义</span>
+</span><span class='line'>        <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">locationManager</span> <span class="n">requestWhenInUseAuthorization</span><span class="p">];</span> <span class="c1">// 前台定位</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// [locationManager requestAlwaysAuthorization]; // 前后台同时定位</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">locationManager</span> <span class="n">startUpdatingLocation</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 代理方法</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">locationManager:</span><span class="p">(</span><span class="bp">CLLocationManager</span> <span class="o">*</span><span class="p">)</span><span class="nv">manager</span> <span class="nf">didUpdateLocations:</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="nv">locations</span><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%zd&quot;</span><span class="p">,</span> <span class="n">locations</span><span class="p">.</span><span class="n">count</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>至此，iOS8 下定位问题就可以解决了！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[自定义转场动画介绍(翻译)]]></title>
