@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜’s Blog]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-07-16T17:39:08+08:00</updated>
+  <updated>2015-08-30T01:34:02+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -14,7 +14,28 @@
 
   
   <entry>
-    <title type="html"><![CDATA[iOS8下定位问题]]></title>
+    <title type="html"><![CDATA[iOS8下定位问题<二>]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/"/>
+    <updated>2015-08-30T00:19:06+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er</id>
+    <content type="html"><![CDATA[<p>接上篇，我们已经可以在系统版本 iOS8 以上完成定位功能，但是会有一个潜在 bug 存在。</p>
+
+<p>进入设置应用，往下滑动找到自己的 app，进入，点击 <strong>位置</strong> 单元格，设置应用会彻底奔溃，回到桌面了。</p>
+
+<p><img src="http://i3.tietuku.com/8d9493bef4f6a786.png" alt="点击位置崩溃" /></p>
+
+<p>经过一番 Google 和 Stack Overflow 后，问题就出现在 <code>info.plist</code> 文件中的两个缺省字段。</p>
+
+<p>在上一篇博客中，我将 <code>NSLocationWhenInUseUsageDescription</code> 和 <code>NSLocationAlwaysUsageDescription</code> 的类型设置为 <code>Boolean</code>，值设置为 <code>YES</code>，而正确做法是类型设置为 <code>String</code>，值填写一些描述信息，比如：请点击允许以允许访问，若不允许将无法使用 XX 功能。这里面所填写的文字，也会自动出现在位置页面的应用程序说明之后。</p>
+
+<p><img src="http://i3.tietuku.com/3881905e46802e76.png" alt="应用程序说明" /></p>
+
+<p>完成之后，重新编译运行，再去设置那，怎么点都不会崩溃了！Over！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS8下定位问题<一>]]></title>
     <link href="http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/"/>
     <updated>2015-07-16T16:50:38+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti</id>
