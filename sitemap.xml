@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+<<<<<<< HEAD
+=======
+    <loc>http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/</loc>
+    <lastmod>2015-08-30T00:19:06+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/</loc>
+    <lastmod>2015-07-16T16:50:38+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://lengmolehongyan.github.io/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/</loc>
+    <lastmod>2015-05-30T21:37:02+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://lengmolehongyan.github.io/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi/</loc>
+    <lastmod>2015-05-28T00:16:31+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://lengmolehongyan.github.io/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi/</loc>
+    <lastmod>2015-05-26T22:12:42+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://lengmolehongyan.github.io/404.html</loc>
+  </url>
+  <url>
+>>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
     <loc>http://lengmolehongyan.github.io/blog/archives/</loc>
   </url>
   <url>

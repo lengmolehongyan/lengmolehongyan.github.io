@@ -5,19 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-<<<<<<< HEAD
-  <title>My Octopress Blog</title>
+  <title>iOS8下定位问题<一> - 冷漠叻荭颜’s Blog</title>
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
-=======
-  <title>冷漠叻荭颜’s Blog</title>
-  <meta name="author" content="lengmolehongyan">
-
-  
-  <meta name="description" content="接上篇，我们已经可以在系统版本 iOS8 以上完成定位功能，但是会有一个潜在 bug 存在。 进入设置应用，往下滑动找到自己的 app，进入，点击 位置 单元格，设置应用会彻底奔溃，回到桌面了。 经过一番 Google 和 Stack Overflow 后，问题就出现在 info.plist &hellip;">
->>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
+  <meta name="description" content="Xcode6 下，对于系统版本 iOS8 以上版本定位需要自己写授权，不然没有权限定位，即 CLLocationManagerDelegate 代理方法不会执行。 解决方法： 步骤一：需要在 info.plist 文件中加入下面两个缺省字段，值设置为 YES。 1
+2 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -26,14 +19,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lengmolehongyan.github.io/">
+  <link rel="canonical" href="http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-<<<<<<< HEAD
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
-=======
   <link href="/atom.xml" rel="alternate" title="冷漠叻荭颜’s Blog" type="application/atom+xml">
->>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -47,30 +36,14 @@
 
 <body   >
   <header role="banner"><hgroup>
-<<<<<<< HEAD
-  <h1><a href="/">My Octopress Blog</a></h1>
-  
-    <h2>A blogging framework for hackers.</h2>
-=======
   <h1><a href="/">冷漠叻荭颜’s Blog</a></h1>
   
     <h2>lengmolehongyan’s Blog.</h2>
->>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
   
 </hgroup>
 
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
-<<<<<<< HEAD
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="lengmolehongyan.github.io">
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-=======
   <li><a href="/atom.xml" rel="subscribe-rss" title="订阅RSS">RSS</a></li>
   
 </ul>
@@ -79,78 +52,23 @@
   <fieldset role="search">
     <input type="hidden" name="sitesearch" value="lengmolehongyan.github.io">
     <input class="search" type="text" name="q" results="0" placeholder="搜索"/>
->>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
   </fieldset>
 </form>
   
 <ul class="main-navigation">
-<<<<<<< HEAD
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-=======
   <li><a href="/">首页</a></li>
   <li><a href="/blog/archives">文章列表</a></li>
->>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
 </ul>
 
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-<<<<<<< HEAD
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-=======
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/">iOS8下定位问题<二></a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-30T00:19:06+08:00'><span class='date'>2015 年8 月30 日</span> <span class='time'>12:19 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>接上篇，我们已经可以在系统版本 iOS8 以上完成定位功能，但是会有一个潜在 bug 存在。</p>
-
-<p>进入设置应用，往下滑动找到自己的 app，进入，点击 <strong>位置</strong> 单元格，设置应用会彻底奔溃，回到桌面了。</p>
-
-<p><img src="http://i3.tietuku.com/8d9493bef4f6a786.png" alt="点击位置崩溃" /></p>
-
-<p>经过一番 Google 和 Stack Overflow 后，问题就出现在 <code>info.plist</code> 文件中的两个缺省字段。</p>
-
-<p>在上一篇博客中，我将 <code>NSLocationWhenInUseUsageDescription</code> 和 <code>NSLocationAlwaysUsageDescription</code> 的类型设置为 <code>Boolean</code>，值设置为 <code>YES</code>，而正确做法是类型设置为 <code>String</code>，值填写一些描述信息，比如：请点击允许以允许访问，若不允许将无法使用 XX 功能。这里面所填写的文字，也会自动出现在位置页面的应用程序说明之后。</p>
-
-<p><img src="http://i3.tietuku.com/3881905e46802e76.png" alt="应用程序说明" /></p>
-
-<p>完成之后，重新编译运行，再去设置那，怎么点都不会崩溃了！Over！</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/07/16/ios8xia-ding-wei-wen-ti/">iOS8下定位问题<一></a></h1>
+      <h1 class="entry-title">iOS8下定位问题<一></h1>
     
     
       <p class="meta">
@@ -166,7 +84,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Xcode6 下，对于系统版本 iOS8 以上版本定位需要自己写授权，不然没有权限定位，即 <code>CLLocationManagerDelegate</code> 代理方法不会执行。</p>
+<div class="entry-content"><p>Xcode6 下，对于系统版本 iOS8 以上版本定位需要自己写授权，不然没有权限定位，即 <code>CLLocationManagerDelegate</code> 代理方法不会执行。</p>
 
 <p>解决方法：</p>
 
@@ -256,187 +174,68 @@
 
 <p>至此，iOS8 下定位问题就可以解决了！</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/">自定义转场动画介绍(翻译)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-30T21:37:02+08:00'><span class='date'>2015 年5 月30 日</span> <span class='time'>9:37 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.appcoda.com/custom-view-controller-transitions-tutorial/">英文原文地址</a></p>
-
-<p>仔细观察 iOS 设备上苹果内置的 app，你会发现各种视图控制器转场动画。iOS7 介绍了自定义控制器转场，使开发人员能够在他们的应用中创建自己的转场动画。在本教程中，我们将看到如何做到这一点。我们还将了解怎样通过手势进行交互式转场 <code>interactive transitions</code>。</p>
-
-<p><img src="http://i1.tietuku.com/41b836336adda5e8.jpg" alt="" /></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/">阅读全文</a>
-    </footer>
   
 
+<span class="byline author vcard">Posted by <span class="fn">lengmolehongyan</span></span>
 
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi/">在Xcode6中使用IBDesignable创建自定义控件(翻译)</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
 
-<time class='entry-date' datetime='2015-05-28T00:16:31+08:00'><span class='date'>2015 年5 月28 日</span> <span class='time'>12:16 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.appcoda.com/ibdesignable-ibinspectable-tutorial/">英文原文地址</a></p>
-
-<p>在Xcode的旧版本中，试图创建一个自定义控件，并不是很容易，因为在IB中，并不能实时预览到你的设计成果，只能在模拟器中测试。对于设计一个单一组件，可能需要花费大量时间。</p>
-
-<p>Xcode6的发布，苹果为开发者构建自定义控件推出了新功能<strong>IBDesignable</strong>和<strong>IBInspectable</strong>，允许在IB中实时预览设计成果。很明显，这会给我们在实际开发过程中提高不少效率。</p>
-
-<p>在本教程中，将介绍IBDesignable IBInspectable，以及展示如何利用这个新功能。除过创建demo示例没有更好地方式来阐述这一新特性，因此，创建一个"Rainbow"自定义界面。</p>
-
-<p><img src="http://i1.tietuku.com/a476b2f40c2465d0.png" alt="效果图" /></p>
-
-<hr />
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time class='entry-date' datetime='2015-07-16T16:50:38+08:00'><span class='date'>2015 年7 月16 日</span> <span class='time'>4:50 pm</span></time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi/">Swift基础语法学习</a></h1>
+      <div class="sharing">
+  
+  
+  
+  
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tools_1"></a>
+    <a class="jiathis_button_tools_2"></a>
+    <a class="jiathis_button_tools_3"></a>
+    <a class="jiathis_button_tools_4"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>
+<!-- UY END -->
+  
+</div>
+
     
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-26T22:12:42+08:00'><span class='date'>2015 年5 月26 日</span> <span class='time'>10:12 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>变量和常量</h3>
-
-<ul>
-<li><code>var</code><strong>变量</strong>，可以修改的</li>
-<li><code>let</code><strong>常量</strong>，一经定义不能修改</li>
-<li>在swift开发中，通常先定义常量<code>let</code>，只有必须修改的时候，再改成<code>var</code></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 实例化一个UIView对象 保存在堆中</span>
-</span><span class='line'><span class="k">let</span> <span class="n">view</span> <span class="o">=</span> <span class="bp">UIView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-</span><span class='line'><span class="c1">// 修改的是view的属性 并没有修改view本身的地址</span>
-</span><span class='line'><span class="n">view</span><span class="p">.</span><span class="n">backgroudColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>注意点:
-
-<ul>
-<li>swift是一个对变量类型要求及其严格的语言</li>
-<li>任何数据类型之间，都不能隐式转换，如果要在不同类型之间进行计算，必须转换格式</li>
-<li>数据类型的推导是在给变量设置初始值的时候，根据“右边”来判断的</li>
-<li>在真正初始化的时候，才能决定变量的准确类型</li>
-</ul>
-</li>
-<li>在定义变量的时候，可以直接指定变量的类型，便于后续的计算不需要转换</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">let</span> <span class="nl">a</span><span class="p">:</span> <span class="n">Double</span> <span class="o">=</span> <span class="mi">10</span>
-</span><span class='line'><span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">10.5</span>
-</span><span class='line'><span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<hr />
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/" title="Previous Post: 自定义转场动画介绍(翻译)">&laquo; 自定义转场动画介绍(翻译)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/" title="Next Post: iOS8下定位问题<二>">iOS8下定位问题<二> &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi/">阅读全文</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">文章列表</a>
->>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
-<<<<<<< HEAD
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-  </ul>
-=======
   <h1>最新文章</h1>
   <ul id="recent_posts">
     
@@ -490,7 +289,6 @@
     });
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
->>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
 </section>
 
 
@@ -499,6 +297,7 @@
 
   
 </aside>
+
 
     </div>
   </div>

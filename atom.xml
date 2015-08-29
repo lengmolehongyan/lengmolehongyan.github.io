@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
+<<<<<<< HEAD
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
@@ -9,8 +10,1311 @@
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
     
+=======
+  <title><![CDATA[冷漠叻荭颜’s Blog]]></title>
+  <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
+  <link href="http://lengmolehongyan.github.io/"/>
+  <updated>2015-08-30T01:34:02+08:00</updated>
+  <id>http://lengmolehongyan.github.io/</id>
+  <author>
+    <name><![CDATA[lengmolehongyan]]></name>
+    <email><![CDATA[lengmohongyan@hotmail.com]]></email>
+>>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
+<<<<<<< HEAD
+=======
+  <entry>
+    <title type="html"><![CDATA[iOS8下定位问题<二>]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/"/>
+    <updated>2015-08-30T00:19:06+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er</id>
+    <content type="html"><![CDATA[<p>接上篇，我们已经可以在系统版本 iOS8 以上完成定位功能，但是会有一个潜在 bug 存在。</p>
+
+<p>进入设置应用，往下滑动找到自己的 app，进入，点击 <strong>位置</strong> 单元格，设置应用会彻底奔溃，回到桌面了。</p>
+
+<p><img src="http://i3.tietuku.com/8d9493bef4f6a786.png" alt="点击位置崩溃" /></p>
+
+<p>经过一番 Google 和 Stack Overflow 后，问题就出现在 <code>info.plist</code> 文件中的两个缺省字段。</p>
+
+<p>在上一篇博客中，我将 <code>NSLocationWhenInUseUsageDescription</code> 和 <code>NSLocationAlwaysUsageDescription</code> 的类型设置为 <code>Boolean</code>，值设置为 <code>YES</code>，而正确做法是类型设置为 <code>String</code>，值填写一些描述信息，比如：请点击允许以允许访问，若不允许将无法使用 XX 功能。这里面所填写的文字，也会自动出现在位置页面的应用程序说明之后。</p>
+
+<p><img src="http://i3.tietuku.com/3881905e46802e76.png" alt="应用程序说明" /></p>
+
+<p>完成之后，重新编译运行，再去设置那，怎么点都不会崩溃了！Over！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS8下定位问题<一>]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/"/>
+    <updated>2015-07-16T16:50:38+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti</id>
+    <content type="html"><![CDATA[<p>Xcode6 下，对于系统版本 iOS8 以上版本定位需要自己写授权，不然没有权限定位，即 <code>CLLocationManagerDelegate</code> 代理方法不会执行。</p>
+
+<p>解决方法：</p>
+
+<p>步骤一：需要在 <code>info.plist</code> 文件中加入下面两个缺省字段，值设置为 <code>YES</code>。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSLocationWhenInUseUsageDescription</span> <span class="c1">// 允许在前台获取 GPS 的描述</span>
+</span><span class='line'><span class="n">NSLocationAlwaysUsageDescription</span> <span class="c1">// 允许在前、后台获取 GPS 的描述 </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>步骤二：判断设备系统版本，如果系统版本大于8.0，设置定位权限。代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &quot;ViewController.h&quot;</span>
+</span><span class='line'><span class="cp">#import &lt;CoreLocation/CoreLocation.h&gt;</span>
+</span><span class='line'><span class="k">@interface</span> <span class="nc">ViewController</span> <span class="p">()</span><span class="o">&lt;</span><span class="bp">CLLocationManagerDelegate</span><span class="o">&gt;</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="bp">CLLocationManager</span> <span class="o">*</span><span class="n">locationManager</span><span class="p">;</span>
+</span><span class='line'><span class="k">@end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@implementation</span> <span class="nc">ViewController</span>
+</span><span class='line'><span class="c1">// 懒加载初始化 self.locationManager</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="bp">CLLocationManager</span> <span class="o">*</span><span class="p">)</span><span class="nf">locationManager</span><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">_locationManager</span><span class="p">){</span>
+</span><span class='line'>        <span class="n">_locationManager</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">CLLocationManager</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">_locationManager</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_locationManager</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewDidLoad</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">super</span> <span class="n">viewDidLoad</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 调用请求</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">([[[</span><span class="bp">UIDevice</span> <span class="n">currentDevice</span><span class="p">]</span> <span class="n">systemVersion</span><span class="p">]</span> <span class="n">doubleValue</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">8.0</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// 设置定位权限仅 iOS8 有意义</span>
+</span><span class='line'>        <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">locationManager</span> <span class="n">requestWhenInUseAuthorization</span><span class="p">];</span> <span class="c1">// 前台定位</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// [locationManager requestAlwaysAuthorization]; // 前后台同时定位</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">locationManager</span> <span class="n">startUpdatingLocation</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 代理方法</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">locationManager:</span><span class="p">(</span><span class="bp">CLLocationManager</span> <span class="o">*</span><span class="p">)</span><span class="nv">manager</span> <span class="nf">didUpdateLocations:</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="nv">locations</span><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%zd&quot;</span><span class="p">,</span> <span class="n">locations</span><span class="p">.</span><span class="n">count</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>至此，iOS8 下定位问题就可以解决了！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[自定义转场动画介绍(翻译)]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/"/>
+    <updated>2015-05-30T21:37:02+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi</id>
+    <content type="html"><![CDATA[<p><a href="http://www.appcoda.com/custom-view-controller-transitions-tutorial/">英文原文地址</a></p>
+
+<p>仔细观察 iOS 设备上苹果内置的 app，你会发现各种视图控制器转场动画。iOS7 介绍了自定义控制器转场，使开发人员能够在他们的应用中创建自己的转场动画。在本教程中，我们将看到如何做到这一点。我们还将了解怎样通过手势进行交互式转场 <code>interactive transitions</code>。</p>
+
+<p><img src="http://i1.tietuku.com/41b836336adda5e8.jpg" alt="" /></p>
+
+<!--more-->
+
+
+<h3>开始</h3>
+
+<p>创建自定义转场必须遵循以下三个步骤：</p>
+
+<ol>
+<li>创建一个类，遵守 <code>UIViewControllerAnimatedTransitioning</code> 协议，并实现协议中的方法。在这个类中，将编写执行动画的代码，这个类被用做动画控制器。</li>
+<li>在 <code>present</code> 控制器前，需设置一个类作为其转场代理。这个代理用于当 <code>present</code> 控制器时，从动画控制器中回调。</li>
+<li>实现回调方法，返回一个第一步中的动画控制器实例对象。</li>
+</ol>
+
+
+<p>运行初始项目你会看到一组 items 的 tableView，在导航栏右边有一个 <code>Action</code> 按钮，当你点击它，会以默认 <code>modal</code> 样式从底部 <code>present</code> 出一个控制器，我们将为这个视图转场编写自定义转场。</p>
+
+<p><img src="http://i1.tietuku.com/86214a9a01cf1d06.gif" alt="" /></p>
+
+<h3>自定义 Present 转场</h3>
+
+<p>如前所述，接下来做的第一件事是创建动画控制器。创建一个 <code>CustomPresentAnimationController</code> 类继承自 <code>NSObject</code>，并遵守 <code>UIViewControllerAnimatedTransitioning</code> 协议。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">class</span> <span class="nl">CustomPresentAnimationController</span><span class="p">:</span> <span class="bp">NSObject</span><span class="p">,</span> <span class="bp">UIViewControllerAnimatedTransitioning</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>UIViewControllerAnimatedTransitioning</code> 协议有两个必须实现的方法，在这个类中添加以下代码。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">动画持续时间</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="nf">transitionDuration</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NSTimeInterval</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mf">2.5</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">转场动画</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="n">animateTransition</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">let</span> <span class="n">fromViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextFromViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">toViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextToViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">finalFrameForVC</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">finalFrameForViewController</span><span class="p">(</span><span class="n">toViewController</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">containerView</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">containerView</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">bounds</span> <span class="o">=</span> <span class="bp">UIScreen</span><span class="p">.</span><span class="n">mainScreen</span><span class="p">().</span><span class="n">bounds</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置目标控制器的 frame</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectOffset</span><span class="p">(</span><span class="n">finalFrameForVC</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bounds</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1">// 将目标控制器的根 view 添加至容器视图 containerView</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置动画代码</span>
+</span><span class='line'>    <span class="bp">UIView</span><span class="p">.</span><span class="n">animateWithDuration</span><span class="p">(</span><span class="n">transitionDuration</span><span class="p">(</span><span class="n">transitionContext</span><span class="p">),</span> <span class="nl">delay</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nl">usingSpringWithDamping</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nl">initialSpringVelocity</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">options</span><span class="p">:</span> <span class="n">UIViewAnimationOptions</span><span class="p">.</span><span class="n">CurveLinear</span><span class="p">,</span> <span class="nl">animations</span><span class="p">:</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+</span><span class='line'>        <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">finalFrameForVC</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// 动画结束后 通知转场上下文转场结束</span>
+</span><span class='line'>        <span class="n">transitionContext</span><span class="p">.</span><span class="n">completeTransition</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.0</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第一方法是设置转场<em>动画时长</em>，这个 Demo 中我们设置2.5秒，但是在实际应用中，你应该设置一个比这个数小的数。</p>
+
+<p>第二个方法，我们通过转场上下文 <code>transitionContext</code> 取得<em>来源控制器</em> fromVC、<em>目标控制器</em> toVC、动画结束后终止 frame，以及给 fromVC 和 toVC 转场切换视图提供容器的<em>容器视图</em> <code>containerView</code>。</p>
+
+<p>接下来我们设置 toView 在屏幕的底部，然后将 toView 添加至容器视图和动画的闭包中，让 toView 动画至设定的最终位置。同时也设置了 fromView 的透明度动画，以至于随着 toView 的向上滑动 fromView 逐渐淡出。动画时间通过 <code>transitionDuration(transitionContext)</code> 获得。在完成闭包中，我们通知转场上下文转场结束，接着让 fromView 的透明度恢复正常。容器视图将会移除 fromView。</p>
+
+<p>动画控制器类里面的任务已经完成，下一步我们需要将它和 <code>storyboard segue</code> 连接起来。</p>
+
+<p>打开 ItemsTableViewController.swift 文件，遵守 <code>UIViewControllerTransitioningDelegate</code> 协议。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">class</span> <span class="nl">ItemsTableViewController</span><span class="p">:</span> <span class="bp">UITableViewController</span><span class="p">,</span> <span class="bp">UIViewControllerTransitioningDelegate</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>UIViewController 有一个 <code>transitionDelegate</code> 属性，支持自定义转场。当转场至一个控制器时，会通过这个属性查看自定义转场是否使用。<code>UIViewControllerTransitioningDelegate</code> 提供自定义转场。</p>
+
+<p>打开 Main.storyboard 文件，选择 <code>Present modally segue to Action View Controller</code>，在属性检查器中，设置它的 Identifier 为 <code>showAction</code>。</p>
+
+<p><img src="http://i1.tietuku.com/f710e825b83b99be.png" alt="" /></p>
+
+<p>回到 ItemsTableViewController.swift 文件，添加如下代码。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">/// 实例化一个 Present 动画控制器</span>
+</span><span class='line'><span class="k">let</span> <span class="n">customPresentAnimationController</span> <span class="o">=</span> <span class="n">CustomPresentAnimationController</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">override</span> <span class="k">func</span> <span class="n">prepareForSegue</span><span class="p">(</span><span class="nl">segue</span><span class="p">:</span> <span class="bp">UIStoryboardSegue</span><span class="p">,</span> <span class="nl">sender</span><span class="p">:</span> <span class="n">AnyObject</span><span class="o">?</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span>  <span class="n">segue</span><span class="p">.</span><span class="n">identifier</span> <span class="o">==</span> <span class="s">&quot;showAction&quot;</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">let</span> <span class="n">toViewController</span> <span class="o">=</span> <span class="n">segue</span><span class="p">.</span><span class="n">destinationViewController</span> <span class="kt">as</span><span class="o">!</span> <span class="bp">UIViewController</span>
+</span><span class='line'>        <span class="c1">// 设置目标控制器的转场代理为当前控制器</span>
+</span><span class='line'>        <span class="n">toViewController</span><span class="p">.</span><span class="n">transitioningDelegate</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在这里我们实例化一个 Present 动画控制器，在 <code>prepareForSegue()</code> 函数中，设置目标控制器的 <code>transitioningDelegate</code> 属性。</p>
+
+<p>继续添加如下代码，返回自定义 <code>Present</code> 动画控制器实例对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">返回自定义 Present 动画对象</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="n">animationControllerForPresentedController</span><span class="p">(</span><span class="nl">presented</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="n">presentingController</span> <span class="nl">presenting</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="n">sourceController</span> <span class="nl">source</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">UIViewControllerAnimatedTransitioning</span><span class="o">?</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">customPresentAnimationController</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行程序，你会看到下图效果，Action view 在屏幕底部向上缓慢滑动，停止前会有小的弹簧效果。</p>
+
+<p><img src="http://i1.tietuku.com/ca3edd567594f674.gif" alt="" /></p>
+
+<p>在 CustomPresentAnimationController.swift 更改代码如下，你会看到一个稍微不同的效果，目标控制器的初始位置是在屏幕上方。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectOffset</span><span class="p">(</span><span class="n">finalFrameForVC</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">bounds</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行程序，这次 Action view 是从屏幕顶部缓慢落下。</p>
+
+<h3>自定义 Dismiss 转场</h3>
+
+<p>我们已经实现了自定义 <code>present</code> 转场动画，但是 <code>dismiss</code> 转场动画还是使用的苹果默认的。</p>
+
+<p><code>UIViewControllerTransitioningDelegate</code> 协议允许同时设置负责 <code>dismiss</code> 和 <code>present</code> 控制器的转场动画控制器。</p>
+
+<p>创建一个 <code>CustomDismissAnimationController</code> 类，继承自 <code>NSObject</code>，并遵守 <code>UIViewControllerAnimatedTransitioning</code> 协议。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">class</span> <span class="nl">CustomDismissAnimationController</span><span class="p">:</span> <span class="bp">NSObject</span><span class="p">,</span> <span class="bp">UIViewControllerAnimatedTransitioning</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在这个类添加如下代码。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">动画持续时间</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="nf">transitionDuration</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NSTimeInterval</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mf">2.0</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">转场动画</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="n">animateTransition</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">let</span> <span class="n">fromViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextFromViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">toViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextToViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">finalFrameForVC</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">finalFrameForViewController</span><span class="p">(</span><span class="n">toViewController</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">containerView</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">containerView</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置 toVC 的根 view 的 frame 以及透明度</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">finalFrameForVC</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+</span><span class='line'>    <span class="c1">// 将目标控制器的根 view 添加至容器视图 containerView</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">sendSubviewToBack</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置动画代码</span>
+</span><span class='line'>    <span class="bp">UIView</span><span class="p">.</span><span class="n">animateWithDuration</span><span class="p">(</span><span class="n">transitionDuration</span><span class="p">(</span><span class="n">transitionContext</span><span class="p">),</span> <span class="nl">animations</span><span class="p">:</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectInset</span><span class="p">(</span><span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">,</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// 动画结束后 通知转场上下文转场结束</span>
+</span><span class='line'>        <span class="n">transitionContext</span><span class="p">.</span><span class="n">completeTransition</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这段代码和 <code>present</code> 转场动画代码实现方式很相似。在 <code>animateTransition()</code> 函数中，拿到当前转场上下文的 toVC 和 fromVC。现在的 toVC 是表视图控制器，我们设置了它的根视图的 alpha 值，动画开始后，将逐渐淡入。然后将 toVC 的根 view 添加至容器视图，并放在 fromVC 的根 view 的后面。</p>
+
+<p>在动画闭包中，设置了 fromVC 的根 view 的宽和高动画到0，并保持在屏幕的中心，这会产生一个 from view 缩小到消失的动画效果，同时 to view 逐渐可见。</p>
+
+<p>在 ItemsTableViewController.swift 文件中添加下面这个属性。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">/// 实例化一个负责 Dismiss 转场动画控制器</span>
+</span><span class='line'><span class="k">let</span> <span class="n">customDismissAnimationController</span> <span class="o">=</span> <span class="n">CustomDismissAnimationController</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>同时实现下面这个代理方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">返回负责自定义 Dismiss 转场动画对象</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">func</span> <span class="n">animationControllerForDismissedController</span><span class="p">(</span><span class="nl">dismissed</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">UIViewControllerAnimatedTransitioning</span><span class="o">?</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">customDismissAnimationController</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>UIViewControllerTransitioningDelegate</code> 协议提供了上面这个函数，可以设置负责 dismiss 转场动画的控制器。</p>
+
+<p>运行程序，你会看到下面的动画。</p>
+
+<p><img src="http://i1.tietuku.com/b42fc6619b716079.gif" alt="" /></p>
+
+<p>显然，这并不是我们想要的动画。from view 的消失动画是我们想要的，但是图片 image 的相对位置没有变化。这是因为，我们改变的是 from view 的 frame，这并不会影响到它的子视图。我们将用 UIView 的快照 <code>snapshot</code> 来修复这个 bug。</p>
+
+<p>UIView 快照是对当前存在的 UIView 截图让它成为一个轻量级的 UIView，我们将在动画中使用快照而不是真正的 view。</p>
+
+<p>修改 <code>animateTransition()</code> 函数内部如下。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">func</span> <span class="nf">animateTransition</span><span class="p">(</span><span class="nl">transitionContext</span><span class="p">:</span> <span class="bp">UIViewControllerContextTransitioning</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">let</span> <span class="n">fromViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextFromViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">toViewController</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">viewControllerForKey</span><span class="p">(</span><span class="n">UITransitionContextToViewControllerKey</span><span class="p">)</span><span class="o">!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">finalFrameForVC</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">finalFrameForViewController</span><span class="p">(</span><span class="n">toViewController</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">containerView</span> <span class="o">=</span> <span class="n">transitionContext</span><span class="p">.</span><span class="n">containerView</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置 toVC 的根 view 的 frame 以及透明度</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">finalFrameForVC</span>
+</span><span class='line'>    <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+</span><span class='line'>    <span class="c1">// 将目标控制器的根 view 添加至容器视图 containerView</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">sendSubviewToBack</span><span class="p">(</span><span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 生成快照 并添加到容器视图</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">snapshotView</span> <span class="o">=</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">snapshotViewAfterScreenUpdates</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">snapshotView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span>
+</span><span class='line'>    <span class="n">containerView</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">snapshotView</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 移除 fromVC 的根 view</span>
+</span><span class='line'>    <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">removeFromSuperview</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 设置动画代码</span>
+</span><span class='line'>    <span class="bp">UIView</span><span class="p">.</span><span class="n">animateWithDuration</span><span class="p">(</span><span class="n">transitionDuration</span><span class="p">(</span><span class="n">transitionContext</span><span class="p">),</span> <span class="nl">animations</span><span class="p">:</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">snapshotView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectInset</span><span class="p">(</span><span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">,</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fromViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">toViewController</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">})</span> <span class="p">{</span> <span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Void</span> <span class="k">in</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// 动画结束后 通知转场上下文转场结束 并移除快照</span>
+</span><span class='line'>        <span class="n">snapshotView</span><span class="p">.</span><span class="n">removeFromSuperview</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">transitionContext</span><span class="p">.</span><span class="n">completeTransition</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里我们创建了一个 fromVC 的根 view 的快照，添加到容器视图，并移除 fromVC 的根 view。转场动画中缩放快照，动画完成后将快照从容器视图中移除。</p>
+
+<p>运行程序，转场动画一切正常。</p>
+
+<p><img src="http://i1.tietuku.com/c7d1a6eb3c4a7645.gif" alt="" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在Xcode6中使用IBDesignable创建自定义控件(翻译)]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi/"/>
+    <updated>2015-05-28T00:16:31+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi</id>
+    <content type="html"><![CDATA[<p><a href="http://www.appcoda.com/ibdesignable-ibinspectable-tutorial/">英文原文地址</a></p>
+
+<p>在Xcode的旧版本中，试图创建一个自定义控件，并不是很容易，因为在IB中，并不能实时预览到你的设计成果，只能在模拟器中测试。对于设计一个单一组件，可能需要花费大量时间。</p>
+
+<p>Xcode6的发布，苹果为开发者构建自定义控件推出了新功能<strong>IBDesignable</strong>和<strong>IBInspectable</strong>，允许在IB中实时预览设计成果。很明显，这会给我们在实际开发过程中提高不少效率。</p>
+
+<p>在本教程中，将介绍IBDesignable IBInspectable，以及展示如何利用这个新功能。除过创建demo示例没有更好地方式来阐述这一新特性，因此，创建一个"Rainbow"自定义界面。</p>
+
+<p><img src="http://i1.tietuku.com/a476b2f40c2465d0.png" alt="效果图" /></p>
+
+<hr />
+
+<!--more-->
+
+
+<h3>IBDesignable和IBInspectable</h3>
+
+<p>使用IBDesignable和IBInspectable，开发者创建界面(或视图)可以实时呈现在IB中。一般来说，为了使用这个新特性，你需要做的是创建一个<code>UIView</code>或者<code>UIControl</code>的子类，然后在定义类的前面加上<code>@IBDesignable</code>关键字。如果是OC，使用<code>IB_DESIGNABLE</code>宏。下面是Swift示例代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="p">@</span><span class="n">IBDesignable</span>
+</span><span class='line'><span class="k">class</span> <span class="nl">Rainbow</span><span class="p">:</span> <span class="bp">UIView</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在Xcode旧版本中，你可以在IB中编辑<code>User Defined Runtime Attributes</code>来改变一个对象的属性(例如:layer.cornerRadius)，问题是你需要确切知道属性名。<code>IBInspectable</code>只需要一步，对一个可视化类的属性前面加上<code>IBInspectable</code>关键字前缀，该属性会在暴露在IB中，这就是一个更改属性值更简单的方法。</p>
+
+<p><img src="http://i1.tietuku.com/93c53c69c11bffa1.png" alt="IB属性" /></p>
+
+<p>你如果使用Swift开发app，你需要做的只是在你选择的属性前面加上<code>@IBInspectable</code>关键字，下面是个示例代码片段:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="p">@</span><span class="n">IBInspectable</span> <span class="k">var</span> <span class="nl">firstColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">blackColor</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>   <span class="c1">// 值改变时更新UI</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>创建Xcode项目</h3>
+
+<p>创建一个新的Xcode项目，选择Single View Application模板，起名为<em>RainbowDemo</em>，在此项目中，将使用Swift语言，因此，创建项目时不要忘记勾选。</p>
+
+<p>完成后，选择Main.storyboard文件，设置View Controller的根视图View的背景颜色Hex Color值为<code>38334C</code>(或者任何你想要的颜色)。然后从对象库中拖一个View放进View Controller，设置它的大小Width为600，Height为434，然后把它放在根视图的中心，设置新视图View和根视图相同背景颜色。</p>
+
+<blockquote><p>提示：如果想改变RGB颜色值，只需打开调色板和切换到滑块标签来改变RGB值</p></blockquote>
+
+<p><img src="http://i1.tietuku.com/ae13d9f742d52315.gif" alt="设置背景颜色" /></p>
+
+<p>在Xcode6中，为了适配各个iOS设备，你必须为视图View配置自动布局约束。对于简单的约束，你可以在自动布局菜单单击<strong>Issues</strong>选项，选择<code>Add Missing Contraints</code>，Xcode将自动为View添加布局约束。</p>
+
+<p><img src="http://i1.tietuku.com/7b993f7b47a011c2.gif" alt="添加约束" /></p>
+
+<hr />
+
+<h3>创建自定义View类</h3>
+
+<p>现在，你已经在storyboard中创建了一个View，是时候创建自定义View类了。使用Cocoa Touch Class文件模板，创建自定义类文件，继承自UIView，起名为"Rainbow"。</p>
+
+<p><img src="http://i1.tietuku.com/08e097c646676e6a.png" alt="创建自定义View类" /></p>
+
+<p>在自定义类中插入以下代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">import</span> <span class="n">UIKit</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">Rainbow</span><span class="p">:</span> <span class="bp">UIView</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kr">override</span> <span class="k">init</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="bp">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="k">init</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">required</span> <span class="k">init</span><span class="p">(</span><span class="n">coder</span> <span class="nl">aDecoder</span><span class="p">:</span> <span class="bp">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="k">init</span><span class="p">(</span><span class="nl">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如前所述，这个可视化类是UIView的子类，让自定义类实时呈现，需要<code>override</code>上述两个方法。然后，打开辅助编辑器，更改新拖的View的自定义类为<em>Rainbow</em>类。</p>
+
+<p><img src="http://i1.tietuku.com/5e41283a3fd5d23c.gif" alt="" /></p>
+
+<hr />
+
+<h3>实现IBDesignable控制</h3>
+
+<p>为了实现实时预览，在自定义类前面加一个前缀<code>@IBDesignable</code>关键字</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="p">@</span><span class="n">IBDesignable</span>
+</span><span class='line'><span class="k">class</span> <span class="nl">Rainbow</span><span class="p">:</span> <span class="bp">UIView</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个关键字确实简单，但是这简单地关键字将使你的开发更加容易。接下来，添加一些设置颜色的属性。在Rainbow类中插入以下代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="p">@</span><span class="n">IBInspectable</span> <span class="k">var</span> <span class="nl">firstColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span><span class="nl">red</span><span class="p">:</span> <span class="p">(</span><span class="mf">37.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">green</span><span class="p">:</span> <span class="p">(</span><span class="mf">252.0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span> <span class="nl">blue</span><span class="p">:</span> <span class="p">(</span><span class="mf">244.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span class='line'><span class="p">@</span><span class="n">IBInspectable</span> <span class="k">var</span> <span class="nl">secondColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span><span class="nl">red</span><span class="p">:</span> <span class="p">(</span><span class="mf">171.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">green</span><span class="p">:</span> <span class="p">(</span><span class="mf">250.0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span> <span class="nl">blue</span><span class="p">:</span> <span class="p">(</span><span class="mf">81.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span class='line'><span class="p">@</span><span class="n">IBInspectable</span> <span class="k">var</span> <span class="nl">thirdColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span><span class="nl">red</span><span class="p">:</span> <span class="p">(</span><span class="mf">238.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">green</span><span class="p">:</span> <span class="p">(</span><span class="mf">32.0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span> <span class="nl">blue</span><span class="p">:</span> <span class="p">(</span><span class="mf">53.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在这里，我们预先定义每个属性一个默认颜色，每次用户更改它们的值时会重绘视图。更重要的是，我们为每个属性加了一个<code>@IBInspectable</code>关键字前缀，现在去IB的属性检查器，你可以直观地发现这些属性:</p>
+
+<p><img src="http://i1.tietuku.com/49ce99f08cfba0ab.png" alt="IB中的属性" /></p>
+
+<p>很酷，对吧？IBInspectable通过指示属性，你可以使用颜色选择器可视化地编辑它们。</p>
+
+<p>在Rainbow类中，为了在屏幕上画一个圆，插入以下代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">func</span> <span class="nf">addOval</span><span class="p">(</span><span class="nl">lineWidth</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">path</span><span class="p">:</span> <span class="n">CGPathRef</span><span class="p">,</span> <span class="nl">strokeStart</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">strokeEnd</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">strokeColor</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">,</span> <span class="nl">fillColor</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">,</span> <span class="nl">shadowRadius</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">shadowOpacity</span><span class="p">:</span> <span class="n">Float</span><span class="p">,</span> <span class="nl">shadowOffset</span><span class="p">:</span> <span class="bp">CGSize</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">let</span> <span class="n">arc</span> <span class="o">=</span> <span class="bp">CAShapeLayer</span><span class="p">()</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">lineWidth</span> <span class="o">=</span> <span class="n">lineWidth</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">strokeStart</span> <span class="o">=</span> <span class="n">strokeStart</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">strokeEnd</span> <span class="o">=</span> <span class="n">strokeEnd</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">strokeColor</span> <span class="o">=</span> <span class="n">strokeColor</span><span class="p">.</span><span class="bp">CGColor</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">fillColor</span> <span class="o">=</span> <span class="n">fillColor</span><span class="p">.</span><span class="bp">CGColor</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">shadowRadius</span> <span class="o">=</span> <span class="n">shadowRadius</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">shadowOpacity</span> <span class="o">=</span> <span class="n">shadowOpacity</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">shadowOffset</span> <span class="o">=</span> <span class="n">shadowOffset</span>
+</span><span class='line'>   <span class="n">layer</span><span class="p">.</span><span class="n">addSublayer</span><span class="p">(</span><span class="n">arc</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>为了保证代码的简洁和可读性，我们定义了依据方法调用者传入参数来绘制一个完整的圆或者半圆的公共方法。利用CAShapeLayer类可以很简单的画一个圆或圆弧。你可以使用strokeStart和strokeEnd属性控制渲染的开始和结束。通过改变strokeEnd的值在0.0到1.0之间，你可以绘制一个完整或者部分的圆。其余的属性是只是用于设置渲染颜色，阴影颜色等，在CAShaperLayer官方文档中可以查看更详细的所有可用属性。</p>
+
+<p>接下来，添加以下方法:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="kr">override</span> <span class="k">func</span> <span class="nf">drawRect</span><span class="p">(</span><span class="nl">rect</span><span class="p">:</span> <span class="bp">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// 添加圆弧</span>
+</span><span class='line'>    <span class="n">addCircle</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="nl">capRadius</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nl">color</span><span class="p">:</span> <span class="n">firstColor</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">addCircle</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="nl">capRadius</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nl">color</span><span class="p">:</span> <span class="n">secondColor</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">addCircle</span><span class="p">(</span><span class="mi">215</span><span class="p">,</span> <span class="nl">capRadius</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nl">color</span><span class="p">:</span> <span class="n">thirdColor</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">func</span> <span class="nf">addCircle</span><span class="p">(</span><span class="nl">arcRadius</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">capRadius</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">color</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">CGRectGetMidX</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">CGRectGetMidY</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 底部圆弧</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">pathBottom</span> <span class="o">=</span> <span class="bp">UIBezierPath</span><span class="p">(</span><span class="nl">ovalInRect</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span>
+</span><span class='line'>        <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="n">arcRadius</span><span class="p">,</span> <span class="n">arcRadius</span><span class="p">)).</span><span class="bp">CGPath</span>
+</span><span class='line'>    <span class="n">addOval</span><span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="nl">path</span><span class="p">:</span> <span class="n">pathBottom</span><span class="p">,</span> <span class="nl">strokeStart</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">strokeEnd</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+</span><span class='line'>        <span class="nl">strokeColor</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span> <span class="nl">fillColor</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">clearColor</span><span class="p">(),</span>
+</span><span class='line'>        <span class="nl">shadowRadius</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">shadowOpacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">shadowOffset</span><span class="p">:</span> <span class="n">CGSizeZero</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 中间圆弧</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">pathMiddle</span> <span class="o">=</span> <span class="bp">UIBezierPath</span><span class="p">(</span><span class="nl">ovalInRect</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">capRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+</span><span class='line'>        <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">capRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="n">capRadius</span><span class="p">,</span> <span class="n">capRadius</span><span class="p">)).</span><span class="bp">CGPath</span>
+</span><span class='line'>    <span class="n">addOval</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nl">path</span><span class="p">:</span> <span class="n">pathMiddle</span><span class="p">,</span> <span class="nl">strokeStart</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">strokeEnd</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span class='line'>        <span class="nl">strokeColor</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span> <span class="nl">fillColor</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
+</span><span class='line'>        <span class="nl">shadowRadius</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="nl">shadowOpacity</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nl">shadowOffset</span><span class="p">:</span> <span class="n">CGSizeZero</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 顶部圆弧</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">pathTop</span> <span class="o">=</span> <span class="bp">UIBezierPath</span><span class="p">(</span><span class="nl">ovalInRect</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span>
+</span><span class='line'>        <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="n">arcRadius</span><span class="p">,</span> <span class="n">arcRadius</span><span class="p">)).</span><span class="bp">CGPath</span>
+</span><span class='line'>    <span class="n">addOval</span><span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="nl">path</span><span class="p">:</span> <span class="n">pathTop</span><span class="p">,</span> <span class="nl">strokeStart</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nl">strokeEnd</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span class='line'>        <span class="nl">strokeColor</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span> <span class="nl">fillColor</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">clearColor</span><span class="p">(),</span>
+</span><span class='line'>        <span class="nl">shadowRadius</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">shadowOpacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">shadowOffset</span><span class="p">:</span> <span class="n">CGSizeZero</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>drawRect:</code>方法默认什么也不做，为了在自定义View中画圆，我们override此方法来实现自己的绘制代码。<code>addCircle:</code>方法有三个参数：arcRadius，capRadius和color。arcRadius是圆弧的半径，capRadius是圆弧边缘半径。</p>
+
+<p><code>addCircle:</code>方法利用UIBezierPath画圆弧的简单工作原理:</p>
+
+<ol>
+<li>首先，在底部画了个半圆弧</li>
+<li>接下来，在圆弧边缘画了一个完整的小圆</li>
+<li>最后，画了另一半圆弧</li>
+</ol>
+
+
+<p>在<code>drawRect:</code>方法中，我们调用了<code>addCircle:</code>方法三次，传入的参数指定圆弧该怎样画：</p>
+
+<p><img src="http://i1.tietuku.com/c5769f1b0ed47bd7.jpg" alt="画圆弧原理" /></p>
+
+<p>利用IBInspectable属性，你可以在IB中自由改变每个圆弧的颜色，而不需要写代码:</p>
+
+<p><img src="http://i1.tietuku.com/dac4b07c68953a6d.png" alt="" /></p>
+
+<p>显然，你可以进一步利用<code>@IBInspectable</code>暴露<code>arcRadius</code>属性，便可以在IB中修改绘制圆弧半径。</p>
+
+<p><img src="http://i1.tietuku.com/79c3c33c22943103.jpg" alt="修改半径" /></p>
+
+<hr />
+
+<h3>总结</h3>
+
+<p>通过本教程后，你现在了解了在Xcode6中如何利用IBDesignable和IBInspectable实时预览界面。利用这个新特性，你可以更高效创建自定义组件。</p>
+
+<p><a href="https://github.com/lengmolehongyan/RainbowDemo">RainbowDemo地址</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Swift基础语法学习]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi/"/>
+    <updated>2015-05-26T22:12:42+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi</id>
+    <content type="html"><![CDATA[<h3>变量和常量</h3>
+
+<ul>
+<li><code>var</code><strong>变量</strong>，可以修改的</li>
+<li><code>let</code><strong>常量</strong>，一经定义不能修改</li>
+<li>在swift开发中，通常先定义常量<code>let</code>，只有必须修改的时候，再改成<code>var</code></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 实例化一个UIView对象 保存在堆中</span>
+</span><span class='line'><span class="k">let</span> <span class="n">view</span> <span class="o">=</span> <span class="bp">UIView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</span><span class='line'><span class="c1">// 修改的是view的属性 并没有修改view本身的地址</span>
+</span><span class='line'><span class="n">view</span><span class="p">.</span><span class="n">backgroudColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>注意点:
+
+<ul>
+<li>swift是一个对变量类型要求及其严格的语言</li>
+<li>任何数据类型之间，都不能隐式转换，如果要在不同类型之间进行计算，必须转换格式</li>
+<li>数据类型的推导是在给变量设置初始值的时候，根据“右边”来判断的</li>
+<li>在真正初始化的时候，才能决定变量的准确类型</li>
+</ul>
+</li>
+<li>在定义变量的时候，可以直接指定变量的类型，便于后续的计算不需要转换</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">let</span> <span class="nl">a</span><span class="p">:</span> <span class="n">Double</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">10.5</span>
+</span><span class='line'><span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<!--more-->
+
+
+<h3>分支</h3>
+
+<ul>
+<li><code>if</code>在C语言中有一个特点:非零即真，在swift中，没有非零即真的概念，只有<code>true/false</code>，在编写分支语句时，必须准确的指定条件的真假。</li>
+<li>格式:
+
+<ul>
+<li>条件不需要括号</li>
+<li>必须要有<code>{}</code></li>
+</ul>
+</li>
+<li><code>convenience init?()</code>表示一个函数未必能够真的实例化出来一个对象，在swift中，要求在编写代码的时候，必须考虑这些问题，能够尽早地发现问题</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 使用if同时设置数值</span>
+</span><span class='line'><span class="k">if</span> <span class="k">let</span> <span class="n">url</span> <span class="o">=</span> <span class="bp">NSURL</span><span class="p">(</span><span class="nl">string</span><span class="p">:</span> <span class="s">&quot;http://www.baidu.com/s?word=he&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// 代码执行到此 url就一定有值 所以不需要再使用!</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">request</span> <span class="o">=</span> <span class="bp">NSURLRequest</span><span class="p">(</span><span class="nl">URL</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>实际的应用技巧:
+
+<ul>
+<li><code>?</code>表示可以有值，也可以没有值</li>
+<li>打印可选项的时候，同时会输出一个<code>Optional</code>，提示开发者，这是一个可选项，苹果把判断对象是否有内容的工作交给了程序员</li>
+<li><code>??</code>用来快速判断对象是否为<code>nil</code></li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">var</span> <span class="nl">str</span><span class="p">:</span> <span class="bp">NSString</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="s">&quot;hello&quot;</span>
+</span><span class='line'><span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="c1">// 存在的风险 如果str没有设置初始值 会直接崩溃</span>
+</span><span class='line'><span class="c1">// let len = a + str!.length</span>
+</span><span class='line'><span class="c1">// ?? 用来快速判断对象是否为nil</span>
+</span><span class='line'><span class="k">let</span> <span class="n">len2</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="n">str</span><span class="o">?</span><span class="p">.</span><span class="n">length</span> <span class="o">??</span> <span class="mi">0</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>循环</h3>
+
+<ul>
+<li>传统的写法，和C语言几乎一样，需要注意的是，需要使用<code>var</code>而不是<code>let</code></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">for</span> <span class="k">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>方便写法，<code>in</code>用来指定范围</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 范围0~9</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.</span><span class="o">&lt;</span><span class="mi">10</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">// 范围0~10</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.</span><span class="mf">.10</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>如果遍历的时候，对索引下标不关注，在swift中，<code>_</code>使用的非常广泛，主要用于忽略</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.</span><span class="mf">.5</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>字符串</h3>
+
+<ul>
+<li>在swift中，<strong>字符串</strong>默认的类型是<code>String</code>，而不是<code>NSString</code></li>
+<li>swift中<code>String</code>是一个结构体，执行效率更高，支持快速遍历。<code>NSString</code>继承自<code>NSObject</code>，是一个OC对象，不支持快速遍历</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">let</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;Hello!&quot;</span>
+</span><span class='line'><span class="c1">// 对字符串的快速遍历</span>
+</span><span class='line'><span class="k">for</span> <span class="n">c</span> <span class="k">in</span> <span class="n">str</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>字符串的拼接</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">let</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;Hello&quot;</span>
+</span><span class='line'><span class="k">let</span> <span class="n">str2</span> <span class="o">=</span> <span class="n">str1</span> <span class="o">+</span> <span class="s">&quot;World!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>格式字符串</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">let</span> <span class="n">str</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="nl">format</span><span class="p">:</span> <span class="s">&quot;%02d:%02d:%02d&quot;</span><span class="p">,</span> <span class="nl">arguments</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在swift中，如果要结合<code>range</code>一起使用字符串，建议先转成<code>NSString</code>再处理</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">let</span> <span class="nl">str</span><span class="p">:</span> <span class="bp">NSString</span> <span class="o">=</span> <span class="s">&quot;Hello, world!&quot;</span>
+</span><span class='line'><span class="k">let</span> <span class="n">subS</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">substringWithRange</span><span class="p">(</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>数组</h3>
+
+<ul>
+<li>使用<code>[]</code>定义<strong>数组</strong>，数组类型由中括号里面元素决定</li>
+<li>OC中数组分为可变数组和不可变数组，swift中<code>let</code>是不可变的，<code>var</code>是可变的，不能向不可变数组中追加元素</li>
+<li>数组遍历:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 数组遍历</span>
+</span><span class='line'><span class="k">let</span> <span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;age&quot;</span><span class="p">,</span> <span class="s">&quot;no&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="k">for</span> <span class="n">str</span> <span class="k">in</span> <span class="n">array</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>可变数组添加元素</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">var</span> <span class="n">arrayM</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;age&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="n">arrayM</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;no&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>如果定义数组时，指定的对象类型不一致，定义的数组类型是<code>[NSObject]</code>。OC中，如果要向数组中添加数字，需要转换成<code>NSNumber</code>，swift中，可以直接添加</li>
+<li>数组的定义和初始化</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 定义但是没有初始化</span>
+</span><span class='line'><span class="k">var</span> <span class="nl">arrayM</span><span class="p">:</span> <span class="p">[</span><span class="n">String</span><span class="p">]</span>
+</span><span class='line'><span class="c1">// 初始化一个字符串的可变数组</span>
+</span><span class='line'><span class="n">arrayM</span> <span class="o">=</span> <span class="p">[</span><span class="n">String</span><span class="p">]()</span>
+</span><span class='line'><span class="n">arrayM</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>字典</h3>
+
+<ul>
+<li>定义一个<strong>字典</strong>，仍然使用<code>[]</code>，在目前的swift版本中，定义字典通常使用<code>[String: NSObject]</code>，大多数情况下，<code>key</code>的类型是固定的</li>
+<li><code>let</code>是不可变的，<code>var</code>是可变的</li>
+<li>如果<code>key</code>已经存在，利用这个<code>key</code>设置数据时，会覆盖之前的值</li>
+<li>字典的特性:<code>key</code>是不允许重复的</li>
+<li>字典的遍历:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 定义并且实例化字典</span>
+</span><span class='line'><span class="k">var</span> <span class="n">dict1</span> <span class="o">=</span> <span class="p">[</span><span class="nl">String</span><span class="p">:</span> <span class="bp">NSObject</span><span class="p">]()</span>
+</span><span class='line'><span class="n">dict1</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;zhangsan&quot;</span>
+</span><span class='line'><span class="n">dict1</span><span class="p">[</span><span class="s">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+</span><span class='line'><span class="c1">// 注意:k, v可以随便写，但是，前面是key，后面是value</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">kk</span><span class="p">,</span> <span class="n">vv</span><span class="p">)</span> <span class="k">in</span> <span class="n">dict1</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">println</span><span class="p">(</span><span class="s">&quot;\(kk), \(vv)&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>函数</h3>
+
+<ul>
+<li><strong>函数</strong>的定义格式:
+
+<ul>
+<li><code>func 函数名(参数列表) -&gt; 返回值 {// 代码实现}</code></li>
+<li><code>-&gt;</code>是swift特有的，表示前面的执行结果，输出给后面的</li>
+<li>强制填写参数，使用<code>#</code>，可以在调用的时候，会让代码提示更直观</li>
+</ul>
+</li>
+<li>如果没有返回值<code>-&gt; 返回值</code>可以省略，下面三种方式等价
+
+<ul>
+<li><code>-&gt; Void</code></li>
+<li><code>-&gt; ()</code></li>
+<li>完全忽略</li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 定义函数</span>
+</span><span class='line'><span class="k">func</span> <span class="n">sum</span><span class="p">(</span><span class="err">#</span><span class="nl">a</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="err">#</span><span class="nl">b</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Int</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">// 函数调用</span>
+</span><span class='line'><span class="n">sum</span><span class="p">(</span><span class="nl">a</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nl">b</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h3>闭包</h3>
+
+<ul>
+<li><strong>闭包</strong>和OC中的<code>block</code>类似，但是OC中的<code>block</code>是一个匿名函数，swift中<strong>函数</strong>是<strong>闭包</strong>的一个特例</li>
+<li>闭包的使用，几乎和OC中的<code>block</code>是一样的
+
+<ul>
+<li>提前准备好代码</li>
+<li>在需要的时候执行</li>
+</ul>
+</li>
+<li>闭包的格式:
+
+<ul>
+<li><code>{ (参数) -&gt; () in // 准备执行的代码实现 }</code></li>
+<li><code>in</code>是定义和代码实现之间的分隔</li>
+</ul>
+</li>
+<li>闭包的简写:
+
+<ul>
+<li>如果闭包是最后一个参数，可以进行简化</li>
+<li>称为“尾随闭包”</li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="kr">override</span> <span class="k">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">demo</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nl">completion</span><span class="p">:</span> <span class="p">{(</span><span class="n">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="k">in</span>
+</span><span class='line'>            <span class="n">println</span><span class="p">(</span><span class="s">&quot;回调后\(str)&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">})</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">func</span> <span class="nf">demo</span><span class="p">(</span><span class="nl">a</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="nl">completion</span><span class="p">:(</span><span class="nl">str</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">println</span><span class="p">(</span><span class="s">&quot;回调前\(a)&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="c1">// 执行回调</span>
+</span><span class='line'>        <span class="n">completion</span><span class="p">(</span><span class="nl">str</span><span class="p">:</span> <span class="s">&quot;\(a)&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">// 输出回调前10 回调后10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>闭包的<strong>返回值</strong></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="kr">override</span> <span class="k">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nb">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+</span><span class='line'>   <span class="n">demo</span> <span class="p">{</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Int</span> <span class="k">in</span>
+</span><span class='line'>       <span class="k">return</span> <span class="mi">20</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'>   <span class="c1">// 输出行高20</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">func</span> <span class="nf">demo</span><span class="p">(</span><span class="nl">rowH</span><span class="p">:()</span> <span class="o">-&gt;</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="k">let</span> <span class="n">rowH</span> <span class="o">=</span> <span class="n">rowH</span><span class="p">()</span>
+</span><span class='line'>   <span class="n">println</span><span class="p">(</span><span class="s">&quot;行高\(rowH)&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>定义<strong>闭包属性</strong>的时候，有两种选择
+
+<ul>
+<li>直接设置初始值</li>
+<li>设置一个可选项<code>?</code></li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 定义方式 表示闭包可以为空</span>
+</span><span class='line'><span class="k">var</span> <span class="nl">completion</span><span class="p">:</span> <span class="p">(()</span><span class="o">-&gt;</span><span class="p">())</span><span class="o">?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>闭包的<strong>循环引用</strong>
+
+<ul>
+<li><code>block</code>中出现<code>self</code>的时候，为了保证代码安全，在定义闭包的时候，需要对外部变量进行拷贝</li>
+<li>OC中解决循环引用的办法<code>__weak typeof(self) weakSelf = self</code></li>
+<li>在swift中，如果直接访问属性数值，可以省略<code>self.</code></li>
+<li>swift中默认都是强引用，如果需要弱引用，可以使用<code>weak</code>修饰符号</li>
+<li>在闭包中，必须要明确的使用<code>self</code>，因为闭包是提前准备的代码，不知道什么时候会执行</li>
+<li>在OC中判断是否有循环引用，使用<code>-dealloc</code>方法，在swift中<code>deinit</code>叫做<strong>析构函数</strong>，就是在对象被释放前执行，与OC中的<code>-dealloc</code>方法类似</li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">weak</span> <span class="k">var</span> <span class="n">weakSelf</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'><span class="n">demo4</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// 使用?的好处 就是一旦 self 被释放，就什么也不做</span>
+</span><span class='line'>  <span class="n">weakSelf</span><span class="o">?</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+>>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
 </feed>

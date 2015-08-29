@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>在Xcode6中使用IBDesignable创建自定义控件(翻译) - 冷漠叻荭颜’s Blog</title>
+  <meta name="author" content="lengmolehongyan">
+
+  
+  <meta name="description" content="英文原文地址 在Xcode的旧版本中，试图创建一个自定义控件，并不是很容易，因为在IB中，并不能实时预览到你的设计成果，只能在模拟器中测试。对于设计一个单一组件，可能需要花费大量时间。 Xcode6的发布，苹果为开发者构建自定义控件推出了新功能IBDesignable和IBInspectable， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lengmolehongyan.github.io/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="冷漠叻荭颜’s Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">冷漠叻荭颜’s Blog</a></h1>
+  
+    <h2>lengmolehongyan’s Blog.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="订阅RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.baidu.com/" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="lengmolehongyan.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="搜索"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">在Xcode6中使用IBDesignable创建自定义控件(翻译)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-05-28T00:16:31+08:00'><span class='date'>2015 年5 月28 日</span> <span class='time'>12:16 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.appcoda.com/ibdesignable-ibinspectable-tutorial/">英文原文地址</a></p>
+
+<p>在Xcode的旧版本中，试图创建一个自定义控件，并不是很容易，因为在IB中，并不能实时预览到你的设计成果，只能在模拟器中测试。对于设计一个单一组件，可能需要花费大量时间。</p>
+
+<p>Xcode6的发布，苹果为开发者构建自定义控件推出了新功能<strong>IBDesignable</strong>和<strong>IBInspectable</strong>，允许在IB中实时预览设计成果。很明显，这会给我们在实际开发过程中提高不少效率。</p>
+
+<p>在本教程中，将介绍IBDesignable IBInspectable，以及展示如何利用这个新功能。除过创建demo示例没有更好地方式来阐述这一新特性，因此，创建一个"Rainbow"自定义界面。</p>
+
+<p><img src="http://i1.tietuku.com/a476b2f40c2465d0.png" alt="效果图" /></p>
+
+<hr />
+
+<!--more-->
+
+
+<h3>IBDesignable和IBInspectable</h3>
+
+<p>使用IBDesignable和IBInspectable，开发者创建界面(或视图)可以实时呈现在IB中。一般来说，为了使用这个新特性，你需要做的是创建一个<code>UIView</code>或者<code>UIControl</code>的子类，然后在定义类的前面加上<code>@IBDesignable</code>关键字。如果是OC，使用<code>IB_DESIGNABLE</code>宏。下面是Swift示例代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="p">@</span><span class="n">IBDesignable</span>
+</span><span class='line'><span class="k">class</span> <span class="nl">Rainbow</span><span class="p">:</span> <span class="bp">UIView</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在Xcode旧版本中，你可以在IB中编辑<code>User Defined Runtime Attributes</code>来改变一个对象的属性(例如:layer.cornerRadius)，问题是你需要确切知道属性名。<code>IBInspectable</code>只需要一步，对一个可视化类的属性前面加上<code>IBInspectable</code>关键字前缀，该属性会在暴露在IB中，这就是一个更改属性值更简单的方法。</p>
+
+<p><img src="http://i1.tietuku.com/93c53c69c11bffa1.png" alt="IB属性" /></p>
+
+<p>你如果使用Swift开发app，你需要做的只是在你选择的属性前面加上<code>@IBInspectable</code>关键字，下面是个示例代码片段:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="p">@</span><span class="n">IBInspectable</span> <span class="k">var</span> <span class="nl">firstColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">blackColor</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>   <span class="c1">// 值改变时更新UI</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>创建Xcode项目</h3>
+
+<p>创建一个新的Xcode项目，选择Single View Application模板，起名为<em>RainbowDemo</em>，在此项目中，将使用Swift语言，因此，创建项目时不要忘记勾选。</p>
+
+<p>完成后，选择Main.storyboard文件，设置View Controller的根视图View的背景颜色Hex Color值为<code>38334C</code>(或者任何你想要的颜色)。然后从对象库中拖一个View放进View Controller，设置它的大小Width为600，Height为434，然后把它放在根视图的中心，设置新视图View和根视图相同背景颜色。</p>
+
+<blockquote><p>提示：如果想改变RGB颜色值，只需打开调色板和切换到滑块标签来改变RGB值</p></blockquote>
+
+<p><img src="http://i1.tietuku.com/ae13d9f742d52315.gif" alt="设置背景颜色" /></p>
+
+<p>在Xcode6中，为了适配各个iOS设备，你必须为视图View配置自动布局约束。对于简单的约束，你可以在自动布局菜单单击<strong>Issues</strong>选项，选择<code>Add Missing Contraints</code>，Xcode将自动为View添加布局约束。</p>
+
+<p><img src="http://i1.tietuku.com/7b993f7b47a011c2.gif" alt="添加约束" /></p>
+
+<hr />
+
+<h3>创建自定义View类</h3>
+
+<p>现在，你已经在storyboard中创建了一个View，是时候创建自定义View类了。使用Cocoa Touch Class文件模板，创建自定义类文件，继承自UIView，起名为"Rainbow"。</p>
+
+<p><img src="http://i1.tietuku.com/08e097c646676e6a.png" alt="创建自定义View类" /></p>
+
+<p>在自定义类中插入以下代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">import</span> <span class="n">UIKit</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nl">Rainbow</span><span class="p">:</span> <span class="bp">UIView</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kr">override</span> <span class="k">init</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="bp">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="k">init</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">required</span> <span class="k">init</span><span class="p">(</span><span class="n">coder</span> <span class="nl">aDecoder</span><span class="p">:</span> <span class="bp">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">.</span><span class="k">init</span><span class="p">(</span><span class="nl">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如前所述，这个可视化类是UIView的子类，让自定义类实时呈现，需要<code>override</code>上述两个方法。然后，打开辅助编辑器，更改新拖的View的自定义类为<em>Rainbow</em>类。</p>
+
+<p><img src="http://i1.tietuku.com/5e41283a3fd5d23c.gif" alt="" /></p>
+
+<hr />
+
+<h3>实现IBDesignable控制</h3>
+
+<p>为了实现实时预览，在自定义类前面加一个前缀<code>@IBDesignable</code>关键字</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="p">@</span><span class="n">IBDesignable</span>
+</span><span class='line'><span class="k">class</span> <span class="nl">Rainbow</span><span class="p">:</span> <span class="bp">UIView</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个关键字确实简单，但是这简单地关键字将使你的开发更加容易。接下来，添加一些设置颜色的属性。在Rainbow类中插入以下代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="p">@</span><span class="n">IBInspectable</span> <span class="k">var</span> <span class="nl">firstColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span><span class="nl">red</span><span class="p">:</span> <span class="p">(</span><span class="mf">37.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">green</span><span class="p">:</span> <span class="p">(</span><span class="mf">252.0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span> <span class="nl">blue</span><span class="p">:</span> <span class="p">(</span><span class="mf">244.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span class='line'><span class="p">@</span><span class="n">IBInspectable</span> <span class="k">var</span> <span class="nl">secondColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span><span class="nl">red</span><span class="p">:</span> <span class="p">(</span><span class="mf">171.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">green</span><span class="p">:</span> <span class="p">(</span><span class="mf">250.0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span> <span class="nl">blue</span><span class="p">:</span> <span class="p">(</span><span class="mf">81.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span class='line'><span class="p">@</span><span class="n">IBInspectable</span> <span class="k">var</span> <span class="nl">thirdColor</span><span class="p">:</span> <span class="bp">UIColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">(</span><span class="nl">red</span><span class="p">:</span> <span class="p">(</span><span class="mf">238.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">green</span><span class="p">:</span> <span class="p">(</span><span class="mf">32.0</span><span class="o">/</span><span class="mi">255</span><span class="p">),</span> <span class="nl">blue</span><span class="p">:</span> <span class="p">(</span><span class="mf">53.0</span><span class="o">/</span><span class="mf">255.0</span><span class="p">),</span> <span class="nl">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在这里，我们预先定义每个属性一个默认颜色，每次用户更改它们的值时会重绘视图。更重要的是，我们为每个属性加了一个<code>@IBInspectable</code>关键字前缀，现在去IB的属性检查器，你可以直观地发现这些属性:</p>
+
+<p><img src="http://i1.tietuku.com/49ce99f08cfba0ab.png" alt="IB中的属性" /></p>
+
+<p>很酷，对吧？IBInspectable通过指示属性，你可以使用颜色选择器可视化地编辑它们。</p>
+
+<p>在Rainbow类中，为了在屏幕上画一个圆，插入以下代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">func</span> <span class="nf">addOval</span><span class="p">(</span><span class="nl">lineWidth</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">path</span><span class="p">:</span> <span class="n">CGPathRef</span><span class="p">,</span> <span class="nl">strokeStart</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">strokeEnd</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">strokeColor</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">,</span> <span class="nl">fillColor</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">,</span> <span class="nl">shadowRadius</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">shadowOpacity</span><span class="p">:</span> <span class="n">Float</span><span class="p">,</span> <span class="nl">shadowOffset</span><span class="p">:</span> <span class="bp">CGSize</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">let</span> <span class="n">arc</span> <span class="o">=</span> <span class="bp">CAShapeLayer</span><span class="p">()</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">lineWidth</span> <span class="o">=</span> <span class="n">lineWidth</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">strokeStart</span> <span class="o">=</span> <span class="n">strokeStart</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">strokeEnd</span> <span class="o">=</span> <span class="n">strokeEnd</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">strokeColor</span> <span class="o">=</span> <span class="n">strokeColor</span><span class="p">.</span><span class="bp">CGColor</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">fillColor</span> <span class="o">=</span> <span class="n">fillColor</span><span class="p">.</span><span class="bp">CGColor</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">shadowRadius</span> <span class="o">=</span> <span class="n">shadowRadius</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">shadowOpacity</span> <span class="o">=</span> <span class="n">shadowOpacity</span>
+</span><span class='line'>   <span class="n">arc</span><span class="p">.</span><span class="n">shadowOffset</span> <span class="o">=</span> <span class="n">shadowOffset</span>
+</span><span class='line'>   <span class="n">layer</span><span class="p">.</span><span class="n">addSublayer</span><span class="p">(</span><span class="n">arc</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>为了保证代码的简洁和可读性，我们定义了依据方法调用者传入参数来绘制一个完整的圆或者半圆的公共方法。利用CAShapeLayer类可以很简单的画一个圆或圆弧。你可以使用strokeStart和strokeEnd属性控制渲染的开始和结束。通过改变strokeEnd的值在0.0到1.0之间，你可以绘制一个完整或者部分的圆。其余的属性是只是用于设置渲染颜色，阴影颜色等，在CAShaperLayer官方文档中可以查看更详细的所有可用属性。</p>
+
+<p>接下来，添加以下方法:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="kr">override</span> <span class="k">func</span> <span class="nf">drawRect</span><span class="p">(</span><span class="nl">rect</span><span class="p">:</span> <span class="bp">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// 添加圆弧</span>
+</span><span class='line'>    <span class="n">addCircle</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="nl">capRadius</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nl">color</span><span class="p">:</span> <span class="n">firstColor</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">addCircle</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="nl">capRadius</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nl">color</span><span class="p">:</span> <span class="n">secondColor</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">addCircle</span><span class="p">(</span><span class="mi">215</span><span class="p">,</span> <span class="nl">capRadius</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nl">color</span><span class="p">:</span> <span class="n">thirdColor</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">func</span> <span class="nf">addCircle</span><span class="p">(</span><span class="nl">arcRadius</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">capRadius</span><span class="p">:</span> <span class="n">CGFloat</span><span class="p">,</span> <span class="nl">color</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">CGRectGetMidX</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">CGRectGetMidY</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 底部圆弧</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">pathBottom</span> <span class="o">=</span> <span class="bp">UIBezierPath</span><span class="p">(</span><span class="nl">ovalInRect</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span>
+</span><span class='line'>        <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="n">arcRadius</span><span class="p">,</span> <span class="n">arcRadius</span><span class="p">)).</span><span class="bp">CGPath</span>
+</span><span class='line'>    <span class="n">addOval</span><span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="nl">path</span><span class="p">:</span> <span class="n">pathBottom</span><span class="p">,</span> <span class="nl">strokeStart</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">strokeEnd</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+</span><span class='line'>        <span class="nl">strokeColor</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span> <span class="nl">fillColor</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">clearColor</span><span class="p">(),</span>
+</span><span class='line'>        <span class="nl">shadowRadius</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">shadowOpacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">shadowOffset</span><span class="p">:</span> <span class="n">CGSizeZero</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 中间圆弧</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">pathMiddle</span> <span class="o">=</span> <span class="bp">UIBezierPath</span><span class="p">(</span><span class="nl">ovalInRect</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">capRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+</span><span class='line'>        <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">capRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="n">capRadius</span><span class="p">,</span> <span class="n">capRadius</span><span class="p">)).</span><span class="bp">CGPath</span>
+</span><span class='line'>    <span class="n">addOval</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nl">path</span><span class="p">:</span> <span class="n">pathMiddle</span><span class="p">,</span> <span class="nl">strokeStart</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">strokeEnd</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span class='line'>        <span class="nl">strokeColor</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span> <span class="nl">fillColor</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
+</span><span class='line'>        <span class="nl">shadowRadius</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="nl">shadowOpacity</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nl">shadowOffset</span><span class="p">:</span> <span class="n">CGSizeZero</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 顶部圆弧</span>
+</span><span class='line'>    <span class="k">let</span> <span class="n">pathTop</span> <span class="o">=</span> <span class="bp">UIBezierPath</span><span class="p">(</span><span class="nl">ovalInRect</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span>
+</span><span class='line'>        <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">arcRadius</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="n">arcRadius</span><span class="p">,</span> <span class="n">arcRadius</span><span class="p">)).</span><span class="bp">CGPath</span>
+</span><span class='line'>    <span class="n">addOval</span><span class="p">(</span><span class="mf">20.0</span><span class="p">,</span> <span class="nl">path</span><span class="p">:</span> <span class="n">pathTop</span><span class="p">,</span> <span class="nl">strokeStart</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nl">strokeEnd</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+</span><span class='line'>        <span class="nl">strokeColor</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span> <span class="nl">fillColor</span><span class="p">:</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">clearColor</span><span class="p">(),</span>
+</span><span class='line'>        <span class="nl">shadowRadius</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">shadowOpacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nl">shadowOffset</span><span class="p">:</span> <span class="n">CGSizeZero</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>drawRect:</code>方法默认什么也不做，为了在自定义View中画圆，我们override此方法来实现自己的绘制代码。<code>addCircle:</code>方法有三个参数：arcRadius，capRadius和color。arcRadius是圆弧的半径，capRadius是圆弧边缘半径。</p>
+
+<p><code>addCircle:</code>方法利用UIBezierPath画圆弧的简单工作原理:</p>
+
+<ol>
+<li>首先，在底部画了个半圆弧</li>
+<li>接下来，在圆弧边缘画了一个完整的小圆</li>
+<li>最后，画了另一半圆弧</li>
+</ol>
+
+
+<p>在<code>drawRect:</code>方法中，我们调用了<code>addCircle:</code>方法三次，传入的参数指定圆弧该怎样画：</p>
+
+<p><img src="http://i1.tietuku.com/c5769f1b0ed47bd7.jpg" alt="画圆弧原理" /></p>
+
+<p>利用IBInspectable属性，你可以在IB中自由改变每个圆弧的颜色，而不需要写代码:</p>
+
+<p><img src="http://i1.tietuku.com/dac4b07c68953a6d.png" alt="" /></p>
+
+<p>显然，你可以进一步利用<code>@IBInspectable</code>暴露<code>arcRadius</code>属性，便可以在IB中修改绘制圆弧半径。</p>
+
+<p><img src="http://i1.tietuku.com/79c3c33c22943103.jpg" alt="修改半径" /></p>
+
+<hr />
+
+<h3>总结</h3>
+
+<p>通过本教程后，你现在了解了在Xcode6中如何利用IBDesignable和IBInspectable实时预览界面。利用这个新特性，你可以更高效创建自定义组件。</p>
+
+<p><a href="https://github.com/lengmolehongyan/RainbowDemo">RainbowDemo地址</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">lengmolehongyan</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-05-28T00:16:31+08:00'><span class='date'>2015 年5 月28 日</span> <span class='time'>12:16 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tools_1"></a>
+    <a class="jiathis_button_tools_2"></a>
+    <a class="jiathis_button_tools_3"></a>
+    <a class="jiathis_button_tools_4"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>
+<!-- UY END -->
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi/" title="Previous Post: swift基础语法学习">&laquo; swift基础语法学习</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/" title="Next Post: 自定义转场动画介绍(翻译)">自定义转场动画介绍(翻译) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>最新文章</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/">iOS8下定位问题<二></a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/16/ios8xia-ding-wei-wen-ti/">iOS8下定位问题<一></a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/">自定义转场动画介绍(翻译)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi/">在Xcode6中使用IBDesignable创建自定义控件(翻译)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi/">Swift基础语法学习</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/lengmolehongyan">@lengmolehongyan</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lengmolehongyan',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - lengmolehongyan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
