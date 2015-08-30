@@ -3,7 +3,7 @@
 # ----------------------- #
 
 url: http://lengmolehongyan.github.io   # 网站域名
-title: 冷漠叻荭颜’s Blog        # 网站标题
+title: 冷漠叻荭颜        # 网站标题
 subtitle: lengmolehongyan’s Blog.     # 博客副标题
 author: lengmolehongyan     # 博客作者名字
 simple_search: https://www.baidu.com/    # 默认搜索引擎
@@ -68,19 +68,19 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 weibo_share: true
 
 # Github repositories
-github_user: lengmolehongyan
-github_repo_count: 0
-github_show_profile_link: true
-github_skip_forks: true
+#github_user: lengmolehongyan
+#github_repo_count: 0
+#github_show_profile_link: true
+#github_skip_forks: true
 
 # Pinboard
-pinboard_user:
-pinboard_count: 3
+#pinboard_user:
+#pinboard_count: 3
 
 # Delicious
 delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+#disqus_short_name:
+#disqus_show_comment_count: false
