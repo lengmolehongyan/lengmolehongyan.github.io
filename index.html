@@ -9,11 +9,10 @@
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="Block 的介绍 对象与对象之间的通信方式 代理-协议，通知，Block。
-三种通信方式都实现了对象之间的解耦合。
-通知的通信方式是 1对多。
-代理、Block 是 1对1。 Block 介绍 Block 是 iOS4.0 之后新增的一种语法结构，也称为“闭包”。
-Block &hellip;">
+  <meta name="description" content="KVC 字典转模型 KVC 中经常使用的就是字典转模型 1
+2
+// NSObject(NSKeyValueCoding) NSObject 的分类
+- (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues; ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +69,56 @@ Block &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/12/kvcde-jian-dan-shi-yong/">KVC 的简单使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-12T22:58:12+08:00'><span class='date'>2015 年9 月12 日</span> <span class='time'>10:58 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>KVC 字典转模型</h3>
+
+<ul>
+<li>KVC 中经常使用的就是字典转模型</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// NSObject(NSKeyValueCoding) NSObject 的分类</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setValuesForKeysWithDictionary:</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">keyedValues</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://i1.tietuku.com/cc3c54dccb414089.png" alt="字典转模型" /></p>
+
+<hr />
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/12/kvcde-jian-dan-shi-yong/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -465,6 +514,10 @@ Block &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/09/12/kvcde-jian-dan-shi-yong/">KVC 的简单使用</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/10/block-de-jian-dan-shi-yong/">Block 的简单使用</a>
       </li>
     
@@ -478,10 +531,6 @@ Block &hellip;">
     
       <li class="post">
         <a href="/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/">自定义转场动画介绍(翻译)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi/">在Xcode6中使用IBDesignable创建自定义控件(翻译)</a>
       </li>
     
   </ul>
