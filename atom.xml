@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-09-21T23:40:39+08:00</updated>
+  <updated>2015-09-21T23:52:49+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[iOS9 适配<一>]]></title>
+    <title type="html"><![CDATA[iOS9 适配<一> App Transport Security]]></title>
     <link href="http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei/"/>
     <updated>2015-09-21T23:37:59+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei</id>
-    <content type="html"><![CDATA[<p>hah</p>
+    <content type="html"><![CDATA[<p><code>App Transport Security</code> 是一项新的功能，用来提高了应用程序和 <code>web</code> 服务之间连接的安全性。</p>
 ]]></content>
   </entry>
   
