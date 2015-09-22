@@ -85,7 +85,11 @@
   </header>
 
 
-<div class="entry-content"><p><code>App Transport Security</code> 是一项新的功能，用来提高了应用程序和 <code>web</code> 服务之间连接的安全性。</p>
+<div class="entry-content"><p><code>App Transport Security</code> 是一项新的功能，用来提高了应用程序和 <code>web</code> 服务之间连接的安全性。这项功能是从 iOS9.0 和 OSX10.11 之后苹果新增的，要求默认连接最好是安全的连接。当然，应用程序也可以关闭这项功能。</p>
+
+<h4>默认配置</h4>
+
+<p>为 iOS9.0 和 OSX10.11 及之后版本的开发的 apps，用到 <code>NSURLConnection</code>，<code>CFURL</code> 或者 <code>NSURLSession</code> API 的所有连接，将使用 <code>App Transport Security</code> 默认配置。</p>
 </div>
 
 
