@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-09-22T23:56:16+08:00</updated>
+  <updated>2015-09-23T10:54:23+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS9 适配<二> Directory Not Found for Option]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei/"/>
+    <updated>2015-09-23T10:47:48+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei</id>
+    <content type="html"><![CDATA[<p>在 Xcode7 下编译项目，报了如下警告：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ld: warning: directory not found for option 
+</span><span class='line'>'-F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/Developer/Library/Frameworks'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是因为 Xcode7 将 <code>Frameworks</code> 位置改变了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS9 适配<一> App Transport Security]]></title>
