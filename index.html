@@ -99,6 +99,16 @@ ld: warning: directory not found for option '-F/Applications/Xcode.app/Contents/
 
 
 <p>这是因为 Xcode7 将 <code>Frameworks</code> 位置改变了。</p>
+
+<p>点击项目，选择 TARGETS 中的工程名 Tests，然后选择 Build Settings，在 Search Paths 下，可以看到此时 <code>Framework Search Paths</code> 路径，此路径为错误路径。</p>
+
+<p><img src="http://i3.tietuku.com/40d46fe638434b1e.png" alt="" /></p>
+
+<p>双击路径，删除 <code>$(SDKROOT)/Developer/Library/Frameworks</code>，增加 <code>$(PLATFORM_DIR)/Developer/Library/Frameworks</code>，此时路径就已经修改成功。</p>
+
+<p><img src="http://i3.tietuku.com/6b824df6fd5bc002.png" alt="" /></p>
+
+<p>修改完成之后，重新编译项目，此警告就修复了。</p>
 </div>
   
   
@@ -132,6 +142,8 @@ ld: warning: directory not found for option '-F/Applications/Xcode.app/Contents/
 <h4>默认配置</h4>
 
 <p>为 iOS9.0 和 OSX10.11 及之后版本的开发的 apps，用到 <code>NSURLConnection</code>，<code>CFURL</code> 或者 <code>NSURLSession</code> API 的所有连接，将使用 <code>App Transport Security</code> 默认配置。</p>
+
+<p>&ndash; 未完待续 &ndash;</p>
 </div>
   
   

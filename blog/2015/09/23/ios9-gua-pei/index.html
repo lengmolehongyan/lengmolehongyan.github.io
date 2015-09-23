@@ -94,6 +94,16 @@
 
 
 <p>这是因为 Xcode7 将 <code>Frameworks</code> 位置改变了。</p>
+
+<p>点击项目，选择 TARGETS 中的工程名 Tests，然后选择 Build Settings，在 Search Paths 下，可以看到此时 <code>Framework Search Paths</code> 路径，此路径为错误路径。</p>
+
+<p><img src="http://i3.tietuku.com/40d46fe638434b1e.png" alt="" /></p>
+
+<p>双击路径，删除 <code>$(SDKROOT)/Developer/Library/Frameworks</code>，增加 <code>$(PLATFORM_DIR)/Developer/Library/Frameworks</code>，此时路径就已经修改成功。</p>
+
+<p><img src="http://i3.tietuku.com/6b824df6fd5bc002.png" alt="" /></p>
+
+<p>修改完成之后，重新编译项目，此警告就修复了。</p>
 </div>
 
 
