@@ -9,9 +9,8 @@
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="在 Xcode7 下编译项目，报了如下警告： 1
-2
-ld: warning: directory not found for option '-F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/ &hellip;">
+  <meta name="description" content="ARC 和 MRC 项目中使用 ARC 还是 MRC，对使用 FMDB 都没有任何影响，FMDB 会在编译项目时自动匹配。 使用 在 FMDB 中有三个重要的类： FMDatabase：是一个提供 SQLite 数据库的类，用于执行 SQL 语句。
+FMResultSet：用在 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +67,56 @@ ld: warning: directory not found for option '-F/Applications/Xcode.app/Contents/
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/10/22/fmdb-xue-xi-zong-jie/">FMDB 学习总结</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-22T22:41:56+08:00'><span class='date'>2015 年10 月22 日</span> <span class='time'>10:41 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<h3>ARC 和 MRC</h3>
+
+<p>项目中使用 ARC 还是 MRC，对使用 FMDB 都没有任何影响，FMDB 会在编译项目时自动匹配。</p>
+
+<hr />
+
+<h3>使用</h3>
+
+<p>在 FMDB 中有三个重要的类：</p>
+
+<ol>
+<li><code>FMDatabase</code>：是一个提供 SQLite 数据库的类，用于执行 SQL 语句。</li>
+<li><code>FMResultSet</code>：用在 <code>FMDatabase</code> 中执行查询的结果的类。</li>
+<li><code>FMDatabaseQueue</code>：在多线程下查询和更新数据库将用到的类。</li>
+</ol>
+
+
+<hr />
+
+<h3>数据库创建</h3>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -593,6 +642,10 @@ ld: warning: directory not found for option '-F/Applications/Xcode.app/Contents/
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/22/fmdb-xue-xi-zong-jie/">FMDB 学习总结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/09/23/ios9-gua-pei/">iOS9 适配<二> Directory Not Found for Option</a>
       </li>
     
@@ -606,10 +659,6 @@ ld: warning: directory not found for option '-F/Applications/Xcode.app/Contents/
     
       <li class="post">
         <a href="/blog/2015/09/10/block-de-jian-dan-shi-yong/">Block 的简单使用</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/">iOS8下定位问题<二></a>
       </li>
     
   </ul>
