@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-10-23T10:57:29+08:00</updated>
+  <updated>2015-10-23T11:17:46+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -63,6 +63,27 @@
 <p>SQL 语句中除过 <code>SELECT</code> 语句都可以称之为更新操作。包括 <code>CREATE</code>，<code>UPDATE</code>，<code>INSERT</code>，<code>ALTER</code>，<code>COMMIT</code>，<code>BEGIN</code>，<code>DETACH</code>，<code>DROP</code>，<code>END</code>，<code>EXPLAIN</code>，<code>VACUUM</code>，<code>REPLACE</code> 等。一般只要不是以 <code>SELECT</code> 开头的 SQL 语句，都是更新语句。</p>
 
 <p>执行更新语句后会返回一个 <code>BOOL</code> 值，返回 <code>YES</code> 表示执行更新语句成功，返回 <code>NO</code> 表示出现错误，可以通过调用 <code>-lastErrorMessage</code> 和 <code>-lastErrorCode</code> 方法获取更多错误信息。</p>
+
+<h2>数据库查询</h2>
+
+<p>通过调用 <code>-executeQuery...</code> 方法之一执行 <code>SELECT</code> 语句进行数据库查询操作。</p>
+
+<p>执行查询操作后，如果成功会返回一个 <code>FMResultSet</code> 对象，反之会返回 <code>nil</code>。通过 <code>-lastErrorMessage</code> 和 <code>-lastErrorCode</code> 方法可以确定为什么会查询失败。</p>
+
+<p>为了遍历查询结果，需要 <code>while()</code> 循环，然后逐条记录查看。在 FMDB 中，可以通过下面的简单方式实现：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">FMResultSet</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">db</span> <span class="nl">executeQuery</span><span class="p">:</span><span class="s">@&quot;SELECT * FROM myTable&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="k">while</span> <span class="p">([</span><span class="n">s</span> <span class="n">next</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// 每天记录的检索值</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
