@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-10-23T10:50:03+08:00</updated>
+  <updated>2015-10-23T10:57:29+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -61,6 +61,8 @@
 <h2>数据库更新</h2>
 
 <p>SQL 语句中除过 <code>SELECT</code> 语句都可以称之为更新操作。包括 <code>CREATE</code>，<code>UPDATE</code>，<code>INSERT</code>，<code>ALTER</code>，<code>COMMIT</code>，<code>BEGIN</code>，<code>DETACH</code>，<code>DROP</code>，<code>END</code>，<code>EXPLAIN</code>，<code>VACUUM</code>，<code>REPLACE</code> 等。一般只要不是以 <code>SELECT</code> 开头的 SQL 语句，都是更新语句。</p>
+
+<p>执行更新语句后会返回一个 <code>BOOL</code> 值，返回 <code>YES</code> 表示执行更新语句成功，返回 <code>NO</code> 表示出现错误，可以通过调用 <code>-lastErrorMessage</code> 和 <code>-lastErrorCode</code> 方法获取更多错误信息。</p>
 ]]></content>
   </entry>
   
