@@ -165,7 +165,26 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>&mdash;未完待续&mdash;</p>
+<p><code>FMResultSet</code> 提供了很多方便的方法来查询数据：</p>
+
+<ul>
+<li><code>intForColumn:</code></li>
+<li><code>longForColumn:</code></li>
+<li><code>longLongIntForColumn:</code></li>
+<li><code>boolForColumn:</code></li>
+<li><code>doubleForColumn:</code></li>
+<li><code>stringForColumn:</code></li>
+<li><code>dateForColumn:</code></li>
+<li><code>dataForColumn:</code></li>
+<li><code>dataNoCopyForColumn:</code></li>
+<li><code>UTF8StringForColumn:</code></li>
+<li><code>objectForColumn:</code></li>
+</ul>
+
+
+<p>这些方法都有一个 <code>{type}ForColumnIndex:</code> 变体用于查询某列中的数据。</p>
+
+<p>通常情况下，一个 <code>FMResultSet</code> 没有必要手动 <code>-close</code>，因为结果集合 (result set) 被释放或者源数据库关闭会自动关闭。</p>
 </div>
 
 
