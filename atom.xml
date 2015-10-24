@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-10-24T23:49:18+08:00</updated>
+  <updated>2015-10-25T01:30:06+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[FMDB 学习总结]]></title>
+    <title type="html"><![CDATA[FMDB 使用方法]]></title>
     <link href="http://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/"/>
     <updated>2015-10-22T22:41:56+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie</id>
@@ -176,6 +176,66 @@
 </span><span class='line'>    <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">@&quot;expected one record for dictionary %@&quot;</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'><span class="p">}];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>数据处理</h2>
+
+<p>当给 FMDB 提供 SQL 语句时，在插入前不应该处理任何数据，而应该使用标准的 SQLite 的绑定语法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 示例</span>
+</span><span class='line'><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">myTable</span> <span class="n">VALUES</span> <span class="p">(</span><span class="o">?</span><span class="p">,</span> <span class="o">?</span><span class="p">,</span> <span class="o">?</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>?</code> 问号在 SQLite 中意为即将插入的值的占位符，FMDB 执行语句的方法都接受多个参数 (或者参数集合，比如 <code>NSArray</code>，<code>NSDictionary</code>，<code>va_list</code>)，它们都会正确转义。</p>
+
+<p>也可以使用命名参数语法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 示例</span>
+</span><span class='line'><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">myTable</span> <span class="n">VALUES</span> <span class="p">(</span><span class="o">:</span><span class="kt">id</span><span class="p">,</span> <span class="o">:</span><span class="n">name</span><span class="p">,</span> <span class="o">:</span><span class="n">value</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这些参数必须以冒号开头，SQLite 自身支持其他字符，但是命名时字典的键内部以冒号开头，就不能在你的字典的键中包含冒号。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 示例</span>
+</span><span class='line'><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">argsDict</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObjectsAndKeys</span><span class="p">:</span><span class="s">@&quot;My Name&quot;</span><span class="p">,</span> <span class="s">@&quot;name&quot;</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="nl">executeUpdate</span><span class="p">:</span><span class="s">@&quot;INSERT INTO myTable (name) VALUES (:name)&quot;</span> <span class="nl">withParameterDictionary</span><span class="p">:</span><span class="n">argsDict</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>因此，不应该写类似下面这行的错误代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 错误示例</span>
+</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="nl">executeUpdate</span><span class="p">:[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&quot;INSERT INTO myTable VALUES (%@)&quot;</span><span class="p">,</span> <span class="s">@&quot;this has </span><span class="se">\&quot;</span><span class="s"> lots of &#39; bizarre </span><span class="se">\&quot;</span><span class="s"> quotes &#39;&quot;</span><span class="p">]];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>而应该这样写：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 正确示例</span>
+</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="nl">executeUpdate</span><span class="p">:</span><span class="s">@&quot;INSERT INTO myTable VALUES (?)&quot;</span><span class="p">,</span> <span class="s">@&quot;this has </span><span class="se">\&quot;</span><span class="s"> lots of &#39; bizarre </span><span class="se">\&quot;</span><span class="s"> quotes &#39;&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>所有传递给 <code>-executeUpdate:</code> 方法的参数都必须是对象。下面写法不会起作用而且会引发崩溃：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 错误示例</span>
+</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="nl">executeUpdate</span><span class="p">:</span><span class="s">@&quot;INSERT INTO myTable VALUES (?)&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
