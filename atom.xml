@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-10-24T23:15:40+08:00</updated>
+  <updated>2015-10-24T23:26:13+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -128,7 +128,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>事务</h2>
 
+<p><code>FMDatabase</code> 可以通过调用方法来开始和提交事务，也可以通过执行开始\结束事务  (begin\end transaction) 语句。</p>
 ]]></content>
   </entry>
   
