@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-10-24T23:26:13+08:00</updated>
+  <updated>2015-10-24T23:49:18+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -124,13 +124,62 @@
 <p>当对数据库进行查询和更新操作完成后，需要调用 <code>-close</code> 关闭数据库 <code>FMDatabase</code> 的连接。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">close</span><span class="p">];</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 示例</span>
+</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">close</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <h2>事务</h2>
 
 <p><code>FMDatabase</code> 可以通过调用方法来开始和提交事务，也可以通过执行开始\结束事务  (begin\end transaction) 语句。</p>
+
+<h2>多语句和批处理</h2>
+
+<p><code>FMDatabase</code> 可以通过 <code>-executeStatements:withResultBlock:</code> 方法在一个字符串中执行多语句。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 示例</span>
+</span><span class='line'><span class="bp">NSString</span> <span class="o">*</span><span class="n">sql</span> <span class="o">=</span> <span class="s">@&quot;create table bulktest1 (id integer primary key autoincrement, x text);&quot;</span>
+</span><span class='line'>                 <span class="s">&quot;create table bulktest2 (id integer primary key autoincrement, y text);&quot;</span>
+</span><span class='line'>                 <span class="s">&quot;create table bulktest3 (id integer primary key autoincrement, z text);&quot;</span>
+</span><span class='line'>                 <span class="s">&quot;insert into bulktest1 (x) values (&#39;XXX&#39;);&quot;</span>
+</span><span class='line'>                 <span class="s">&quot;insert into bulktest2 (y) values (&#39;YYY&#39;);&quot;</span>
+</span><span class='line'>                 <span class="s">&quot;insert into bulktest3 (z) values (&#39;ZZZ&#39;);&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">success</span> <span class="o">=</span> <span class="p">[</span><span class="n">db</span> <span class="nl">executeStatements</span><span class="p">:</span><span class="n">sql</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sql</span> <span class="o">=</span> <span class="s">@&quot;select count(*) as count from bulktest1;&quot;</span>
+</span><span class='line'>       <span class="s">&quot;select count(*) as count from bulktest2;&quot;</span>
+</span><span class='line'>       <span class="s">&quot;select count(*) as count from bulktest3;&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">success</span> <span class="o">=</span> <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">db</span> <span class="nl">executeStatements</span><span class="p">:</span><span class="n">sql</span> <span class="nl">withResultBlock</span><span class="p">:</span><span class="o">^</span><span class="kt">int</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">dictionary</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="bp">NSInteger</span> <span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="n">dictionary</span><span class="p">[</span><span class="s">@&quot;count&quot;</span><span class="p">]</span> <span class="n">integerValue</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">@&quot;expected one record for dictionary %@&quot;</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
