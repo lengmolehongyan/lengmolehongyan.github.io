@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-10-24T22:57:49+08:00</updated>
+  <updated>2015-10-24T23:15:40+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -118,6 +118,17 @@
 <p>这些方法都有一个 <code>{type}ForColumnIndex:</code> 变体用于查询某列中的数据。</p>
 
 <p>通常情况下，一个 <code>FMResultSet</code> 没有必要手动 <code>-close</code>，因为结果集合 (result set) 被释放或者源数据库关闭会自动关闭。</p>
+
+<h2>关闭数据库</h2>
+
+<p>当对数据库进行查询和更新操作完成后，需要调用 <code>-close</code> 关闭数据库 <code>FMDatabase</code> 的连接。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">close</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
