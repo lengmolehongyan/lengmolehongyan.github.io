@@ -182,7 +182,7 @@
 </ul>
 
 
-<p>这些方法都有一个 <code>{type}ForColumnIndex:</code> 变体用于查询某列中的数据。</p>
+<p>这些方法都有一个 <code>{type}ForColumnIndex:</code> 变体，是基于列的位置来查询数据。</p>
 
 <p>通常情况下，一个 <code>FMResultSet</code> 没有必要手动 <code>-close</code>，因为结果集合 (result set) 被释放或者源数据库关闭会自动关闭。</p>
 
@@ -297,7 +297,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>所有传递给 <code>-executeUpdate:</code> 方法的参数都必须是对象。下面写法不会起作用而且会引发崩溃：</p>
+<p>所有传递给 <code>-executeUpdate:</code> 方法的参数都必须是对象。下面写法执行不会起作用而且会引发崩溃：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -306,7 +306,25 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>插入一个数字正确的方法是把这个数字包装成 <code>NSNumber</code> 对象：</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 正确示例</span>
+</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="nl">executeUpdate</span><span class="p">:</span><span class="s">@&quot;INSERT INTO myTable VALUES (?)&quot;</span><span class="p">,</span> <span class="p">[</span><span class="bp">NSNumber</span> <span class="nl">numberWithInt</span><span class="p">:</span><span class="mi">42</span><span class="p">]];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以使用 <code>-execute*WithFormat:</code> 这个方法转换成字符串代替：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 转换成字符串示例</span>
+</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="nl">executeUpdateWithFormat</span><span class="p">:</span><span class="s">@&quot;INSERT INTO myTable VALUES (@d)&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在 <code>-execute*WithFormat:</code> 这些方法内部都可以正确包装，下面这些 % 百分号格式符都是可以识别的：<code>%@</code>, <code>%c</code>, <code>%s</code>, <code>%d</code>, <code>%D</code>, <code>%i</code>, <code>%u</code>, <code>%U</code>, <code>%hi</code>, <code>%hu</code>, <code>%qi</code>, <code>%qu</code>, <code>%f</code>, <code>%g</code>, <code>%ld</code>, <code>%lu</code>, <code>%lld</code>, <code>%llu</code>。使用其他格式符可能会出现不可预知的结果。可能出于某种原因，需要在你的 SQL 语句中出现 <code>%</code> 字符，应该使用 <code>%%</code>。</p>
 </div>
 
 
