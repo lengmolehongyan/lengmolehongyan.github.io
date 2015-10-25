@@ -85,7 +85,7 @@
   </header>
 
 
-<div class="entry-content"><blockquote><p>优秀的第三方库，README 也是很优秀的，理解了 README，会对使用</p></blockquote>
+<div class="entry-content"><blockquote><p>优秀的第三方库，README 也是很优秀的，理解了 README，会对使用带来很多便利。</p></blockquote>
 
 <h2>ARC 和 MRC</h2>
 
@@ -102,6 +102,11 @@
 </ol>
 
 
+<p></p>
+
+
+
+
 <!--more-->
 
 
@@ -114,6 +119,9 @@
 <li>一个空的字符串 <code>@""</code>。会在临时位置创建一个空的数据库，当 <code>FMDatabase</code> 连接关闭时，该数据库会被删除。</li>
 <li><code>NULL</code>。会在内存中创建一个数据库，当 <code>FMDatabase</code> 连接关闭时，该数据库会被销毁。</li>
 </ol>
+
+
+<p></p>
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -182,6 +190,9 @@
 <li><code>UTF8StringForColumn:</code></li>
 <li><code>objectForColumn:</code></li>
 </ul>
+
+
+<p></p>
 
 
 <p>这些方法都有一个 <code>{type}ForColumnIndex:</code> 变体，是基于列的位置来查询数据。</p>
@@ -281,7 +292,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>因此，不应该写类似下面这行的错误代码：</p>
+<p>因此，不应该写类似下面这行一样的错误代码：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -330,7 +341,7 @@
 
 <h2>FMDatabaseQueue 队列和线程安全</h2>
 
-<p>在多线程中同时使用 FMDatabase 单例是一个坏主意，会导致每个线程创建一个 FMDatabase 对象。不要跨线程使用单例，也不要同时跨多线程，不然会奔溃或者异常。</p>
+<p>在多线程中同时使用 FMDatabase 单例是极其错误的想法，会导致每个线程创建一个 FMDatabase 对象。不要跨线程使用单例，也不要同时跨多线程，不然会奔溃或者异常。</p>
 
 <p><em>因此不要实例化一个 FMDatabase 单例来跨线程使用。</em></p>
 
@@ -403,7 +414,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>FMDatabase 将块代码 block 运行在一个串行队列上，即使在多线程同时调用 FMDatabaseQueue 的方法，它们仍然还是顺序执行。这种查询和更新方式不会影响其它，而且都很开心。</p>
+<p>FMDatabase 将块代码 block 运行在一个串行队列上，即使在多线程同时调用 FMDatabaseQueue 的方法，它们仍然还是顺序执行。这种查询和更新方式不会影响其它，是线程安全的。</p>
 
 <h2>基于 block 自定义 SQLite 函数</h2>
 
@@ -414,11 +425,14 @@
 <p>在 Swift 项目中也可以使用 FMDB，需要做以下步骤：</p>
 
 <ol>
-<li>将 FMDB 的 <code>.m</code> 和 <code>.h</code> 文件拖进你的项目。</li>
+<li>将 FMDB 的 <code>.m</code> 和 <code>.h</code> 全部文件拖进你的项目。</li>
 <li>如果 Xcode 提示创建桥接文件，需要点击创建。如果没有提示，且项目中也没有桥接文件，需要手动添加。<a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-XID_76">点此查看桥接文件更多信息</a></li>
 <li>在桥接文件中，添加这行代码：<code>#import "FMDB.h"</code></li>
 <li>可以从 &ldquo;src/extra/Swift Extension&rdquo; 文件夹中拷贝 <code>FMDatabaseVariadic.swift</code> 文件到项目中，就可以使用 <code>executeUpdate</code> 和 <code>executeQuery</code> 多参数了。</li>
 </ol>
+
+
+<p></p>
 
 
 <p>做完上述几步，就可以使用 FMDatabase 写 Swift 代码了。</p>
@@ -496,7 +510,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-
+<p>本文实际是对 <a href="https://github.com/ccgus/fmdb">FMDB</a> 的 README 简单翻译。</p>
 </div>
 
 
