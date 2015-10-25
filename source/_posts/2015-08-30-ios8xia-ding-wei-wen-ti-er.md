@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "iOS8下定位问题<二>"
+title: "iOS8 以上定位问题<二>"
 date: 2015-08-30 00:19:06 +0800
 comments: true
 categories: 
