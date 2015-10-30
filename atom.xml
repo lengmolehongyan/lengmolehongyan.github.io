@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-10-25T18:58:13+08:00</updated>
+  <updated>2015-10-30T23:16:37+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Can't Add Self as Subview 崩溃解决办法]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/"/>
+    <updated>2015-10-30T23:14:49+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[FMDB 使用方法]]></title>
