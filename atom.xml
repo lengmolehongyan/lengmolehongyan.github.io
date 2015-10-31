@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-10-30T23:16:37+08:00</updated>
+  <updated>2015-10-31T23:13:48+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -18,7 +18,15 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/"/>
     <updated>2015-10-30T23:14:49+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>查看项目的崩溃汇总，一直有一个 bug 存在，之前也有注意过，只因这个 bug 的崩溃堆栈日志解析出来并没有什么卵用，也不知该怎么复现，就撂下了。</p>
+
+<p>但现在这个 bug 崩溃发生次数蹭蹭涨，崩溃占比高了起来，不得不重视起来。</p>
+
+<p>点进崩溃详情，只有短短的一句 <code>Can't add self as subview</code>。</p>
+
+<p>调用堆栈解析出来如下：</p>
+
+<p><img src="images/QQ20151031-0.png" alt="PNG" /></p>
 ]]></content>
   </entry>
   
