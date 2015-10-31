@@ -94,9 +94,21 @@
 
 <p>点进崩溃详情，只有短短的一句 <code>Can't add self as subview</code>。</p>
 
-<p>调用堆栈解析出来如下：</p>
+<p>崩溃调用堆栈解析出来如下：</p>
 
-<p><img src="http://7xjhyk.com1.z0.glb.clouddn.com/QQ20151031-0@2x.png" alt="PNG" /></p>
+<p><img src="http://7xjhyk.com1.z0.glb.clouddn.com/QQ20151031-0@2x.png" alt="崩溃调用堆栈解析" /></p>
+
+<p>对解决问题根本起不了作用，只能依靠 Google 了，最终在 StackOverflow 上找到解决办法。</p>
+
+<p>首先，复现 bug，尝试同时 <code>push</code> 两个控制器，或者同时 <code>push</code> 和 <code>pop</code> 一个控制器。</p>
+
+<p><img src="http://i.stack.imgur.com/93n6V.png" alt="测试" /></p>
+
+<p>测试运行，按当时回答问题人说法，结果会如上图，但测试发现并不会引起崩溃，此问题在 iOS 新版本貌似已经修复，同时从崩溃详情页发现，用户崩溃主要集中在 iOS7 系统上。按上述复现 bug 之路被堵，不过抓住关键字不难发现，问题主要出在 <strong>同时</strong> 二字，可以利用 GCD 模拟延时，测试如下：</p>
+
+<p><img src="" alt="测试" /></p>
+
+<p>虽然崩溃堆栈与上面有所差别，但是在 iOS8 和 iOS7 上</p>
 </div>
   
   
