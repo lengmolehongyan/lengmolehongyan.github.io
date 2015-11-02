@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-11-02T23:21:56+08:00</updated>
+  <updated>2015-11-02T23:37:08+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -42,7 +42,13 @@
 
 <p><img src="" alt="测试" /></p>
 
-<p>虽然崩溃堆栈与上面有所差别，但是在 iOS8 和 iOS7 上，崩溃几乎一样。bug 的复现，意味着找到了问题出现的原因，更意味着找到了解决办法。</p>
+<p>虽然崩溃堆栈与上面有所差别，但是在 iOS8 和 iOS7 上，崩溃几乎一样。bug 的复现，意味着找到了问题原因所在，更意味着找到了解决办法。</p>
+
+<h2>解决办法</h2>
+
+<p>创建一个分类，拦截控制器入栈\出栈的方法调用，通过安全的方式，确保当有控制器正在进行入栈\出栈操作时，没有其他入栈\出栈操作。</p>
+
+<p>此分类用到运行时 (Runtime) 的方法交换 <code>Method Swizzling</code>，因此只需要复制下面的代码到自己的项目中，此 bug 就不复存在了。</p>
 ]]></content>
   </entry>
   
