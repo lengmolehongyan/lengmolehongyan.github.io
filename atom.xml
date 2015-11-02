@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-11-01T01:13:33+08:00</updated>
+  <updated>2015-11-02T23:21:56+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -18,7 +18,9 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/"/>
     <updated>2015-10-30T23:14:49+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa</id>
-    <content type="html"><![CDATA[<p>查看项目的崩溃汇总，一直有一个 bug 存在，之前也有注意过，只因这个 bug 的崩溃堆栈日志解析出来并没有什么卵用，也不知该怎么复现，就撂下了。</p>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>查看项目的崩溃汇总，一直有一个 bug 存在，之前也有注意过，只因这个 bug 的崩溃堆栈日志解析出来并没有什么卵用，也不知该怎么复现，就撂下了。</p>
 
 <p>但现在这个 bug 崩溃发生次数蹭蹭涨，崩溃占比高了起来，不得不重视起来。</p>
 
@@ -28,17 +30,19 @@
 
 <p><img src="http://7xjhyk.com1.z0.glb.clouddn.com/QQ20151031-0@2x.png" alt="崩溃调用堆栈解析" /></p>
 
-<p>对解决问题根本起不了作用，只能依靠 Google 了，最终在 StackOverflow 上找到解决办法。</p>
+<p>对解决问题根本起不了作用，只能依靠 Google 了。</p>
 
-<p>首先，复现 bug，尝试同时 <code>push</code> 两个控制器，或者同时 <code>push</code> 和 <code>pop</code> 一个控制器。</p>
+<h2>bug 复现</h2>
+
+<p>在 StackOverflow 上找到复现此 bug 的方法，尝试同时 <code>push</code> 两个控制器，或者同时 <code>push</code> 和 <code>pop</code> 一个控制器。</p>
 
 <p><img src="http://i.stack.imgur.com/93n6V.png" alt="测试" /></p>
 
-<p>测试运行，按当时回答问题人说法，结果会如上图，但测试发现并不会引起崩溃，此问题在 iOS 新版本貌似已经修复，同时从崩溃详情页发现，用户崩溃主要集中在 iOS7 系统上。按上述复现 bug 之路被堵，不过抓住关键字不难发现，问题主要出在 <strong>同时</strong> 二字，可以利用 GCD 模拟延时，测试如下：</p>
+<p>按当时回答问题人说法，运行结果会如上图，但测试发现并不会引起崩溃，此问题在 iOS 新版本貌似已经修复，我也在崩溃详情页发现，用户崩溃主要集中在 iOS7 系统上。按上述复现 bug 之路被堵，不过抓住关键字不难发现，问题主要出在 <strong>同时</strong> 二字，因此利用 GCD 模拟延时，测试如下：</p>
 
 <p><img src="" alt="测试" /></p>
 
-<p>虽然崩溃堆栈与上面有所差别，但是在 iOS8 和 iOS7 上</p>
+<p>虽然崩溃堆栈与上面有所差别，但是在 iOS8 和 iOS7 上，崩溃几乎一样。bug 的复现，意味着找到了问题出现的原因，更意味着找到了解决办法。</p>
 ]]></content>
   </entry>
   
