@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-11-02T23:39:52+08:00</updated>
+  <updated>2015-11-05T23:46:21+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -26,6 +26,9 @@
 
 <p>点进崩溃详情，只有短短的一句 <code>Can't add self as subview</code>。</p>
 
+<!--more-->
+
+
 <p>崩溃调用堆栈解析出来如下：</p>
 
 <p><img src="http://7xjhyk.com1.z0.glb.clouddn.com/QQ20151031-0@2x.png" alt="崩溃调用堆栈解析" /></p>
@@ -36,13 +39,11 @@
 
 <p>在 StackOverflow 上找到复现此 bug 的方法，尝试同时 <code>push</code> 两个控制器，或者同时 <code>push</code> 和 <code>pop</code> 一个控制器。</p>
 
-<p><img src="http://i.stack.imgur.com/93n6V.png" alt="测试" /></p>
+<p><img src="http://i.stack.imgur.com/93n6V.png" alt="测试同时 push 两个控制器" /></p>
 
-<p>按当时回答问题人说法，运行结果会如上图，但测试发现并不会引起崩溃，此问题在 iOS 新版本貌似已经修复，我也在崩溃详情页发现，用户崩溃主要集中在 iOS7 系统上。按上述复现 bug 之路被堵，不过抓住关键字不难发现，问题主要出在 <strong>同时</strong> 二字，因此利用 GCD 模拟延时，测试如下：</p>
+<p>上图是当时一回答此问题人的运行结果，但现在测试并不会引起崩溃，不过同时 <code>push</code> 一个控制器是会导致崩溃的，测试结果如下图：</p>
 
-<p><img src="" alt="测试" /></p>
-
-<p>虽然崩溃堆栈与上面有所差别，但是在 iOS8 和 iOS7 上，崩溃几乎一样。bug 的复现，意味着找到了问题原因所在，更意味着找到了解决办法。</p>
+<p><img src="http://7xjhyk.com1.z0.glb.clouddn.com/QQ20151105-0@2x.png" alt="测试同时 push 一个控制器" /></p>
 
 <h2>解决办法</h2>
 
@@ -738,7 +739,7 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/"/>
     <updated>2015-09-12T22:58:12+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong</id>
-    <content type="html"><![CDATA[<h3>KVC 字典转模型</h3>
+    <content type="html"><![CDATA[<h2>KVC 字典转模型</h2>
 
 <ul>
 <li>KVC 中经常使用的就是字典转模型</li>
@@ -752,14 +753,16 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://i1.tietuku.com/cc3c54dccb414089.png" alt="字典转模型" /></p>
 
-<hr />
 
 <!--more-->
 
 
-<h3>KVC 的大招</h3>
+<p><img src="http://i1.tietuku.com/cc3c54dccb414089.png" alt="字典转模型" /></p>
+
+<hr />
+
+<h2>KVC 的大招</h2>
 
 <ul>
 <li>KVC 设置对象属性及取值</li>
@@ -791,7 +794,7 @@
 
 <hr />
 
-<h3>KVC 模型转字典</h3>
+<h2>KVC 模型转字典</h2>
 
 <ul>
 <li>KVC 模型转字典
@@ -814,7 +817,7 @@
 
 <hr />
 
-<h3>KVC 核心动画</h3>
+<h2>KVC 核心动画</h2>
 
 <ul>
 <li>KVC 最经典的应用——核心动画
@@ -973,6 +976,9 @@
 
 <p>进入设置应用，往下滑动找到自己的 app，进入，点击 <strong>位置</strong> 单元格，设置应用会彻底奔溃，回到桌面了。</p>
 
+<!--more-->
+
+
 <p><img src="http://i3.tietuku.com/8d9493bef4f6a786.png" alt="点击位置崩溃" /></p>
 
 <p>经过一番 Google 和 Stack Overflow 后，问题就出现在 <code>info.plist</code> 文件中的两个缺省字段。</p>
@@ -991,6 +997,9 @@
     <updated>2015-07-16T16:50:38+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti</id>
     <content type="html"><![CDATA[<p>Xcode6 下，对于系统版本 iOS8 以上版本定位需要自己写授权，不然没有权限定位，即 <code>CLLocationManagerDelegate</code> 代理方法不会执行。</p>
+
+<!--more-->
+
 
 <p>解决方法：</p>
 
@@ -1091,12 +1100,12 @@
 
 <p>仔细观察 iOS 设备上苹果内置的 app，你会发现各种视图控制器转场动画。iOS7 介绍了自定义控制器转场，使开发人员能够在他们的应用中创建自己的转场动画。在本教程中，我们将看到如何做到这一点。我们还将了解怎样通过手势进行交互式转场 <code>interactive transitions</code>。</p>
 
-<p><img src="http://i1.tietuku.com/41b836336adda5e8.jpg" alt="" /></p>
-
 <!--more-->
 
 
-<h3>开始</h3>
+<p><img src="http://i1.tietuku.com/41b836336adda5e8.jpg" alt="" /></p>
+
+<h2>开始</h2>
 
 <p>创建自定义转场必须遵循以下三个步骤：</p>
 
@@ -1111,7 +1120,7 @@
 
 <p><img src="http://i1.tietuku.com/86214a9a01cf1d06.gif" alt="" /></p>
 
-<h3>自定义 Present 转场</h3>
+<h2>自定义 Present 转场</h2>
 
 <p>如前所述，接下来做的第一件事是创建动画控制器。创建一个 <code>CustomPresentAnimationController</code> 类继承自 <code>NSObject</code>，并遵守 <code>UIViewControllerAnimatedTransitioning</code> 协议。</p>
 
@@ -1281,7 +1290,7 @@
 
 <p>运行程序，这次 Action view 是从屏幕顶部缓慢落下。</p>
 
-<h3>自定义 Dismiss 转场</h3>
+<h2>自定义 Dismiss 转场</h2>
 
 <p>我们已经实现了自定义 <code>present</code> 转场动画，但是 <code>dismiss</code> 转场动画还是使用的苹果默认的。</p>
 
@@ -1507,12 +1516,12 @@
 
 <p>在本教程中，将介绍IBDesignable IBInspectable，以及展示如何利用这个新功能。除过创建demo示例没有更好地方式来阐述这一新特性，因此，创建一个"Rainbow"自定义界面。</p>
 
+<!--more-->
+
+
 <p><img src="http://i1.tietuku.com/a476b2f40c2465d0.png" alt="效果图" /></p>
 
 <hr />
-
-<!--more-->
-
 
 <h3>IBDesignable和IBInspectable</h3>
 
