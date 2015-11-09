@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-11-09T23:04:33+08:00</updated>
+  <updated>2015-11-09T23:30:42+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -1791,7 +1791,7 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi/"/>
     <updated>2015-05-26T22:12:42+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi</id>
-    <content type="html"><![CDATA[<p>[TOC]</p>
+    <content type="html"><![CDATA[<p>注：此文适用 Swift1.2 版本！</p>
 
 <h2>变量和常量</h2>
 
