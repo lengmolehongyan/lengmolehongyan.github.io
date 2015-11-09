@@ -1,16 +1,21 @@
 ---
 layout: post
-title: "swift基础语法学习"
+title: "swift 基础语法学习"
 date: 2015-05-26 22:12:42 +0800
 comments: true
 category: 
+keywords: swift 基础语法学习
+description: swift 基础语法学习
 ---
 
-### 变量和常量
+注：此文适用 Swift1.2 版本！
+
+## 变量和常量
 
 * `var`**变量**，可以修改的
 * `let`**常量**，一经定义不能修改
 * 在swift开发中，通常先定义常量`let`，只有必须修改的时候，再改成`var`
+<p></p>
 
 ```swift
 // 实例化一个UIView对象 保存在堆中
@@ -25,6 +30,7 @@ view.backgroudColor = UIColor.redColor()
 	* 数据类型的推导是在给变量设置初始值的时候，根据“右边”来判断的
 	* 在真正初始化的时候，才能决定变量的准确类型
 * 在定义变量的时候，可以直接指定变量的类型，便于后续的计算不需要转换
+<p></p>
 
 ```swift
 let a: Double = 10
@@ -32,17 +38,16 @@ let b = 10.5
 let c = a + b
 ```
 
-***
-
 <!--more-->
 
-### 分支
+## 分支
 
 * `if`在C语言中有一个特点:非零即真，在swift中，没有非零即真的概念，只有`true/false`，在编写分支语句时，必须准确的指定条件的真假。
 * 格式:
 	* 条件不需要括号
 	* 必须要有`{}`
 * `convenience init?()`表示一个函数未必能够真的实例化出来一个对象，在swift中，要求在编写代码的时候，必须考虑这些问题，能够尽早地发现问题
+<p></p>
 
 ```swift
 // 使用if同时设置数值
@@ -56,6 +61,7 @@ if let url = NSURL(string: "http://www.baidu.com/s?word=he") {
 	* `?`表示可以有值，也可以没有值
 	* 打印可选项的时候，同时会输出一个`Optional`，提示开发者，这是一个可选项，苹果把判断对象是否有内容的工作交给了程序员
 	* `??`用来快速判断对象是否为`nil`
+	<p></p>
 
 ```swift
 var str: NSString
@@ -67,11 +73,10 @@ let a = 10
 let len2 = a + (str?.length ?? 0)
 ```
 
-***
-
-### 循环
+## 循环
 
 * 传统的写法，和C语言几乎一样，需要注意的是，需要使用`var`而不是`let`
+<p></p>
 
 ```swift
 for var i = 0; i < 10; i++ {
@@ -80,6 +85,7 @@ for var i = 0; i < 10; i++ {
 ```
 
 * 方便写法，`in`用来指定范围
+<p></p>
 
 ```swift
 // 范围0~9
@@ -93,6 +99,7 @@ for i in 0...10 {
 ```
 
 * 如果遍历的时候，对索引下标不关注，在swift中，`_`使用的非常广泛，主要用于忽略
+<p></p>
 
 ```swift
 for _ in 0...5 {
@@ -100,12 +107,11 @@ for _ in 0...5 {
 }
 ```
 
-***
-
-### 字符串
+## 字符串
 
 * 在swift中，**字符串**默认的类型是`String`，而不是`NSString`
 * swift中`String`是一个结构体，执行效率更高，支持快速遍历。`NSString`继承自`NSObject`，是一个OC对象，不支持快速遍历
+<p></p>
 
 ```swift
 let str = "Hello!"
@@ -116,6 +122,7 @@ for c in str {
 ```
 
 * 字符串的拼接
+<p></p>
 
 ```swift
 let str1 = "Hello"
@@ -123,25 +130,26 @@ let str2 = str1 + "World!"
 ```
 
 * 格式字符串
+<p></p>
 
 ```swift
 let str = String(format: "%02d:%02d:%02d", arguments: [1, 2, 3])
 ```
 
 * 在swift中，如果要结合`range`一起使用字符串，建议先转成`NSString`再处理
+<p></p>
 
 ```swift
 let str: NSString = "Hello, world!"
 let subS = str.substringWithRange(NSMakeRange(1, 3))
 ```
 
-***
-
-### 数组
+## 数组
 
 * 使用`[]`定义**数组**，数组类型由中括号里面元素决定
 * OC中数组分为可变数组和不可变数组，swift中`let`是不可变的，`var`是可变的，不能向不可变数组中追加元素
 * 数组遍历:
+<p></p>
 
 ```swift
 // 数组遍历
@@ -152,6 +160,7 @@ for str in array {
 ```
 
 * 可变数组添加元素
+<p></p>
 
 ```swift
 var arrayM = ["name", "age"]
@@ -160,6 +169,7 @@ arrayM.append("no")
 
 * 如果定义数组时，指定的对象类型不一致，定义的数组类型是`[NSObject]`。OC中，如果要向数组中添加数字，需要转换成`NSNumber`，swift中，可以直接添加
 * 数组的定义和初始化
+<p></p>
 
 ```swift
 // 定义但是没有初始化
@@ -169,15 +179,14 @@ arrayM = [String]()
 arrayM.append("name")
 ```
 
-***
-
-### 字典
+## 字典
 
 * 定义一个**字典**，仍然使用`[]`，在目前的swift版本中，定义字典通常使用`[String: NSObject]`，大多数情况下，`key`的类型是固定的
 * `let`是不可变的，`var`是可变的
 * 如果`key`已经存在，利用这个`key`设置数据时，会覆盖之前的值
 * 字典的特性:`key`是不允许重复的
 * 字典的遍历:
+<p></p>
 
 ```swift
 // 定义并且实例化字典
@@ -190,9 +199,7 @@ for (kk, vv) in dict1 {
 }
 ```
 
-***
-
-### 函数
+## 函数
 
 * **函数**的定义格式:
 	* `func 函数名(参数列表) -> 返回值 {// 代码实现}`
@@ -202,6 +209,7 @@ for (kk, vv) in dict1 {
 	* `-> Void`
 	* `-> ()`
 	* 完全忽略
+	<p></p>
 
 ```swift
 // 定义函数
@@ -212,9 +220,7 @@ func sum(#a: Int, #b: Int) -> Int {
 sum(a: 10, b: 20)
 ```
 
-***
-
-### 闭包
+## 闭包
 
 * **闭包**和OC中的`block`类似，但是OC中的`block`是一个匿名函数，swift中**函数**是**闭包**的一个特例
 * 闭包的使用，几乎和OC中的`block`是一样的
@@ -226,6 +232,7 @@ sum(a: 10, b: 20)
 * 闭包的简写:
 	* 如果闭包是最后一个参数，可以进行简化
 	* 称为“尾随闭包”
+	<p></p>
 
 ```swift
 override func viewDidLoad() {
@@ -244,6 +251,7 @@ func demo(a: Int, completion:(str: String) -> ()) {
 ```
 
 * 闭包的**返回值**
+<p></p>
 
 ```swift
 override func viewDidLoad() {
@@ -263,6 +271,7 @@ func demo(rowH:() -> Int) {
 * 定义**闭包属性**的时候，有两种选择
 	* 直接设置初始值
 	* 设置一个可选项`?`
+	<p></p>
 
 ```swift
 // 定义方式 表示闭包可以为空
@@ -276,6 +285,7 @@ var completion: (()->())?
 	* swift中默认都是强引用，如果需要弱引用，可以使用`weak`修饰符号
 	* 在闭包中，必须要明确的使用`self`，因为闭包是提前准备的代码，不知道什么时候会执行
 	* 在OC中判断是否有循环引用，使用`-dealloc`方法，在swift中`deinit`叫做**析构函数**，就是在对象被释放前执行，与OC中的`-dealloc`方法类似
+	<p></p>
 
 ```swift
 weak var weakSelf = self

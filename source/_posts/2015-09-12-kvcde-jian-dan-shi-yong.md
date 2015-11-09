@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-### KVC 字典转模型
+## KVC 字典转模型
 
 * KVC 中经常使用的就是字典转模型
 
@@ -15,13 +15,14 @@ categories:
 - (void)setValuesForKeysWithDictionary:(NSDictionary *)keyedValues;
 ```
 
+<!--more-->
+
 ![字典转模型](http://i1.tietuku.com/cc3c54dccb414089.png)
 
 ***
 
-<!--more-->
 
-### KVC 的大招
+## KVC 的大招
 
 * KVC 设置对象属性及取值
 
@@ -41,7 +42,7 @@ categories:
 
 ***
 
-### KVC 模型转字典
+## KVC 模型转字典
 
 * KVC 模型转字典
 	* KVC 模型转字典，参数是属性名称的数组。
@@ -55,7 +56,7 @@ categories:
 
 ***
 
-### KVC 核心动画
+## KVC 核心动画
 
 * KVC 最经典的应用——核心动画
 	* 通过 KVC 设置动画的 `KeyPath`，在实例化动画的时候，指定图层的可动画属性。

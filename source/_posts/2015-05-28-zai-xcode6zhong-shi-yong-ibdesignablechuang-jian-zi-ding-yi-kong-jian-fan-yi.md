@@ -14,11 +14,12 @@ Xcode6的发布，苹果为开发者构建自定义控件推出了新功能**IBD
 
 在本教程中，将介绍IBDesignable IBInspectable，以及展示如何利用这个新功能。除过创建demo示例没有更好地方式来阐述这一新特性，因此，创建一个"Rainbow"自定义界面。
 
+<!--more-->
+
 ![效果图](http://i1.tietuku.com/a476b2f40c2465d0.png)
 
 ***
 
-<!--more-->
 
 ### IBDesignable和IBInspectable
 

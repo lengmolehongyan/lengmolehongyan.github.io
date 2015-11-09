@@ -8,6 +8,8 @@ categories:
 
 Xcode6 下，对于系统版本 iOS8 以上版本定位需要自己写授权，不然没有权限定位，即 `CLLocationManagerDelegate` 代理方法不会执行。 
 
+<!--more-->
+
 解决方法：
 
 步骤一：需要在 `info.plist` 文件中加入下面两个缺省字段，值设置为 `YES`。

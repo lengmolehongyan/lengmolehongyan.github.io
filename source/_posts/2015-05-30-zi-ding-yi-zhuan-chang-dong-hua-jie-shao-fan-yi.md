@@ -10,11 +10,12 @@ categories:
 
 仔细观察 iOS 设备上苹果内置的 app，你会发现各种视图控制器转场动画。iOS7 介绍了自定义控制器转场，使开发人员能够在他们的应用中创建自己的转场动画。在本教程中，我们将看到如何做到这一点。我们还将了解怎样通过手势进行交互式转场 `interactive transitions`。
 
-![](http://i1.tietuku.com/41b836336adda5e8.jpg)
-
 <!--more-->
 
-### 开始
+![](http://i1.tietuku.com/41b836336adda5e8.jpg)
+
+
+## 开始
 
 创建自定义转场必须遵循以下三个步骤：
 
@@ -28,7 +29,7 @@ categories:
 
 ![](http://i1.tietuku.com/86214a9a01cf1d06.gif)
 
-### 自定义 Present 转场
+## 自定义 Present 转场
 
 如前所述，接下来做的第一件事是创建动画控制器。创建一个 `CustomPresentAnimationController` 类继承自 `NSObject`，并遵守 `UIViewControllerAnimatedTransitioning` 协议。
 
@@ -140,7 +141,7 @@ toViewController.view.frame = CGRectOffset(finalFrameForVC, 0, -bounds.height)
 
 运行程序，这次 Action view 是从屏幕顶部缓慢落下。
 
-### 自定义 Dismiss 转场
+## 自定义 Dismiss 转场
 
 我们已经实现了自定义 `present` 转场动画，但是 `dismiss` 转场动画还是使用的苹果默认的。
 

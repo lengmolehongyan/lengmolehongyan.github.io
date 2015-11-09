@@ -14,16 +14,20 @@ categories:
 	3. 通知的通信方式是 **1对多**。
 	4. 代理、Block 是 **1对1**。
 
+<p></p>
+
 * Block 介绍
 	1. Block 是 iOS4.0 之后新增的一种语法结构，也称为“闭包”。
 	2. Block 是一个匿名的函数代码块，此代码块可以作为参数传递给其他对象。
 	3. 可以把 block 当做 Objective-C 的匿名函数，block 是 OC 中的一种数据类型，`^`是 block 的特有标记。
 
+<p></p>
+
 * Block 格式说明
 	1. `(返回类型)(^block名称)(参数类型)=^(参数列表){代码实现};`。
 	2. 如果没有参数，等号后面参数列表的()可以省略。
 
-***
+<p></p>
 
 <!--more-->
 
@@ -56,7 +60,6 @@ categories:
 
 ![block的方式遍历数组\字典](http://ww1.sinaimg.cn/large/9491566bjw1erd0j2s7stj213s0l2qfl.jpg)
 
-***
 
 ### Block 的使用注意
 
@@ -75,7 +78,6 @@ categories:
 
 ![copy修饰block](http://ww4.sinaimg.cn/large/9491566bjw1erdfvoacrfj214i0jmqbu.jpg)
 
-***
 
 推荐阅读：[Objective-C中的Block](http://www.cocoachina.com/ios/20150109/10891.html)
 

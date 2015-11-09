@@ -10,6 +10,8 @@ categories:
 
 进入设置应用，往下滑动找到自己的 app，进入，点击 **位置** 单元格，设置应用会彻底奔溃，回到桌面了。
 
+<!--more-->
+
 ![点击位置崩溃](http://i3.tietuku.com/8d9493bef4f6a786.png)
 
 经过一番 Google 和 Stack Overflow 后，问题就出现在 `info.plist` 文件中的两个缺省字段。
