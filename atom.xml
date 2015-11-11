@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-11-11T23:12:29+08:00</updated>
+  <updated>2015-11-11T23:20:41+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -18,7 +18,11 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/11/11/swifthe-objective-cde-hu-tong-xing/"/>
     <updated>2015-11-11T23:10:57+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/11/11/swifthe-objective-cde-hu-tong-xing</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<blockquote><p>Discover new features that make it easier than ever to craft
+Objective-C APIs that work beautifully in Swift, as well as
+new Swift language features that provide even better
+interoperability. Apple engineers will also discuss
+enhancements to Apple&rsquo;s SDKs that improve the Swift experience.</p></blockquote>
 ]]></content>
   </entry>
   
