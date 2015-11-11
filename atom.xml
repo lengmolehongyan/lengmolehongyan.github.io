@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-11-10T13:36:37+08:00</updated>
+  <updated>2015-11-11T23:12:29+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Swift 和 Objective-C 的互通性]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/11/11/swifthe-objective-cde-hu-tong-xing/"/>
+    <updated>2015-11-11T23:10:57+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/11/11/swifthe-objective-cde-hu-tong-xing</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Can't Add Self as Subview 崩溃解决办法]]></title>
