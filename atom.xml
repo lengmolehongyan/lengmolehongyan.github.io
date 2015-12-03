@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-03T23:58:01+08:00</updated>
+  <updated>2015-12-03T23:59:07+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -18,7 +18,15 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/"/>
     <updated>2015-12-03T23:50:08+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>1.打开终端，输入以下代码获取到DVTPlugInCompatibilityUUID</p>
+
+<pre><code>﻿    ﻿defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID
+</code></pre>
+
+<p> 2.然后输入如下命令   【最后一项是获取到的DVTPlugInCompatibilityUUID】</p>
+
+<pre><code>﻿    ﻿find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add 此处跟上上一步获得的 uuid
+</code></pre>
 ]]></content>
   </entry>
   

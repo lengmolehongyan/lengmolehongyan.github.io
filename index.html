@@ -9,8 +9,7 @@
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="1.打开终端，输入以下代码获取到DVTPlugInCompatibilityUUID ﻿ ﻿defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID 2.然后输入如下命令 【 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,7 +91,15 @@
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><p>1.打开终端，输入以下代码获取到DVTPlugInCompatibilityUUID</p>
+
+<pre><code>﻿    ﻿defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID
+</code></pre>
+
+<p> 2.然后输入如下命令   【最后一项是获取到的DVTPlugInCompatibilityUUID】</p>
+
+<pre><code>﻿    ﻿find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add 此处跟上上一步获得的 uuid
+</code></pre>
 </div>
   
   
