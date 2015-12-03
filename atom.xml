@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-11-29T18:54:50+08:00</updated>
+  <updated>2015-12-03T23:51:25+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[解决 Xcode 升级插件失效]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/"/>
+    <updated>2015-12-03T23:50:08+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Swift 和 Objective-C 的互通性]]></title>

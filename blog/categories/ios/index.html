@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iOS8 以上定位问题<二> - 冷漠叻荭颜</title>
+  <title>分类：ios - 冷漠叻荭颜</title>
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="接上篇，我们已经可以在系统版本 iOS8 以上完成定位功能，但是会有一个潜在 bug 存在。 进入设置应用，往下滑动找到自己的 app，进入，点击 位置 单元格，设置应用会彻底奔溃，回到桌面了。 经过一番 Google 和 Stack Overflow 后，问题就出现在 info.plist &hellip;">
+  <meta name="description" content="Category: ios">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/">
+  <link rel="canonical" href="http://lengmolehongyan.github.io/blog/categories/ios/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="冷漠叻荭颜" type="application/atom+xml">
@@ -67,98 +67,35 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">iOS8 以上定位问题<二></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-30T00:19:06+08:00'><span class='date'>2015 年8 月30 日</span> <span class='time'>12:19 am</span></time>
-        
-      </p>
+    <h1 class="entry-title">分类：ios</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>接上篇，我们已经可以在系统版本 iOS8 以上完成定位功能，但是会有一个潜在 bug 存在。</p>
 
-<p>进入设置应用，往下滑动找到自己的 app，进入，点击 <strong>位置</strong> 单元格，设置应用会彻底奔溃，回到桌面了。</p>
+  
+  <h2>2015</h2>
 
-<!--more-->
+<article>
+  
+<h1><a href="/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/">解决 Xcode 升级插件失效</a></h1>
+<time datetime="2015-12-03T23:50:08+08:00" pubdate><span class='month'>12月</span> <span class='day'>03日</span> <span class='year'>2015</span></time>
+
+<footer>
+  <span class="categories">分类： <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/kai-fa-xiao-xi-jie/'>开发小细节</a></span>
+</footer>
 
 
-<p><img src="http://i3.tietuku.com/8d9493bef4f6a786.png" alt="点击位置崩溃" /></p>
+</article>
 
-<p>经过一番 Google 和 Stack Overflow 后，问题就出现在 <code>info.plist</code> 文件中的两个缺省字段。</p>
-
-<p>在上一篇博客中，我将 <code>NSLocationWhenInUseUsageDescription</code> 和 <code>NSLocationAlwaysUsageDescription</code> 的类型设置为 <code>Boolean</code>，值设置为 <code>YES</code>，而正确做法是类型设置为 <code>String</code>，值填写一些描述信息，比如：请点击允许以允许访问，若不允许将无法使用 XX 功能。这里面所填写的文字，也会自动出现在位置页面的应用程序说明之后。</p>
-
-<p><img src="http://i3.tietuku.com/3881905e46802e76.png" alt="应用程序说明" /></p>
-
-<p>完成之后，重新编译运行，再去设置那，怎么点都不会崩溃了！Over！</p>
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">lengmolehongyan</span></span>
-
-      
-
-
-
-
-<time class='entry-date' datetime='2015-08-30T00:19:06+08:00'><span class='date'>2015 年8 月30 日</span> <span class='time'>12:19 am</span></time>
-      
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
-  
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-    <span class="jiathis_txt">分享到：</span>
-    <a class="jiathis_button_tools_1"></a>
-    <a class="jiathis_button_tools_2"></a>
-    <a class="jiathis_button_tools_3"></a>
-    <a class="jiathis_button_tools_4"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-    <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-
-<!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>
-<!-- UY END -->
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2015/07/16/ios8xia-ding-wei-wen-ti/" title="Previous Post: iOS8 以上定位问题<一>">&laquo; iOS8 以上定位问题<一></a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2015/09/10/block-de-jian-dan-shi-yong/" title="Next Post: Block 的简单使用">Block 的简单使用 &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 </div>
