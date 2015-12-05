@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-05T23:56:33+08:00</updated>
+  <updated>2015-12-05T23:59:17+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -18,7 +18,7 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/"/>
     <updated>2015-12-05T23:53:21+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai</id>
-    <content type="html"><![CDATA[<p>有时候，我们需要计算某个效果执行到底耗时多长时间，</p>
+    <content type="html"><![CDATA[<p>有时候，我们需要知道某个效果到底耗时多长时间，可能想到用 <code>NSDate</code> 的时间戳来计算，</p>
 ]]></content>
   </entry>
   
