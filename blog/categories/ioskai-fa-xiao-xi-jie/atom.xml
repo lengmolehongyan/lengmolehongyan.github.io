@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios开发小细节 | 冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-05T12:09:18+08:00</updated>
+  <updated>2015-12-05T23:56:33+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[计算代码执行时间差]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/"/>
+    <updated>2015-12-05T23:53:21+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai</id>
+    <content type="html"><![CDATA[<p>有时候，我们需要计算某个效果执行到底耗时多长时间，</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[解决 Xcode 升级插件失效]]></title>
