@@ -92,12 +92,27 @@
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="bp">NSDate</span> <span class="o">*</span><span class="n">previousDate</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">];</span>
+</span><span class='line'><span class="p">...</span>
 </span><span class='line'><span class="n">NSTimeInterval</span> <span class="n">timeInterval</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">]</span> <span class="nl">timeIntervalSinceDate</span><span class="p">:</span><span class="n">previousDate</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>当然，在 <code>CoreFoundation</code> 框架中，也有类似的方法。</p>
+<p>在 <code>CoreFoundation</code> 框架中，有一个函数返回当前系统的绝对时间，也可以用做计算时间差。如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">CFAbsoluteTime</span> <span class="n">previousTime</span> <span class="o">=</span> <span class="n">CFAbsoluteTimeGetCurrent</span><span class="p">();</span>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'><span class="n">CFAbsoluteTime</span> <span class="n">currentTime</span> <span class="o">=</span> <span class="n">CFAbsoluteTimeGetCurrent</span><span class="p">();</span>
+</span><span class='line'><span class="n">CFAbsoluteTime</span> <span class="n">timeInterval</span> <span class="o">=</span> <span class="n">currentTime</span> <span class="o">-</span> <span class="n">previousTime</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 

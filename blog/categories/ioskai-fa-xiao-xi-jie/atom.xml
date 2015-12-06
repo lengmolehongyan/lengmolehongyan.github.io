@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios开发小细节 | 冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-06T12:18:47+08:00</updated>
+  <updated>2015-12-06T18:53:01+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -21,10 +21,17 @@
     <content type="html"><![CDATA[<p>开发中，有时候我们需要知道某个效果到底耗时多长时间，可能想到用 <code>Foundation</code> 框架中的 <code>NSDate</code> 类来计算，比如：</p>
 
 <pre><code class="objc">NSDate *previousDate = [NSDate date];
+...
 NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:previousDate];
 </code></pre>
 
-<p>当然，在 <code>CoreFoundation</code> 框架中，也有类似的方法。</p>
+<p>在 <code>CoreFoundation</code> 框架中，有一个函数返回当前系统的绝对时间，也可以用做计算时间差。如下：</p>
+
+<pre><code class="objc">CFAbsoluteTime previousTime = CFAbsoluteTimeGetCurrent();
+...
+CFAbsoluteTime currentTime = CFAbsoluteTimeGetCurrent();
+CFAbsoluteTime timeInterval = currentTime - previousTime;
+</code></pre>
 ]]></content>
   </entry>
   
