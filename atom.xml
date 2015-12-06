@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-05T23:59:17+08:00</updated>
+  <updated>2015-12-06T12:18:47+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -18,7 +18,16 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/"/>
     <updated>2015-12-05T23:53:21+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai</id>
-    <content type="html"><![CDATA[<p>有时候，我们需要知道某个效果到底耗时多长时间，可能想到用 <code>NSDate</code> 的时间戳来计算，</p>
+    <content type="html"><![CDATA[<p>开发中，有时候我们需要知道某个效果到底耗时多长时间，可能想到用 <code>Foundation</code> 框架中的 <code>NSDate</code> 类来计算，比如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="bp">NSDate</span> <span class="o">*</span><span class="n">previousDate</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">];</span>
+</span><span class='line'><span class="n">NSTimeInterval</span> <span class="n">timeInterval</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">]</span> <span class="nl">timeIntervalSinceDate</span><span class="p">:</span><span class="n">previousDate</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当然，在 <code>CoreFoundation</code> 框架中，也有类似的方法。</p>
 ]]></content>
   </entry>
   
