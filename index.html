@@ -9,12 +9,16 @@
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="开发中，有时候我们需要知道某个效果到底耗时多长时间，可能想到用 Foundation 框架中的 NSDate 类来计算，比如： 1
+  <meta name="description" content="1
 2
 3
-NSDate *previousDate = [NSDate date];
+4
+5
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored &quot;警告标识符&quot;
 ...
-NSTimeInterval timeInterval = [[ &hellip;">
+...
+#pragma clang diagnostic pop ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +78,48 @@ NSTimeInterval timeInterval = [[ &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/12/09/hu-lue-jing-gao/">忽略警告</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-09T23:26:54+08:00'><span class='date'>2015 年12 月9 日</span> <span class='time'>11:26 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#pragma clang diagnostic push</span>
+</span><span class='line'><span class="cp">#pragma clang diagnostic ignored &quot;警告标识符&quot;</span>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'><span class="cp">#pragma clang diagnostic pop</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -539,42 +585,6 @@ enhancements to Apple&rsquo;s SDKs that improve the Swift experience.</p></block
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/">iOS8 以上定位问题<二></a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-30T00:19:06+08:00'><span class='date'>2015 年8 月30 日</span> <span class='time'>12:19 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>接上篇，我们已经可以在系统版本 iOS8 以上完成定位功能，但是会有一个潜在 bug 存在。</p>
-
-<p>进入设置应用，往下滑动找到自己的 app，进入，点击 <strong>位置</strong> 单元格，设置应用会彻底奔溃，回到桌面了。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -590,6 +600,10 @@ enhancements to Apple&rsquo;s SDKs that improve the Swift experience.</p></block
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/12/09/hu-lue-jing-gao/">忽略警告</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/">计算代码执行时间差</a>
       </li>
     
@@ -603,10 +617,6 @@ enhancements to Apple&rsquo;s SDKs that improve the Swift experience.</p></block
     
       <li class="post">
         <a href="/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/">Can't Add Self as Subview 崩溃解决办法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/10/22/fmdb-xue-xi-zong-jie/">FMDB 使用方法</a>
       </li>
     
   </ul>

@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Ios 开发小细节 - 冷漠叻荭颜</title>
+  <title>忽略警告 - 冷漠叻荭颜</title>
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="Ios 开发小细节 2015 年11 月28 日 11:46 pm 2015 年11 月28 日 11:46 pm 分享到： 更多 最新文章 忽略警告 计算代码执行时间差 解决 Xcode 升级插件失效 Swift 和 Objective-C 的互通性 Can't Add Self as &hellip;">
-  
+  <meta name="description" content="Xcode 忽略警告">
+  <meta name="keywords" content="Xcode 忽略警告">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lengmolehongyan.github.io/ios-kai-fa-xiao-xi-jie/">
+  <link rel="canonical" href="http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="冷漠叻荭颜" type="application/atom+xml">
@@ -68,34 +68,68 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Ios 开发小细节</h1>
-    <p class="meta">
-
-
-
-
-<time class='entry-date' datetime='2015-11-28T23:46:00+08:00'><span class='date'>2015 年11 月28 日</span> <span class='time'>11:46 pm</span></time></p>
-  </header>
-  
-  
-
-  
-    <footer>
+    
+      <h1 class="entry-title">忽略警告</h1>
+    
+    
       <p class="meta">
         
-        
 
 
 
 
-<time class='entry-date' datetime='2015-11-28T23:46:00+08:00'><span class='date'>2015 年11 月28 日</span> <span class='time'>11:46 pm</span></time>
+<time class='entry-date' datetime='2015-12-09T23:26:54+08:00'><span class='date'>2015 年12 月9 日</span> <span class='time'>11:26 pm</span></time>
         
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#pragma clang diagnostic push</span>
+</span><span class='line'><span class="cp">#pragma clang diagnostic ignored &quot;警告标识符&quot;</span>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'><span class="cp">#pragma clang diagnostic pop</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
+  
+
+<span class="byline author vcard">Posted by <span class="fn">lengmolehongyan</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-12-09T23:26:54+08:00'><span class='date'>2015 年12 月9 日</span> <span class='time'>11:26 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ioskai-fa-xiao-xi-jie/'>ios开发小细节</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
   
   
   
@@ -120,9 +154,14 @@
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/" title="Previous Post: 计算代码执行时间差">&laquo; 计算代码执行时间差</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
