@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-13T18:48:48+08:00</updated>
+  <updated>2015-12-13T19:38:30+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -27,7 +27,7 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/"/>
     <updated>2015-12-09T23:26:54+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao</id>
-    <content type="html"><![CDATA[<p>对于一个患有强迫症的我，每次 <code>⌘B</code> Build 项目时，发现一个 <img src="http://lengmolehongyan.github.io/images/DVTStatus-Warning@2x.png" width="30"> 警告都要点进去修复了，然而，对于一些无关紧要的警告，我们是否可以选择忽略这个警告，让 Xcode 不提示呢？答案当然是可以的。</p>
+    <content type="html"><![CDATA[<p>对于一个有强迫症的我，每次 <code>⌘B</code> Build 项目时，发现一个 <img src="http://lengmolehongyan.github.io/images/DVTStatus-Warning@2x.png" width="30"> 警告都要点进去修复了，然而，对于一些无关紧要的警告，我们是否可以选择忽略这个警告，让 Xcode 不提示呢？答案当然是可以的。</p>
 
 <p>下面，就介绍一下在项目中忽略警告的三个地方：</p>
 
@@ -87,11 +87,17 @@
 
 <h2>在 Build Settings 中项目全局忽略警告</h2>
 
-<p>来见我</p>
+<p>在项目的 <code>Build Settings</code> 中也可以设置忽略某种或多种类型的警告，不过在这设置的影响范围就是整个项目的了，要三思而后行，不然就是给自己挖坑。</p>
 
-<h2>Pod 安装第三方库忽略警告</h2>
+<p>还是上面的例子，在 <code>Build Settings</code> 中找到 <code>Custom Compiler Flags</code>，双击 <code>Other Warning Flags</code>（可以配置 <code>Debug</code> 和 <code>Release</code> 环境），填入 <code>-Wno-unused-variable</code>，完成后，编译项目，项目中所有的此类型警告都没有了。</p>
 
-<p>低开挖机</p>
+<p><img src="http://lengmolehongyan.github.io/images/QQ20151213-4@2x.png" alt="Build Settings 中项目全局忽略警告" /></p>
+
+<p>这里所填写的内容规则，仅仅是在第一种方法中找到的警告标识符中的 <code>W</code> 字母后面加上 <code>no-</code> 就可以了。</p>
+
+<h2>CocoaPods 导入第三方库忽略警告</h2>
+
+<p>通过 CocoaPods 给项目导入了一些第三方库，这些库里面可能或多或少有些警告，想消除这些警告，很简单，只需在 <code>Podfile</code> 中加上这一句 <code>inhibit_all_warnings!</code>，所有通过 CocoaPods 安装的第三库的警告就没有了。</p>
 ]]></content>
   </entry>
   
