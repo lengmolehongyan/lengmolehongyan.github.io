@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>忽略警告 - 冷漠叻荭颜</title>
+  <title>Xcode 项目忽略警告 - 冷漠叻荭颜</title>
   <meta name="author" content="lengmolehongyan">
 
   
@@ -72,7 +72,7 @@
   
   <header>
     
-      <h1 class="entry-title">忽略警告</h1>
+      <h1 class="entry-title">Xcode 项目忽略警告</h1>
     
     
       <p class="meta">
@@ -88,7 +88,18 @@
   </header>
 
 
-<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="entry-content"><p>对于一个患有强迫症的我，每次 <code>⌘B</code> Build 项目时，发现一个 <img src="/images/DVTStatus-Warning@2x.png" width="30"> 警告都要点进去修复了，然而，对于一些无关紧要的警告，我们是否可以选择忽略这个警告，让 Xcode 不提示呢？答案当然是可以的。</p>
+
+<p>下面，就介绍一下在项目中忽略警告的三个地方：</p>
+
+<!--more-->
+
+
+<h2>在源文件中忽略警告</h2>
+
+<p>在一些第三方库中，总能看到下面这段代码的身影，这就是用于忽略某个警告</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -101,7 +112,47 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>用法很简单，比如在控制器的 <code>-viewDidLoad</code> 中写了句创建一个 <code>eTestView</code> 的代码</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="bp">UIView</span> <span class="o">*</span><span class="n">eTestView</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIView</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Xcode 会立即报一个警告，提示我们没有使用这个变量</p>
+
+<p><img src="/images/QQ20151213-0@2x.png" alt="Unused variable 'eTestView'" /></p>
+
+<p>只需在创建 <code>eTestView</code> 的前后加上如下几行，黄色警告就消失了😄</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#pragma clang diagnostic push</span>
+</span><span class='line'><span class="cp">#pragma clang diagnostic ignored &quot;-Wunused-variable&quot;</span>
+</span><span class='line'><span class="bp">UIView</span> <span class="o">*</span><span class="n">eTestView</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIView</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span><span class='line'><span class="cp">#pragma clang diagnostic pop</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>至于警告标识符，鼠标点几下就可以找到。</p>
+
+<p>如下图，右击某个警告，选择 <code>Reveal in Log</code>（有时这个选项可能是置灰状态，不能选择，可以尝试编译下项目，或者退出 Xcode 重新来一次）</p>
+
+<p><img src="/images/QQ20151213-1@2x.png" alt="Reveal in Log" /></p>
+
+<p>下图红色框中，中括号内部的就是警告标识符（先要点击右上角展开警告才能看到这一大堆信息）</p>
+
+<p><img src="/images/QQ20151213-2@2x.png" alt="警告标识符" /></p>
+
+<h2>在 Build Settings 中项目全局忽略警告</h2>
+
+<p>来见我</p>
+
+<h2>Pod 安装第三方库忽略警告</h2>
+
+<p>低开挖机</p>
 </div>
 
 
@@ -179,7 +230,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2015/12/09/hu-lue-jing-gao/">忽略警告</a>
+        <a href="/blog/2015/12/09/hu-lue-jing-gao/">Xcode 项目忽略警告</a>
       </li>
     
       <li class="post">
