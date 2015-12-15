@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios开发小细节 | 冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-13T21:59:47+08:00</updated>
+  <updated>2015-12-15T09:17:20+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -84,7 +84,7 @@ UIView *eTestView = [[UIView alloc] init];
 
 <h2>CocoaPods 导入第三方库忽略警告</h2>
 
-<p>通过 CocoaPods 给项目导入了一些第三方库，这些库里面可能或多或少有些警告，想消除这些警告，很简单，只需在 <code>Podfile</code> 中加上这一句 <code>inhibit_all_warnings!</code>，所有通过 CocoaPods 安装的第三库的警告就没有了。</p>
+<p>通过 CocoaPods 给项目导入了一些第三方库，这些库里面或多或少会有些警告，想消除这些警告，很简单，只需在 <code>Podfile</code> 中加上这一句 <code>inhibit_all_warnings!</code>，所有通过 CocoaPods 安装的第三库的警告就没有了。</p>
 ]]></content>
   </entry>
   
