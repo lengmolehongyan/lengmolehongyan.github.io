@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-20T17:54:43+08:00</updated>
+  <updated>2015-12-20T17:57:31+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -174,24 +174,6 @@
 <p><img src="http://lengmolehongyan.github.io/images/QQ20151204-0@2x.png" alt="Load Bundles" /></p>
 
 <p>~~~ 😊 OVER 😊 ~~~</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Swift 和 Objective-C 的互通性]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/11/11/swifthe-objective-cde-hu-tong-xing/"/>
-    <updated>2015-11-11T23:10:57+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/11/11/swifthe-objective-cde-hu-tong-xing</id>
-    <content type="html"><![CDATA[<blockquote><p>Discover new features that make it easier than ever to craft
-Objective-C APIs that work beautifully in Swift, as well as
-new Swift language features that provide even better
-interoperability. Apple engineers will also discuss
-enhancements to Apple&rsquo;s SDKs that improve the Swift experience.</p></blockquote>
-
-<!--more-->
-
-
-<p>未完待续</p>
 ]]></content>
   </entry>
   
@@ -869,7 +851,7 @@ enhancements to Apple&rsquo;s SDKs that improve the Swift experience.</p></block
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iOS9 适配<二> Directory Not Found for Option]]></title>
+    <title type="html"><![CDATA[Directory Not Found for Option]]></title>
     <link href="http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei/"/>
     <updated>2015-09-23T10:47:48+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei</id>
@@ -899,7 +881,7 @@ enhancements to Apple&rsquo;s SDKs that improve the Swift experience.</p></block
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iOS9 适配<一> App Transport Security]]></title>
+    <title type="html"><![CDATA[App Transport Security]]></title>
     <link href="http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei/"/>
     <updated>2015-09-21T23:37:59+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei</id>
