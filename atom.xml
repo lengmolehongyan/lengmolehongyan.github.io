@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-15T09:17:20+08:00</updated>
+  <updated>2015-12-20T17:54:43+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[CopyPNGFile 错误]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/10/copypngfile-cuo-wu/"/>
-    <updated>2015-12-10T23:30:35+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/10/copypngfile-cuo-wu</id>
-    <content type="html"><![CDATA[<p>有时，由于自己的失误，</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Xcode 项目忽略警告]]></title>
