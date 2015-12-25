@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-22T22:08:39+08:00</updated>
+  <updated>2015-12-25T22:43:02+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,17 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Swift 网络库 Alamofire 最全使用指南]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/22/swift-wang-luo-ku-alamofire-zui-quan-shi-yong-zhi-nan/"/>
-    <updated>2015-12-22T09:59:29+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/22/swift-wang-luo-ku-alamofire-zui-quan-shi-yong-zhi-nan</id>
-    <content type="html"><![CDATA[<p>本文是对 <a href="http://www.appcoda.com/alamofire-beginner-guide/">The Absolute Guide to Networking in Swift with Alamofire</a> 文章的翻译。</p>
-
-<p>从 2014 年 6 月 Swift 语言发布以来，在 Swift 中网络访问一直是一个讨论热点。就连 Swift 语言的作者，Chris Lattner，也在 Twitter 上说 JSON 解析是一个持续的传奇。因此，出现了许多替代方案的寻求。当然，也有一些基础 JSON 解析的库，但它们对开发者还是不太友好。幸运的是，Alamofire 出现了，也是出自 Objective—C 中强大网络库 (AFNetworking) 的作者之手。Alamofire 是一个强大的网络库，可以帮助我们解析 JSON。</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Xcode 项目忽略警告]]></title>
