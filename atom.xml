@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-26T00:59:27+08:00</updated>
+  <updated>2015-12-26T01:00:17+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -38,6 +38,9 @@
 <p>对应音频文件格式是 <code>aiff</code>，<code>wav</code>，<code>caf</code> 文件，文件也必须放到 app 的 <code>mainBundle</code> 目录中。</p>
 
 <p>自定义通知声音的播放时间必须在 30s 内，如果超过这个限制，则将用系统默认通知声音替代。</p>
+
+<!--more-->
+
 
 <p>可以使用 <code>afconvert</code> 工具来处理音频文件格式，在终端中敲入如下命令就可以将一个 <code>mp3</code> 文件转换成 <code>caf</code> 文件：</p>
 
