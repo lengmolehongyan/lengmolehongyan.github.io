@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-26T00:51:27+08:00</updated>
+  <updated>2015-12-26T00:53:05+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -30,6 +30,9 @@
 <li>µLaw</li>
 <li>aLaw</li>
 </ol>
+
+
+<p></p>
 
 
 <p>对应音频文件格式是 <code>aiff</code>，<code>wav</code>，<code>caf</code> 文件，文件也必须放到 app 的 <code>mainBundle</code> 目录中。</p>
