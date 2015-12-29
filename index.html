@@ -9,7 +9,7 @@
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="项目中遇到需要自定义通知声音的需求，以前没做过，就查了下官方文档，就像文档上说的，实现起来确实挺简单，就整理下当做备忘吧。 关于推送，官方文档、各种第三方推送文档都很全，就跳过了。 由于自定义通知声音还是由 iOS 系统来播放的，所以对音频数据格式有限制，可以是如下四种之一： Linear PCM &hellip;">
+  <meta name="description" content="跟随官方文档 自动布局指南 的脚步，AutoLayout 从入门到进阶。 理解自动布局 自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/12/27/understanding-auto-layout/">自动布局指南</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-27T19:14:33+08:00'><span class='date'>2015 年12 月27 日</span> <span class='time'>7:14 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
+
+<h2>理解自动布局</h2>
+
+<p>自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView 的大小或者位置改变，UIButton 的位置将会自动调整。</p>
+
+<p>通过约束这种方式来写界面就可以动态响应视图内部和外部的变化。</p>
+
+<h2>外部变化</h2>
+
+<p>外部变化发生在父视图的大小或者形状发生改变。每次变化，都必须充分利用可用空间来为视图 view 更新布局。下面是一些常见的外部变化来源：</p>
+
+<ul>
+<li>用户调整窗口（OSX）</li>
+<li>用户在 iPad 上进入或者离开 SplitView（iOS）</li>
+<li>设备旋转（iOS）</li>
+<li>电话和录音状态栏的出现或者消失（iOS）</li>
+<li>想适配 Size Classes</li>
+<li>想适配不同屏幕大小</li>
+</ul>
+
+
+<p>这些大多数发生在程序运行状态下，它们需要程序做出动态响应。其它比如支持不同屏幕尺寸的  app，就可以适应不同的场景。即使对于一个设备的屏幕尺寸不会发生改变，但界面适配后你的程序在 iPhone4S 和 iPhone6 Plus，甚至 iPad 上运行效果都是相同的。自动布局也是 iPad 上支持 SlideOver 和 SplitView 的重要组件。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -504,87 +555,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/10/block-de-jian-dan-shi-yong/">Block 的简单使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-10T23:42:34+08:00'><span class='date'>2015 年9 月10 日</span> <span class='time'>11:42 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Block 的介绍</h3>
-
-<ul>
-<li>对象与对象之间的通信方式
-
-<ol>
-<li><strong>代理-协议</strong>，<strong>通知</strong>，<strong>Block</strong>。</li>
-<li>三种通信方式都实现了对象之间的解耦合。</li>
-<li>通知的通信方式是 <strong>1对多</strong>。</li>
-<li>代理、Block 是 <strong>1对1</strong>。</li>
-</ol>
-</li>
-</ul>
-
-
-<p></p>
-
-
-<ul>
-<li>Block 介绍
-
-<ol>
-<li>Block 是 iOS4.0 之后新增的一种语法结构，也称为“闭包”。</li>
-<li>Block 是一个匿名的函数代码块，此代码块可以作为参数传递给其他对象。</li>
-<li>可以把 block 当做 Objective-C 的匿名函数，block 是 OC 中的一种数据类型，<code>^</code>是 block 的特有标记。</li>
-</ol>
-</li>
-</ul>
-
-
-<p></p>
-
-
-<ul>
-<li>Block 格式说明
-
-<ol>
-<li><code>(返回类型)(^block名称)(参数类型)=^(参数列表){代码实现};</code>。</li>
-<li>如果没有参数，等号后面参数列表的()可以省略。</li>
-</ol>
-</li>
-</ul>
-
-
-<p></p>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/10/block-de-jian-dan-shi-yong/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -600,6 +570,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/12/27/understanding-auto-layout/">自动布局指南</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/">iOS 自定义通知声音</a>
       </li>
     
@@ -613,10 +587,6 @@
     
       <li class="post">
         <a href="/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/">解决 Xcode 升级插件失效</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/">Can't Add Self as Subview 崩溃解决办法</a>
       </li>
     
   </ul>
