@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-30T23:59:16+08:00</updated>
+  <updated>2015-12-31T23:58:46+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -18,7 +18,7 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout/"/>
     <updated>2015-12-27T19:14:33+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout</id>
-    <content type="html"><![CDATA[<p>跟随官方文档 <a href="https://developer.%E5%BA%94%E7%94%A8le.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
+    <content type="html"><![CDATA[<p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
 
 <h1>理解自动布局</h1>
 
@@ -78,15 +78,29 @@
 
 <h2>自动布局 VS 计算 Frame 布局</h2>
 
-<p>目前，有三种方法来布局界面，代码布局、使用 autoresizing masks 自动响应一些外部变化布局，或者自动布局。</p>
+<p>目前，有三种方法来布局界面，代码计算 frame 布局、使用 AutoresizingMask 自动响应一些外部变化布局，或者自动布局。</p>
 
-<p>通常，应用是通过代码为视图层次中的每个视图设置 frame 来布局界面的，frame 定义了一个视图在其父视图坐标系的位置和大小。</p>
+<p>通常，应用是通过代码为视图层次中的每个视图设置 frame 来布局界面的，frame 表示一个视图在其父视图坐标系的位置和大小。</p>
 
-<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_views_2x.png" alt="" /></p>
+<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_views_2x.png" alt="layout_views" /></p>
 
-<p>通过计算 frame 来布局界面，你必须要为视图层次中的每个视图计算大小和位置，而且，如果发生改变，还需要为所有影响的视图重新计算。</p>
+<p>通过计算 frame 来布局界面，必须要为视图层次中的每个视图计算大小和位置，而且，如果发生改变，还需要为所有影响的视图重新计算。</p>
 
-<p>在很多情况下，通过代码来设置一个视图的 frame 的确比较灵活、强大，当有变化时，可以简单修改几个数字就能达到想要的效果。然而，因为必须自己管理所有变化，这样布局一个简单的界面将需要考虑大量因素来设计、调试和维护。</p>
+<p>在很多情况下，通过代码来设置一个视图的 frame 的确比较灵活、强大，当有变化时，可以简单修改几个数字就能达到想要的效果。然而，因为必须自己管理所有变化，布局一个简单的界面将需要考虑大量因素来设计、调试和维护，这样为创建一个真正适配的界面就增加了不止一个数量级的难度。</p>
+
+<p>相比计算 frame 布局，使用 AutoresizingMask 简单点，AutoresizingMask 用于父视图的 frame 变化时，子视图的 frame 如何改变，这种简单的布局方式适用于外部变化。</p>
+
+<p>AutoresizingMask 支持相对较小的布局子集，对于复杂的界面，通常需要用代码增加 AutoresizingMask 变化。而且，AutoresizingMask 仅适用于外部变化，不支持内部变化。</p>
+
+<p>尽管 AutoresizingMask 是布局上的一个提升，但是自动布局则呈现了全新的模式。以前需要考虑一个视图的 frame，而用自动布局，只需要考虑视图的关系。</p>
+
+<p>自动布局则是界面上使用大量约束，约束通常表示两个视图之间的关系，自动布局根据约束来计算每个视图的大小和位置，这样布局就可以动态响应来自内部和外部的变化。</p>
+
+<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_constraints_2x.png" alt="layout_constraints" /></p>
+
+<p>通过设计一套约束来创建特定行为的逻辑不同于写程序或者面向对象的代码。幸运的是，掌握自动布局和掌握其他编程技术是一样的，两个基本步骤：首先理解基于约束布局背后的逻辑，然后学习 API。这也是成功学习其他编程技术的步骤，自动布局当然也不例外。</p>
+
+<p>本指南的剩余部分旨在帮助你轻松过渡到自动布局。<a href="">没有约束的自动布局</a> 章节描述了在界面上简化创建自动布局的高级抽象概念。<a href="">约束剖析</a> 章节提供了你需要理解与自动布局成功交互的背后理论。<a href="">在 IB 中使用约束</a> 章节描述了设计自动布局的工具，<a href="">代码创建约束</a> 和 <a href="">自动布局手册</a> 章节详细地介绍了自动布局的 API。最后，<a href="">自动布局手册</a> 章节提供了大量不同复杂层次的布局例子，你可以在自己的项目中学习和使用，<a href="">自动布局调试</a> 章节提供了发生错误时的修复建议和工具。</p>
 ]]></content>
   </entry>
   
