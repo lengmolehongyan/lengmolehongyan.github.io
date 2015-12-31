@@ -9,7 +9,7 @@
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="跟随官方文档 自动布局指南 的脚步，AutoLayout 从入门到进阶。 理解自动布局 自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 &hellip;">
+  <meta name="description" content="自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,7 +75,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/12/27/understanding-auto-layout/">自动布局指南</a></h1>
+      <h1 class="entry-title"><a href="/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a></h1>
     
     
       <p class="meta">
@@ -84,20 +84,16 @@
 
 
 
-<time class='entry-date' datetime='2015-12-27T19:14:33+08:00'><span class='date'>2015 年12 月27 日</span> <span class='time'>7:14 pm</span></time>
+<time class='entry-date' datetime='2016-01-01T00:05:16+08:00'><span class='date'>2016 年1 月1 日</span> <span class='time'>12:05 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
+  <div class="entry-content"><p>自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView 的大小或者位置改变，UIButton 的位置将会自动调整。</p>
 
-<h1>理解自动布局</h1>
-
-<p>自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView 的大小或者位置改变，UIButton 的位置将会自动调整。</p>
-
-<p>通过约束这种方式来写界面就可以动态响应视图内部和外部的变化。</p>
+<p>基于约束这种方式来写界面就可以动态响应来自视图内部和外部的变化。</p>
 
 <h2>外部变化</h2>
 
@@ -122,8 +118,37 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2015/12/27/understanding-auto-layout/">阅读全文</a>
+      <a rel="full-article" href="/blog/2016/01/01/understanding-auto-layout/">阅读全文</a>
     </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/12/27/understanding-auto-layout/">自动布局指南</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-27T19:14:33+08:00'><span class='date'>2015 年12 月27 日</span> <span class='time'>7:14 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
+</div>
+  
   
 
 
@@ -515,54 +540,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/12/kvcde-jian-dan-shi-yong/">KVC 的简单使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-12T22:58:12+08:00'><span class='date'>2015 年9 月12 日</span> <span class='time'>10:58 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>KVC 字典转模型</h2>
-
-<ul>
-<li>KVC 中经常使用的就是字典转模型</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// NSObject(NSKeyValueCoding) NSObject 的分类</span>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setValuesForKeysWithDictionary:</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">keyedValues</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/12/kvcde-jian-dan-shi-yong/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -576,6 +553,10 @@
     <section>
   <h1>最新文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/12/27/understanding-auto-layout/">自动布局指南</a>
@@ -593,10 +574,6 @@
         <a href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/">计算代码执行时间差</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/">解决 Xcode 升级插件失效</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -610,7 +587,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - lengmolehongyan -
+  Copyright &copy; 2016 - lengmolehongyan -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>
   </span>
   <script>

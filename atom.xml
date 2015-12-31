@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-12-31T23:58:46+08:00</updated>
+  <updated>2016-01-01T00:09:04+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -14,17 +14,13 @@
 
   
   <entry>
-    <title type="html"><![CDATA[自动布局指南]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout/"/>
-    <updated>2015-12-27T19:14:33+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout</id>
-    <content type="html"><![CDATA[<p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
+    <title type="html"><![CDATA[理解自动布局（Understanding Auto Layout）]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/"/>
+    <updated>2016-01-01T00:05:16+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout</id>
+    <content type="html"><![CDATA[<p>自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView 的大小或者位置改变，UIButton 的位置将会自动调整。</p>
 
-<h1>理解自动布局</h1>
-
-<p>自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView 的大小或者位置改变，UIButton 的位置将会自动调整。</p>
-
-<p>通过约束这种方式来写界面就可以动态响应视图内部和外部的变化。</p>
+<p>基于约束这种方式来写界面就可以动态响应来自视图内部和外部的变化。</p>
 
 <h2>外部变化</h2>
 
@@ -94,13 +90,22 @@
 
 <p>尽管 AutoresizingMask 是布局上的一个提升，但是自动布局则呈现了全新的模式。以前需要考虑一个视图的 frame，而用自动布局，只需要考虑视图的关系。</p>
 
-<p>自动布局则是界面上使用大量约束，约束通常表示两个视图之间的关系，自动布局根据约束来计算每个视图的大小和位置，这样布局就可以动态响应来自内部和外部的变化。</p>
+<p>自动布局则是界面上使用大量约束，约束通常表示两个视图之间的关系，自动布局根据约束来计算每个视图的大小和位置，这样布局就可以动态响应来自视图内部和外部的变化。</p>
 
 <p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_constraints_2x.png" alt="layout_constraints" /></p>
 
-<p>通过设计一套约束来创建特定行为的逻辑不同于写程序或者面向对象的代码。幸运的是，掌握自动布局和掌握其他编程技术是一样的，两个基本步骤：首先理解基于约束布局背后的逻辑，然后学习 API。这也是成功学习其他编程技术的步骤，自动布局当然也不例外。</p>
+<p>通过设计一套约束来创建特定行为的逻辑不同于写程序或者面向对象的代码。幸运的是，掌握自动布局和掌握其他编程技术是一样的，有两个基本步骤：首先理解基于约束布局背后的逻辑，然后学习 API。这也是成功学习其他编程技术的步骤，自动布局当然也不例外。</p>
 
-<p>本指南的剩余部分旨在帮助你轻松过渡到自动布局。<a href="">没有约束的自动布局</a> 章节描述了在界面上简化创建自动布局的高级抽象概念。<a href="">约束剖析</a> 章节提供了你需要理解与自动布局成功交互的背后理论。<a href="">在 IB 中使用约束</a> 章节描述了设计自动布局的工具，<a href="">代码创建约束</a> 和 <a href="">自动布局手册</a> 章节详细地介绍了自动布局的 API。最后，<a href="">自动布局手册</a> 章节提供了大量不同复杂层次的布局例子，你可以在自己的项目中学习和使用，<a href="">自动布局调试</a> 章节提供了发生错误时的修复建议和工具。</p>
+<p>本指南的剩余部分旨在帮助你轻松过渡到自动布局。<a href="">没有约束的自动布局</a> 章节描述了在界面上简化创建自动布局的高级抽象概念。<a href="">约束剖析</a> 章节提供了你需要理解与自动布局成功交互的背后原理。<a href="">在 IB 中使用约束</a> 章节描述了设计自动布局的工具，<a href="">代码创建约束</a> 和 <a href="">自动布局手册</a> 章节详细地介绍了自动布局的 API。最后，<a href="">自动布局手册</a> 章节提供了大量且不同复杂层次的布局例子，你可以在自己的项目中学习和使用，<a href="">自动布局调试</a> 章节则提供了发生错误时的修复建议和工具。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[自动布局指南]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout/"/>
+    <updated>2015-12-27T19:14:33+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout</id>
+    <content type="html"><![CDATA[<p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
 ]]></content>
   </entry>
   

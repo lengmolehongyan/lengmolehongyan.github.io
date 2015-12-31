@@ -89,88 +89,6 @@
 
 
 <div class="entry-content"><p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
-
-<h1>理解自动布局</h1>
-
-<p>自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView 的大小或者位置改变，UIButton 的位置将会自动调整。</p>
-
-<p>通过约束这种方式来写界面就可以动态响应视图内部和外部的变化。</p>
-
-<h2>外部变化</h2>
-
-<p>外部变化发生在父视图的大小或者形状发生改变。每次变化，都必须充分利用可用空间来为视图 view 更新布局。下面是一些常见的外部变化源：</p>
-
-<ul>
-<li>用户调整窗口（OSX）</li>
-<li>用户在 iPad 上进入或者离开 SplitView（iOS）</li>
-<li>设备旋转（iOS）</li>
-<li>电话和录音状态栏的出现或者消失（iOS）</li>
-<li>想适配 Size Classes</li>
-<li>想适配不同屏幕大小</li>
-</ul>
-
-
-<p></p>
-
-
-<p>这些场景大多发生在应用运行状态下，它们需要应用做出动态响应。但其它比如支持不同屏幕尺寸的应用，就可以适应不同的场景。因为对于一个设备的屏幕尺寸是不会发生改变的，但界面布局适配后你的应用在 iPhone4S 和 iPhone6 Plus，甚至 iPad 上运行效果都是相同的。自动布局同时也是 iPad 上支持 SlideOver 和 SplitView 的重要组件。</p>
-
-<!--more-->
-
-
-<h2>内部变化</h2>
-
-<p>内部变化发生在视图尺寸改变或者用户界面事件改变。</p>
-
-<p>下面是一些常见的内部变化源：</p>
-
-<ul>
-<li>程序展示内容发生改变</li>
-<li>程序支持国际化</li>
-<li>程序支持 Dynamic Type（iOS）</li>
-</ul>
-
-
-<p></p>
-
-
-<p>当程序展示内容发生改变时，相比旧的布局，新的内容可能需要不同的布局。这一般发生在程序显示文本或者图片时。比如，一个新闻类的应用，需要依据新闻文章的大小来调整它的布局。同样，一个照片集合的页面需要处理大量图片尺寸和缩放比例的问题。</p>
-
-<p>国际化可以使你的程序在不同的语言，区域和文化下都能使用。一个做了国际化的应用的布局必须考虑这些差异，同时也应该支持在不同语言和区域的环境下，显示正确。</p>
-
-<p>国际化影响布局主要有三个因素。第一，用户界面上的语言需要翻译，标签（label） 就需要不同的空间来展示。比如，德语所占空间通常比英语的大，而日语所占空间小很多。</p>
-
-<p>第二，即使语言相同，不同地区显示日期和数字的格式也会不同。尽管这些变化通常比语言变化带来的影响略小，界面仍需要适配这些细微的大小变化。</p>
-
-<p>第三，语言的改变不仅影响文本的大小，而且对布局也会有影响，因为不同的语言可能使用不同的布局方向，比如英语是从左至右的方向，而阿拉伯语和希伯来语是从右至左的方向。通常，界面上的控件的顺序应该和布局的方向相匹配，如果在英语环境下一个按钮在视图的右下方，在阿拉伯语下应该在左下方。</p>
-
-<p>最后，如果你的 iOS 应用支持 Dynamic Type，用户则可以更改这个应用中的字体大小。这样会导致界面上所有有文本的控件的高度宽度都发生变化。如果用户在使用应用时更改字体大小，字体和布局必须适应变化。</p>
-
-<h2>自动布局 VS 计算 Frame 布局</h2>
-
-<p>目前，有三种方法来布局界面，代码计算 frame 布局、使用 AutoresizingMask 自动响应一些外部变化布局，或者自动布局。</p>
-
-<p>通常，应用是通过代码为视图层次中的每个视图设置 frame 来布局界面的，frame 表示一个视图在其父视图坐标系的位置和大小。</p>
-
-<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_views_2x.png" alt="layout_views" /></p>
-
-<p>通过计算 frame 来布局界面，必须要为视图层次中的每个视图计算大小和位置，而且，如果发生改变，还需要为所有影响的视图重新计算。</p>
-
-<p>在很多情况下，通过代码来设置一个视图的 frame 的确比较灵活、强大，当有变化时，可以简单修改几个数字就能达到想要的效果。然而，因为必须自己管理所有变化，布局一个简单的界面将需要考虑大量因素来设计、调试和维护，这样为创建一个真正适配的界面就增加了不止一个数量级的难度。</p>
-
-<p>相比计算 frame 布局，使用 AutoresizingMask 简单点，AutoresizingMask 用于父视图的 frame 变化时，子视图的 frame 如何改变，这种简单的布局方式适用于外部变化。</p>
-
-<p>AutoresizingMask 支持相对较小的布局子集，对于复杂的界面，通常需要用代码增加 AutoresizingMask 变化。而且，AutoresizingMask 仅适用于外部变化，不支持内部变化。</p>
-
-<p>尽管 AutoresizingMask 是布局上的一个提升，但是自动布局则呈现了全新的模式。以前需要考虑一个视图的 frame，而用自动布局，只需要考虑视图的关系。</p>
-
-<p>自动布局则是界面上使用大量约束，约束通常表示两个视图之间的关系，自动布局根据约束来计算每个视图的大小和位置，这样布局就可以动态响应来自内部和外部的变化。</p>
-
-<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/layout_constraints_2x.png" alt="layout_constraints" /></p>
-
-<p>通过设计一套约束来创建特定行为的逻辑不同于写程序或者面向对象的代码。幸运的是，掌握自动布局和掌握其他编程技术是一样的，两个基本步骤：首先理解基于约束布局背后的逻辑，然后学习 API。这也是成功学习其他编程技术的步骤，自动布局当然也不例外。</p>
-
-<p>本指南的剩余部分旨在帮助你轻松过渡到自动布局。<a href="">没有约束的自动布局</a> 章节描述了在界面上简化创建自动布局的高级抽象概念。<a href="">约束剖析</a> 章节提供了你需要理解与自动布局成功交互的背后理论。<a href="">在 IB 中使用约束</a> 章节描述了设计自动布局的工具，<a href="">代码创建约束</a> 和 <a href="">自动布局手册</a> 章节详细地介绍了自动布局的 API。最后，<a href="">自动布局手册</a> 章节提供了大量不同复杂层次的布局例子，你可以在自己的项目中学习和使用，<a href="">自动布局调试</a> 章节提供了发生错误时的修复建议和工具。</p>
 </div>
 
 
@@ -223,6 +141,8 @@
         <a class="basic-alignment left" href="/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/" title="Previous Post: iOS 自定义通知声音">&laquo; iOS 自定义通知声音</a>
       
       
+        <a class="basic-alignment right" href="/blog/2016/01/01/understanding-auto-layout/" title="Next Post: 理解自动布局（Understanding Auto Layout）">理解自动布局（Understanding Auto Layout） &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -234,6 +154,10 @@
     <section>
   <h1>最新文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/12/27/understanding-auto-layout/">自动布局指南</a>
@@ -251,10 +175,6 @@
         <a href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/">计算代码执行时间差</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/">解决 Xcode 升级插件失效</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -269,7 +189,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - lengmolehongyan -
+  Copyright &copy; 2016 - lengmolehongyan -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>
   </span>
   <script>
