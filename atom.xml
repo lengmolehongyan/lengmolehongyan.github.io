@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-01T00:09:04+08:00</updated>
+  <updated>2016-01-01T00:32:57+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -106,6 +106,60 @@
     <updated>2015-12-27T19:14:33+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout</id>
     <content type="html"><![CDATA[<p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
+
+<p>文章目录结构：</p>
+
+<ul>
+<li><p>入门（Getting Started）</p>
+
+<ul>
+<li><a href="http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a></li>
+<li><a href="">没有约束的自动布局（Auto Layout Without Constraints）</a></li>
+<li><a href="">约束剖析（Anatomy of a Constraint）</a></li>
+<li><a href="">在 IB 中使用约束（Working with Constraints in Interface Builder）</a></li>
+</ul>
+</li>
+<li><p>自动布局手册（Auto Layout Cookbook）</p>
+
+<ul>
+<li><a href="">Stack Views</a></li>
+<li><a href="">简单约束（Simple Constraints）</a></li>
+<li><a href="">自身有内容尺寸的视图（Views with Intrinsic Content Size）</a></li>
+</ul>
+</li>
+<li><p>自动布局调试</p>
+
+<ul>
+<li><a href="">错误类型（Types of Errors）</a></li>
+<li><a href="">错误布局（Unsatisfiable Layouts）</a></li>
+<li><a href="">有歧义的布局（Ambiguous Layouts）</a></li>
+<li><a href="">逻辑错误（Logical Errors）</a></li>
+<li><a href="">调试技巧（Debugging Tricks and Tips）</a></li>
+</ul>
+</li>
+<li><p>自动布局进阶</p>
+
+<ul>
+<li><a href="">代码创建约束（Programmatically Creating Constraints）</a></li>
+<li><a href="">SizeClass 详细约束（Size-Class-Specific Layout）</a></li>
+<li><a href="">ScrollView 与自动布局（Working with Scroll Views）</a></li>
+<li><a href="">自动布局与自动计算行高的 TableViewCell（Working with Self-Sizing Table View Cells）</a></li>
+</ul>
+</li>
+<li><p>附录</p>
+
+<ul>
+<li><a href="">VFL 语言（Visual Format Language）</a></li>
+</ul>
+</li>
+<li><p>修改历史</p>
+
+<ul>
+<li><a href="">文档修改历史（Document Revision History）</a></li>
+</ul>
+</li>
+</ul>
+
 ]]></content>
   </entry>
   
