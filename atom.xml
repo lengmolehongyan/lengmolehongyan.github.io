@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-01T13:09:48+08:00</updated>
+  <updated>2016-01-01T13:12:01+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -27,6 +27,9 @@
 <li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/alignment">alignment</a>：表示纵向于 axis 方向的视图布局方式。</li>
 <li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/spacing">spacing</a>：表示相邻视图之间的间隔。</li>
 </ul>
+
+
+<p></p>
 
 
 <p>要使用 StackView，在 IB 中拖一个纵向或者水平的 StackView 到画布中，然后拖控件放到 StackView 内。</p>
