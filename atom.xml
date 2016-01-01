@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-01T13:12:01+08:00</updated>
+  <updated>2016-01-01T13:14:19+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -37,6 +37,9 @@
 <p>如果一个视图有自身内容大小，它在 StackView 中将显示为自身的大小。如果没有，IB 将会提供默认的大小，你可以调整它的大小，IB 中添加约束来保持大小不变。</p>
 
 <p>想进一步微调布局，可以在属性检查器（Attributes Inspector） 修改 StackView 的属性。下面这个例子，设置 StackView 的 spacing 属性为 8 个点，distribution 属性为 Fill Equally。</p>
+
+<!--more-->
+
 
 <p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/IB_StackView_Simple_2x.png" alt="IB_StackView_Simple" /></p>
 
@@ -135,7 +138,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[自动布局指南]]></title>
+    <title type="html"><![CDATA[自动布局指南（Auto Layout Guide）]]></title>
     <link href="http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout/"/>
     <updated>2015-12-27T19:14:33+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout</id>
@@ -148,7 +151,7 @@
 
 <ul>
 <li><a href="http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a></li>
-<li><a href="">没有约束的自动布局（Auto Layout Without Constraints）</a></li>
+<li><a href="http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/">没有约束的自动布局（Auto Layout Without Constraints）</a></li>
 <li><a href="">约束剖析（Anatomy of a Constraint）</a></li>
 <li><a href="">在 IB 中使用约束（Working with Constraints in Interface Builder）</a></li>
 </ul>
