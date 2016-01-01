@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-01T00:34:11+08:00</updated>
+  <updated>2016-01-01T13:09:48+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[没有约束的自动布局（Auto Layout Without Constraints）]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/"/>
+    <updated>2016-01-01T10:38:41+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints</id>
+    <content type="html"><![CDATA[<p>StackView 提供了一种简单的方法，剔除了复杂的约束，利用自动布局的强大来布局界面，单个 StackView 由一行或者一列控件组成，StackView 根据自身的属性布局这些控件。</p>
+
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/axis">axis</a>:（仅 UIStackView）表示 StackView 的方向，纵向或者水平。</li>
+<li>orientation:（仅 NSStackView）表示 StackView 的方向，纵向或者水平。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/distribution">distribution</a>：表示沿着 axis 方向的视图布局方式。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/alignment">alignment</a>：表示纵向于 axis 方向的视图布局方式。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/spacing">spacing</a>：表示相邻视图之间的间隔。</li>
+</ul>
+
+
+<p>要使用 StackView，在 IB 中拖一个纵向或者水平的 StackView 到画布中，然后拖控件放到 StackView 内。</p>
+
+<p>如果一个视图有自身内容大小，它在 StackView 中将显示为自身的大小。如果没有，IB 将会提供默认的大小，你可以调整它的大小，IB 中添加约束来保持大小不变。</p>
+
+<p>想进一步微调布局，可以在属性检查器（Attributes Inspector） 修改 StackView 的属性。下面这个例子，设置 StackView 的 spacing 属性为 8 个点，distribution 属性为 Fill Equally。</p>
+
+<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/IB_StackView_Simple_2x.png" alt="IB_StackView_Simple" /></p>
+
+<p>StackView 的布局还基于子视图的内容压缩和抗压缩优先级，可以在尺寸检查器（Size Inspector）修改。</p>
+
+<blockquote><p>注意：
+可以通过给子视图直接添加约束来更进一步的调整布局，但是，要避免任何可能的冲突：通用法则，如果视图对于一个给定的大小默认回到其本身内容大小，便可以安全添加该约束。更多约束冲突，参阅 <a href="">错误布局（Unsatisfiable Layouts）</a>。</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[理解自动布局（Understanding Auto Layout）]]></title>

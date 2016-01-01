@@ -9,7 +9,7 @@
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView &hellip;">
+  <meta name="description" content="StackView 提供了一种简单的方法，剔除了复杂的约束，利用自动布局的强大来布局界面，单个 StackView 由一行或者一列控件组成，StackView 根据自身的属性布局这些控件。 axis:（仅 UIStackView）表示 StackView 的方向，纵向或者水平。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/01/01/auto-layout-without-constraints/">没有约束的自动布局（Auto Layout Without Constraints）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-01T10:38:41+08:00'><span class='date'>2016 年1 月1 日</span> <span class='time'>10:38 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>StackView 提供了一种简单的方法，剔除了复杂的约束，利用自动布局的强大来布局界面，单个 StackView 由一行或者一列控件组成，StackView 根据自身的属性布局这些控件。</p>
+
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/axis">axis</a>:（仅 UIStackView）表示 StackView 的方向，纵向或者水平。</li>
+<li>orientation:（仅 NSStackView）表示 StackView 的方向，纵向或者水平。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/distribution">distribution</a>：表示沿着 axis 方向的视图布局方式。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/alignment">alignment</a>：表示纵向于 axis 方向的视图布局方式。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/spacing">spacing</a>：表示相邻视图之间的间隔。</li>
+</ul>
+
+
+<p>要使用 StackView，在 IB 中拖一个纵向或者水平的 StackView 到画布中，然后拖控件放到 StackView 内。</p>
+
+<p>如果一个视图有自身内容大小，它在 StackView 中将显示为自身的大小。如果没有，IB 将会提供默认的大小，你可以调整它的大小，IB 中添加约束来保持大小不变。</p>
+
+<p>想进一步微调布局，可以在属性检查器（Attributes Inspector） 修改 StackView 的属性。下面这个例子，设置 StackView 的 spacing 属性为 8 个点，distribution 属性为 Fill Equally。</p>
+
+<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/IB_StackView_Simple_2x.png" alt="IB_StackView_Simple" /></p>
+
+<p>StackView 的布局还基于子视图的内容压缩和抗压缩优先级，可以在尺寸检查器（Size Inspector）修改。</p>
+
+<blockquote><p>注意：
+可以通过给子视图直接添加约束来更进一步的调整布局，但是，要避免任何可能的冲突：通用法则，如果视图对于一个给定的大小默认回到其本身内容大小，便可以安全添加该约束。更多约束冲突，参阅 <a href="">错误布局（Unsatisfiable Layouts）</a>。</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -591,44 +642,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/21/ios9-gua-pei/">App Transport Security</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-21T23:37:59+08:00'><span class='date'>2015 年9 月21 日</span> <span class='time'>11:37 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>App Transport Security</code> 是一项新的功能，用来提高了应用程序和 <code>web</code> 服务之间连接的安全性。这项功能是从 iOS9.0 和 OSX10.11 之后苹果新增的，要求默认连接最好是安全的连接。当然，应用程序也可以关闭这项功能。</p>
-
-<h4>默认配置</h4>
-
-<p>为 iOS9.0 和 OSX10.11 及之后版本的开发的 apps，用到 <code>NSURLConnection</code>，<code>CFURL</code> 或者 <code>NSURLSession</code> API 的所有连接，将使用 <code>App Transport Security</code> 默认配置。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/21/ios9-gua-pei/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -644,6 +657,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/01/auto-layout-without-constraints/">没有约束的自动布局（Auto Layout Without Constraints）</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a>
       </li>
     
@@ -657,10 +674,6 @@
     
       <li class="post">
         <a href="/blog/2015/12/09/hu-lue-jing-gao/">Xcode 项目忽略警告</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/">计算代码执行时间差</a>
       </li>
     
   </ul>
