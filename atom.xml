@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-01T13:14:19+08:00</updated>
+  <updated>2016-01-02T11:59:54+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -45,8 +45,19 @@
 
 <p>StackView 的布局还基于子视图的内容压缩和抗压缩优先级，可以在尺寸检查器（Size Inspector）修改。</p>
 
-<blockquote><p>注意：
-可以通过给子视图直接添加约束来更进一步的调整布局，但是，要避免任何可能的冲突：通用法则，如果视图对于一个给定的大小默认回到其本身内容大小，便可以安全添加该约束。更多约束冲突，参阅 <a href="">错误布局（Unsatisfiable Layouts）</a>。</p></blockquote>
+<blockquote><p>注：
+可以通过给子视图直接添加约束来更进一步的调整布局，但是，要避免任何可能的冲突。通用法则：如果视图对于一个给定的大小默认回到其本身内容大小，便可以安全添加该约束。更多约束冲突，参阅 <a href="">约束冲突（Unsatisfiable Layouts）</a>。</p></blockquote>
+
+<p>此外，你还可以用 StackView 嵌套 StackView，构建更加复杂的布局。</p>
+
+<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/IB_StackView_NestedStacks_2x.png" alt="IB_StackView_NestedStacks" /></p>
+
+<p>一般情况下，尽可能多的使用 StackView 来管理布局，只有使用 StackView 不能达到效果时，再去创建约束。</p>
+
+<p>有关 StackView 的更多使用，参阅 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/doc/uid/TP40015256">UIStackView Class Reference</a> 或者 NSStackView Class Reference。</p>
+
+<blockquote><p>注：
+虽然嵌套使用 StackView 可以构建出复杂的界面，但仍不能完全避开约束的使用，因为至少总是需要设置最外层视图的位置（和可能的大小）。</p></blockquote>
 ]]></content>
   </entry>
   
@@ -182,7 +193,7 @@
 
 <ul>
 <li><a href="">错误类型（Types of Errors）</a></li>
-<li><a href="">错误布局（Unsatisfiable Layouts）</a></li>
+<li><a href="">约束冲突（Unsatisfiable Layouts）</a></li>
 <li><a href="">有歧义的布局（Ambiguous Layouts）</a></li>
 <li><a href="">逻辑错误（Logical Errors）</a></li>
 <li><a href="">调试技巧（Debugging Tricks and Tips）</a></li>
