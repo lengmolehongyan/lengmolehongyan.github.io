@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-03T22:05:49+08:00</updated>
+  <updated>2016-01-03T22:06:49+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -193,7 +193,7 @@
 <ul>
 <li><a href="http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a></li>
 <li><a href="http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/">没有约束的自动布局（Auto Layout Without Constraints）</a></li>
-<li><a href="">约束剖析（Anatomy of a Constraint）</a></li>
+<li><a href="http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析（Anatomy of a Constraint）</a></li>
 <li><a href="">在 IB 中使用约束（Working with Constraints in Interface Builder）</a></li>
 </ul>
 </li>
