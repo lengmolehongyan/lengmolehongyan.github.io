@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-02T12:06:35+08:00</updated>
+  <updated>2016-01-03T22:05:49+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[约束剖析]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/"/>
+    <updated>2016-01-02T12:09:52+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint</id>
+    <content type="html"><![CDATA[<p>视图层次结构上的布局是由一些列的公式（线性方程）来定义的，每个约束都有一个单一的表达式，你的目标就是要让这一系列的表达式有且仅有一个结果。</p>
+
+<p>示例公式如下：</p>
+
+<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/view_formula_2x.png" alt="view_formula" /></p>
+
+<p>这个约束声明了红色视图（view）的左边（leading）距离蓝色视图（view）的右边（trailing）始终保持 8 个点，这个公式有如下几项：</p>
+
+<ul>
+<li><strong>item 1</strong>：表达式中的第一项，在这个例子中，就是红色视图（view）。这一项必须是一个视图（view）或者是一个布局基准（layout guide）。</li>
+<li><strong>Attribu 1</strong>：这个属性是用来约束表达式中的第一项，在此例中，就是红色视图（view）的左边（leading）。</li>
+<li><strong>Relationship</strong>：</li>
+<li><strong>Multiplier</strong>：</li>
+<li><strong>Item 2</strong>：</li>
+<li><strong>Attribute 2</strong>：</li>
+<li><strong>Constant</strong>：</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[没有约束的自动布局（Auto Layout Without Constraints）]]></title>

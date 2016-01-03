@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>iOS 自定义通知声音 - 冷漠叻荭颜</title>
+  <title>约束剖析 - 冷漠叻荭颜</title>
   <meta name="author" content="lengmolehongyan">
 
   
-  <meta name="description" content="iOS 自定义通知声音">
-  <meta name="keywords" content="iOS 自定义通知声音">
+  <meta name="description" content="iOS，约束剖析，自动布局">
+  <meta name="keywords" content="iOS，约束剖析，自动布局">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/">
+  <link rel="canonical" href="http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="冷漠叻荭颜" type="application/atom+xml">
@@ -72,7 +72,7 @@
   
   <header>
     
-      <h1 class="entry-title">iOS 自定义通知声音</h1>
+      <h1 class="entry-title">约束剖析</h1>
     
     
       <p class="meta">
@@ -81,54 +81,31 @@
 
 
 
-<time class='entry-date' datetime='2015-12-25T22:49:49+08:00'><span class='date'>2015 年12 月25 日</span> <span class='time'>10:49 pm</span></time>
+<time class='entry-date' datetime='2016-01-02T12:09:52+08:00'><span class='date'>2016 年1 月2 日</span> <span class='time'>12:09 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>项目中遇到需要自定义通知声音的需求，以前没做过，就查了下<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW6">官方文档</a>，就像文档上说的，实现起来确实挺简单，就整理下当做备忘吧。</p>
+<div class="entry-content"><p>视图层次结构上的布局是由一些列的公式（线性方程）来定义的，每个约束都有一个单一的表达式，你的目标就是要让这一系列的表达式有且仅有一个结果。</p>
 
-<p>关于推送，官方文档、各种第三方推送文档都很全，就跳过了。</p>
+<p>示例公式如下：</p>
 
-<p>由于自定义通知声音还是由 iOS 系统来播放的，所以对音频数据格式有限制，可以是如下四种之一：</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/view_formula_2x.png" alt="view_formula" /></p>
 
-<ol>
-<li>Linear PCM</li>
-<li>MA4 (IMA/ADPCM)</li>
-<li>µLaw</li>
-<li>aLaw</li>
-</ol>
+<p>这个约束声明了红色视图（view）的左边（leading）距离蓝色视图（view）的右边（trailing）始终保持 8 个点，这个公式有如下几项：</p>
 
+<ul>
+<li><strong>item 1</strong>：表达式中的第一项，在这个例子中，就是红色视图（view）。这一项必须是一个视图（view）或者是一个布局基准（layout guide）。</li>
+<li><strong>Attribu 1</strong>：这个属性是用来约束表达式中的第一项，在此例中，就是红色视图（view）的左边（leading）。</li>
+<li><strong>Relationship</strong>：</li>
+<li><strong>Multiplier</strong>：</li>
+<li><strong>Item 2</strong>：</li>
+<li><strong>Attribute 2</strong>：</li>
+<li><strong>Constant</strong>：</li>
+</ul>
 
-<p></p>
-
-
-<p>对应音频文件格式是 <code>aiff</code>，<code>wav</code>，<code>caf</code> 文件，文件也必须放到 app 的 <code>mainBundle</code> 目录中。</p>
-
-<p>自定义通知声音的播放时间必须在 30s 内，如果超过这个限制，则将用系统默认通知声音替代。</p>
-
-<!--more-->
-
-
-<p>可以使用 <code>afconvert</code> 工具来处理音频文件格式，在终端中敲入如下命令就可以将一个 <code>mp3</code> 文件转换成 <code>caf</code> 文件：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>afconvert unbelievable.mp3 unbelievable.caf -d ima4 -f caff -v</span></code></pre></td></tr></table></div></figure>
-
-
-<p>转换完成后就可以将 <code>unbelievable.caf</code> 这个文件拖入 Xcode 工程中，编译运行项目在真机上。</p>
-
-<p><img src="/images/QQ20151226-0@2x.png" alt="将 unbelievable.caf 文件拖入工程中" /></p>
-
-<p>发送推送通知时，只需配置 <code>sound</code> 字段的值为导入到工程中的音频文件名，这里即就是 <code>unbelievable.caf</code>。</p>
-
-<p>测试~~，完美！！！收到推送时，通知声音就是我们自定义的声音了。</p>
-
-<p><img src="/images/QQ20151226-1@2x.png" alt="收到推送信息" /></p>
-
-<p><a href="https://github.com/lengmolehongyan/CustomAlertSoundsDemo">Demo 地址</a></p>
 </div>
 
 
@@ -144,7 +121,7 @@
 
 
 
-<time class='entry-date' datetime='2015-12-25T22:49:49+08:00'><span class='date'>2015 年12 月25 日</span> <span class='time'>10:49 pm</span></time>
+<time class='entry-date' datetime='2016-01-02T12:09:52+08:00'><span class='date'>2016 年1 月2 日</span> <span class='time'>12:09 pm</span></time>
       
 
 
@@ -178,10 +155,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/12/09/hu-lue-jing-gao/" title="Previous Post: Xcode 项目忽略警告">&laquo; Xcode 项目忽略警告</a>
+        <a class="basic-alignment left" href="/blog/2016/01/01/auto-layout-without-constraints/" title="Previous Post: 没有约束的自动布局（Auto Layout Without Constraints）">&laquo; 没有约束的自动布局（Auto Layout Without Constraints）</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/12/27/understanding-auto-layout/" title="Next Post: 自动布局指南（Auto Layout Guide）">自动布局指南（Auto Layout Guide） &raquo;</a>
       
     </p>
   </footer>
