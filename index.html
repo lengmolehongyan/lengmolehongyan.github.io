@@ -75,7 +75,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析</a></h1>
+      <h1 class="entry-title"><a href="/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析（Anatomy of a Constraint）</a></h1>
     
     
       <p class="meta">
@@ -100,13 +100,13 @@
 <p>这个约束声明了红色视图（view）的左边（leading）距离蓝色视图（view）的右边（trailing）始终保持 8 个点，这个公式有如下几项：</p>
 
 <ul>
-<li><strong>item 1</strong>：表达式中的第一项，在这个例子中，就是红色视图（view）。这一项必须是一个视图（view）或者是一个布局基准（layout guide）。</li>
-<li><strong>Attribu 1</strong>：这个属性是用来约束表达式中的第一项，在此例中，就是红色视图（view）的左边（leading）。</li>
-<li><strong>Relationship</strong>：</li>
-<li><strong>Multiplier</strong>：</li>
-<li><strong>Item 2</strong>：</li>
-<li><strong>Attribute 2</strong>：</li>
-<li><strong>Constant</strong>：</li>
+<li><strong>item 1（第一项）</strong>：表达式中的第一项，在这个例子中，就是红色视图（view）。这一项必须是一个视图（view）或者是一个布局基准（layout guide）。</li>
+<li><strong>Attribute 1（属性 1）</strong>：属性 1 是用来约束表达式中的第一项，在此例中，就是红色视图（view）的左边（leading）。</li>
+<li><strong>Relationship（关系）</strong>：表达式左右两边之间的关系，有三种关系，等于，大于等于，小于等于，在此例中，左右两边是相等的关系。</li>
+<li><strong>Multiplier（乘数）</strong>：此浮点数值将用于和属性 2 的值相乘，在此例中，这个值是 1.0。</li>
+<li><strong>Item 2（第二项）</strong>：表达式中的第二项，在此例中就是蓝色视图（view），不像第一项，这一项可以是空的。</li>
+<li><strong>Attribute 2（属性 2）</strong>：属性 2 是用来约束表达式中的第二项，在此例中，就是蓝色视图（view）的右边（trailing）。如果第二项是空，这里一定不是一个属性。</li>
+<li><strong>Constant（常量）</strong>：一个表示偏移量的浮点数常量，在此例中，值是 8.0。这个值是用来添加到属性 2 上的。</li>
 </ul>
 
 </div>
@@ -662,7 +662,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析</a>
+        <a href="/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析（Anatomy of a Constraint）</a>
       </li>
     
       <li class="post">
