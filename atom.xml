@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-05T22:22:56+08:00</updated>
+  <updated>2016-01-05T22:55:26+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
@@ -40,9 +40,21 @@
 </ul>
 
 
+<p></p>
+
+
 <p>界面上的大多数约束是由两项之间的关系表示的，这些项可以是视图，也可以是布局参考线。约束也可以表示同一视图两个不同属性之间的关系，比如，设置视图的宽高比例，也可以给视图的高或宽设置为一个常量值，当设置为常量值时，第二项为空，第二项的属性设置为 Not An Attribute，乘数为 0.0。</p>
 
 <h2>自动布局属性</h2>
+
+<p>在自动布局中，属性的功能就是被约束的，通常包括四个边界（前后上下），还有高度、宽度以及垂直和水平中心。文本控件还有一个或多个基线（baseline）属性。</p>
+
+<p><img src="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/attributes_2x.png" alt="attributes" /></p>
+
+<p>有关完整的布局属性列表，参阅 <a href="https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/index.html#//apple_ref/c/tdef/NSLayoutAttribute">NSLayoutAttribute 枚举</a> 。</p>
+
+<blockquote><p>注：
+虽然 OSX 和 iOS 都是使用 NSLayoutAttribute 枚举，但它们定义的值集稍有不同，查阅完整布局属性列表时，请确保查看的是正确平台的文档。</p></blockquote>
 ]]></content>
   </entry>
   
