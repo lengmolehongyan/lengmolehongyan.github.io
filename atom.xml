@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-11T10:27:16+08:00</updated>
+  <updated>2016-01-11T22:37:08+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -123,6 +123,57 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>相等，不是赋值</h2>
+
+<p>注意，示例中方程的等号表示的是相等，而不是赋值。</p>
+
+<p>当自动布局求解这些方程时，并不是将等式右边的值赋值给等式左边。相反，它同时计算属性 1 和属性 2 的值使它们之间的关系成立，这就意味着可以自由调整表达式中的项。比如，3-2 中的方程就和 3-1 的结果是相同的。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 3-2 反向方程</span>
+</span><span class='line'><span class="c1">// 设置两个按钮之间的固定间距</span>
+</span><span class='line'><span class="n">Button_1</span><span class="p">.</span><span class="n">trailing</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">Button_2</span><span class="p">.</span><span class="n">leading</span> <span class="o">-</span> <span class="mf">8.0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 设置两个按钮的前部边缘对齐</span>
+</span><span class='line'><span class="n">Button_2</span><span class="p">.</span><span class="n">leading</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">Button_1</span><span class="p">.</span><span class="n">leading</span> <span class="o">+</span> <span class="mf">0.0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 设置两个按钮宽度相同</span>
+</span><span class='line'><span class="n">Button_2</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">Button</span><span class="p">.</span><span class="n">width</span> <span class="o">+</span> <span class="mf">0.0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 设置视图在其父视图的中心</span>
+</span><span class='line'><span class="n">Superview</span><span class="p">.</span><span class="n">centerX</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">View</span><span class="p">.</span><span class="n">centerX</span> <span class="o">+</span> <span class="mf">0.0</span>
+</span><span class='line'><span class="n">Superview</span><span class="p">.</span><span class="n">centerY</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">View</span><span class="p">.</span><span class="n">centerY</span> <span class="o">+</span> <span class="mf">0.0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 设置视图的宽高比为一个常量值</span>
+</span><span class='line'><span class="n">View</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">View</span><span class="p">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>注：
+当重新调整方程中的项时，请确保调整了乘数和常量。比如，常量值 8.0 要变成 -8.0，乘数 2.0 要变成 0.5，常量值 0.0 和 乘数 1.0 保持不变。</p></blockquote>
+
+<p>你会发现，自动布局经常提供多种方式来解决同样的问题。理想情况下，你应该选择的是最能清晰表达意图的方案。然而，不同的开发者无疑会不同意哪个方案是最好的。这里，相比正确的方案，一贯选择好的方案。如果你选择一种方案，并坚持使用，从长远来看，你将遇到很少问题。比如，本指南使用以下规则：</p>
+
+<ol>
+<li>整数乘法优先于小数乘法。</li>
+<li>正数优先于负数。</li>
+<li>不管在哪，视图应该以从前到后，从上到下的布局顺序。</li>
+</ol>
 
 ]]></content>
   </entry>
