@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios开发小细节 | 冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-13T12:17:55+08:00</updated>
+  <updated>2016-01-13T19:01:30+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -18,7 +18,7 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/"/>
     <updated>2015-12-09T23:26:54+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao</id>
-    <content type="html"><![CDATA[<p>对于一个有强迫症的我，每次 <code>⌘B</code> Build 项目时，发现一个 <img src="/images/DVTStatus-Warning@2x.png" width="30"> 警告都要点进去修复了，然而，对于一些无关紧要的警告，我们是否可以选择忽略这个警告，让 Xcode 不提示呢？答案当然是可以的。</p>
+    <content type="html"><![CDATA[<p>对于一个有强迫症的我，每次 <code>⌘B</code> Build 项目时，发现一个 <img src="{{root_url}}/images/DVTStatus-Warning@2x.png" width="30"> 警告都要点进去修复了，然而，对于一些无关紧要的警告，我们是否可以选择忽略这个警告，让 Xcode 不提示呢？答案当然是可以的。</p>
 
 <p>下面，就介绍一下在项目中忽略警告的三个地方：</p>
 
@@ -43,7 +43,7 @@
 
 <p>Xcode 会立即报一个警告，提示我们没有使用这个变量</p>
 
-<p><img src="/images/QQ20151213-0@2x.png" alt="Unused variable 'eTestView'" /></p>
+<p><img src="{{root_url}}/images/QQ20151213-0@2x.png" alt="Unused variable 'eTestView'" /></p>
 
 <p>只需在创建 <code>eTestView</code> 的前后加上如下几行，黄色警告就消失了😄</p>
 
@@ -57,11 +57,11 @@ UIView *eTestView = [[UIView alloc] init];
 
 <p>如下图，右击某个警告，选择 <code>Reveal in Log</code>（有时这个选项可能是置灰状态，不能选择，可以尝试编译下项目，或者退出 Xcode 重新来一次）</p>
 
-<p><img src="/images/QQ20151213-1@2x.png" alt="Reveal in Log" /></p>
+<p><img src="{{root_url}}/images/QQ20151213-1@2x.png" alt="Reveal in Log" /></p>
 
 <p>下图红色框中，中括号内部的就是警告标识符（先要点击右上角展开警告才能看到这一大堆信息）</p>
 
-<p><img src="/images/QQ20151213-2@2x.png" alt="警告标识符" /></p>
+<p><img src="{{root_url}}/images/QQ20151213-2@2x.png" alt="警告标识符" /></p>
 
 <h2>在 Build Settings 中项目全局忽略警告</h2>
 
@@ -69,7 +69,7 @@ UIView *eTestView = [[UIView alloc] init];
 
 <p>还是上面的例子，在 <code>Build Settings</code> 中找到 <code>Custom Compiler Flags</code>，双击 <code>Other Warning Flags</code>（可以配置 <code>Debug</code> 和 <code>Release</code> 环境），填入 <code>-Wno-unused-variable</code>，完成后，编译项目，项目中所有的此类型警告都没有了。</p>
 
-<p><img src="/images/QQ20151213-4@2x.png" alt="Build Settings 中项目全局忽略警告" /></p>
+<p><img src="{{root_url}}/images/QQ20151213-4@2x.png" alt="Build Settings 中项目全局忽略警告" /></p>
 
 <p>这里所填写的内容规则，仅仅是在第一种方法中找到的警告标识符中的 <code>W</code> 字母后面加上 <code>no-</code> 就可以了。</p>
 
@@ -141,7 +141,7 @@ CFAbsoluteTime timeInterval = currentTime - previousTime;
 <!--more-->
 
 
-<p><img src="/images/QQ20151204-0@2x.png" alt="Load Bundles" /></p>
+<p><img src="{{%20root_url%20}}/images/QQ20151204-0@2x.png" alt="Load Bundles" /></p>
 
 <p>~~~ 😊 OVER 😊 ~~~</p>
 ]]></content>
