@@ -9,7 +9,8 @@
   <meta name="author" content="冷漠叻荭颜">
 
   
-  <meta name="description" content="视图层次结构上的布局是由一些列的公式（线性方程）来定义的，每个约束都有一个单一的表达式，你的目标就是要让这一系列的表达式有且仅有一个结果。 示例公式如下： ">
+  <meta name="description" content="准备 打开 Jenkins 官网，官网右侧可以下载最新版本的 jenkins.war。 下载完成后，终端进入到 jenkins.war 所在文件夹，执行以下命令： 1
+java -jar jenkins.war --httpPort=8888 如果出现以下提示，说明需要升级 Java 版本， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -23,7 +24,7 @@
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="冷漠叻荭颜" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.useso.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -32,8 +33,6 @@
 
   
 
-  <meta name="baidu-site-verification" content="nPTv4ta5Ar" />
-  <meta name="baidu-site-verification" content="HpQk78B667" />
 </head>
 
 <body   >
@@ -46,14 +45,14 @@
 
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="订阅RSS">RSS</a></li>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
   
 <form action="https://www.baidu.com/" method="get">
   <fieldset role="search">
     <input type="hidden" name="sitesearch" value="lengmolehongyan.github.io">
-    <input class="search" type="text" name="q" results="0" placeholder="搜索"/>
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
   
@@ -70,6 +69,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/01/13/ios-jenkins-use/">iOS 开发使用 Jenkins 搭建 CI 服务器</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-13T18:57:16+08:00'><span class='date'>2016 年1 月13 日</span> <span class='time'>6:57 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>准备</h2>
+
+<p>打开 <a href="http://jenkins-ci.org/">Jenkins 官网</a>，官网右侧可以下载最新版本的 <a href="http://mirrors.jenkins-ci.org/war/latest/jenkins.war">jenkins.war</a>。</p>
+
+<p><img src="/images/QQ20160113-0@2x.png" alt="jenkins.war" /></p>
+
+<p>下载完成后，终端进入到 jenkins.war 所在文件夹，执行以下命令：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar jenkins.war --httpPort=8888</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果出现以下提示，说明需要升级 Java 版本，Jenkins 需要至少 Java7 及以后的版本，可以在此页面下载 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Java</a> 。</p>
+
+<p><img src="/images/2016011315-19-43@2x.png" alt="错误提示" /></p>
+
+<p>上面在终端输入的命令中，<code>httpPort</code> 指定的是 Jenkins 所使用的本机 http 端口号，可以自行修改，等待 Jenkins 完全启动后，终端会有如下提示：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>...
+</span><span class='line'>信息: Jenkins is fully up and running</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在在浏览器打开 <a href="http://localhost:8888/">http://localhost:8888/</a>，就可以看到本机 Jenkins 的界面了。</p>
+
+<h2>Jenkins 配置</h2>
+
+<p>Jenkins 默认没有安装 git 插件，需要手动安装。如下图，在 Jenkins 的界面左侧，依次点击系统管理，管理插件，在可选插件下，筛选 git，然后勾选 Git server plugin 和 Git client plugin，点击下载待重启后安装按钮，等待插件下载安装成功后，重启 Jenkins 就可以了。</p>
+
+<p><img src="/images/QQ20160113-2@2x.png" alt="管理插件" /></p>
+
+<p><img src="/images/QQ20160113-1@2x.png" alt="安装 git 插件" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -584,73 +644,23 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/22/fmdb-xue-xi-zong-jie/">FMDB 使用方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-22T22:41:56+08:00'><span class='date'>2015 年10 月22 日</span> <span class='time'>10:41 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>优秀的第三方库，README 也是很优秀的，理解了 README，会对使用带来很多便利。</p></blockquote>
-
-<h2>ARC 和 MRC</h2>
-
-<p>项目中使用 ARC 还是 MRC，对使用 FMDB 都没有任何影响，FMDB 会在编译项目时自动匹配。</p>
-
-<h2>使用</h2>
-
-<p>在 FMDB 中有三个重要的类：</p>
-
-<ol>
-<li><code>FMDatabase</code>：是一个提供 SQLite 数据库的类，用于执行 SQL 语句。</li>
-<li><code>FMResultSet</code>：用在 <code>FMDatabase</code> 中执行查询的结果的类。</li>
-<li><code>FMDatabaseQueue</code>：在多线程下查询和更新数据库用到的类。</li>
-</ol>
-
-
-<p></p>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/10/22/fmdb-xue-xi-zong-jie/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
     
-    <a href="/blog/archives">文章列表</a>
+    <a href="/blog/archives">Blog Archives</a>
     
   </div>
 </div>
 <aside class="sidebar">
   
     <section>
-  <h1>最新文章</h1>
+  <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/01/13/ios-jenkins-use/">iOS 开发使用 Jenkins 搭建 CI 服务器</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析（Anatomy of a Constraint）</a>
@@ -666,10 +676,6 @@
     
       <li class="post">
         <a href="/blog/2015/12/27/understanding-auto-layout/">自动布局指南（Auto Layout Guide）</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/">iOS 自定义通知声音</a>
       </li>
     
   </ul>
