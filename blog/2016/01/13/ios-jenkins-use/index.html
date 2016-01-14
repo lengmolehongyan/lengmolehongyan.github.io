@@ -94,12 +94,16 @@
 
 <p>打开 <a href="http://jenkins-ci.org/">Jenkins 官网</a>，官网右侧可以下载最新版本的 <a href="http://mirrors.jenkins-ci.org/war/latest/jenkins.war">jenkins.war</a>。</p>
 
+<!--more-->
+
+
 <p><img src="/images/QQ20160113-0@2x.png" alt="jenkins.war" /></p>
 
 <p>下载完成后，终端进入到 jenkins.war 所在文件夹，执行以下命令：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar jenkins.war --httpPort=8888</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>java -jar jenkins.war --httpPort<span class="o">=</span>8888
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>如果出现以下提示，说明需要升级 Java 版本，Jenkins 需要至少 Java7 及以后的版本，可以在此页面下载 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Java</a> 。</p>
@@ -108,21 +112,60 @@
 
 <p>上面在终端输入的命令中，<code>httpPort</code> 指定的是 Jenkins 所使用的本机 http 端口号，可以自行修改，等待 Jenkins 完全启动后，终端会有如下提示：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>...
-</span><span class='line'>信息: Jenkins is fully up and running</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>...
+</span><span class='line'>信息: Jenkins is fully up and running
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>现在在浏览器打开 <a href="http://localhost:8888/">http://localhost:8888/</a>，就可以看到本机 Jenkins 的界面了。</p>
 
 <h2>Jenkins 配置</h2>
 
-<p>Jenkins 默认没有安装 git 插件，需要手动安装。如下图，在 Jenkins 的界面左侧，依次点击系统管理，管理插件，在可选插件下，筛选 git，然后勾选 Git server plugin 和 Git client plugin，点击下载待重启后安装按钮，等待插件下载安装成功后，重启 Jenkins 就可以了。</p>
+<p>Jenkins 默认没有安装 <code>git</code> 插件，需要手动安装。如下图，在 Jenkins 的界面左侧，依次点击系统管理，管理插件，在可选插件下，筛选 <code>git</code>，然后勾选 Git plugin，Git server plugin 和 Git client plugin，点击下载待重启后安装按钮，等待插件下载安装成功后，重启 Jenkins 就可以了。</p>
 
 <p><img src="/images/QQ20160113-2@2x.png" alt="管理插件" /></p>
 
 <p><img src="/images/QQ20160113-1@2x.png" alt="安装 git 插件" /></p>
+
+<p>安装过程中如果遇到下面这种错误，提示插件下载地址错误导致安装失败，从错误信息中拷贝重定向后的地址手动下载，下载完成后进入插件管理，选择高级，然后上传插件安装就可以了。</p>
+
+<p><img src="/images/QQ20160113-3@2x.png" alt="安装插件失败" /></p>
+
+<p><img src="/images/QQ20160114-0@2x.png" alt="手动安装插件" /></p>
+
+<p>在 Jenkins 系统管理，系统设置中可以配置系统管理员邮件地址和邮件通知，Jenkins 可以在适当的时机发送邮件通知，发送邮件使用的是 <code>SMTP</code> 协议。在设置邮箱时，Jenkins 管理员邮箱要与 <code>SMTP</code> 中设置的发送邮箱为同一个邮箱。这里配置完成后，可以发送测试邮件，测试是否配置成功。</p>
+
+<p><img src="/images/QQ20160114-1@2x.png" alt="配置系统管理员邮件地址" /></p>
+
+<p><img src="/images/QQ20160114-2@2x.png" alt="配置邮件通知" /></p>
+
+<h2>新建项目</h2>
+
+<p>Jenkins 默认使用当前用户 <code>.ssh</code> 目录下的公私钥来进行 <code>git</code> 的相关操作。在 Jenkins 首页，点击新建，输入项目名称，选择构建项目的属性，然后点击 OK，进入项目配置页面。</p>
+
+<p><img src="/images/QQ20160114-3@2x.png" alt="创建项目" /></p>
+
+<p>在项目配置页面，找到源码管理，配置项目的远程仓库，填入项目的远程仓库 <code>git</code> 地址，以及编译构建项目的分支。</p>
+
+<p><img src="/images/QQ20160114-4@2x.png" alt="项目配置" /></p>
+
+<p>下一步就是对项目编译的设置，在项目配置最下方的构建选项，点击增加构建步骤，可以选择通过 <code>shell</code> 脚本编译，也可以使用 Jenkins 自带的 Xcode 插件（需要安装 Xcode 插件）。编写脚本，可以直接使用 Xcode 的 xcodebuild 来写，也可以直接使用 Facebook 的 <a href="https://github.com/facebook/xctool">xctool</a> 。</p>
+
+<p><img src="/images/QQ20160114-5@2x.png" alt="项目编译设置" /></p>
+
+<p>项目成功编译以后，可以设置编译构建出来的 ipa 文件保存位置，同时可以设置当编译构建失败时的邮件提醒。</p>
+
+<p><img src="/images/QQ20160114-6@2x.png" alt="编译后操作设置" /></p>
+
+<p>上述所有操作完成之后，点击应用并保存，回到测试项目首页，便可以编译构建项目了，项目如果需要修改配置，可以直接在配置里面修改。</p>
+
+<p><img src="/images/QQ20160114-7@2x.png" alt="项目创建完成" /></p>
+
+<h2>TODO</h2>
+
+<p> 接下来就是学习 Facebook 的 xctool 的使用&hellip;&hellip;</p>
 </div>
 
 
