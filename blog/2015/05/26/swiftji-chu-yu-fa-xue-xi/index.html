@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <title>Swift 基础语法学习 - 冷漠叻荭颜</title>
   <meta name="author" content="冷漠叻荭颜">
-
+      
   
   <meta name="description" content="swift 基础语法学习">
   <meta name="keywords" content="swift 基础语法学习">
@@ -23,7 +23,7 @@
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="冷漠叻荭颜" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//ajax.useso.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -32,6 +32,8 @@
 
   
 
+  <meta name="baidu-site-verification" content="nPTv4ta5Ar" />
+  <meta name="baidu-site-verification" content="HpQk78B667" />
 </head>
 
 <body   >
@@ -44,14 +46,14 @@
 
 </header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  <li><a href="/atom.xml" rel="subscribe-rss" title="订阅 RSS">RSS</a></li>
   
 </ul>
   
 <form action="https://www.baidu.com/" method="get">
   <fieldset role="search">
     <input type="hidden" name="sitesearch" value="lengmolehongyan.github.io">
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    <input class="search" type="text" name="q" results="0" placeholder="搜索"/>
   </fieldset>
 </form>
   
@@ -59,8 +61,9 @@
   <li><a href="/">首页</a></li>
   <li><a href="/blog/archives">文章列表</a></li>
   <li><a href="/da-shen-bo-ke">优秀博客</a></li>
-  <li><a href="/blog/categories/ioskai-fa-xiao-xi-jie">iOS 开发小细节</a></li>
+  <li><a href="/blog/categories/ioskai-fa-xiao-xi-jie/">iOS 开发小细节</a></li>
   <li><a href="http://weibo.com/lengmolehongyan">我的微博</a></li>
+  
 </ul>
 
 </nav>
@@ -80,7 +83,7 @@
 
 
 
-<time class='entry-date' datetime='2015-05-26T22:12:42+08:00'><span class='date'>2015 年5 月26 日</span> <span class='time'>10:12 pm</span></time>
+<time class='entry-date' datetime='2015-05-26T22:12:42+08:00'><span class='date'>2015 年 05 月 26 日</span> <span class='time'>10:12 pm</span></time>
         
       </p>
     
@@ -654,7 +657,7 @@
 
 
 
-<time class='entry-date' datetime='2015-05-26T22:12:42+08:00'><span class='date'>2015 年5 月26 日</span> <span class='time'>10:12 pm</span></time>
+<time class='entry-date' datetime='2015-05-26T22:12:42+08:00'><span class='date'>2015 年 05 月 26 日</span> <span class='time'>10:12 pm</span></time>
       
 
 
@@ -663,6 +666,25 @@
       <div class="sharing">
   
   
+  
+  
+  <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tools_1"></a>
+    <a class="jiathis_button_tools_2"></a>
+    <a class="jiathis_button_tools_3"></a>
+    <a class="jiathis_button_tools_4"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>
+<!-- UY END -->
   
 </div>
 
@@ -681,7 +703,7 @@
 <aside class="sidebar">
   
     <section>
-  <h1>Recent Posts</h1>
+  <h1>最近发表</h1>
   <ul id="recent_posts">
     
       <li class="post">
@@ -707,7 +729,34 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/lengmolehongyan">@lengmolehongyan</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
 
+        github.showRepos({
+            user: 'lengmolehongyan',
+            count: ,
+            skip_forks: ,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
 
 
 
@@ -718,10 +767,10 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2016 - 冷漠叻荭颜 -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>
-  </span>
-  <script>
+Copyright &copy; 2016 - 冷漠叻荭颜 -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a>
+</span>
+<script>
     var _hmt = _hmt || [];
     (function() {
      var hm = document.createElement("script");
@@ -729,8 +778,8 @@
      var s = document.getElementsByTagName("script")[0];
      s.parentNode.insertBefore(hm, s);
      })();
-  </script>
-  <script>
+    </script>
+<script>
     var _hmt = _hmt || [];
     (function() {
      var hm = document.createElement("script");
@@ -738,22 +787,18 @@
      var s = document.getElementsByTagName("script")[0];
      s.parentNode.insertBefore(hm, s);
      })();
-  </script>
-  <script>
+    </script>
+<script>
     (function(){
      var bp = document.createElement('script');
      bp.src = '//push.zhanzhang.baidu.com/push.js';
      var s = document.getElementsByTagName("script")[0];
      s.parentNode.insertBefore(bp, s);
      })();
-  </script>
-  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256261254'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256261254%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-  </script>
+    </script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256261254'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256261254%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+    </script>
 </p>
-
-
-
-
 </footer>
   
 
