@@ -102,11 +102,18 @@
 <p>下载完成后，终端进入到 jenkins.war 所在文件夹，执行以下命令：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>java -jar jenkins.war --httpPort<span class="o">=</span>8888
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>java -jar jenkins.war --httpPort<span class="o">=</span>8888
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>可以创建一个 bash alias 来简化上面输入的指令，示例如下：</p>
+<p>可以创建一个 bash/zsh alias 来给上述指令起一个别名，示例如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">jenkins</span><span class="o">=</span><span class="s2">&quot;java -jar 此处为jenkins.war文件所在路径&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果使用的是 bash，在用户目录下的 <code>.bashrc</code> 文件中添加上面这句，别名就起好了，如果使用的是 zsh，则在用户目录下的 <code>.zshrc</code> 文件增加。之后，在终端，直接输入 <code>jenkins</code> 指令就可以启动 jenkins 。</p>
 
 <p>如果出现以下提示，说明需要升级 Java 版本，Jenkins 需要至少 Java7 及以后的版本，可以在此页面下载 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Java</a> 。</p>
 
