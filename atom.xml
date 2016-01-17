@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-16T00:34:31+08:00</updated>
+  <updated>2016-01-17T21:47:18+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -19,6 +19,14 @@
     <updated>2016-01-14T18:18:43+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong</id>
     <content type="html"><![CDATA[<h2>xctool</h2>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/'>http://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -112,6 +120,14 @@
 <h2>TODO</h2>
 
 <p> 接下来就是学习 Facebook 的 xctool 的使用&hellip;&hellip;</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/'>http://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -285,6 +301,14 @@
 <p>一般情况下，必须为每一个视图都指定大小和位置的约束。但是，假设父视图的尺寸已经设置了（比如，在 iOS 中控制器的根视图），</p>
 
 <p>😄😄😄正在翻译。。。😄😄😄</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/'>http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -335,6 +359,14 @@
 虽然嵌套使用 StackView 可以构建出复杂的界面，但仍不能完全避开约束的使用，因为至少总是需要设置最外层视图的位置（和可能的大小）。</p></blockquote>
 
 <p>原文链接：<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/AutoLayoutWithoutConstraints.html#//apple_ref/doc/uid/TP40010853-CH8-SW1">Auto Layout Without Constraints</a></p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/'>http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -424,6 +456,14 @@
 <p>本指南的剩余部分旨在帮助你轻松过渡到自动布局。<a href="">没有约束的自动布局</a> 章节描述了在界面上简化创建自动布局的高级抽象概念。<a href="">约束剖析</a> 章节提供了你需要理解与自动布局成功交互的背后原理。<a href="">在 IB 中使用约束</a> 章节描述了设计自动布局的工具，<a href="">代码创建约束</a> 和 <a href="">自动布局手册</a> 章节详细地介绍了自动布局的 API。最后，<a href="">自动布局手册</a> 章节提供了大量且不同复杂层次的布局例子，你可以在自己的项目中学习和使用，<a href="">自动布局调试</a> 章节则提供了发生错误时的修复建议和工具。</p>
 
 <p>原文链接：<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853-CH7-SW1">Understanding Auto Layout</a></p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/'>http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -522,6 +562,14 @@
 </li>
 </ul>
 
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout/'>http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -571,6 +619,14 @@
 <p><img src="http://lengmolehongyan.github.io/images/QQ20151226-1@2x.png" alt="收到推送信息" /></p>
 
 <p><a href="https://github.com/lengmolehongyan/CustomAlertSoundsDemo">Demo 地址</a></p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/'>http://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -650,6 +706,14 @@
 <h2>CocoaPods 导入第三方库忽略警告</h2>
 
 <p>通过 CocoaPods 给项目导入了一些第三方库，这些库里面或多或少会有些警告，想消除这些警告，很简单，只需在 <code>Podfile</code> 中加上这一句 <code>inhibit_all_warnings!</code>，所有通过 CocoaPods 安装的第三库的警告就没有了。</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/'>http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -682,6 +746,14 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/'>http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
 
 ]]></content>
   </entry>
@@ -735,6 +807,14 @@
 <p><img src="http://lengmolehongyan.github.io/images/QQ20151204-0@2x.png" alt="Load Bundles" /></p>
 
 <p>~~~ 😊 OVER 😊 ~~~</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/'>http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -973,6 +1053,14 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/'>http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
 
 ]]></content>
   </entry>
@@ -1408,6 +1496,14 @@
 
 
 <p>本文实际是对 <a href="https://github.com/ccgus/fmdb">FMDB</a> 的 README 简单翻译，以方便使用 FMDB。</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/'>http://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -1438,6 +1534,14 @@
 <p><img src="http://i3.tietuku.com/6b824df6fd5bc002.png" alt="" /></p>
 
 <p>修改完成之后，重新编译项目，此警告就修复了。</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei/'>http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -1456,6 +1560,14 @@
 
 
 <p>&ndash; 未完待续 &ndash;</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei/'>http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -1558,6 +1670,14 @@
 <img src="http://i1.tietuku.com/1545fe7a18db2738.gif" alt="核心动画" /></p>
 
 <hr />
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/'>http://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -1702,6 +1822,14 @@
 <p><img src="http://ww4.sinaimg.cn/large/9491566bjw1erdfvoacrfj214i0jmqbu.jpg" alt="copy修饰block" /></p>
 
 <p>推荐阅读：<a href="http://www.cocoachina.com/ios/20150109/10891.html">Objective-C中的Block</a></p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/'>http://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -1726,6 +1854,14 @@
 <p><img src="http://i3.tietuku.com/3881905e46802e76.png" alt="应用程序说明" /></p>
 
 <p>完成之后，重新编译运行，再去设置那，怎么点都不会崩溃了！Over！</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/'>http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -1826,6 +1962,14 @@
 
 
 <p>至此，iOS8 下定位问题就可以解决了！</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/'>http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -2238,6 +2382,14 @@
 <p>运行程序，转场动画一切正常。</p>
 
 <p><img src="http://i1.tietuku.com/c7d1a6eb3c4a7645.gif" alt="" /></p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/'>http://lengmolehongyan.github.io/blog/2015/05/30/zi-ding-yi-zhuan-chang-dong-hua-jie-shao-fan-yi/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
@@ -2508,6 +2660,14 @@
 <p>通过本教程后，你现在了解了在Xcode6中如何利用IBDesignable和IBInspectable实时预览界面。利用这个新特性，你可以更高效创建自定义组件。</p>
 
 <p><a href="https://github.com/lengmolehongyan/RainbowDemo">RainbowDemo地址</a></p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi/'>http://lengmolehongyan.github.io/blog/2015/05/28/zai-xcode6zhong-shi-yong-ibdesignablechuang-jian-zi-ding-yi-kong-jian-fan-yi/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
 ]]></content>
   </entry>
   
