@@ -107,93 +107,15 @@
 <p>  xctool 将所有构建和测试项目的结果格式化为 JSON 对象，如果你正在构建一个可持续集成系统，使用 xctool 意味着不需要再正则解析 xcodebuild 的输出结果了。</p>
 
 <p>  选择一种输出格式，尝试自定义输出结果，使用 <code>-reporter json-stream</code> 可以查看完整的事件流。</p></li>
-<li><p>友好的，ANSI 标准色输出：</p>
-
-<p>  xcodebuild 为每个源文件打印所有编译指令和输出，非常冗长。而 xctool 默认只在出错的地方比较详细，更容易找出问题所在。</p>
-
-<p>  例：</p>
-
-<p>  <img src="https://camo.githubusercontent.com/f4c5388651b83663ff811969c0e2099073c25484/68747470733a2f2f66706f747465725f7075626c69632e73332e616d617a6f6e6177732e636f6d2f7863746f6f6c2d7569636174616c6f672e676966" alt="" /></p></li>
-<li><p>更快、并行化的测试运行：</p>
-
-<p>  xctool 可以视情况并行运行所有测试任务，大大加快测试工作。在 Facebook，并行运行我们已经看到 2~3 倍的加速。</p>
-
-<p>  使用 <code>-parallelize</code> 选项以启用 run-tests 或者 test，更多信息请参阅 <a href="https://github.com/facebook/xctool#parallelizing-test-runs">Parallelizing Test Runs</a> 。</p></li>
-<li><p>编写于 Objective-C ：</p>
-
-<p>  xctool 是使用 Objective-C 编写的，Mac OSX 和 iOS 开发者不需要学习新的语言，并且可以轻松地提交新的功能和修复 bug 。我们非常欢迎提交 PR (pull request) 。</p></li>
 </ul>
 
-
-<h2>使用必备条件</h2>
-
-<ul>
-<li>Xcode6 或更高版本</li>
-<li>需要安装 Xcode 的命令行工具（Command Line Tools），可以在 Xcode → Preferences → Downloads 安装。</li>
-</ul>
-
-
-<h2>安装</h2>
-
-<p>xctool 可以从 homebrew 安装</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>brew install xctool</span></code></pre></td></tr></table></div></figure>
-
-
-<p>也可以下载后运行 xctool.sh 命令。</p>
-
-<h2>使用</h2>
-
-<p>xctool 的命令和选项是 xcodebuild 的一个扩展，在大多数情况下，你只需要替换 <strong>xcodebuild</strong> 为 <strong>xctool</strong> ，会如期运行，但有更具吸引力的输出。</p>
-
-<p>可以通过如下命令获取帮助和完整的配置列表：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>path/to/xctool.sh -help</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>构建</h2>
-
-<p>使用 xctool 构建项目和使用 xcodebuild 是一样的。</p>
-
-<p>如果是使用 workspaces 和 schemes ：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>path/to/xctool.sh \
-</span><span class='line'>  -workspace YourWorkspace.xcworkspace \
-</span><span class='line'>  -scheme YourScheme \
-</span><span class='line'>  build</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果使用的是 projects 和 schemes：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>path/to/xctool.sh \
-</span><span class='line'>  -project YourProject.xcodeproj \
-</span><span class='line'>  -scheme YourScheme \
-</span><span class='line'>  build</span></code></pre></td></tr></table></div></figure>
-
-
-<p>常见配置比如 <code>-configuration</code> ，<code>-sdk</code> ，<code>-arch</code> 和 xcodebuild 是相同的。</p>
-
-<p>注意：xctool 不支持使用 <code>-target</code> 来编译构建 targets ，必须使用 schemes 。</p>
-
-<p class='post-footer'>
-            原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/'>http://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
-            </p>
 
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/01/14/facebook-xctool-de-shi-yong/">阅读全文</a>
+    </footer>
   
 
 
