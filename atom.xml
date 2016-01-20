@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-01-19T21:51:40+08:00</updated>
+  <updated>2016-01-20T18:56:23+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -50,10 +50,10 @@
 
 <p>  xctool 可以视情况并行运行所有测试任务，大大加快测试工作。在 Facebook，并行运行我们已经看到 2~3 倍的加速。</p>
 
-<p>  使用 <code>-parallelize</code> 选项以启用 run-tests 或者 test，更多信息请参阅 <a href="https://github.com/facebook/xctool#parallelizing-test-runs">Parallelizing Test Runs</a> 。</p></li>
-<li><p>编写于 Objective-C ：</p>
+<p>  使用 <code>-parallelize</code> 选项以启用 run-tests 或者 test，更多信息请参阅 <a href="https://github.com/facebook/xctool#parallelizing-test-runs">Parallelizing Test Runs</a>。</p></li>
+<li><p>编写于 Objective-C：</p>
 
-<p>  xctool 是使用 Objective-C 编写的，Mac OSX 和 iOS 开发者不需要学习新的语言，并且可以轻松地提交新的功能和修复 bug 。我们非常欢迎提交 PR (pull request) 。</p></li>
+<p>  xctool 是使用 Objective-C 编写的，Mac OSX 和 iOS 开发者不需要学习新的语言，并且可以轻松地提交新的功能和修复 bug。我们非常欢迎提交 PR (pull request)。</p></li>
 </ul>
 
 
@@ -69,53 +69,245 @@
 
 <p>xctool 可以从 homebrew 安装</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>brew install xctool</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install xctool
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>也可以下载后运行 xctool.sh 命令。</p>
 
 <h2>使用</h2>
 
-<p>xctool 的命令和选项是 xcodebuild 的一个扩展，在大多数情况下，你只需要替换 <strong>xcodebuild</strong> 为 <strong>xctool</strong> ，会如期运行，但有更具吸引力的输出。</p>
+<p>xctool 的命令和选项是 xcodebuild 的一个扩展，在大多数情况下，你只需要替换 <strong>xcodebuild</strong> 为 <strong>xctool</strong>，会如期运行，但有更具吸引力的输出。</p>
 
 <p>可以通过如下命令获取帮助和完整的配置列表：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>path/to/xctool.sh -help</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh -help
+</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>构建</h2>
+<h3>编译</h3>
 
-<p>使用 xctool 构建项目和使用 xcodebuild 是一样的。</p>
+<p>使用 xctool 编译项目和使用 xcodebuild 是一样的。</p>
 
 <p>如果是使用 workspaces 和 schemes ：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>path/to/xctool.sh \
-</span><span class='line'>  -workspace YourWorkspace.xcworkspace \
-</span><span class='line'>  -scheme YourScheme \
-</span><span class='line'>  build</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkspace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  build
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>如果使用的是 projects 和 schemes：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>path/to/xctool.sh \
-</span><span class='line'>  -project YourProject.xcodeproj \
-</span><span class='line'>  -scheme YourScheme \
-</span><span class='line'>  build</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -project YourProject.xcodeproj <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  build
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>常见配置比如 <code>-configuration</code> ，<code>-sdk</code> ，<code>-arch</code> 和 xcodebuild 是相同的。</p>
+<p>常见配置比如 <code>-configuration</code>，<code>-sdk</code>，<code>-arch</code> 和 xcodebuild 是相同的。</p>
 
-<p>注意：xctool 不支持使用 <code>-target</code> 来编译构建 targets ，必须使用 schemes 。</p>
+<p>注意：xctool 不支持使用 <code>-target</code> 来编译 targets，必须使用 schemes。</p>
+
+<h3>单元测试</h3>
+
+<p>xctool 的 <strong>test</strong> 命令，可以配置 scheme 中如何编译和运行测试。也可以限制哪些单元测试运行，或者指定运行的 SDK 版本。</p>
+
+<p>使用如下命令，编译运行所有单元测试：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在指定的 target 上编译运行单元测试，使用 <code>-only</code> 配置：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  <span class="nb">test</span> -only SomeTestTarget
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以进一步配置只运行特定的单元测试类：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  <span class="nb">test</span> -only SomeTestTarget:SomeTestClass
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>甚至只运行某个单元测试类的某个方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  <span class="nb">test</span> -only SomeTestTarget:SomeTestClass/testSomeMethod
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以指定匹配前缀的类和方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  <span class="nb">test</span> -only SomeTestTarget:SomeTestClassPrefix*,SomeTestClass/testSomeMethodPrefix*
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以在指定 SDK 版本上运行单元测试：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  <span class="nb">test</span> -test-sdk iphonesimulator5.1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>编译单元测试</h3>
+
+<p>当编译和运行单元测试时，有时不需要运行只是编译，可以使用 <code>build-tests</code> 指令，例：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  build-tests
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以使用 <code>-only</code> 指定在某个 target 上编译：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  build-tests -only SomeTestTarget
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>运行单元测试</h3>
+
+<p>如果已经使用 <code>build-tests</code> 编译，使用 <code>run-tests</code> 就可以直接运行单元测试。这样的作用是只需编译一次，便可运行在不同 SDK 版本上。</p>
+
+<p>运行所有单元测试，你将使用：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  run-tests
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>和 <code>test</code> 指令一样，可以通过 <code>-only</code> 来限制哪些单元测试运行，也可以使用 <code>-test-sdk</code> 运行在指定的 SDK 版本上。</p>
+
+<p>可以选择在运行单元测试时指定 <code>-testTimeout</code>。当某个独立的测试到了超时时间，会被认为失败而不是无限等待，可以防止测试任务因为发生错误而导致死锁。</p>
+
+<p>默认情况下，模拟器启动程序单元测试等待最多 30s，可以使用 <code>-launch-timeout</code> 指令来修改超时时间。</p>
+
+<h3>并行运行单元测试</h3>
+
+<p>xctool 可以选择并行运行单元测试，更好地利用空闲的多核 CPU。</p>
+
+<p>若要允许多个测试任务同时运行，使用 <code>-parallelize</code> 指令：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  run-tests -parallelize
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面给出的并行，仍限制于最慢的测试任务。比如，两个测试任务（'A' 和 &lsquo;B'），'B&rsquo; 因为包含 10 倍多测试需要花费 10 倍的时间来运行，这样上述并行运行帮助并不大。</p>
+
+<p>可以使用 <code>-logicTestBucketSize</code> 指令将测试任务分为几个 bucket ：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkSpace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  run-tests -parallelize -logicTestBucketSize 20
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面将测试任务分为每个 bucket 20个测试用例，这些测试将同时运行，如果测试包比其他大得多，这样可以加快整体测试运行速度。</p>
+
+<h2>可持续集成（CI）</h2>
+
+<p>对于可持续集成服务器比如 Travis CI 或者 Jenkins 运行单元测试，xctool 是最佳选择。为了在可持续集成环境中可以运行单元测试，必须为项目创建 <strong>Shared Schemes</strong> target，同时确保所有依赖已经明确添加到 Scheme 中（比如 CocoaPods）。步骤：</p>
+
+<ol>
+<li>选择 <strong>Product</strong> > <strong>Schemes</strong> > <strong>Manage Schemes</strong>，打开 <strong>Manage Schemes</strong>。</li>
+<li>在列表中找到项目的 target，确保在右手边的 <strong>Shared</strong> 复选框已经选中。</li>
+<li><p>如果项目包含跨项目的依赖比如 CocoaPods，需要确保它们已经明确配置依赖。步骤：</p>
+
+<ul>
+<li>选中项目 target，点击 <strong>Edit</strong> 按钮打开 Scheme 编辑弹窗。</li>
+<li>在 Scheme 编辑器里面点击左手边的 <strong>Build</strong> 选项。</li>
+<li>点击 + 号按钮为项目添加所有依赖，CocoaPods 将以名字为 <strong>Pods</strong> 的静态库出现。</li>
+<li>拖动依赖在项目 target 下方，第一次编译。</li>
+</ul>
+</li>
+</ol>
+
+
+<p>在工程项目里，<strong>xcshareddata/xcschemes</strong> 目录下会有一个文件，这就是刚刚配置的 <strong>Shared Scheme</strong>，在仓库中添加该文件，xctool 将找到并在接下来的 CI 构建中执行单元测试。</p>
 
 <p class='post-footer'>
             原始地址：
