@@ -362,24 +362,24 @@
 
 <h2>可持续集成（CI）</h2>
 
-<p>对于可持续集成服务器比如 Travis CI 或者 Jenkins 运行单元测试，xctool 是最佳选择。为了在可持续集成环境中可以运行单元测试，必须为项目创建 <strong>Shared Schemes</strong> target，同时确保所有依赖已经明确添加到 Scheme 中（比如 CocoaPods）。步骤：</p>
+<p>对于可持续集成服务器比如 <a href="https://travis-ci.org/">Travis CI</a> 或者 <a href="http://jenkins-ci.org/">Jenkins</a> 来运行单元测试，xctool 是不错的选择。为了在可持续集成环境中运行单元测试，必须为应用的 target 创建一个 <strong>Shared Schemes</strong> target，同时确保所有依赖已经正确添加到 Scheme 中（比如 CocoaPods）。参照如下步骤：</p>
 
 <ol>
-<li>选择 <strong>Product</strong> > <strong>Schemes</strong> > <strong>Manage Schemes</strong>，打开 <strong>Manage Schemes</strong>。</li>
-<li>在列表中找到项目的 target，确保在右手边的 <strong>Shared</strong> 复选框已经选中。</li>
-<li><p>如果项目包含跨项目的依赖比如 CocoaPods，需要确保它们已经明确配置依赖。步骤：</p>
+<li>选择 <strong>Product</strong> > <strong>Schemes</strong> > <strong>Manage Schemes</strong> 菜单，打开 <strong>Manage Schemes</strong>。</li>
+<li>在列表中找到应用的 target，确保在右手边的 <strong>Shared</strong> 复选框已经选中。</li>
+<li><p>如果应用或者单元测试的 target 包含跨项目的依赖比如 CocoaPods，还需要确保它们已经正确配置依赖。可参照如下步骤：</p>
 
 <ul>
-<li>选中项目 target，点击 <strong>Edit</strong> 按钮打开 Scheme 编辑弹窗。</li>
+<li>选中应用的 target，点击 <strong>Edit</strong> 按钮打开 Scheme 编辑弹窗。</li>
 <li>在 Scheme 编辑器里面点击左手边的 <strong>Build</strong> 选项。</li>
 <li>点击 + 号按钮为项目添加所有依赖，CocoaPods 将以名字为 <strong>Pods</strong> 的静态库出现。</li>
-<li>拖动依赖在项目 target 下方，第一次编译。</li>
+<li>拖动依赖到应用的 target 下方，方便应用的 target 优先编译。</li>
 </ul>
 </li>
 </ol>
 
 
-<p>在工程项目里，<strong>xcshareddata/xcschemes</strong> 目录下会有一个文件，这就是刚刚配置的 <strong>Shared Scheme</strong>，在仓库中添加该文件，xctool 将找到并在接下来的 CI 构建中执行单元测试。</p>
+<p>现在，在工程项目里的 <strong>xcshareddata/xcschemes</strong> 目录下会有一个文件，这就是刚刚配置好的 <strong>Shared Scheme</strong>，在 git\svn 仓库中添加该文件，xctool 将在下一次 CI 编译时，找到并执行单元测试。</p>
 
 <p class='post-footer'>
             原始地址：
