@@ -92,7 +92,7 @@
 
 <div class="entry-content"><h2>xctool</h2>
 
-<p><strong>xctool</strong> 相比苹果的 <strong>xcodebuild</strong>，可以更加简单地编译构建和测试 iOS、Mac 项目，对可持续集成 CI 尤其有用。</p>
+<p><strong>xctool</strong> 相比苹果的 <strong>xcodebuild</strong>，可以更加简单方便地编译构建和测试 iOS、Mac 项目，对可持续集成 CI 尤其有用。</p>
 
 <h2>特点</h2>
 
@@ -101,9 +101,9 @@
 <ul>
 <li><p>格式化输出构建和测试项目结果：</p>
 
-<p>  xctool 将所有构建和测试项目的结果格式化为 JSON 对象，如果你正在构建一个可持续集成系统，使用 xctool 意味着不需要再正则解析 xcodebuild 的输出结果了。</p>
+<p>  xctool 将所有构建和测试项目的结果格式化为 JSON 对象，如果你正在构建一个可持续集成系统，使用 xctool 意味着不用再正则解析 xcodebuild 的输出结果了。</p>
 
-<p>  选择一种输出格式，尝试自定义输出结果，使用 <code>-reporter json-stream</code> 可以查看完整的事件流。</p></li>
+<p>  尝试一种输出格式，可以自定义输出结果，或者使用 <code>-reporter json-stream</code> 命令可以查看完整的事件流。</p></li>
 </ul>
 
 
@@ -328,7 +328,7 @@
 
 <h3>并行运行单元测试</h3>
 
-<p>xctool 可以选择并行运行单元测试，更好地利用空闲的多核 CPU。</p>
+<p>xctool 可以配置并行运行单元测试，以便更好地利用空闲的多核 CPU。</p>
 
 <p>若要允许多个测试任务同时运行，使用 <code>-parallelize</code> 指令：</p>
 
@@ -358,7 +358,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>上面将测试任务分为每个 bucket 20个测试用例，这些测试将同时运行，如果测试包比其他大得多，这样可以加快整体测试运行速度。</p>
+<p>上面将测试任务分为每个 bucket 20 个测试用例，这些测试将同时运行，如果测试包比其他大得多，这样可以加快整体测试运行速度。</p>
 
 <h2>可持续集成（CI）</h2>
 
@@ -367,7 +367,7 @@
 <ol>
 <li>选择 <strong>Product</strong> > <strong>Schemes</strong> > <strong>Manage Schemes</strong> 菜单，打开 <strong>Manage Schemes</strong>。</li>
 <li>在列表中找到应用的 target，确保在右手边的 <strong>Shared</strong> 复选框已经选中。</li>
-<li><p>如果应用或者单元测试的 target 包含跨项目的依赖比如 CocoaPods，还需要确保它们已经正确配置依赖。可参照如下步骤：</p>
+<li><p>如果应用或者单元测试的 target 包含跨项目的依赖比如 CocoaPods，还需要确保它们已经正确配置。可参照如下步骤：</p>
 
 <ul>
 <li>选中应用的 target，点击 <strong>Edit</strong> 按钮打开 Scheme 编辑弹窗。</li>
@@ -380,6 +380,49 @@
 
 
 <p>现在，在工程项目里的 <strong>xcshareddata/xcschemes</strong> 目录下会有一个文件，这就是刚刚配置好的 <strong>Shared Scheme</strong>，在 git\svn 仓库中添加该文件，xctool 将在下一次 CI 编译时，找到并执行单元测试。</p>
+
+<h3>Travis CI 配置示例</h3>
+
+<p><a href="https://travis-ci.org/">Travis CI</a> 是一个非常流行的，免费提供给开源项目的可持续集成系统，它集成于 Github，并且对于 Objective-C 工程，Travis CI 默认使用 xctool 作为编译和测试工具。按照上面的步骤设置好 Shared Schemes 后，还需要配置 <code>.travis.yml</code> 文件。</p>
+
+<p>如果是使用 workspace，<code>.travis.yml</code> 文件内容格式如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>language: objective-c
+</span><span class='line'>xcode_workspace: path/to/YourApp.xcworkspace
+</span><span class='line'>xcode_scheme: YourApp
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果是使用 projects，<code>.travis.yml</code> 文件内容格式如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>language: objective-c
+</span><span class='line'>xcode_project: path/to/YourApp.xcodeproj
+</span><span class='line'>xcode_scheme: YourApp
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>.travis.yml</code> 文件还可以灵活配置怎样安装 Travis 和调用 xctool：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>language: objective-c
+</span><span class='line'>before_install:
+</span><span class='line'>    - brew update
+</span><span class='line'>    - brew install xctool
+</span><span class='line'>script: xctool -workspace MyApp.xcworkspace -scheme MyApp <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你可以在 <a href="http://about.travis-ci.org/docs/user/osx-ci-environment/">About OS X Travis CI Environment</a> 这份文档中学到更多有关 iOS 和 OSX 应用的 Travis CI 环境，通过查阅 <a href="https://docs.travis-ci.com/user/getting-started/">Getting Started</a> 找到配置项目的详细文档。</p>
 
 <p class='post-footer'>
             原始地址：
