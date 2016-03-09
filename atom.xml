@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-02-23T20:10:53+08:00</updated>
+  <updated>2016-03-09T11:14:40+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -1181,6 +1181,15 @@
 <p>上图是当时一回答此问题人的运行结果，但现在测试并不会引起崩溃，不过同时 <code>push</code> 一个控制器是会导致崩溃的，测试结果如下图：</p>
 
 <p><img src="http://7xjhyk.com1.z0.glb.clouddn.com/QQ20151105-0@2x.png" alt="测试同时 push 一个控制器" /></p>
+
+<p>其实这个崩溃，最简单的情况就是：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>而这个原因就是同一时间同时 push 多个控制器再返回，动画被打断后引起的崩溃，本质根源是 push 动画还没有完成就急着 push 下一个控制器。</p>
 
 <h2>解决办法</h2>
 
