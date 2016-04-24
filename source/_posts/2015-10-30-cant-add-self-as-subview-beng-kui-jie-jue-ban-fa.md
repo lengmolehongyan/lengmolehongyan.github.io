@@ -34,6 +34,15 @@ description: Can't add self as subview 崩溃解决办法
 
 ![测试同时 push 一个控制器](http://7xjhyk.com1.z0.glb.clouddn.com/QQ20151105-0@2x.png)
 
+其实这个崩溃，最简单的情况就是：
+
+```objc
+[self.view addSubview:self.view];
+```
+
+而这个原因就是同一时间同时 push 多个控制器再返回，动画被打断后引起的崩溃，本质根源是 push 动画还没有完成就急着 push 下一个控制器。
+
+
 ## 解决办法
 
 创建一个分类，拦截控制器入栈\出栈的方法调用，通过安全的方式，确保当有控制器正在进行入栈\出栈操作时，没有其他入栈\出栈操作。
