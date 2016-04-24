@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios开发小细节 | 冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-03-09T11:14:40+08:00</updated>
+  <updated>2016-04-24T17:56:28+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -12,6 +12,94 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[UITableView tableHeaderView, tableFooterView 子控件布局约束警告]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/"/>
+    <updated>2016-03-26T09:59:58+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict</id>
+    <content type="html"><![CDATA[<p>带有 <code>tableHeaderView</code>，<code>tableFooterView</code> 的 <code>UITableView</code> 在实际项目中很常见，添加了头部视图或者底部视图，会嵌在 <code>UITableView</code> 的头部或者底部，跟随 <code>UITableView</code> 一起滚动。</p>
+
+<p>有关 <code>tableHeaderView</code>，<code>tableFooterView</code> 介绍，文档和头文件已经说明的很清楚。</p>
+
+<pre><code class="objc">// 显示在表视图上方的附属视图，默认为 nil，不同于组头视图
+@property (nonatomic, strong, nullable) UIView *tableHeaderView;
+// 显示在表视图下方的附属视图，默认为 nil，不同于组尾视图
+@property (nonatomic, strong, nullable) UIView *tableFooterView;
+</code></pre>
+
+<!--more-->
+
+
+<p><img src="/images/QQ20160410-0@2x.png" alt="Demo 界面" /></p>
+
+<p>如上界面，在 <code>UITableView</code> 顶部有个 <code>tableHeaderView</code>，里面有一个 <code>UILabel</code>，label 的文字可能过长需要换行。使用自动布局布局 <code>tableHeaderView</code> 内部这个 label 子控件，我们可能想当然的把约束按照如下这样写：</p>
+
+<pre><code class="objc">... // 创建 tableView
+
+CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+CGFloat tableHeaderHeight = 100.0;
+UIView *tableHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, tableHeaderHeight)];
+tableHeader.backgroundColor = [UIColor lightGrayColor];
+tableView.tableHeaderView = tableHeader;
+
+UILabel *headerLabel = [[UILabel alloc] init];
+headerLabel.translatesAutoresizingMaskIntoConstraints = NO;
+headerLabel.numberOfLines = 0;
+headerLabel.text = @"这是 tableView 的 tableHeaderView 中的一个 label";
+headerLabel.textColor = [UIColor greenColor];
+[tableHeader addSubview:headerLabel];
+
+CGFloat leftMargin = 15.0;
+CGFloat labelWidth = screenWidth - 2*leftMargin;
+NSLayoutConstraint *labelConstraint1 = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:tableHeader attribute:NSLayoutAttributeLeft multiplier:1.0 constant:leftMargin];
+NSLayoutConstraint *labelConstraint2 = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:tableHeader attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+NSLayoutConstraint *labelConstraint3 = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:tableHeader attribute:NSLayoutAttributeRight multiplier:1.0 constant:-leftMargin];
+[tableHeader addConstraints:@[labelConstraint1, labelConstraint2, labelConstraint3]];
+</code></pre>
+
+<p>这样布局出来的 label，显示上是没有问题的，也的确会换行，但是 console 却会报 <code>Unable to simultaneously satisfy constraints</code> 警告：</p>
+
+<p><img src="/images/QQ20160424-0@2x.png" alt="Unable to simultaneously satisfy constraints" /></p>
+
+<p>向一个普通的 <code>UIView</code> 中添加一个多行的 <code>UILabel</code> 子控件，我的约束布局习惯是在 <code>x</code> 方向上只需要指定距离父控件 view 的左右间距，再指定它的 <code>y</code> 方向上的位置，一般情况下，这个 label 的布局已经是完成了，而且没有问题。可是，在这里的 <code>tableHeaderView</code> 中的 label 布局为什么出问题呢？</p>
+
+<p>原因在于 <code>UITableView</code> 对 <code>tableHeaderView</code> 属性的引用关系，<code>tableHeaderView</code> 默认是没有的，给 <code>UITableView</code> 添加 <code>tableHeaderView</code> 时，需要创建一个 view 然后赋值给 <code>UITableView</code> 的 <code>tableHeaderView</code> 属性。</p>
+
+<p>创建一个 <code>tableHeaderView</code> 的 view 时，一般使用 <code>- (instancetype)initWithFrame:(CGRect)frame;</code> 方法，这里需要传入 view 的 <code>frame</code> 参数，<code>frame</code> 参数可能会这样传入 <code>CGRectMake(0, 0, screenWidth, tableHeaderHeight)</code>，误以为需要将 view 的宽度设置一下，而问题恰巧就出现在这里的宽度。</p>
+
+<p>当代码走过创建 view 那一行，从 log 中看到，view 的 <code>frame</code> 确实和我们设置的一样：</p>
+
+<p><img src="/images/QQ20160424-1@2x.png" alt="创建 view 后的 frame" /></p>
+
+<p>但是，当调用 <code>tableView.tableHeaderView = tableHeader;</code> 后，会发现此时 view 的 <code>frame</code> 的宽度为 0 了：</p>
+
+<p><img src="/images/QQ20160424-2@2x.png" alt="指定 view 为 tableHeaderView 后的 frame" /></p>
+
+<p>这也就是为什么 console 会报出约束警告的原因，对于一个宽度为 0 的 view，而内部的 label 子控件 <code>x</code> 方向上的约束却以其父控件 view 的左右间距来布局，不报约束警告才怪呢？！</p>
+
+<p>想要解决这个约束警告很简单，只需指定 <code>x</code> 方向左边离父控件 view 的左边距离 15 个点，<code>y</code> 方向上按需要设定，对于有固有内容尺寸的控件，设定这两个约束就可以了，但是由于这是个需要换行的 label，因此还需要限制 label 的宽度，当然也可以指定 label 的 <code>preferredMaxLayoutWidth</code> 的值。</p>
+
+<pre><code class="objc">CGFloat leftMargin = 15.0;
+CGFloat labelWidth = screenWidth - 2*leftMargin;
+
+// 解决约束警告方式一:
+NSLayoutConstraint *labelConstraint1 = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:tableHeader attribute:NSLayoutAttributeLeft multiplier:1.0 constant:leftMargin];
+NSLayoutConstraint *labelConstraint2 = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:tableHeader attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+NSLayoutConstraint *labelWidthConstraint = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:labelWidth];
+[tableHeader addConstraints:@[labelConstraint1, labelConstraint2]];
+headerLabel.preferredMaxLayoutWidth = labelWidth;
+
+// 解决约束警告方式二:
+NSLayoutConstraint *labelConstraint1 = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:tableHeader attribute:NSLayoutAttributeLeft multiplier:1.0 constant:leftMargin];
+NSLayoutConstraint *labelConstraint2 = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:tableHeader attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+NSLayoutConstraint *labelConstraint3 = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:tableHeader attribute:NSLayoutAttributeRight multiplier:1.0 constant:-leftMargin];
+NSLayoutConstraint *labelWidthConstraint = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:labelWidth];
+[tableHeader addConstraints:@[labelConstraint1, labelConstraint2]];
+[headerLabel addConstraint:labelWidthConstraint];
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Xcode 项目忽略警告]]></title>
