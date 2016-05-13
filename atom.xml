@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-04-27T09:44:30+08:00</updated>
+  <updated>2016-05-13T17:42:59+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -946,9 +946,9 @@
   
   <entry>
     <title type="html"><![CDATA[自动布局指南（Auto Layout Guide）]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout/"/>
+    <link href="http://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/"/>
     <updated>2015-12-27T19:14:33+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout</id>
+    <id>http://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide</id>
     <content type="html"><![CDATA[<p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
 
 <p>文章目录结构：</p>
@@ -1042,7 +1042,7 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout/'>http://lengmolehongyan.github.io/blog/2015/12/27/understanding-auto-layout/</a><br/>
+            <a href='http://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/'>http://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/</a><br/>
             written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
             &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
             </p>
