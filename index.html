@@ -77,6 +77,71 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2016/07/28/git-notebook/">Git-notebook</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-07-28T21:35:27+08:00'><span class='date'>2016 年 07 月 28 日</span> <span class='time'>9:35 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h6>更新 <code>.gitignore</code> 文件</h6>
+
+<ol>
+<li><a href="https://github.com/github/gitignore">github 官方给出的各语言 .gitignore 示例文件</a></li>
+<li>当在 git 仓库中更新了 .gitignore 文件，需要执行下面命令，才能清除那些被忽略的文件</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git rm -r --cached .
+</span><span class='line'>$ git add .
+</span><span class='line'>$ git commit -m "update .gitignore"</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>修改最后一次提交的注释信息</h6>
+
+<ol>
+<li><code>git commit --amend</code> 可以修改最后一次提交的注释信息</li>
+<li>如果上一次的提交已经 <code>push</code> 到远程仓库，推到远程需要加 <code>-f</code> 参数来覆盖远程仓库，不过一般不建议这么搞</li>
+</ol>
+
+
+<h6>显示提交记录的参与者列表</h6>
+
+<p><code>git shortlog -sn</code></p>
+
+<p>显示提交记录的参与者列表，和 github 的参与者列表相同</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/'>http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2016/03/26/tableview-layoutconstraints-conflict/">UITableView tableHeaderView, tableFooterView 子控件布局约束警告</a></h1>
     
     
@@ -564,67 +629,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/">计算代码执行时间差</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-12-05T23:53:21+08:00'><span class='date'>2015 年 12 月 05 日</span> <span class='time'>11:53 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>开发中，有时候我们需要知道某个效果到底耗时多长时间，可能想到用 <code>Foundation</code> 框架中的 <code>NSDate</code> 类来计算，比如：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="bp">NSDate</span> <span class="o">*</span><span class="n">previousDate</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">];</span>
-</span><span class='line'><span class="p">...</span>
-</span><span class='line'><span class="n">NSTimeInterval</span> <span class="n">timeInterval</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">]</span> <span class="nl">timeIntervalSinceDate</span><span class="p">:</span><span class="n">previousDate</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在 <code>CoreFoundation</code> 框架中，有一个函数返回当前系统的绝对时间，也可以用做计算时间差。如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">CFAbsoluteTime</span> <span class="n">previousTime</span> <span class="o">=</span> <span class="n">CFAbsoluteTimeGetCurrent</span><span class="p">();</span>
-</span><span class='line'><span class="p">...</span>
-</span><span class='line'><span class="n">CFAbsoluteTime</span> <span class="n">currentTime</span> <span class="o">=</span> <span class="n">CFAbsoluteTimeGetCurrent</span><span class="p">();</span>
-</span><span class='line'><span class="n">CFAbsoluteTime</span> <span class="n">timeInterval</span> <span class="o">=</span> <span class="n">currentTime</span> <span class="o">-</span> <span class="n">previousTime</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p class='post-footer'>
-            原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/'>http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
-            </p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -640,6 +644,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/07/28/git-notebook/">Git-notebook</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/03/26/tableview-layoutconstraints-conflict/">UITableView tableHeaderView, tableFooterView 子控件布局约束警告</a>
       </li>
     
@@ -653,10 +661,6 @@
     
       <li class="post">
         <a href="/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析（Anatomy of a Constraint）</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/01/01/auto-layout-without-constraints/">没有约束的自动布局（Auto Layout Without Constraints）</a>
       </li>
     
   </ul>

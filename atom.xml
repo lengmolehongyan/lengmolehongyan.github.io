@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-05-26T14:21:20+08:00</updated>
+  <updated>2016-07-28T22:05:00+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git-notebook]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/"/>
+    <updated>2016-07-28T21:35:27+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook</id>
+    <content type="html"><![CDATA[<h6>更新 <code>.gitignore</code> 文件</h6>
+
+<ol>
+<li><a href="https://github.com/github/gitignore">github 官方给出的各语言 .gitignore 示例文件</a></li>
+<li>当在 git 仓库中更新了 .gitignore 文件，需要执行下面命令，才能清除那些被忽略的文件</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git rm -r --cached .
+</span><span class='line'>$ git add .
+</span><span class='line'>$ git commit -m "update .gitignore"</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>修改最后一次提交的注释信息</h6>
+
+<ol>
+<li><code>git commit --amend</code> 可以修改最后一次提交的注释信息</li>
+<li>如果上一次的提交已经 <code>push</code> 到远程仓库，推到远程需要加 <code>-f</code> 参数来覆盖远程仓库，不过一般不建议这么搞</li>
+</ol>
+
+
+<h6>显示提交记录的参与者列表</h6>
+
+<p><code>git shortlog -sn</code></p>
+
+<p>显示提交记录的参与者列表，和 github 的参与者列表相同</p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/'>http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[UITableView tableHeaderView, tableFooterView 子控件布局约束警告]]></title>
@@ -2086,9 +2131,9 @@
   
   <entry>
     <title type="html"><![CDATA[Directory Not Found for Option]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei/"/>
+    <link href="http://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/"/>
     <updated>2015-09-23T10:47:48+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei</id>
+    <id>http://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option</id>
     <content type="html"><![CDATA[<p>在 Xcode7 下编译项目，报了如下警告：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -2114,33 +2159,7 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei/'>http://lengmolehongyan.github.io/blog/2015/09/23/ios9-gua-pei/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
-            </p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[App Transport Security]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei/"/>
-    <updated>2015-09-21T23:37:59+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei</id>
-    <content type="html"><![CDATA[<p><code>App Transport Security</code> 是一项新的功能，用来提高了应用程序和 <code>web</code> 服务之间连接的安全性。这项功能是从 iOS9.0 和 OSX10.11 之后苹果新增的，要求默认连接最好是安全的连接。当然，应用程序也可以关闭这项功能。</p>
-
-<h4>默认配置</h4>
-
-<p>为 iOS9.0 和 OSX10.11 及之后版本的开发的 apps，用到 <code>NSURLConnection</code>，<code>CFURL</code> 或者 <code>NSURLSession</code> API 的所有连接，将使用 <code>App Transport Security</code> 默认配置。</p>
-
-<!--more-->
-
-
-<p>&ndash; 未完待续 &ndash;</p>
-
-<p class='post-footer'>
-            原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei/'>http://lengmolehongyan.github.io/blog/2015/09/21/ios9-gua-pei/</a><br/>
+            <a href='http://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/'>http://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/</a><br/>
             written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
             &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
             </p>

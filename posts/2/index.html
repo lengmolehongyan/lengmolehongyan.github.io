@@ -77,6 +77,67 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/">计算代码执行时间差</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-05T23:53:21+08:00'><span class='date'>2015 年 12 月 05 日</span> <span class='time'>11:53 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>开发中，有时候我们需要知道某个效果到底耗时多长时间，可能想到用 <code>Foundation</code> 框架中的 <code>NSDate</code> 类来计算，比如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="bp">NSDate</span> <span class="o">*</span><span class="n">previousDate</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">];</span>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'><span class="n">NSTimeInterval</span> <span class="n">timeInterval</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">]</span> <span class="nl">timeIntervalSinceDate</span><span class="p">:</span><span class="n">previousDate</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在 <code>CoreFoundation</code> 框架中，有一个函数返回当前系统的绝对时间，也可以用做计算时间差。如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">CFAbsoluteTime</span> <span class="n">previousTime</span> <span class="o">=</span> <span class="n">CFAbsoluteTimeGetCurrent</span><span class="p">();</span>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'><span class="n">CFAbsoluteTime</span> <span class="n">currentTime</span> <span class="o">=</span> <span class="n">CFAbsoluteTimeGetCurrent</span><span class="p">();</span>
+</span><span class='line'><span class="n">CFAbsoluteTime</span> <span class="n">timeInterval</span> <span class="o">=</span> <span class="n">currentTime</span> <span class="o">-</span> <span class="n">previousTime</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+            原始地址：
+            <a href='http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/'>http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/</a><br/>
+            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            </p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/">解决 Xcode 升级插件失效</a></h1>
     
     
@@ -241,7 +302,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/09/23/ios9-gua-pei/">Directory Not Found for Option</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/09/23/directory-not-found-for-option/">Directory Not Found for Option</a></h1>
     
     
       <p class="meta">
@@ -271,45 +332,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/blog/2015/09/23/ios9-gua-pei/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/21/ios9-gua-pei/">App Transport Security</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-21T23:37:59+08:00'><span class='date'>2015 年 09 月 21 日</span> <span class='time'>11:37 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>App Transport Security</code> 是一项新的功能，用来提高了应用程序和 <code>web</code> 服务之间连接的安全性。这项功能是从 iOS9.0 和 OSX10.11 之后苹果新增的，要求默认连接最好是安全的连接。当然，应用程序也可以关闭这项功能。</p>
-
-<h4>默认配置</h4>
-
-<p>为 iOS9.0 和 OSX10.11 及之后版本的开发的 apps，用到 <code>NSURLConnection</code>，<code>CFURL</code> 或者 <code>NSURLSession</code> API 的所有连接，将使用 <code>App Transport Security</code> 默认配置。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/21/ios9-gua-pei/">阅读全文</a>
+      <a rel="full-article" href="/blog/2015/09/23/directory-not-found-for-option/">阅读全文</a>
     </footer>
   
 
@@ -568,6 +591,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/07/28/git-notebook/">Git-notebook</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/03/26/tableview-layoutconstraints-conflict/">UITableView tableHeaderView, tableFooterView 子控件布局约束警告</a>
       </li>
     
@@ -581,10 +608,6 @@
     
       <li class="post">
         <a href="/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析（Anatomy of a Constraint）</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/01/01/auto-layout-without-constraints/">没有约束的自动布局（Auto Layout Without Constraints）</a>
       </li>
     
   </ul>
