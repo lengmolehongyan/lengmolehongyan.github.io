@@ -120,10 +120,78 @@ View.width = 0.5 * View.height + 0.0
 
 ## 创建没有歧义的、不冲突的布局
 
-使用自动布局的目标就是，创建一系列方程让这每一个方程有且仅有一个可能的结果。有歧义的约束有不止一个结果，冲突的约束不会有有效的结果。
+当使用自动布局时，我们的目标就是，提供一系列方程让它们有且仅有一种可能的解决方案。有歧义的约束有多个可能的解决方案，冲突的约束不会有有效的解决方案。
 
-一般情况下，须为每个视图都指定大小和位置的约束。但是，如果父视图的尺寸已经设置（比如，在 iOS 中控制器的根视图），没有歧义的、不冲突的布局需要视图每个维度的两个约束条件（不算父视图）。然而，在选择使用什么约束的时候有广泛选项
+一般来说，须为每个视图都指定大小和位置的约束。但是，如果父视图的大小已经设置（比如，在 iOS 中控制器的根视图），没有歧义的、不冲突的布局需要为每个视图的每个维度的设置两个约束条件（不包括父视图）。然而，在选择你想要使用的约束的时有大量的选择。例如，下面的三种方式都可以创建出没有歧义的、不冲突的布局（只显示了水平方向的约束）：
 
-😄😄😄正在翻译。。。😄😄😄
+![constraint_examples](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/constraint_examples_2x.png)
+
+* 第一种布局约束了视图的左边缘相对于父视图的左边缘的位置，同时设置了该视图的宽度，右边缘的位置可以基于父视图的大小以及其他约束计算出来。
+* 第二种布局约束了视图的左边缘相对于父视图的左边缘的位置，同时约束了视图的右边缘相对于父视图的右边缘的位置，该视图的宽度可以基于父视图的大小以及其他约束计算出来。
+* 第三种布局约束了视图的左边缘相对于父视图的左边缘的位置，同时该视图和父视图 center 中心对齐，视图的大小和距离父视图右边缘的位置都可以基于父视图的大小以及其他约束计算出来。
+
+注意每种布局都有一个视图和两个水平方向的约束。在每种情况下，约束完全定义了视图的宽度和水平位置。这意味着所有的布局沿着水平轴创建了没有歧义的，不冲突的布局。然而这些布局并不完全相同，想象一下，如果父视图的宽度改变了将会发生什么？
+
+在第一种布局中，视图的宽度不会发生改变。大多数时候，这并不是你所想要的。事实上，作为一般原则，你应该避免给视图的大小赋值常量。自动布局是设计给创建布局来动态适应不同的环境。当给视图设置一个固定大小，就削弱了自动布局的强大了。
+
+第二种布局和第三种布局产生相同的效果，可能并不明显：父视图的宽度改变了，它们都和父视图保持一个固定的间距。然而，它们并不一定相同。一般来说，第二个例子更容易理解，但是第三个例子可能是更有用的，尤其是设置一些视图 center 中心对齐。一如既往，为你的特点布局选择最佳的方法。
+
+现在考虑一些更复杂的情况，假设你想在一个 iPhone 上显示两个视图，一边一个，你需要确保它们在各边界上有个好的间距，且总是有相同的宽度，而且在设备选中的时候，它们也能正确的做出调整。
+
+下面的附图展示了在竖屏、横屏情况下的两个视图：
+
+![Blocks_Portrait](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Portrait_2x.png)
+
+![Blocks_Landscape](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/Blocks_Landscape_2x.png)
+
+所以，这样的约束应该是什么样子呢？下面的附图提供了一种解决方案：
+
+![two_view_example_1](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/two_view_example_1_2x.png)
+
+上面的解决方案使用了下面这些约束：
+
+```objc
+// 垂直约束
+Red.top = 1.0 * Superview.top + 20.0
+Superview.bottom = 1.0 * Red.bottom + 20.0
+Blue.top = 1.0 * Superview.top + 20.0
+Superview.bottom = 1.0 * Blue.bottom + 20.0
+ 
+// 水平约束
+Red.leading = 1.0 * Superview.leading + 20.0
+Blue.leading = 1.0 * Red.trailing + 8.0
+Superview.trailing = 1.0 * Blue.trailing + 20.0
+Red.width = 1.0 * Blue.width + 0.0
+```
+
+按照之前的经验法则，这种布局有两个视图，四个水平约束和四个垂直约束。虽然这不是一个绝对有效的法则，但它可以表示出你已经在正确的道路上。更重要的是，约束唯一指定了每个视图的大小和位置，生成一个没有歧义的、不冲突的布局。移除任何一个约束，布局就会变成有歧义的，添加额外的约束，就会导致约束冲突。
+
+当然，这并不是唯一的解决方案。这有一个同样有效的方法：
+
+![two_view_example_2](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/two_view_example_2_2x.png)
+
+代替固定蓝色视图的顶部和底部距离父视图的位置，让蓝色视图和红色视图顶部对齐，同时让蓝色视图和红色视图底部对齐，约束如下所示：
+
+```objc
+// 垂直约束
+Red.top = 1.0 * Superview.top + 20.0
+Superview.bottom = 1.0 * Red.bottom + 20.0
+Red.top = 1.0 * Blue.top + 0.0
+Red.bottom = 1.0 * Blue.bottom + 0.0
+ 
+// 水平约束
+Red.leading = 1.0 * Superview.leading + 20.0
+Blue.leading = 1.0 * Red.trailing + 8.0
+Superview.trailing = 1.0 * Blue.trailing + 20.0
+Red.width = 1.0 * Blue.width + 0.0
+```
+
+该例子中任然有两个视图，四个水平约束，四个垂直约束，仍然会产生没有歧义的、不冲突的布局。
+
+> 但是哪个更好呢？
+> 这些方案都会产生有效的布局，因此哪个更好呢？
+> 不幸的是，客观证明一种方法优于其他方法是几乎不可能的，因为每个都有自己的优点和缺点。
+
+
 
 

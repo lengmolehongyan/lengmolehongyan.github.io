@@ -55,5 +55,8 @@ footer: true
 43. [小土刀](http://wdxtub.com/)
 44. [雷纯锋的技术博客](http://blog.leichunfeng.com/)
 45. [标哥的技术博客](http://www.henishuo.com/)
+46. [Zhiyi](http://zyden.vicp.cc/)
+47. [梦维](http://www.dreamingwish.com/)
+48. [Forkong](http://ifujun.com/)
 
 
