@@ -103,7 +103,7 @@
 
 <p>  xctool 将所有构建和测试项目的结果格式化为 JSON 对象，如果你正在构建一个可持续集成系统，使用 xctool 意味着不用再正则解析 xcodebuild 的输出结果了。</p>
 
-<p>  尝试一种输出格式，可以自定义输出结果，或者使用 <code>-reporter json-stream</code> 命令可以查看完整的事件流。</p></li>
+<p>  尝试一种日志输出样式，也可以自定义输出结果，或者使用 <code>-reporter json-stream</code> 命令可以查看完整的事件流。</p></li>
 </ul>
 
 
@@ -423,6 +423,145 @@
 
 
 <p>你可以在 <a href="http://about.travis-ci.org/docs/user/osx-ci-environment/">About OS X Travis CI Environment</a> 这份文档中学到更多有关 iOS 和 OSX 应用的 Travis CI 环境，通过查阅 <a href="https://docs.travis-ci.com/user/getting-started/">Getting Started</a> 找到配置项目的详细文档。</p>
+
+<h2>日志样式</h2>
+
+<p>xctool 以不同的样式输出编译构建和测试结果日志，如果不指定日志样式，xctool 默认使用 <code>pretty</code> 和 <code>user-notifications</code>，xctool 也有如下规则：</p>
+
+<ul>
+<li>如果没有检测到 TTY，则不能覆盖 <code>pretty</code> 这种日志样式，可以通过在环境中设置 <code>XCTOOL_FORCE_TTY</code> 来覆盖。</li>
+<li>如果 xctool 检测到编译构建任务是在 Travis CI，CircleCI，TeamCity，或者 Jenkins（即在环境中设置 TRAVIS=true，CIRCLECI=true，TEAMCITY_VERSION，或者 JENKINS_URL）上运行的，<code>user-notifications</code> 样式是不会使用的。</li>
+</ul>
+
+
+<p>可以通过 <code>-option</code> 选项来选择自己的日志输出样式：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkspace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  -reporter plain <span class="se">\</span>
+</span><span class='line'>  build
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>默认情况下，日志是标准输出，但是也可以直接在日志样式选项后追加 <code>:OUTPUT_PATH</code> 来指定日志输出到文件中：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkspace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  -reporter plain:/path/to/plain-output.txt <span class="se">\</span>
+</span><span class='line'>  build
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>只要喜欢，可以使用尽可能多的日志样式，只需多次使用 <code>-reporter</code> 选项。</p>
+
+<h3>包含的日志样式</h3>
+
+<ul>
+<li><strong>pretty</strong>：一个使用 ANSI 颜色和 Unicode 字符输出漂亮的基于文本的日志样式（默认）。</li>
+<li><strong>plain</strong>：和 <em>pretty</em> 类似，但是没有颜色和 Unicode 字符。</li>
+<li><strong>phabricator</strong>：将编译构建、测试结果输出成一个 JSON 数组的样式，可以导入到 <a href="http://phabricator.org/">Phabricator</a> 代码审查工具。</li>
+<li><strong>junit</strong>：测试结果生成一个 JUnit/xUnit 兼容的 XML 文件。</li>
+<li><strong>json-stream</strong>：一个以 JSON 字典格式输出编译构建、测试事件流，每行一个（<a href="https://gist.github.com/fpotter/82ffcc3d9a49d10ee41b">样式示例</a>）。</li>
+<li><strong>json-compilation-database</strong>：输出编译构建事件的 <a href="http://clang.llvm.org/docs/JSONCompilationDatabase.html">JSON Compilation Database</a>，被用于 <a href="http://clang.llvm.org/docs/LibTooling.html">Clang Tooling</a>，例如 <a href="http://oclint.org/">OCLint</a>。</li>
+<li><strong>user-notifications</strong>：当事件\任务完成后，会给通知中心发送通知（<a href="https://cloud.githubusercontent.com/assets/1044236/2771974/a2715306-ca74-11e3-9889-fa50607cc412.png">示例通知</a>）。</li>
+<li><strong>teamcity</strong>：发送服务消息到 <a href="">TeamCity</a> 持续集成服务器。</li>
+</ul>
+
+
+<h3>实现自己的日志样式</h3>
+
+<p>你也可以使用任何你喜欢的语言来实现自己的日志样式，在 xctool 中，日志样式是独立可执行的，从 STDIN 读取 JSON 对象，格式化结果写入到 STDOUT。</p>
+
+<p>你可以通过 <code>-reporter</code> 选项指定完整路径调用自定义日志样式：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>path/to/xctool.sh <span class="se">\</span>
+</span><span class='line'>  -workspace YourWorkspace.xcworkspace <span class="se">\</span>
+</span><span class='line'>  -scheme YourScheme <span class="se">\</span>
+</span><span class='line'>  -reporter /path/to/your/reporter <span class="se">\</span>
+</span><span class='line'>  <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>例如，下面是用 Python 写的一个简单的日志样式，每次测试通过输出一个句号 <code>.</code>，失败则输出一个感叹号 <code>!</code>。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fileinput</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">json</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">():</span>
+</span><span class='line'>    <span class="n">obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="n">obj</span><span class="p">[</span><span class="s">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;end-test&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">obj</span><span class="p">[</span><span class="s">&#39;succeeded&#39;</span><span class="p">]:</span>
+</span><span class='line'>            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;!&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果你用 Objective-C 写日志样式，你会发现 <code>Reporter</code> 类比较有帮助，见 <a href="">Reporter.h</a>。</p>
+
+<h2>配置（.xctool-args）</h2>
+
+<p>如果你在命令行中经常需要通过很多参数来使用 <em>xctool</em>，可以设置 <strong>.xctool-args</strong> 文件来加快工作流程。如果 <em>xctool</em> 在当前目录中发现 <strong>.xctool-args</strong> 文件，它会自动在参数那里预填充。</p>
+
+<p>格式是一个 JSON 数组的参数配置：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">[</span>
+</span><span class='line'>  <span class="s2">&quot;-workspace&quot;</span><span class="p">,</span> <span class="s2">&quot;YourWorkspace.xcworkspace&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;-scheme&quot;</span><span class="p">,</span> <span class="s2">&quot;YourScheme&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;-configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;Debug&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;-sdk&quot;</span><span class="p">,</span> <span class="s2">&quot;iphonesimulator&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;-arch&quot;</span><span class="p">,</span> <span class="s2">&quot;i386&quot;</span>
+</span><span class='line'><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通过命令行配置的任何额外参数优先于它们在 <em>.xctool-args</em> 文件中的配置。</p>
 
 <p class='post-footer'>
             原始地址：
