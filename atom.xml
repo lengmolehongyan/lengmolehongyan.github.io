@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-08-04T18:08:53+08:00</updated>
+  <updated>2016-08-04T18:19:56+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -1146,9 +1146,6 @@
 </ul>
 
 
-<p></p>
-
-
 <p>要使用 StackView，在 IB 中拖一个纵向或者水平的 StackView 到画布中，然后拖控件放到 StackView 内。</p>
 
 <p>如果一个视图有自身内容大小，它在 StackView 中将显示为自身的大小。如果没有，IB 将会提供默认的大小，你可以调整它的大小，IB 中添加约束来保持大小不变。</p>
@@ -1162,8 +1159,9 @@
 
 <p>StackView 的布局还基于子视图的内容压缩和抗压缩优先级，可以在尺寸检查器（Size Inspector）修改。</p>
 
-<blockquote><p>注：
-可以通过给子视图直接添加约束来更进一步的调整布局，但是，要避免任何可能的冲突。通用法则：如果视图对于一个给定的大小默认回到其本身内容大小，便可以安全添加该约束。更多约束冲突，参阅 <a href="">约束冲突（Unsatisfiable Layouts）</a>。</p></blockquote>
+<blockquote><p>注：</p>
+
+<p>可以通过给子视图直接添加约束来更进一步的调整布局，但是，要避免任何可能的冲突。通用法则：如果视图对于一个给定的大小默认回到其本身内容大小，便可以安全添加该约束。更多约束冲突，参阅 <a href="">约束冲突（Unsatisfiable Layouts）</a>。</p></blockquote>
 
 <p>此外，你还可以用 StackView 嵌套 StackView，构建更加复杂的布局。</p>
 
@@ -1173,8 +1171,9 @@
 
 <p>有关 StackView 的更多使用，参阅 <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/doc/uid/TP40015256">UIStackView Class Reference</a> 或者 NSStackView Class Reference。</p>
 
-<blockquote><p>注：
-虽然嵌套使用 StackView 可以构建出复杂的界面，但仍不能完全避开约束的使用，因为至少总是需要设置最外层视图的位置（和可能的大小）。</p></blockquote>
+<blockquote><p>注：</p>
+
+<p>虽然嵌套使用 StackView 可以构建出复杂的界面，但仍不能完全避开约束的使用，因为至少总是需要设置最外层视图的位置（和可能的大小）。</p></blockquote>
 
 <p>原文链接：<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/AutoLayoutWithoutConstraints.html#//apple_ref/doc/uid/TP40010853-CH8-SW1">Auto Layout Without Constraints</a></p>
 
@@ -1211,9 +1210,6 @@
 </ul>
 
 
-<p></p>
-
-
 <p>这些场景大多发生在应用运行状态下，它们需要应用做出动态响应。但其它比如支持不同屏幕尺寸的应用，就可以适应不同的场景。因为对于一个设备的屏幕尺寸是不会发生改变的，但界面布局适配后你的应用在 iPhone4S 和 iPhone6 Plus，甚至 iPad 上运行效果都是相同的。自动布局同时也是 iPad 上支持 SlideOver 和 SplitView 的重要组件。</p>
 
 <!--more-->
@@ -1230,9 +1226,6 @@
 <li>程序支持国际化</li>
 <li>程序支持 Dynamic Type（iOS）</li>
 </ul>
-
-
-<p></p>
 
 
 <p>当程序展示内容发生改变时，相比旧的布局，新的内容可能需要不同的布局。这一般发生在程序显示文本或者图片时。比如，一个新闻类的应用，需要依据新闻文章的大小来调整它的布局。同样，一个照片集合的页面需要处理大量图片尺寸和缩放比例的问题。</p>
@@ -1408,9 +1401,6 @@
 <li>µLaw</li>
 <li>aLaw</li>
 </ol>
-
-
-<p></p>
 
 
 <p>对应音频文件格式是 <code>aiff</code>，<code>wav</code>，<code>caf</code> 文件，文件也必须放到 app 的 <code>mainBundle</code> 目录中。</p>
