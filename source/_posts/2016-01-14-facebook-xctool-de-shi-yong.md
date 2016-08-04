@@ -20,7 +20,7 @@ description: 本文是 Facebook xctool 工具的使用介绍，学习并使用�
 
 	xctool 将所有构建和测试项目的结果格式化为 JSON 对象，如果你正在构建一个可持续集成系统，使用 xctool 意味着不用再正则解析 xcodebuild 的输出结果了。
 
-	尝试一种输出格式，可以自定义输出结果，或者使用 `-reporter json-stream` 命令可以查看完整的事件流。
+	尝试一种日志输出样式，也可以自定义输出结果，或者使用 `-reporter json-stream` 命令可以查看完整的事件流。
 
 <!--more-->
 
@@ -264,17 +264,98 @@ script: xctool -workspace MyApp.xcworkspace -scheme MyApp test
 你可以在 [About OS X Travis CI Environment](http://about.travis-ci.org/docs/user/osx-ci-environment/) 这份文档中学到更多有关 iOS 和 OSX 应用的 Travis CI 环境，通过查阅 [Getting Started](https://docs.travis-ci.com/user/getting-started/) 找到配置项目的详细文档。
 
 
+## 日志样式
 
+xctool 以不同的样式输出编译构建和测试结果日志，如果不指定日志样式，xctool 默认使用 `pretty` 和 `user-notifications`，xctool 也有如下规则：
 
+* 如果没有检测到 TTY，则不能覆盖 `pretty` 这种日志样式，可以通过在环境中设置 `XCTOOL_FORCE_TTY` 来覆盖。
+* 如果 xctool 检测到编译构建任务是在 Travis CI，CircleCI，TeamCity，或者 Jenkins（即在环境中设置 TRAVIS=true，CIRCLECI=true，TEAMCITY_VERSION，或者 JENKINS_URL）上运行的，`user-notifications` 样式是不会使用的。
 
-	
+可以通过 `-option` 选项来选择自己的日志输出样式：
 
+```
+path/to/xctool.sh \
+  -workspace YourWorkspace.xcworkspace \
+  -scheme YourScheme \
+  -reporter plain \
+  build
+```
 
+默认情况下，日志是标准输出，但是也可以直接在日志样式选项后追加 `:OUTPUT_PATH` 来指定日志输出到文件中：
 
-	
+```
+path/to/xctool.sh \
+  -workspace YourWorkspace.xcworkspace \
+  -scheme YourScheme \
+  -reporter plain:/path/to/plain-output.txt \
+  build
+```
 
+只要喜欢，可以使用尽可能多的日志样式，只需多次使用 `-reporter` 选项。
 
+### 包含的日志样式
 
+* **pretty**：一个使用 ANSI 颜色和 Unicode 字符输出漂亮的基于文本的日志样式（默认）。
+* **plain**：和 *pretty* 类似，但是没有颜色和 Unicode 字符。
+* **phabricator**：将编译构建、测试结果输出成一个 JSON 数组的样式，可以导入到 [Phabricator](http://phabricator.org/) 代码审查工具。
+* **junit**：测试结果生成一个 JUnit/xUnit 兼容的 XML 文件。
+* **json-stream**：一个以 JSON 字典格式输出编译构建、测试事件流，每行一个（[样式示例](https://gist.github.com/fpotter/82ffcc3d9a49d10ee41b)）。
+* **json-compilation-database**：输出编译构建事件的 [JSON Compilation Database](http://clang.llvm.org/docs/JSONCompilationDatabase.html)，被用于 [Clang Tooling](http://clang.llvm.org/docs/LibTooling.html)，例如 [OCLint](http://oclint.org/)。
+* **user-notifications**：当事件\任务完成后，会给通知中心发送通知（[示例通知](https://cloud.githubusercontent.com/assets/1044236/2771974/a2715306-ca74-11e3-9889-fa50607cc412.png)）。
+* **teamcity**：发送服务消息到 [TeamCity]() 持续集成服务器。
 
+### 实现自己的日志样式
 
+你也可以使用任何你喜欢的语言来实现自己的日志样式，在 xctool 中，日志样式是独立可执行的，从 STDIN 读取 JSON 对象，格式化结果写入到 STDOUT。
+
+你可以通过 `-reporter` 选项指定完整路径调用自定义日志样式：
+
+```
+path/to/xctool.sh \
+  -workspace YourWorkspace.xcworkspace \
+  -scheme YourScheme \
+  -reporter /path/to/your/reporter \
+  test
+```
+
+例如，下面是用 Python 写的一个简单的日志样式，每次测试通过输出一个句号 `.`，失败则输出一个感叹号 `!`。
+
+```python
+#!/usr/bin/python
+
+import fileinput
+import json
+import sys
+
+for line in fileinput.input():
+    obj = json.loads(line)
+
+    if obj['event'] == 'end-test':
+        if obj['succeeded']:
+            sys.stdout.write('.')
+        else:
+            sys.stdout.write('!')
+
+sys.stdout.write('\n')
+```
+
+如果你用 Objective-C 写日志样式，你会发现 `Reporter` 类比较有帮助，见 [Reporter.h]()。
+
+## 配置（.xctool-args）
+
+如果你在命令行中经常需要通过很多参数来使用 *xctool*，可以设置 **.xctool-args** 文件来加快工作流程。如果 *xctool* 在当前目录中发现 **.xctool-args** 文件，它会自动在参数那里预填充。
+
+格式是一个 JSON 数组的参数配置：
+
+```json
+[
+  "-workspace", "YourWorkspace.xcworkspace",
+  "-scheme", "YourScheme",
+  "-configuration", "Debug",
+  "-sdk", "iphonesimulator",
+  "-arch", "i386"
+]
+```
+
+通过命令行配置的任何额外参数优先于它们在 *.xctool-args* 文件中的配置。
 
