@@ -112,9 +112,6 @@
 </ul>
 
 
-<p></p>
-
-
 <p>界面上的大多数约束是由两项之间的关系表示的，这些项可以是视图，也可以是布局参考线。约束也可以表示同一视图两个不同属性之间的关系，比如，设置视图的宽高比例，也可以给视图的高或宽设置为一个常量值，当设置为常量值时，第二项为空，第二项的属性设置为 Not An Attribute，乘数为 0.0。</p>
 
 <h2>自动布局属性</h2>
@@ -125,8 +122,9 @@
 
 <p>有关完整的布局属性列表，参阅 <a href="https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/index.html#//apple_ref/c/tdef/NSLayoutAttribute">NSLayoutAttribute 枚举</a> 。</p>
 
-<blockquote><p>注：
-虽然 OSX 和 iOS 都是使用 NSLayoutAttribute 枚举，但它们定义的值集稍有不同，查阅完整布局属性列表时，请确保查看的是正确平台的文档。</p></blockquote>
+<blockquote><p>注：</p>
+
+<p>虽然 OSX 和 iOS 都是使用 NSLayoutAttribute 枚举，但它们定义的值集稍有不同，查阅完整布局属性列表时，请确保查看的是正确平台的文档。</p></blockquote>
 
 <h2>示例方程</h2>
 
@@ -151,8 +149,9 @@
 
 <p>3-1 列出了不同常见约束的表达式。</p>
 
-<blockquote><p>注：
-本章节所有示例方程都是使用的伪代码，想看实际代码创建约束，参阅 <a href="">自动布局手册</a> 和 <a href="">代码创建约束</a>。</p></blockquote>
+<blockquote><p>注：</p>
+
+<p>本章节所有示例方程都是使用的伪代码，想看实际代码创建约束，参阅 <a href="">自动布局手册</a> 和 <a href="">代码创建约束</a>。</p></blockquote>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -236,8 +235,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<blockquote><p>注：
-当重新调整方程中的项时，请确保调整了乘数和常量。比如，常量值 8.0 要变成 -8.0，乘数 2.0 要变成 0.5，常量值 0.0 和 乘数 1.0 保持不变。</p></blockquote>
+<blockquote><p>注：</p>
+
+<p>当重新调整方程中的项时，请确保调整了乘数和常量。比如，常量值 8.0 要变成 -8.0，乘数 2.0 要变成 0.5，常量值 0.0 和 乘数 1.0 保持不变。</p></blockquote>
 
 <p>你会发现，自动布局经常提供多种方式来解决同样的问题。理想情况下，你应该选择的是最能清晰表达意图的方案。然而，不同的开发者无疑会不同意哪个方案是最好的。这里，相比正确的方案，一贯选择好的方案。如果你选择一种方案，并坚持使用，从长远来看，你将遇到很少问题。比如，本指南使用以下规则：</p>
 
@@ -341,11 +341,77 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>该例子中任然有两个视图，四个水平约束，四个垂直约束，仍然会产生没有歧义的、不冲突的布局。</p>
+<p>该例子中仍然有两个视图，四个水平约束，四个垂直约束，仍然会产生没有歧义的、不冲突的布局。</p>
 
-<blockquote><p>但是哪个更好呢？
-这些方案都会产生有效的布局，因此哪个更好呢？
-不幸的是，客观证明一种方法优于其他方法是几乎不可能的，因为每个都有自己的优点和缺点。</p></blockquote>
+<blockquote><p>但是哪个更好呢？</p>
+
+<p>这些方案都会产生有效的布局，因此哪个更好呢？</p>
+
+<p>不幸的是，客观证明一种方法优于其他方法是几乎不可能的，因为每个都有自己的优点和缺点。</p>
+
+<p>当一个视图被移除了，第一种方案相对好一点。从视图层级上移除一个视图，会同时删除和这个视图相关的所有约束。因此，当移除红色视图时，蓝色视图还会有三个约束。只需要再添加一个约束，就会再次产生一个有效的布局。在第二种方案下，移除红色视图，蓝色视图就只剩下一个约束了。</p>
+
+<p>另一方面，第一种方案如果你希望这两个视图顶部和底部对齐，就必须确保它们顶部和底部约束的常亮值相同。如果改变了一个常量值，你必须记着要修改另一个。</p></blockquote>
+
+<h2>约束不等式</h2>
+
+<p>到目前为止，所有示例的约束都是等式，但这只是一部分。约束表达式也可以表示为不等式，具体而言，约束的关系可以是等于、大于等于、小于等于。</p>
+
+<p>例如，你可以使用约束来设置一个视图的最小或者最大尺寸（表 3-3）。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="err">表</span> <span class="mi">3</span><span class="o">-</span><span class="mi">3</span> <span class="err">设置最小和最大尺寸</span>
+</span><span class='line'><span class="c1">// 设置最小宽度</span>
+</span><span class='line'><span class="n">View</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">NotAnAttribute</span> <span class="o">+</span> <span class="mf">40.0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 设置最大宽度</span>
+</span><span class='line'><span class="n">View</span><span class="p">.</span><span class="n">width</span> <span class="o">&lt;=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">NotAnAttribute</span> <span class="o">+</span> <span class="mf">280.0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一旦开始使用不等式，每个视图每个维度上的两个约束的规则就会打破，你总是可以用两个不等式来代替一个等式关系。在表 3-4 中，单一的等式关系和一组不等式产生相同的效果。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="err">表</span> <span class="mi">3</span><span class="o">-</span><span class="mi">4</span> <span class="err">用两个不等式来代替一个等式关系</span>
+</span><span class='line'><span class="c1">// 单一的等式关系</span>
+</span><span class='line'><span class="n">Blue</span><span class="p">.</span><span class="n">leading</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">Red</span><span class="p">.</span><span class="n">trailing</span> <span class="o">+</span> <span class="mf">8.0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 可以替换为两个不等式</span>
+</span><span class='line'><span class="n">Blue</span><span class="p">.</span><span class="n">leading</span> <span class="o">&gt;=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">Red</span><span class="p">.</span><span class="n">trailing</span> <span class="o">+</span> <span class="mf">8.0</span>
+</span><span class='line'><span class="n">Blue</span><span class="p">.</span><span class="n">leading</span> <span class="o">&lt;=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">Red</span><span class="p">.</span><span class="n">trailing</span> <span class="o">+</span> <span class="mf">8.0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>反过来则就不一定成立，因为两个不等式并不总是等于一个等式。比如，在表 3-3 中的不等式限制了视图宽度的可能大小范围，但是没有设置它的宽度具体值，你仍然需要在这个范围内添加额外的水平约束来设置视图的位置和大小。</p>
+
+<h2>约束优先级</h2>
+
+<p>默认情况下，所有约束都是必需的。自动布局必须计算出一种方案来满足所有约束。如果不能，则会报错。自动布局会在控制台输出布局冲突的信息，并干掉其中一个约束，然后重新计算出新的方案。更多信息，参阅<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/ConflictingLayouts.html#//apple_ref/doc/uid/TP40010853-CH19-SW1">约束冲突</a>。</p>
+
+<p>你也可以创建可选约束。所有约束都有一个从 1 到 1000 的优先级，优先级为 1000 的约束是必须的，其他约束都是可选的。</p>
+
+<p>当计算布局方案时，自动布局按照优先级从高到低的顺序尝试满足所有约束。如果不能满足一个可选约束，这个约束就会被跳过，继续下一个约束。</p>
+
+<p>即使一个可选约束不能满足，它仍然可以影响布局。如果在跳过可选约束后的布局中，有任何有歧义的，系统会选择最接近这个约束的布局方案。以这种方式，不满足的可选约束作为一种力将视图拉向他们。</p>
+
+<p>可选约束和不等式经常一起工作。比如，在表 3-4 中，可以将两个不等式改为不同的优先级。大于等于的关系可以表示为必须的（优先级为1000），小于等于的关系表示为低优先级（优先级为250）。这就意味着，蓝色视图不能比从红色视图的 8.0 个点更近。然而，其他约束会把它拉得更远。不过，可选约束把蓝色视图拉向红色视图，确保在布局中添加其它约束能尽可能地接近 8.0 点的间距。</p>
+
+<blockquote><p>注：</p>
+
+<p>不要觉得必须使用优先级为 1000 的值。事实上，优先级一般围绕集中使用系统定义的低（250），中（500），高（750），必须的（1000）优先级。你可能需要让约束的优先级比这些值高或低一两个点来帮助防止关系。如果你的值远超一两个点，你可能要重新检查你的布局逻辑了。</p>
+
+<p>在 iOS 上定义的约束优先级常量，参阅 <a href="https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/index.html#//apple_ref/c/tdef/UILayoutPriority">UILayoutPriority</a> 枚举。对于 OS X，参阅 Layout Priorities 常量。</p></blockquote>
 
 <p class='post-footer'>
             原始地址：
