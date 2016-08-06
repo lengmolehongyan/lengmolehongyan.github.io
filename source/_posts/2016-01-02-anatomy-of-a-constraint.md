@@ -231,7 +231,7 @@ Blue.leading <= 1.0 * Red.trailing + 8.0
 
 ## 约束优先级
 
-默认情况下，所有约束都是必需的。自动布局必须计算出一种方案来满足所有约束。如果不能，则会报错。自动布局会在控制台输出布局冲突的信息，并干掉其中一个约束，然后重新计算出新的方案。更多信息，参阅[约束冲突](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/ConflictingLayouts.html#//apple_ref/doc/uid/TP40010853-CH19-SW1)。
+默认情况下，所有约束都是必需的。自动布局必须计算出一种方案来满足所有约束。如果不能，则会报错。自动布局会在控制台输出布局冲突的信息，并干掉其中一个约束，然后重新计算出新的方案。更多信息，参阅 [约束冲突](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/ConflictingLayouts.html#//apple_ref/doc/uid/TP40010853-CH19-SW1)。
 
 你也可以创建可选约束。所有约束都有一个从 1 到 1000 的优先级，优先级为 1000 的约束是必须的，其他约束都是可选的。
 
@@ -243,10 +243,57 @@ Blue.leading <= 1.0 * Red.trailing + 8.0
 
 > 注：
 > 
-> 不要觉得必须使用优先级为 1000 的值。事实上，优先级一般围绕集中使用系统定义的低（250），中（500），高（750），必须的（1000）优先级。你可能需要让约束的优先级比这些值高或低一两个点来帮助防止关系。如果你的值远超一两个点，你可能要重新检查你的布局逻辑了。
+> 不要觉得必须使用优先级为 1000 的值。事实上，优先级一般集中使用围绕系统定义的低（250），中（500），高（750），必须的（1000）优先级。你可能需要让约束的优先级比这些值高或低一两个点来帮助防止关系。如果你的值远超一两个点，你可能要重新检查你的布局逻辑了。
 > 
 > 在 iOS 上定义的约束优先级常量，参阅 [UILayoutPriority](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/index.html#//apple_ref/c/tdef/UILayoutPriority) 枚举。对于 OS X，参阅 Layout Priorities 常量。
 
+## 固有内容大小
+
+到目前为止，所有示例都是使用约束来定义视图的位置和大小。然而，一些视图依据给定的内容有一个原生的大小。这就称为它们的 *固有内容大小*。比如，一个按钮的固有内容大小就是它的标题加上一个小的间距。
+
+并不是所有视图都有固有内容大小。对于有固有内容大小的视图，固有内容大小会定义视图的宽，高，或者宽高都定义。表 3-1 列举了一些例子。
+
+**表 3-1** 常用控件的固有内容大小
+
+控件 | 固有内容大小
+------- | -------
+UIVie 和 NSView | 没有固有内容大小。
+Sliders | 只定义了宽度（iOS）。<p></p>定义宽度，高度，或者都定义——取决于 slider 的类型（OSX）。
+Labels，buttons，switches，textFields | 高度宽度都定义。
+TextViews，imageViews | 固有内容大小会改变
+
+固有内容大小取决于视图当前的内容。一个 label 或者 button 的固有内容大小是基于所显示文本的数量和所使用的字体。对于其他视图，固有内容大小更加复杂。例如，一个没有图片的 imageView 是没有固有内容大小的，当你给它添加一个图片后，它的固有内容大小就是图片的大小。
+
+TextView 的固有内容大小的改变取决于它的内容，以及是否可以滚动，和给它添加的其他约束。比如，开启滚动后，它就没有固有内容大小了。关闭滚动后，它的固有内容大小默认是根据没有任何换行文本的大小计算的。如果文本中没有换行，它计算所需宽度和高度来布局内容为一个单行文本。如果为它添加宽度约束，固有内容大小依据给定的宽度定义所需高度来展示文本。
+
+自动布局用每个维度上的一组约束来表示视图的固有内容大小。内容压缩（content hugging）将视图向内拉，使它紧靠内容。抗内容压缩（compression resistance）将视图向外推，使它不裁剪内容。
+
+![intrinsic_content_size](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/Art/intrinsic_content_size_2x.png)
+
+这些约束是使用表 3-5 所列出的不等式定义的。这里的 `IntrinsicHeight` 和 `IntrinsicWidth` 常量代表的是从视图的固有内容大小中得到的高度和宽度。
+
+```objc
+表3-5 阻止内容压缩和内容压缩
+// 抗内容压缩
+View.height >= 0.0 * NotAnAttribute + IntrinsicHeight
+View.width >= 0.0 * NotAnAttribute + IntrinsicWidth
+
+// 内容压缩
+View.height <= 0.0 * NotAnAttribute + IntrinsicHeight
+View.width <= 0.0 * NotAnAttribute + IntrinsicWidth
+```
+
+每一个约束都有它自己的优先级。默认情况下，视图使用 250 作为内容压缩优先级，750 作为抗内容压缩优先级。因此，拉伸视图比压缩视图简单。对于大多数控件，这是所期望的行为。比如，你可以安全地拉伸按钮超过它的固有内容大小，但是如果你压缩它，它的内容就会被裁剪。注意，Interface Builder 偶尔可能会修改这些优先级来帮助防止关系错误。更多信息，参阅 [设置内容压缩和抗内容压缩](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithConstraintsinInterfaceBuidler.html#//apple_ref/doc/uid/TP40010853-CH10-SW2)。
+
+只要有可能，尽量在你的布局中使用视图的固有内容大小。它可以让你的布局动态适应视图内容的改变。它也为你创建没有歧义、不冲突的布局减少了一些约束，但是你需要管理视图的内容压缩优先级和抗内容压缩优先级（CHCR）。这里有一些处理固有内容大小的指南：
+
+* 当为填充一个空间拉伸所有视图时，如果它们都有一个相同的内容压缩优先级，这个布局就会是有歧义的。自动布局不知道该拉伸哪个视图。
+
+	一个常见的例子就是 label 和 textField 的组合。通常，你希望 textField 拉伸来填充空余空间，label 则保持自己的固有内容大小。为了达到这个效果，确保 textField 的水平内容压缩优先级比 label 的小。
+
+	事实上，这个例子太常见以至于 Interface Builder 已经为你自动处理，即为所有的 label 设置内容压缩优先级为 251。如果是代码创建布局，你需要自己动手修改内容压缩优先级。
+
+* 额
 
 
 
