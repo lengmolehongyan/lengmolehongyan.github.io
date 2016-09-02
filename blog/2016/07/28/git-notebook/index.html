@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Git-notebook - 冷漠叻荭颜</title>
+  <title>Git Notebook - 冷漠叻荭颜</title>
   <meta name="author" content="冷漠叻荭颜">
       
   
@@ -74,7 +74,7 @@
   
   <header>
     
-      <h1 class="entry-title">Git-notebook</h1>
+      <h1 class="entry-title">Git Notebook</h1>
     
     
       <p class="meta">
@@ -90,7 +90,7 @@
   </header>
 
 
-<div class="entry-content"><h6>更新 <code>.gitignore</code> 文件</h6>
+<div class="entry-content"><h2>更新 <code>.gitignore</code> 文件</h2>
 
 <ol>
 <li><a href="https://github.com/github/gitignore">github 官方给出的各语言 .gitignore 示例文件</a></li>
@@ -101,24 +101,35 @@
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git rm -r --cached .
-</span><span class='line'>$ git add .
-</span><span class='line'>$ git commit -m "update .gitignore"</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git rm -r --cached .
+</span><span class='line'>git add .
+</span><span class='line'>git commit -m "update .gitignore"</span></code></pre></td></tr></table></div></figure>
 
 
-<h6>修改最后一次提交的注释信息</h6>
+<h2>修改最后一次提交的注释信息</h2>
 
 <ol>
 <li><code>git commit --amend</code> 可以修改最后一次提交的注释信息</li>
-<li>如果上一次的提交已经 <code>push</code> 到远程仓库，推到远程需要加 <code>-f</code> 参数来覆盖远程仓库，不过一般不建议这么搞</li>
+<li>如果上一次的提交已经 <code>push</code> 到远程仓库，推到远程需要加 <code>-f</code> 参数来覆盖远程仓库，不过一般不建议这么做</li>
 </ol>
 
 
-<h6>显示提交记录的参与者列表</h6>
+<h2>显示提交记录的参与者列表</h2>
 
-<p><code>git shortlog -sn</code></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git shortlog -sn</span></code></pre></td></tr></table></div></figure>
+
 
 <p>显示提交记录的参与者列表，和 github 的参与者列表相同</p>
+
+<h2>标签 tag 操作</h2>
+
+<ol>
+<li><code>git tag</code> 显示本地 tag 列表</li>
+<li><code>git tag -d xxx</code> 删除本地名为 xxx 的 tag</li>
+<li><code>git push origin :refs/tags/xxx</code> 删除远程名为 xxx 的 tag</li>
+</ol>
+
 
 <p class='post-footer'>
             原始地址：
@@ -192,7 +203,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2016/07/28/git-notebook/">Git-notebook</a>
+        <a href="/blog/2016/07/28/git-notebook/">Git Notebook</a>
       </li>
     
       <li class="post">

@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-08-26T16:15:41+08:00</updated>
+  <updated>2016-09-02T19:40:12+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Git-notebook]]></title>
+    <title type="html"><![CDATA[Git Notebook]]></title>
     <link href="http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/"/>
     <updated>2016-07-28T21:35:27+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook</id>
-    <content type="html"><![CDATA[<h6>更新 <code>.gitignore</code> 文件</h6>
+    <content type="html"><![CDATA[<h2>更新 <code>.gitignore</code> 文件</h2>
 
 <ol>
 <li><a href="https://github.com/github/gitignore">github 官方给出的各语言 .gitignore 示例文件</a></li>
@@ -29,24 +29,35 @@
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git rm -r --cached .
-</span><span class='line'>$ git add .
-</span><span class='line'>$ git commit -m "update .gitignore"</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git rm -r --cached .
+</span><span class='line'>git add .
+</span><span class='line'>git commit -m "update .gitignore"</span></code></pre></td></tr></table></div></figure>
 
 
-<h6>修改最后一次提交的注释信息</h6>
+<h2>修改最后一次提交的注释信息</h2>
 
 <ol>
 <li><code>git commit --amend</code> 可以修改最后一次提交的注释信息</li>
-<li>如果上一次的提交已经 <code>push</code> 到远程仓库，推到远程需要加 <code>-f</code> 参数来覆盖远程仓库，不过一般不建议这么搞</li>
+<li>如果上一次的提交已经 <code>push</code> 到远程仓库，推到远程需要加 <code>-f</code> 参数来覆盖远程仓库，不过一般不建议这么做</li>
 </ol>
 
 
-<h6>显示提交记录的参与者列表</h6>
+<h2>显示提交记录的参与者列表</h2>
 
-<p><code>git shortlog -sn</code></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git shortlog -sn</span></code></pre></td></tr></table></div></figure>
+
 
 <p>显示提交记录的参与者列表，和 github 的参与者列表相同</p>
+
+<h2>标签 tag 操作</h2>
+
+<ol>
+<li><code>git tag</code> 显示本地 tag 列表</li>
+<li><code>git tag -d xxx</code> 删除本地名为 xxx 的 tag</li>
+<li><code>git push origin :refs/tags/xxx</code> 删除远程名为 xxx 的 tag</li>
+</ol>
+
 
 <p class='post-footer'>
             原始地址：
@@ -1185,17 +1196,18 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>每一个约束都有它自己的优先级。默认情况下，视图使用 250 作为内容压缩优先级，750 作为抗内容压缩优先级。因此，拉伸视图比压缩视图简单。对于大多数控件，这是所期望的行为。比如，你可以安全地拉伸按钮超过它的固有内容大小，但是如果你压缩它，它的内容就会被裁剪。注意，Interface Builder 偶尔可能会修改这些优先级来帮助防止关系错误。更多信息，参阅 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithConstraintsinInterfaceBuidler.html#//apple_ref/doc/uid/TP40010853-CH10-SW2">设置内容压缩和抗内容压缩</a>。</p>
+<p>每一个约束都有它自己的优先级。默认情况下，视图使用 250 作为内容压缩优先级，750 作为抗内容压缩优先级。因此，拉伸视图比压缩视图简单。对于大多数控件，这是所期望的行为。比如，你可以安全地拉伸按钮超过它的固有内容大小，但是如果你压缩它，它的内容就会被裁剪。注意，Interface Builder 偶尔可能会修改这些优先级来帮助防止关系错误。更多信息，参阅 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/WorkingwithConstraintsinInterfaceBuidler.html#//apple_ref/doc/uid/TP40010853-CH10-SW2">设置内容压缩和抗内容压缩优先级</a>。</p>
 
 <p>只要有可能，尽量在你的布局中使用视图的固有内容大小。它可以让你的布局动态适应视图内容的改变。它也为你创建没有歧义、不冲突的布局减少了一些约束，但是你需要管理视图的内容压缩优先级和抗内容压缩优先级（CHCR）。这里有一些处理固有内容大小的指南：</p>
 
 <ul>
-<li><p>当为填充一个空间拉伸所有视图时，如果它们都有一个相同的内容压缩优先级，这个布局就会是有歧义的。自动布局不知道该拉伸哪个视图。</p>
+<li><p>当为了填充一个空间需要拉伸所有视图时，如果它们都有一个相同的内容压缩优先级，这个布局就会是有歧义的。自动布局不知道该拉伸哪个视图。</p>
 
-<p>  一个常见的例子就是 label 和 textField 的组合。通常，你希望 textField 拉伸来填充空余空间，label 则保持自己的固有内容大小。为了达到这个效果，确保 textField 的水平内容压缩优先级比 label 的小。</p>
+<p>一个常见的例子就是 label 和 textField 的组合。通常，你希望 textField 拉伸来填充空余空间，label 则保持自己的固有内容大小。为了达到这个效果，确保 textField 的水平内容压缩优先级比 label 的小。</p>
 
-<p>  事实上，这个例子太常见以至于 Interface Builder 已经为你自动处理，即为所有的 label 设置内容压缩优先级为 251。如果是代码创建布局，你需要自己动手修改内容压缩优先级。</p></li>
-<li><p>额</p></li>
+<p>事实上，这种例子太常见以至于 Interface Builder 已经为你自动处理，即为所有的 label 设置内容压缩优先级为 251。如果是代码创建布局，你需要自己动手修改内容压缩优先级。</p></li>
+<li><p>当有不可见背景的视图（比如 buttons 和 labels）不小心被拉伸经常会产生奇怪的和意想不到的布局。实际问题中可能并不明显，因为文本只是出现在了一个错误的位置。为了防止不必要的拉伸，尝试增大内容压缩优先级。</p></li>
+<li></li>
 </ul>
 
 
