@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-09-02T19:40:12+08:00</updated>
+  <updated>2016-09-29T15:38:41+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -34,10 +34,10 @@
 </span><span class='line'>git commit -m "update .gitignore"</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>修改最后一次提交的注释信息</h2>
+<h2>修改最后一次提交</h2>
 
 <ol>
-<li><code>git commit --amend</code> 可以修改最后一次提交的注释信息</li>
+<li>有时候提交完发现漏掉了几个文件没有加，或者提交信息写错了，想要撤销刚才的提交操作，可以使用 <code>git commit --amend</code> 选项重新提交</li>
 <li>如果上一次的提交已经 <code>push</code> 到远程仓库，推到远程需要加 <code>-f</code> 参数来覆盖远程仓库，不过一般不建议这么做</li>
 </ol>
 
@@ -54,9 +54,20 @@
 
 <ol>
 <li><code>git tag</code> 显示本地 tag 列表</li>
-<li><code>git tag -d xxx</code> 删除本地名为 xxx 的 tag</li>
-<li><code>git push origin :refs/tags/xxx</code> 删除远程名为 xxx 的 tag</li>
+<li><code>git tag -d [tagname]</code> 删除本地名为 [tagname] 的 tag</li>
+<li><code>git push origin :refs/tags/[tagname]</code> 删除远程名为 [tagname] 的 tag</li>
+<li><code>git tag -a [tagname] -m "xxx"</code>，用于创建一个含附注类型的标签，用 -a 指定标签名字，-m 选项则指定了对于的标签说明</li>
+<li><code>git show [tagname]</code>，此命令用于查看相应标签的版本信息，并连同显示打标签的提交对象</li>
+<li><code>git push origin [tagname]</code>，通过显式命令将标签推到远端仓库，一次推送所有（本地新增的）标签到远端仓库，使用 <code>git push origin --tags</code></li>
 </ol>
+
+
+<h2>查看远程仓库详细信息</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git remote show origin</span></code></pre></td></tr></table></div></figure>
+
+
 
 
 <p class='post-footer'>
