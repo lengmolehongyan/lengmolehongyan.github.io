@@ -19,9 +19,9 @@ git add .
 git commit -m "update .gitignore"
 ```
 
-## 修改最后一次提交的注释信息
+## 修改最后一次提交
 
-1. `git commit --amend` 可以修改最后一次提交的注释信息
+1. 有时候提交完发现漏掉了几个文件没有加，或者提交信息写错了，想要撤销刚才的提交操作，可以使用 `git commit --amend` 选项重新提交
 2. 如果上一次的提交已经 `push` 到远程仓库，推到远程需要加 `-f` 参数来覆盖远程仓库，不过一般不建议这么做
 
 ## 显示提交记录的参与者列表
@@ -35,8 +35,18 @@ git shortlog -sn
 ## 标签 tag 操作
 
 1. `git tag` 显示本地 tag 列表
-2. `git tag -d xxx` 删除本地名为 xxx 的 tag
-3. `git push origin :refs/tags/xxx` 删除远程名为 xxx 的 tag
+2. `git tag -d [tagname]` 删除本地名为 [tagname] 的 tag
+3. `git push origin :refs/tags/[tagname]` 删除远程名为 [tagname] 的 tag
+4. `git tag -a [tagname] -m "xxx"`，用于创建一个含附注类型的标签，用 -a 指定标签名字，-m 选项则指定了对于的标签说明
+5. `git show [tagname]`，此命令用于查看相应标签的版本信息，并连同显示打标签的提交对象
+6. `git push origin [tagname]`，通过显式命令将标签推到远端仓库，一次推送所有（本地新增的）标签到远端仓库，使用 `git push origin --tags`
+
+## 查看远程仓库详细信息
+
+```
+git remote show origin
+```
+
 
 
 
