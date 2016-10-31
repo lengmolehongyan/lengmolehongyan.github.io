@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-10-12T14:55:40+08:00</updated>
+  <updated>2016-10-31T11:12:18+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -1491,7 +1491,7 @@
     <link href="http://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/"/>
     <updated>2015-12-25T22:49:49+08:00</updated>
     <id>http://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin</id>
-    <content type="html"><![CDATA[<p>项目中遇到需要自定义通知声音的需求，以前没做过，就查了下<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW6">官方文档</a>，就像文档上说的，实现起来确实挺简单，就整理下当做备忘吧。</p>
+    <content type="html"><![CDATA[<p>项目中遇到需要自定义通知声音的需求，以前没做过，就查了下<a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SupportingNotificationsinYourApp.html#//apple_ref/doc/uid/TP40008194-CH4-SW10">官方文档</a>，就像文档上说的，实现起来确实挺简单，就整理下当做备忘吧。</p>
 
 <p>关于推送，官方文档、各种第三方推送文档都很全，就跳过了。</p>
 
