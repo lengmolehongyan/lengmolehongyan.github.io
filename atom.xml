@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2016-10-31T11:12:18+08:00</updated>
+  <updated>2016-12-13T10:33:50+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -1218,6 +1218,8 @@
 
 <p>事实上，这种例子太常见以至于 Interface Builder 已经为你自动处理，即为所有的 label 设置内容压缩优先级为 251。如果是代码创建布局，你需要自己动手修改内容压缩优先级。</p></li>
 <li><p>当有不可见背景的视图（比如 buttons 和 labels）不小心被拉伸经常会产生奇怪的和意想不到的布局。实际问题中可能并不明显，因为文本只是出现在了一个错误的位置。为了防止不必要的拉伸，尝试增大内容压缩优先级。</p></li>
+<li>视图的基线约束只在固有内容高度起作用，如果一个视图被垂直拉伸或者压缩，基线约束将不再正确对齐。</li>
+<li>一些控件，比如 UISwitch，应该始终显示其固有内容大小，根据需要增加 CHCR 以防止被拉伸或压缩。</li>
 <li></li>
 </ul>
 
