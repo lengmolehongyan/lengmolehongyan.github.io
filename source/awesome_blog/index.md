@@ -58,5 +58,6 @@ footer: true
 46. [Zhiyi](http://zyden.vicp.cc/)
 47. [梦维](http://www.dreamingwish.com/)
 48. [Forkong](http://ifujun.com/)
+49. [WeRead团队博客](http://wereadteam.github.io/)
 
 
