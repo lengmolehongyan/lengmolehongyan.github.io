@@ -197,7 +197,9 @@ NSDictionary *argsDict = [NSDictionary dictionaryWithObjectsAndKeys:@"My Name", 
 
 ## FMDatabaseQueue 队列和线程安全
 
-在多线程中同时使用 FMDatabase 单例是极其错误的想法，会导致每个线程创建一个 FMDatabase 对象。不要跨线程使用单例，也不要同时跨多线程，不然会奔溃或者异常。
+~~在多线程中同时使用 FMDatabase 单例是极其错误的想法，会导致每个线程创建一个 FMDatabase 对象。不要跨线程使用单例，也不要同时跨多线程，不然会奔溃或者异常。~~
+
+FMDatabase 这个类是线程不安全的，在多线程中使用 FMDatabase 单例是极其错误的想法。不能在多线程的环境中对数据库 FMDatabase 进行读写，会出现奔溃或者异常，因为你不能保证你读数据的同时另外一条线程不在写数据。
 
 *因此不要实例化一个 FMDatabase 单例来跨线程使用。*
 
