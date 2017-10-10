@@ -47,6 +47,42 @@ git shortlog -sn
 git remote show origin
 ```
 
+## git stash 删除恢复
+
+首先在终端输入👇命令查找所有 unreachable 的记录
+
+```
+git fsck --unreachable
+```
+
+这时候会在终端看到类似👇的输出
+
+```
+Checking object directories: 100% (256/256), done.
+Checking objects: 100% (40741/40741), done.
+unreachable commit 6c00def1f6db3a9453362fefd9e5d5e1edd94b8a
+unreachable blob a10014bb776e27387f304cb4fb0cd1fbf26010a5
+unreachable blob fa00b66289157355fd27765f5220db41e6fef2f8
+unreachable commit 790134c192c7d114086cd9fe5bd8c0c395af6767
+unreachable blob 03036483ed3d232a0e347b541a7759304bd3e73b
+unreachable blob 5503ea6ffa56f475ee2cb5857830d2464f4c255b
+unreachable blob 59039c5f01ca5580bff4a9c4ed2601004e5fac83
+unreachable blob 9f03bcf7d4b33b57be6842aea99ab9878dc91c46
+...
+```
+
+可以使用 `git show xxx` 命令查看具体某条记录对应的改动，找到需要的记录之后，可以直接使用 `git merge xxx` 命令，本地仓库就恢复了该条记录对应的内容。(其中 xxx 代表上面列出的记录中后面跟的 Commit Hash 值)
+
+有可能会出现很多 unreachable 的记录，这时一个一个拿 `git show` 命名去找是否是我们需要的，会太浪费时间，这时可以利用👇命令，输出所有 unreachable 对应的提交改动
+
+```shell
+git fsck --unreachable 2&>/dev/null | while read i; do; git show `echo $i | cut -d ' ' -f 3` | head -n 6; done
+```
+
+然后在终端中搜索某些关键字，比如具体改动的代码、时间，就可以迅速定位到对应的 Hash 值，接着恢复就 OK 了。
+
+这种方法，不单单只对误删除了 stash 记录有作用，git 一切错误操作导致删除都可以利用此方法恢复。
+
 
 
 
