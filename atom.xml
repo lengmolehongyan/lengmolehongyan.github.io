@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2017-03-22T10:43:23+08:00</updated>
+  <updated>2017-10-10T18:39:42+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -68,7 +68,52 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>git remote show origin</span></code></pre></td></tr></table></div></figure>
 
 
+<h2>git stash 删除恢复</h2>
 
+<p>首先在终端输入👇命令查找所有 unreachable 的记录</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git fsck --unreachable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这时候会在终端看到类似👇的输出</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Checking object directories: 100% (256/256), done.
+</span><span class='line'>Checking objects: 100% (40741/40741), done.
+</span><span class='line'>unreachable commit 6c00def1f6db3a9453362fefd9e5d5e1edd94b8a
+</span><span class='line'>unreachable blob a10014bb776e27387f304cb4fb0cd1fbf26010a5
+</span><span class='line'>unreachable blob fa00b66289157355fd27765f5220db41e6fef2f8
+</span><span class='line'>unreachable commit 790134c192c7d114086cd9fe5bd8c0c395af6767
+</span><span class='line'>unreachable blob 03036483ed3d232a0e347b541a7759304bd3e73b
+</span><span class='line'>unreachable blob 5503ea6ffa56f475ee2cb5857830d2464f4c255b
+</span><span class='line'>unreachable blob 59039c5f01ca5580bff4a9c4ed2601004e5fac83
+</span><span class='line'>unreachable blob 9f03bcf7d4b33b57be6842aea99ab9878dc91c46
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以使用 <code>git show xxx</code> 命令查看具体某条记录对应的改动，找到需要的记录之后，可以直接使用 <code>git merge xxx</code> 命令，本地仓库就恢复了该条记录对应的内容。(其中 xxx 代表上面列出的记录中后面跟的 Commit Hash 值)</p>
+
+<p>有可能会出现很多 unreachable 的记录，这时一个一个拿 <code>git show</code> 命名去找是否是我们需要的，会太浪费时间，这时可以利用👇命令，输出所有 unreachable 对应的提交改动</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">git</span> <span class="n">fsck</span> <span class="o">--</span><span class="n">unreachable</span> <span class="mi">2</span><span class="o">&amp;&gt;</span><span class="sr">/dev/nu</span><span class="n">ll</span> <span class="o">|</span> <span class="k">while</span> <span class="n">read</span> <span class="n">i</span><span class="p">;</span> <span class="k">do</span><span class="p">;</span> <span class="n">git</span> <span class="n">show</span> <span class="sb">`echo $i | cut -d &#39; &#39; -f 3`</span> <span class="o">|</span> <span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">6</span><span class="p">;</span> <span class="n">done</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后在终端中搜索某些关键字，比如具体改动的代码、时间，就可以迅速定位到对应的 Hash 值，接着恢复就 OK 了。</p>
+
+<p>这种方法，不单单只对误删除了 stash 记录有作用，git 一切错误操作导致删除都可以利用此方法恢复。</p>
 
 <p class='post-footer'>
             原始地址：
