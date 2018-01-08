@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[冷漠叻荭颜]]></title>
-  <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
-  <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2018-01-08T12:08:01+08:00</updated>
-  <id>http://lengmolehongyan.github.io/</id>
+  <link href="https://lengmolehongyan.github.io/atom.xml" rel="self"/>
+  <link href="https://lengmolehongyan.github.io/"/>
+  <updated>2018-01-08T12:13:48+08:00</updated>
+  <id>https://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
     <email><![CDATA[lengmohongyan@hotmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[iOS 开发常用目录备忘]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/"/>
     <updated>2018-01-08T12:00:48+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory</id>
+    <id>https://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory</id>
     <content type="html"><![CDATA[<h3>DerivedData</h3>
 
 <p><code>/Users/xxxx/Library/Developer/Xcode/DerivedData</code></p>
@@ -50,9 +50,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/'>http://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/'>https://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -60,9 +60,9 @@
   
   <entry>
     <title type="html"><![CDATA[Git Notebook]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/"/>
     <updated>2016-07-28T21:35:27+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook</id>
+    <id>https://lengmolehongyan.github.io/blog/2016/07/28/git-notebook</id>
     <content type="html"><![CDATA[<h2>更新 <code>.gitignore</code> 文件</h2>
 
 <ol>
@@ -162,9 +162,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/'>http://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/'>https://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -172,9 +172,9 @@
   
   <entry>
     <title type="html"><![CDATA[UITableView tableHeaderView, tableFooterView 子控件布局约束警告]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/"/>
     <updated>2016-03-26T09:59:58+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict</id>
+    <id>https://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict</id>
     <content type="html"><![CDATA[<p>带有 <code>tableHeaderView</code>，<code>tableFooterView</code> 的 <code>UITableView</code> 在实际项目中很常见，添加了头部视图或者底部视图，会嵌在 <code>UITableView</code> 的头部或者底部，跟随 <code>UITableView</code> 一起滚动。</p>
 
 <p>有关 <code>tableHeaderView</code>，<code>tableFooterView</code> 介绍，文档和头文件已经说明的很清楚。</p>
@@ -195,7 +195,7 @@
 <!--more-->
 
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160410-0@2x.png" alt="Demo 界面" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160410-0@2x.png" alt="Demo 界面" /></p>
 
 <p>如上界面，在 <code>UITableView</code> 顶部有个 <code>tableHeaderView</code>，里面有一个 <code>UILabel</code>，label 的文字可能过长需要换行。使用自动布局布局 <code>tableHeaderView</code> 内部这个 label 子控件，我们可能想当然的把约束按照如下这样写：</p>
 
@@ -246,7 +246,7 @@
 
 <p>这样布局出来的 label，显示上是没有问题的，也的确会换行，但是 console 却会报 <code>Unable to simultaneously satisfy constraints</code> 警告：</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160424-0@2x.png" alt="Unable to simultaneously satisfy constraints" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160424-0@2x.png" alt="Unable to simultaneously satisfy constraints" /></p>
 
 <p>向一个普通的 <code>UIView</code> 中添加一个多行的 <code>UILabel</code> 子控件，我的约束布局习惯是在 <code>x</code> 方向上只需要指定距离父控件 view 的左右间距，再指定它的 <code>y</code> 方向上的位置，一般情况下，这个 label 的布局已经是完成了，而且没有问题。可是，在这里的 <code>tableHeaderView</code> 中的 label 布局为什么出问题呢？</p>
 
@@ -256,11 +256,11 @@
 
 <p>当代码走过创建 view 那一行，从 log 中看到，view 的 <code>frame</code> 确实和我们设置的一样：</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160424-1@2x.png" alt="创建 view 后的 frame" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160424-1@2x.png" alt="创建 view 后的 frame" /></p>
 
 <p>但是，当调用 <code>tableView.tableHeaderView = tableHeader;</code> 后，会发现此时 view 的 <code>frame</code> 的宽度为 0 了：</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160424-2@2x.png" alt="指定 view 为 tableHeaderView 后的 frame" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160424-2@2x.png" alt="指定 view 为 tableHeaderView 后的 frame" /></p>
 
 <p>这也就是为什么 console 会报出约束警告的原因，对于一个宽度为 0 的 view，而内部的 label 子控件 <code>x</code> 方向上的约束却以其父控件 view 的左右间距来布局，不报约束警告才怪呢？！</p>
 
@@ -307,9 +307,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/'>http://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/'>https://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -317,9 +317,9 @@
   
   <entry>
     <title type="html"><![CDATA[Facebook Xctool 的使用]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/"/>
     <updated>2016-01-14T18:18:43+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong</id>
+    <id>https://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong</id>
     <content type="html"><![CDATA[<h2>xctool</h2>
 
 <p><strong>xctool</strong> 相比苹果的 <strong>xcodebuild</strong>，可以更加简单方便地编译构建和测试 iOS、Mac 项目，对可持续集成 CI 尤其有用。</p>
@@ -795,9 +795,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/'>http://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/'>https://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -805,9 +805,9 @@
   
   <entry>
     <title type="html"><![CDATA[iOS 开发使用 Jenkins 搭建 CI 服务器]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/"/>
     <updated>2016-01-13T18:57:16+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use</id>
+    <id>https://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use</id>
     <content type="html"><![CDATA[<h2>准备</h2>
 
 <p>打开 <a href="http://jenkins-ci.org/">Jenkins 官网</a>，官网右侧可以下载最新版本的 <a href="http://mirrors.jenkins-ci.org/war/latest/jenkins.war">jenkins.war</a>。</p>
@@ -815,7 +815,7 @@
 <!--more-->
 
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160113-0@2x.png" alt="jenkins.war" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160113-0@2x.png" alt="jenkins.war" /></p>
 
 <p>下载完成后，终端进入到 jenkins.war 所在文件夹，执行以下命令：</p>
 
@@ -835,7 +835,7 @@
 
 <p>如果出现以下提示，说明需要升级 Java 版本，Jenkins 需要至少 Java7 及以后的版本，可以在此页面下载 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Java</a> 。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/2016011315-19-43@2x.png" alt="错误提示" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/2016011315-19-43@2x.png" alt="错误提示" /></p>
 
 <p>上面在终端输入的命令中，<code>httpPort</code> 指定的是 Jenkins 所使用的本机 http 端口号，可以自行修改，等待 Jenkins 完全启动后，终端会有如下提示：</p>
 
@@ -852,43 +852,43 @@
 
 <p>Jenkins 默认没有安装 <code>git</code> 插件，需要手动安装。如下图，在 Jenkins 的界面左侧，依次点击系统管理，管理插件，在可选插件下，筛选 <code>git</code>，然后勾选 Git plugin，Git server plugin 和 Git client plugin，点击下载待重启后安装按钮，等待插件下载安装成功后，重启 Jenkins 就可以了。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160113-2@2x.png" alt="管理插件" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160113-2@2x.png" alt="管理插件" /></p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160113-1@2x.png" alt="安装 git 插件" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160113-1@2x.png" alt="安装 git 插件" /></p>
 
 <p>安装过程中如果遇到下面这种错误，提示插件下载地址错误导致安装失败，从错误信息中拷贝重定向后的地址手动下载，下载完成后进入插件管理，选择高级，然后上传插件安装就可以了。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160113-3@2x.png" alt="安装插件失败" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160113-3@2x.png" alt="安装插件失败" /></p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160114-0@2x.png" alt="手动安装插件" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160114-0@2x.png" alt="手动安装插件" /></p>
 
 <p>在 Jenkins 系统管理，系统设置中可以配置系统管理员邮件地址和邮件通知，Jenkins 可以在适当的时机发送邮件通知，发送邮件使用的是 <code>SMTP</code> 协议。在设置邮箱时，Jenkins 管理员邮箱要与 <code>SMTP</code> 中设置的发送邮箱为同一个邮箱。这里配置完成后，可以发送测试邮件，测试是否配置成功。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160114-1@2x.png" alt="配置系统管理员邮件地址" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160114-1@2x.png" alt="配置系统管理员邮件地址" /></p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160114-2@2x.png" alt="配置邮件通知" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160114-2@2x.png" alt="配置邮件通知" /></p>
 
 <h2>新建项目</h2>
 
 <p>Jenkins 默认使用当前用户 <code>.ssh</code> 目录下的公私钥来进行 <code>git</code> 的相关操作。在 Jenkins 首页，点击新建，输入项目名称，选择构建项目的属性，然后点击 OK，进入项目配置页面。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160114-3@2x.png" alt="创建项目" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160114-3@2x.png" alt="创建项目" /></p>
 
 <p>在项目配置页面，找到源码管理，配置项目的远程仓库，填入项目的远程仓库 <code>git</code> 地址，以及编译构建项目的分支。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160114-4@2x.png" alt="项目配置" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160114-4@2x.png" alt="项目配置" /></p>
 
 <p>下一步就是对项目编译的设置，在项目配置最下方的构建选项，点击增加构建步骤，可以选择通过 <code>shell</code> 脚本编译，也可以使用 Jenkins 自带的 Xcode 插件（需要安装 Xcode 插件）。编写脚本，可以直接使用 Xcode 的 xcodebuild 来写，也可以直接使用 Facebook 的 <a href="https://github.com/facebook/xctool">xctool</a> 。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160114-5@2x.png" alt="项目编译设置" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160114-5@2x.png" alt="项目编译设置" /></p>
 
 <p>项目成功编译以后，可以设置编译构建出来的 ipa 文件保存位置，同时可以设置当编译构建失败时的邮件提醒。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160114-6@2x.png" alt="编译后操作设置" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160114-6@2x.png" alt="编译后操作设置" /></p>
 
 <p>上述所有操作完成之后，点击应用并保存，回到测试项目首页，便可以编译构建项目了，项目如果需要修改配置，可以直接在配置里面修改。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20160114-7@2x.png" alt="项目创建完成" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20160114-7@2x.png" alt="项目创建完成" /></p>
 
 <h2>TODO</h2>
 
@@ -896,9 +896,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/'>http://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/'>https://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -906,9 +906,9 @@
   
   <entry>
     <title type="html"><![CDATA[约束剖析（Anatomy of a Constraint）]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/"/>
     <updated>2016-01-02T12:09:52+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint</id>
+    <id>https://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint</id>
     <content type="html"><![CDATA[<p>视图层次结构上的布局是由一些列的公式（线性方程）来定义的，每个约束都有一个单一的表达式，你的目标就是要让这一系列的表达式有且仅有一个结果。</p>
 
 <p>示例公式如下：</p>
@@ -1316,9 +1316,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/'>http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/'>https://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -1326,9 +1326,9 @@
   
   <entry>
     <title type="html"><![CDATA[没有约束的自动布局（Auto Layout Without Constraints）]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/"/>
     <updated>2016-01-01T10:38:41+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints</id>
+    <id>https://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints</id>
     <content type="html"><![CDATA[<p>StackView 提供了一种简单的方法，剔除了复杂的约束，利用自动布局的强大来布局界面，单个 StackView 由一行或者一列控件组成，StackView 根据自身的属性布局这些控件。</p>
 
 <ul>
@@ -1373,9 +1373,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/'>http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/'>https://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -1383,9 +1383,9 @@
   
   <entry>
     <title type="html"><![CDATA[理解自动布局（Understanding Auto Layout）]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/"/>
     <updated>2016-01-01T00:05:16+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout</id>
+    <id>https://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout</id>
     <content type="html"><![CDATA[<p>自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView 的大小或者位置改变，UIButton 的位置将会自动调整。</p>
 
 <p>基于约束这种方式来写界面就可以动态响应来自视图内部和外部的变化。</p>
@@ -1464,9 +1464,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/'>http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/'>https://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -1474,9 +1474,9 @@
   
   <entry>
     <title type="html"><![CDATA[自动布局指南（Auto Layout Guide）]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/"/>
     <updated>2015-12-27T19:14:33+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide</id>
     <content type="html"><![CDATA[<p>跟随官方文档 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">自动布局指南</a> 的脚步，AutoLayout 从入门到进阶。</p>
 
 <p>文章目录结构：</p>
@@ -1485,9 +1485,9 @@
 <li><p>入门（Getting Started）</p>
 
 <ul>
-<li><a href="http://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a></li>
-<li><a href="http://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/">没有约束的自动布局（Auto Layout Without Constraints）</a></li>
-<li><a href="http://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析（Anatomy of a Constraint）</a></li>
+<li><a href="https://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a></li>
+<li><a href="https://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/">没有约束的自动布局（Auto Layout Without Constraints）</a></li>
+<li><a href="https://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/">约束剖析（Anatomy of a Constraint）</a></li>
 <li><a href="">在 IB 中使用约束（Working with Constraints in Interface Builder）</a></li>
 </ul>
 </li>
@@ -1570,9 +1570,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/'>http://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/'>https://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -1580,9 +1580,9 @@
   
   <entry>
     <title type="html"><![CDATA[iOS 自定义通知声音]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/"/>
     <updated>2015-12-25T22:49:49+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin</id>
     <content type="html"><![CDATA[<p>项目中遇到需要自定义通知声音的需求，以前没做过，就查了下<a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SupportingNotificationsinYourApp.html#//apple_ref/doc/uid/TP40008194-CH4-SW10">官方文档</a>，就像文档上说的，实现起来确实挺简单，就整理下当做备忘吧。</p>
 
 <p>关于推送，官方文档、各种第三方推送文档都很全，就跳过了。</p>
@@ -1612,21 +1612,21 @@
 
 <p>转换完成后就可以将 <code>unbelievable.caf</code> 这个文件拖入 Xcode 工程中，编译运行项目在真机上。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20151226-0@2x.png" alt="将 unbelievable.caf 文件拖入工程中" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20151226-0@2x.png" alt="将 unbelievable.caf 文件拖入工程中" /></p>
 
 <p>发送推送通知时，只需配置 <code>sound</code> 字段的值为导入到工程中的音频文件名，这里即就是 <code>unbelievable.caf</code>。</p>
 
 <p>测试~~，完美！！！收到推送时，通知声音就是我们自定义的声音了。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20151226-1@2x.png" alt="收到推送信息" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20151226-1@2x.png" alt="收到推送信息" /></p>
 
 <p><a href="https://github.com/lengmolehongyan/CustomAlertSoundsDemo">Demo 地址</a></p>
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/'>http://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/'>https://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -1634,10 +1634,10 @@
   
   <entry>
     <title type="html"><![CDATA[Xcode 项目忽略警告]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/"/>
     <updated>2015-12-09T23:26:54+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao</id>
-    <content type="html"><![CDATA[<p>对于一个有强迫症的我，每次 <code>⌘B</code> Build 项目时，发现一个 <img src="http://lengmolehongyan.github.io/images/DVTStatus-Warning@2x.png" width="30"> 警告都要点进去修复了，然而，对于一些无关紧要的警告，我们是否可以选择忽略这个警告，让 Xcode 不提示呢？答案当然是可以的。</p>
+    <id>https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao</id>
+    <content type="html"><![CDATA[<p>对于一个有强迫症的我，每次 <code>⌘B</code> Build 项目时，发现一个 <img src="https://lengmolehongyan.github.io/images/DVTStatus-Warning@2x.png" width="30"> 警告都要点进去修复了，然而，对于一些无关紧要的警告，我们是否可以选择忽略这个警告，让 Xcode 不提示呢？答案当然是可以的。</p>
 
 <p>下面，就介绍一下在项目中忽略警告的三个地方：</p>
 
@@ -1670,7 +1670,7 @@
 
 <p>Xcode 会立即报一个警告，提示我们没有使用这个变量</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20151213-0@2x.png" alt="Unused variable 'eTestView'" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20151213-0@2x.png" alt="Unused variable 'eTestView'" /></p>
 
 <p>只需在创建 <code>eTestView</code> 的前后加上如下几行，黄色警告就消失了😄</p>
 
@@ -1689,11 +1689,11 @@
 
 <p>如下图，右击某个警告，选择 <code>Reveal in Log</code>（有时这个选项可能是置灰状态，不能选择，可以尝试编译下项目，或者退出 Xcode 重新来一次）</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20151213-1@2x.png" alt="Reveal in Log" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20151213-1@2x.png" alt="Reveal in Log" /></p>
 
 <p>下图红色框中，中括号内部的就是警告标识符（先要点击右上角展开警告才能看到这一大堆信息）</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20151213-2@2x.png" alt="警告标识符" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20151213-2@2x.png" alt="警告标识符" /></p>
 
 <h2>在 Build Settings 中项目全局忽略警告</h2>
 
@@ -1701,7 +1701,7 @@
 
 <p>还是上面的例子，在 <code>Build Settings</code> 中找到 <code>Custom Compiler Flags</code>，双击 <code>Other Warning Flags</code>（可以配置 <code>Debug</code> 和 <code>Release</code> 环境），填入 <code>-Wno-unused-variable</code>，完成后，编译项目，项目中所有的此类型警告都没有了。</p>
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20151213-4@2x.png" alt="Build Settings 中项目全局忽略警告" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20151213-4@2x.png" alt="Build Settings 中项目全局忽略警告" /></p>
 
 <p>这里所填写的内容规则，仅仅是在第一种方法中找到的警告标识符中的 <code>W</code> 字母后面加上 <code>no-</code> 就可以了。</p>
 
@@ -1711,9 +1711,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/'>http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/'>https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -1721,9 +1721,9 @@
   
   <entry>
     <title type="html"><![CDATA[计算代码执行时间差]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/"/>
     <updated>2015-12-05T23:53:21+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai</id>
     <content type="html"><![CDATA[<p>开发中，有时候我们需要知道某个效果到底耗时多长时间，可能想到用 <code>Foundation</code> 框架中的 <code>NSDate</code> 类来计算，比如：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1752,9 +1752,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/'>http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/'>https://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -1762,9 +1762,9 @@
   
   <entry>
     <title type="html"><![CDATA[解决 Xcode 升级插件失效]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/"/>
     <updated>2015-12-03T23:50:08+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao</id>
     <content type="html"><![CDATA[<ul>
 <li>打开终端，输入以下代码获取到 <code>DVTPlugInCompatibilityUUID</code></li>
 </ul>
@@ -1806,15 +1806,15 @@
 <!--more-->
 
 
-<p><img src="http://lengmolehongyan.github.io/images/QQ20151204-0@2x.png" alt="Load Bundles" /></p>
+<p><img src="https://lengmolehongyan.github.io/images/QQ20151204-0@2x.png" alt="Load Bundles" /></p>
 
 <p>~~~ 😊 OVER 😊 ~~~</p>
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/'>http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/'>https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -1822,9 +1822,9 @@
   
   <entry>
     <title type="html"><![CDATA[Can't Add Self as Subview 崩溃解决办法]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/"/>
     <updated>2015-10-30T23:14:49+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>查看项目的崩溃汇总，一直有一个 bug 存在，之前也有注意过，只因这个 bug 的崩溃堆栈日志解析出来并没有什么卵用，也不知该怎么复现，就撂下了。</p>
@@ -2068,9 +2068,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/'>http://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/'>https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -2078,9 +2078,9 @@
   
   <entry>
     <title type="html"><![CDATA[FMDB 使用方法]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/"/>
     <updated>2015-10-22T22:41:56+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie</id>
     <content type="html"><![CDATA[<blockquote><p>优秀的第三方库，README 也是很优秀的，理解了 README，会对使用带来很多便利。</p></blockquote>
 
 <h2>ARC 和 MRC</h2>
@@ -2512,9 +2512,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/'>http://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/'>https://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -2522,9 +2522,9 @@
   
   <entry>
     <title type="html"><![CDATA[Directory Not Found for Option]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/"/>
     <updated>2015-09-23T10:47:48+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option</id>
     <content type="html"><![CDATA[<p>在 Xcode7 下编译项目，报了如下警告：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -2550,9 +2550,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/'>http://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/'>https://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -2560,9 +2560,9 @@
   
   <entry>
     <title type="html"><![CDATA[KVC 的简单使用]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/"/>
     <updated>2015-09-12T22:58:12+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong</id>
     <content type="html"><![CDATA[<h2>KVC 字典转模型</h2>
 
 <ul>
@@ -2660,9 +2660,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/'>http://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/'>https://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -2670,9 +2670,9 @@
   
   <entry>
     <title type="html"><![CDATA[Block 的简单使用]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/"/>
     <updated>2015-09-10T23:42:34+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong</id>
     <content type="html"><![CDATA[<h3>Block 的介绍</h3>
 
 <ul>
@@ -2812,9 +2812,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/'>http://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/'>https://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -2822,9 +2822,9 @@
   
   <entry>
     <title type="html"><![CDATA[iOS8 以上定位问题<二>]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/"/>
     <updated>2015-08-30T00:19:06+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er</id>
     <content type="html"><![CDATA[<p>接上篇，我们已经可以在系统版本 iOS8 以上完成定位功能，但是会有一个潜在 bug 存在。</p>
 
 <p>进入设置应用，往下滑动找到自己的 app，进入，点击 <strong>位置</strong> 单元格，设置应用会彻底奔溃，回到桌面了。</p>
@@ -2844,9 +2844,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/'>http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/'>https://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>
@@ -2854,9 +2854,9 @@
   
   <entry>
     <title type="html"><![CDATA[iOS8 以上定位问题<一>]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/"/>
     <updated>2015-07-16T16:50:38+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti</id>
     <content type="html"><![CDATA[<p>Xcode6 下，对于系统版本 iOS8 以上版本定位需要自己写授权，不然没有权限定位，即 <code>CLLocationManagerDelegate</code> 代理方法不会执行。</p>
 
 <!--more-->
@@ -2952,9 +2952,9 @@
 
 <p class='post-footer'>
             原始地址：
-            <a href='http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/'>http://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/</a><br/>
-            written by <a href='http://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='http://lengmolehongyan.github.io'>http://lengmolehongyan.github.io</a>
+            <a href='https://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/'>https://lengmolehongyan.github.io/blog/2015/07/16/ios8xia-ding-wei-wen-ti/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
 ]]></content>

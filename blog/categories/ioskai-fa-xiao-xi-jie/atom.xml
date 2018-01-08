@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[分类：ios开发小细节 | 冷漠叻荭颜]]></title>
-  <link href="http://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/atom.xml" rel="self"/>
-  <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2018-01-08T12:08:01+08:00</updated>
-  <id>http://lengmolehongyan.github.io/</id>
+  <link href="https://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/atom.xml" rel="self"/>
+  <link href="https://lengmolehongyan.github.io/"/>
+  <updated>2018-01-08T12:13:48+08:00</updated>
+  <id>https://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
     <email><![CDATA[lengmohongyan@hotmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[iOS 开发常用目录备忘]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/"/>
     <updated>2018-01-08T12:00:48+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory</id>
+    <id>https://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory</id>
     <content type="html"><![CDATA[<h3>DerivedData</h3>
 
 <p><code>/Users/xxxx/Library/Developer/Xcode/DerivedData</code></p>
@@ -52,9 +52,9 @@
   
   <entry>
     <title type="html"><![CDATA[UITableView tableHeaderView, tableFooterView 子控件布局约束警告]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/"/>
     <updated>2016-03-26T09:59:58+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict</id>
+    <id>https://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict</id>
     <content type="html"><![CDATA[<p>带有 <code>tableHeaderView</code>，<code>tableFooterView</code> 的 <code>UITableView</code> 在实际项目中很常见，添加了头部视图或者底部视图，会嵌在 <code>UITableView</code> 的头部或者底部，跟随 <code>UITableView</code> 一起滚动。</p>
 
 <p>有关 <code>tableHeaderView</code>，<code>tableFooterView</code> 介绍，文档和头文件已经说明的很清楚。</p>
@@ -140,9 +140,9 @@ NSLayoutConstraint *labelWidthConstraint = [NSLayoutConstraint constraintWithIte
   
   <entry>
     <title type="html"><![CDATA[Xcode 项目忽略警告]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/"/>
     <updated>2015-12-09T23:26:54+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao</id>
     <content type="html"><![CDATA[<p>对于一个有强迫症的我，每次 <code>⌘B</code> Build 项目时，发现一个 <img src="/images/DVTStatus-Warning@2x.png" width="30"> 警告都要点进去修复了，然而，对于一些无关紧要的警告，我们是否可以选择忽略这个警告，让 Xcode 不提示呢？答案当然是可以的。</p>
 
 <p>下面，就介绍一下在项目中忽略警告的三个地方：</p>
@@ -206,9 +206,9 @@ UIView *eTestView = [[UIView alloc] init];
   
   <entry>
     <title type="html"><![CDATA[计算代码执行时间差]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/"/>
     <updated>2015-12-05T23:53:21+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai</id>
     <content type="html"><![CDATA[<p>开发中，有时候我们需要知道某个效果到底耗时多长时间，可能想到用 <code>Foundation</code> 框架中的 <code>NSDate</code> 类来计算，比如：</p>
 
 <pre><code class="objc">NSDate *previousDate = [NSDate date];
@@ -228,9 +228,9 @@ CFAbsoluteTime timeInterval = currentTime - previousTime;
   
   <entry>
     <title type="html"><![CDATA[解决 Xcode 升级插件失效]]></title>
-    <link href="http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/"/>
+    <link href="https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/"/>
     <updated>2015-12-03T23:50:08+08:00</updated>
-    <id>http://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao</id>
+    <id>https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao</id>
     <content type="html"><![CDATA[<ul>
 <li>打开终端，输入以下代码获取到 <code>DVTPlugInCompatibilityUUID</code></li>
 </ul>
