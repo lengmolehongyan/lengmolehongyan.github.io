@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios开发小细节 | 冷漠叻荭颜]]></title>
   <link href="http://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2017-10-10T18:39:42+08:00</updated>
+  <updated>2018-01-08T12:08:01+08:00</updated>
   <id>http://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS 开发常用目录备忘]]></title>
+    <link href="http://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/"/>
+    <updated>2018-01-08T12:00:48+08:00</updated>
+    <id>http://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory</id>
+    <content type="html"><![CDATA[<h3>DerivedData</h3>
+
+<p><code>/Users/xxxx/Library/Developer/Xcode/DerivedData</code></p>
+
+<p>编译项目所产生的缓存目录</p>
+
+<h3>DeviceSupport</h3>
+
+<p><code>/Users/xxxx/Library/Developer/Xcode/iOS DeviceSupport</code></p>
+
+<p>当前运行的 Xcode 版本所支持真机调试的系统版本（例：当 Xcode 未升级想调试系统版本高的）</p>
+
+<h3>Archives</h3>
+
+<p><code>/Users/xxxx/Library/Developer/Xcode/Archives</code></p>
+
+<p>Xcode Archive 打包所在目录</p>
+
+<h3>CocoaPods</h3>
+
+<p><code>/Users/xxxx/.cocoapods/repos/master</code></p>
+
+<p>CocoaPods git 主仓库所在目录</p>
+
+<h3>模拟器</h3>
+
+<p><code>/Library/Developer/CoreSimulator/Profiles/Runtimes</code></p>
+
+<p>Xcode 旧版本模拟器所在目录</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[UITableView tableHeaderView, tableFooterView 子控件布局约束警告]]></title>
