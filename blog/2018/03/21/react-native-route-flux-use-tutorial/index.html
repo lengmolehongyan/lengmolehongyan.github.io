@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>React-native-route-flux 使用文档 - 冷漠叻荭颜</title>
+  <meta name="author" content="冷漠叻荭颜">
+      
+  
+  <meta name="description" content="react-native-route-flux 使用文档">
+  <meta name="keywords" content="react-native-route-flux">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://lengmolehongyan.github.io/blog/2018/03/21/react-native-route-flux-use-tutorial/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="冷漠叻荭颜" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.lug.ustc.edu.cn/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+  <meta name="baidu-site-verification" content="nPTv4ta5Ar" />
+  <meta name="baidu-site-verification" content="HpQk78B667" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">冷漠叻荭颜</a></h1>
+  
+    <h2>lengmolehongyan’s Blog.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="订阅 RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.baidu.com/" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="lengmolehongyan.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="搜索"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/awesome_blog">优秀博客</a></li>
+  <!-- <li><a href="/blog/categories/ios_dev_precise_detail/">iOS 开发小细节</a></li> -->
+  <li><a href="/blog/categories/ioskai-fa-xiao-xi-jie/">iOS 开发小细节</a></li>
+  <li><a href="http://weibo.com/lengmolehongyan">我的微博</a></li>
+  
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">React-native-route-flux 使用文档</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-03-21T11:11:40+08:00'><span class='date'>2018 年 03 月 21 日</span> <span class='time'>11:11 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>迷你教程</h2>
+
+<p><img src="https://github.com/aksonov/react-native-router-flux/blob/v3/docs/super_simple.gif?raw=true" alt="" /></p>
+
+<p>在这个简单例子中，只需要三个文件：</p>
+
+<ol>
+<li>根 index 文件：<code>index.js</code></li>
+<li>自动加载的第一个页面：<code>PageOne.js</code></li>
+<li>需要跳转到的第二个页面：<code>PageTwo.js</code></li>
+</ol>
+
+
+<h3>index.js</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Scene</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-native-router-flux&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">import</span> <span class="nx">PageOne</span> <span class="nx">from</span> <span class="s1">&#39;./PageOne&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">import</span> <span class="nx">PageTwo</span> <span class="nx">from</span> <span class="s1">&#39;./PageTwo&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">Router</span><span class="o">&gt;</span>
+</span><span class='line'>        <span class="o">&lt;</span><span class="nx">Scene</span> <span class="nx">key</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="o">&gt;</span>
+</span><span class='line'>          <span class="o">&lt;</span><span class="nx">Scene</span> <span class="nx">key</span><span class="o">=</span><span class="s2">&quot;pageOne&quot;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">PageOne</span><span class="p">}</span> <span class="nx">title</span><span class="o">=</span><span class="s2">&quot;PageOne&quot;</span> <span class="nx">initial</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span><span class='line'>          <span class="o">&lt;</span><span class="nx">Scene</span> <span class="nx">key</span><span class="o">=</span><span class="s2">&quot;pageTwo&quot;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">PageTwo</span><span class="p">}</span> <span class="nx">title</span><span class="o">=</span><span class="s2">&quot;PageTwo&quot;</span> <span class="o">/&gt;</span>
+</span><span class='line'>        <span class="o">&lt;</span><span class="err">/Scene&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="err">/Router&gt;</span>
+</span><span class='line'>    <span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在 <code>react-native-router-flux</code> 中，路由（或者页面）被称为 <code>&lt;Scene&gt;</code>。通常情况下，你的 Scenes 应该被封装在根  Scene 中，然后才能包装在 <code>render()</code> 函数返回的 <code>&lt;Router&gt;</code> 组件中。</p>
+
+<p>任何一个 <code>&lt;Scene&gt;</code> 组件至少需要以下几个属性：</p>
+
+<ul>
+<li><strong>key</strong>：一个用于引用特定场景的唯一字符串。</li>
+<li><strong>component</strong>：为该 <code>Scene</code> 或页面要渲染的组件。</li>
+<li><strong>title</strong>：显示在屏幕顶部导航栏中的字符串。</li>
+</ul>
+
+
+<p>需注意，加载的第一个场景有 <code>initial={true}</code> 这个属性，以表示它为初始渲染的场景。</p>
+
+<h2>页面跳转</h2>
+
+<h3>PageOne.js</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">import</span> <span class="p">{</span> <span class="nx">View</span><span class="p">,</span> <span class="nx">Text</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">import</span> <span class="p">{</span> <span class="nx">Actions</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-native-router-flux&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">PageOne</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p"></span><span class="o">&gt;</span>
+</span><span class='line'>        <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">onPress</span><span class="o">=</span><span class="p">{</span><span class="nx">Actions</span><span class="p">.</span><span class="nx">pageTwo</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">This</span> <span class="nx">is</span> <span class="nx">PageOne</span><span class="o">!&lt;</span><span class="err">/Text&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="err">/View&gt;</span>
+</span><span class='line'>    <span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从一个页面跳转到另一个页面，必须调用 <code>Action</code>。格式为：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Actions</span><span class="p">.</span><span class="nx">SCENE_KEY</span><span class="p">(</span><span class="nx">PARAMS</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>SCENE_KEY</code> 必须与路由组件根文件其中一个场景定义的 <code>key</code> 值匹配。<code>PARAMS</code> 指的是一个 javascript 对象，它将作为属性传递到下个场景中（后面会详细介绍）。</p>
+
+<p>由于 PageTwo 组件 key 的值为 <code>pageTwo</code>，因此我们需要做的就是将 <code>Actions.pageTwo</code>  函数放在 <code>&lt;Text&gt;</code> 组件点击事件中，这样在点击文本时便会执行页面跳转。</p>
+
+<h2>传值</h2>
+
+<p>现在尝试扩展示例，以便可以将数据从 <code>PageOne</code> 传递到 <code>PageTwo</code>。</p>
+
+<p>在 <code>PageOne.js</code> 源代码中，用  <code>Actions.pageTwo({text: 'Hello World!'})</code> 替换  <code>Actions.pageTwo</code>。在这种情况下，需要在函数内部封装 Action 调用，以防止它在渲染这个组件时就执行。因此，<code>PageOne.js</code> 中的渲染函数应该如下所示：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kr">const</span> <span class="nx">goToPageTwo</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">Actions</span><span class="p">.</span><span class="nx">pageTwo</span><span class="p">({</span><span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Hello World!&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">(</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p"></span><span class="o">&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">onPress</span><span class="o">=</span><span class="p">{</span><span class="nx">goToPageTwo</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">This</span> <span class="nx">is</span> <span class="nx">PageOne</span><span class="o">!&lt;</span><span class="err">/Text&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="err">/View&gt;</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在 <code>PageTwo.js</code> 中，可以在现有 <code>&lt;Text&gt;</code> 组件下再添加一个 <code>&lt;Text&gt;</code> 来使用传入的数据，如下所示：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">(</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p"></span><span class="o">&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="nx">This</span> <span class="nx">is</span> <span class="nx">PageTwo</span><span class="o">!&lt;</span><span class="err">/Text&gt;</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
+</span><span class='line'>    <span class="o">&lt;</span><span class="err">/View&gt;</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在，跳转到 PageTwo 页面，就应该看到：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">This</span> <span class="nx">is</span> <span class="nx">PageTwo</span><span class="o">!</span>
+</span><span class='line'><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>向前（或向后？）</h2>
+
+<p>介绍了大部分的基础知识，现在迷你教程已结束，但定制 <code>react-native-router-flux</code> 还可以做很多，这只是开始。</p>
+
+<p>例如，可能想要以代码方式返回到上一个页面。虽然可以通过点击导航栏左上角的箭头图标来执行此操作，但也可以在应用中的任何位置调用此函数以获得相同的效果：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Actions</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>甚至可以使用新的参数刷新同一页面：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Actions</span><span class="p">.</span><span class="nx">refresh</span><span class="p">(</span><span class="nx">PARAMS</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+            原始地址：
+            <a href='https://lengmolehongyan.github.io/blog/2018/03/21/react-native-route-flux-use-tutorial/'>https://lengmolehongyan.github.io/blog/2018/03/21/react-native-route-flux-use-tutorial/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
+            </p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">冷漠叻荭颜</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-03-21T11:11:40+08:00'><span class='date'>2018 年 03 月 21 日</span> <span class='time'>11:11 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  
+  <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tools_1"></a>
+    <a class="jiathis_button_tools_2"></a>
+    <a class="jiathis_button_tools_3"></a>
+    <a class="jiathis_button_tools_4"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>
+<!-- UY END -->
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2018/01/08/ios-develop-commonly-used-directory/" title="Previous Post: iOS 开发常用目录备忘">&laquo; iOS 开发常用目录备忘</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>最近发表</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/03/21/react-native-route-flux-use-tutorial/">React-native-route-flux 使用文档</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/01/08/ios-develop-commonly-used-directory/">iOS 开发常用目录备忘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/07/28/git-notebook/">Git Notebook</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/26/tableview-layoutconstraints-conflict/">UITableView tableHeaderView, tableFooterView 子控件布局约束警告</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/14/facebook-xctool-de-shi-yong/">Facebook Xctool 的使用</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/lengmolehongyan">@lengmolehongyan</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lengmolehongyan',
+            count: ,
+            skip_forks: ,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+Copyright &copy; 2018 - 冷漠叻荭颜 -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a>
+</span>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+     var hm = document.createElement("script");
+     hm.src = "//hm.baidu.com/hm.js?727f61fef5e4fc019e06ad07f7c757e5";
+     var s = document.getElementsByTagName("script")[0];
+     s.parentNode.insertBefore(hm, s);
+     })();
+    </script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+     var hm = document.createElement("script");
+     hm.src = "//hm.baidu.com/hm.js?fce1f6cf0ab15345601c8f25d08185f1";
+     var s = document.getElementsByTagName("script")[0];
+     s.parentNode.insertBefore(hm, s);
+     })();
+    </script>
+<script>
+    (function(){
+     var bp = document.createElement('script');
+     bp.src = '//push.zhanzhang.baidu.com/push.js';
+     var s = document.getElementsByTagName("script")[0];
+     s.parentNode.insertBefore(bp, s);
+     })();
+    </script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256261254'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256261254%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
