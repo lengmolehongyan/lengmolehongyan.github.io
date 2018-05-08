@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-<<<<<<< HEAD
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
-  <link href="http://lengmolehongyan.github.io/"/>
-  <updated>2015-05-23T07:42:39+08:00</updated>
-  <id>http://lengmolehongyan.github.io/</id>
-  <author>
-    <name><![CDATA[lengmolehongyan]]></name>
-    
-=======
   <title><![CDATA[冷漠叻荭颜’s Blog]]></title>
   <link href="http://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="http://lengmolehongyan.github.io/"/>
@@ -19,13 +9,9 @@
   <author>
     <name><![CDATA[lengmolehongyan]]></name>
     <email><![CDATA[lengmohongyan@hotmail.com]]></email>
->>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-<<<<<<< HEAD
-=======
   <entry>
     <title type="html"><![CDATA[iOS8下定位问题<二>]]></title>
     <link href="http://lengmolehongyan.github.io/blog/2015/08/30/ios8xia-ding-wei-wen-ti-er/"/>
@@ -1315,6 +1301,4 @@
 
 ]]></content>
   </entry>
-  
->>>>>>> a8af751e2c754bab369b73c68d6f82eda2153bf1
 </feed>
