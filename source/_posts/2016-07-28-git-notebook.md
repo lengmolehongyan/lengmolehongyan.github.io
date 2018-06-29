@@ -83,6 +83,10 @@ git fsck --unreachable 2&>/dev/null | while read i; do; git show `echo $i | cut 
 
 这种方法，不单单只对误删除了 stash 记录有作用，git 一切错误操作导致删除都可以利用此方法恢复。
 
+## git submodule 使用
+
+[git submodule 使用小结](http://blog.gezhiqiang.com/2017/03/08/git-submodule/)
+
 
 
 
