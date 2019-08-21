@@ -78,6 +78,58 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-01T00:05:16+08:00'><span class='date'>2016 年 01 月 01 日</span> <span class='time'>12:05 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView 的大小或者位置改变，UIButton 的位置将会自动调整。</p>
+
+<p>基于约束这种方式来写界面就可以动态响应来自视图内部和外部的变化。</p>
+
+<h2>外部变化</h2>
+
+<p>外部变化发生在父视图的大小或者形状发生改变。每次变化，都必须充分利用可用空间来为视图 view 更新布局。下面是一些常见的外部变化源：</p>
+
+<ul>
+<li>用户调整窗口（OSX）</li>
+<li>用户在 iPad 上进入或者离开 SplitView（iOS）</li>
+<li>设备旋转（iOS）</li>
+<li>电话和录音状态栏的出现或者消失（iOS）</li>
+<li>想适配 Size Classes</li>
+<li>想适配不同屏幕大小</li>
+</ul>
+
+
+<p>这些场景大多发生在应用运行状态下，它们需要应用做出动态响应。但其它比如支持不同屏幕尺寸的应用，就可以适应不同的场景。因为对于一个设备的屏幕尺寸是不会发生改变的，但界面布局适配后你的应用在 iPhone4S 和 iPhone6 Plus，甚至 iPad 上运行效果都是相同的。自动布局同时也是 iPad 上支持 SlideOver 和 SplitView 的重要组件。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/01/01/understanding-auto-layout/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/12/27/autolayout-guide/">自动布局指南（Auto Layout Guide）</a></h1>
     
     
@@ -600,87 +652,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/10/block-de-jian-dan-shi-yong/">Block 的简单使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-10T23:42:34+08:00'><span class='date'>2015 年 09 月 10 日</span> <span class='time'>11:42 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Block 的介绍</h3>
-
-<ul>
-<li>对象与对象之间的通信方式
-
-<ol>
-<li><strong>代理-协议</strong>，<strong>通知</strong>，<strong>Block</strong>。</li>
-<li>三种通信方式都实现了对象之间的解耦合。</li>
-<li>通知的通信方式是 <strong>1对多</strong>。</li>
-<li>代理、Block 是 <strong>1对1</strong>。</li>
-</ol>
-</li>
-</ul>
-
-
-<p></p>
-
-
-<ul>
-<li>Block 介绍
-
-<ol>
-<li>Block 是 iOS4.0 之后新增的一种语法结构，也称为“闭包”。</li>
-<li>Block 是一个匿名的函数代码块，此代码块可以作为参数传递给其他对象。</li>
-<li>可以把 block 当做 Objective-C 的匿名函数，block 是 OC 中的一种数据类型，<code>^</code>是 block 的特有标记。</li>
-</ol>
-</li>
-</ul>
-
-
-<p></p>
-
-
-<ul>
-<li>Block 格式说明
-
-<ol>
-<li><code>(返回类型)(^block名称)(参数类型)=^(参数列表){代码实现};</code>。</li>
-<li>如果没有参数，等号后面参数列表的()可以省略。</li>
-</ol>
-</li>
-</ul>
-
-
-<p></p>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/10/block-de-jian-dan-shi-yong/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -698,6 +669,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/">Xcode 10 React-native Run-ios Could Not Find Simulator</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/03/22/react-components/">React Components</a>
       </li>
     
@@ -711,10 +686,6 @@
     
       <li class="post">
         <a href="/blog/2016/07/28/git-notebook/">Git Notebook</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/03/26/tableview-layoutconstraints-conflict/">UITableView tableHeaderView, tableFooterView 子控件布局约束警告</a>
       </li>
     
   </ul>

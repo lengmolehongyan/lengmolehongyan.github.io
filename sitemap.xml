@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://lengmolehongyan.github.io/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/</loc>
+<lastmod>2019-08-21T17:03:05+08:00</lastmod>
+</url>
+<url>
 <loc>https://lengmolehongyan.github.io/blog/2018/03/22/react-components/</loc>
 <lastmod>2018-03-22T11:19:28+08:00</lastmod>
 </url>
@@ -120,11 +124,5 @@
 </url>
 <url>
 <loc>https://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/</loc>
-</url>
-<url>
-<loc>https://lengmolehongyan.github.io/posts/2/</loc>
-</url>
-<url>
-<loc>https://lengmolehongyan.github.io/posts/3/</loc>
 </url>
 </urlset>

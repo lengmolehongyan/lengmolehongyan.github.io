@@ -78,6 +78,84 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/">Xcode 10 React-native Run-ios Could Not Find Simulator</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2019-08-21T17:03:05+08:00'><span class='date'>2019 年 08 月 21 日</span> <span class='time'>5:03 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>问题</h3>
+
+<p>升级 Xcode 10 后，终端编译运行 0.55.4 版本的 React Native 项目</p>
+
+<p><code>react-native run-ios --simulator "iPhone 8"</code></p>
+
+<p>然后会报错，找不到模拟器</p>
+
+<p><code>Could not find xxx simulator</code></p>
+
+<h3>解决办法</h3>
+
+<ol>
+<li>进入 <code>/node_modules/react-native/local-cli/runIOS/</code> 目录；</li>
+<li>打开 <code>findMatchingSimulator.js</code> 文件；</li>
+<li>修改 check 模拟器相关代码如下：</li>
+</ol>
+
+
+<p>原代码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='JavaScript'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">version</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;iOS&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">version</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;tvOS&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>替换为</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='JavaScript'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">version</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;com.apple.CoreSimulator.SimRuntime.iOS&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">version</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;com.apple.CoreSimulator.SimRuntime.tvOS&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+            原始地址：
+            <a href='https://lengmolehongyan.github.io/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/'>https://lengmolehongyan.github.io/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
+            </p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2018/03/22/react-components/">React Components</a></h1>
     
     
@@ -838,58 +916,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-01-01T00:05:16+08:00'><span class='date'>2016 年 01 月 01 日</span> <span class='time'>12:05 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>自动布局会依据给视图 view 在视图层次中设置的约束来动态计算它的大小和位置。比如，你可以设置一个 UIButton 的约束为：和一个 UIImageView 水平居中，并且 UIButton 的顶部距离 UIImageView 的底部保持 8 个点。之后如果 UIImageView 的大小或者位置改变，UIButton 的位置将会自动调整。</p>
-
-<p>基于约束这种方式来写界面就可以动态响应来自视图内部和外部的变化。</p>
-
-<h2>外部变化</h2>
-
-<p>外部变化发生在父视图的大小或者形状发生改变。每次变化，都必须充分利用可用空间来为视图 view 更新布局。下面是一些常见的外部变化源：</p>
-
-<ul>
-<li>用户调整窗口（OSX）</li>
-<li>用户在 iPad 上进入或者离开 SplitView（iOS）</li>
-<li>设备旋转（iOS）</li>
-<li>电话和录音状态栏的出现或者消失（iOS）</li>
-<li>想适配 Size Classes</li>
-<li>想适配不同屏幕大小</li>
-</ul>
-
-
-<p>这些场景大多发生在应用运行状态下，它们需要应用做出动态响应。但其它比如支持不同屏幕尺寸的应用，就可以适应不同的场景。因为对于一个设备的屏幕尺寸是不会发生改变的，但界面布局适配后你的应用在 iPhone4S 和 iPhone6 Plus，甚至 iPad 上运行效果都是相同的。自动布局同时也是 iPad 上支持 SlideOver 和 SplitView 的重要组件。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2016/01/01/understanding-auto-layout/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -905,6 +931,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/">Xcode 10 React-native Run-ios Could Not Find Simulator</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/03/22/react-components/">React Components</a>
       </li>
     
@@ -918,10 +948,6 @@
     
       <li class="post">
         <a href="/blog/2016/07/28/git-notebook/">Git Notebook</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/03/26/tableview-layoutconstraints-conflict/">UITableView tableHeaderView, tableFooterView 子控件布局约束警告</a>
       </li>
     
   </ul>

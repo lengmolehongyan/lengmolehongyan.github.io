@@ -4,7 +4,7 @@
   <title><![CDATA[冷漠叻荭颜]]></title>
   <link href="https://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="https://lengmolehongyan.github.io/"/>
-  <updated>2019-01-15T11:41:27+08:00</updated>
+  <updated>2019-08-21T17:15:20+08:00</updated>
   <id>https://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Xcode 10 React-native Run-ios Could Not Find Simulator]]></title>
+    <link href="https://lengmolehongyan.github.io/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/"/>
+    <updated>2019-08-21T17:03:05+08:00</updated>
+    <id>https://lengmolehongyan.github.io/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator</id>
+    <content type="html"><![CDATA[<h3>问题</h3>
+
+<p>升级 Xcode 10 后，终端编译运行 0.55.4 版本的 React Native 项目</p>
+
+<p><code>react-native run-ios --simulator "iPhone 8"</code></p>
+
+<p>然后会报错，找不到模拟器</p>
+
+<p><code>Could not find xxx simulator</code></p>
+
+<h3>解决办法</h3>
+
+<ol>
+<li>进入 <code>/node_modules/react-native/local-cli/runIOS/</code> 目录；</li>
+<li>打开 <code>findMatchingSimulator.js</code> 文件；</li>
+<li>修改 check 模拟器相关代码如下：</li>
+</ol>
+
+
+<p>原代码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='JavaScript'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">version</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;iOS&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">version</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;tvOS&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>替换为</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='JavaScript'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">version</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;com.apple.CoreSimulator.SimRuntime.iOS&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">version</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;com.apple.CoreSimulator.SimRuntime.tvOS&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p class='post-footer'>
+            原始地址：
+            <a href='https://lengmolehongyan.github.io/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/'>https://lengmolehongyan.github.io/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
+            </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[React Components]]></title>
@@ -2970,158 +3028,6 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/'>https://lengmolehongyan.github.io/blog/2015/09/12/kvcde-jian-dan-shi-yong/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
-            </p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Block 的简单使用]]></title>
-    <link href="https://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/"/>
-    <updated>2015-09-10T23:42:34+08:00</updated>
-    <id>https://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong</id>
-    <content type="html"><![CDATA[<h3>Block 的介绍</h3>
-
-<ul>
-<li>对象与对象之间的通信方式
-
-<ol>
-<li><strong>代理-协议</strong>，<strong>通知</strong>，<strong>Block</strong>。</li>
-<li>三种通信方式都实现了对象之间的解耦合。</li>
-<li>通知的通信方式是 <strong>1对多</strong>。</li>
-<li>代理、Block 是 <strong>1对1</strong>。</li>
-</ol>
-</li>
-</ul>
-
-
-<p></p>
-
-
-<ul>
-<li>Block 介绍
-
-<ol>
-<li>Block 是 iOS4.0 之后新增的一种语法结构，也称为“闭包”。</li>
-<li>Block 是一个匿名的函数代码块，此代码块可以作为参数传递给其他对象。</li>
-<li>可以把 block 当做 Objective-C 的匿名函数，block 是 OC 中的一种数据类型，<code>^</code>是 block 的特有标记。</li>
-</ol>
-</li>
-</ul>
-
-
-<p></p>
-
-
-<ul>
-<li>Block 格式说明
-
-<ol>
-<li><code>(返回类型)(^block名称)(参数类型)=^(参数列表){代码实现};</code>。</li>
-<li>如果没有参数，等号后面参数列表的()可以省略。</li>
-</ol>
-</li>
-</ul>
-
-
-<p></p>
-
-
-
-
-<!--more-->
-
-
-<h3>Block 的使用</h3>
-
-<ul>
-<li>Block 的定义</li>
-</ul>
-
-
-<p><img src="http://i2.tietuku.com/4a270839c9929017.png" alt="定义Block的常见两种方式" /></p>
-
-<ul>
-<li>Block 的3种类型
-
-<ol>
-<li>不管在 ARC 还是 MRC 环境下，block 内部如果没有访问外部变量，这个 block 是 <strong>全局 block</strong> <code>__NSGlobalBlock__</code>，形式类似函数，存储在内存中的 <strong>代码区</strong>。</li>
-<li>在 <strong>MRC</strong> 下，block 内部如果访问外部变量，这个 block 是 <strong>栈 block</strong> <code>__NSStackBlock__</code>，存储在内存中的 <strong>栈</strong> 上。</li>
-<li>在 <strong>MRC</strong> 下，block 内部访问外部变量，同时对该 block 做一次 <strong>copy 操作</strong>，这个 block 是 <strong>堆 block</strong> <code>__NSMallocBlock__</code>，存储在内存中的 <strong>堆</strong> 上。</li>
-<li>在 <strong>ARC</strong> 下，block 内部如果访问外部变量，这个 block 是 <strong>堆 block</strong> <code>__NSMallocBlock__</code>，存储在内存中的 <strong>堆</strong> 上，因为在 ARC 下，默认对 block 做了一次 copy 操作。</li>
-</ol>
-</li>
-</ul>
-
-
-<p><img src="http://i2.tietuku.com/8c06ba2fe062559a.png" alt="全局block" />
-<img src="http://i2.tietuku.com/bb203edf923cea6b.png" alt="栈block" />
-<img src="http://i2.tietuku.com/5c461733e51097cd.png" alt="堆block" /></p>
-
-<ul>
-<li>Block 作为方法的参数
-
-<ul>
-<li>将 block 作为方法的参数，可以用 block 来封装代码块。</li>
-</ul>
-</li>
-</ul>
-
-
-<p><img src="http://ww1.sinaimg.cn/large/9491566bjw1erczgvtdkdj211i0d2aep.jpg" alt="block作为方法的参数" /></p>
-
-<ul>
-<li>Block 作为属性</li>
-</ul>
-
-
-<p><img src="http://ww4.sinaimg.cn/large/9491566bjw1ercziuw0btj21420hin58.jpg" alt="block作为属性" /></p>
-
-<ul>
-<li>Block 的方式遍历数组\字典</li>
-</ul>
-
-
-<p><img src="http://ww1.sinaimg.cn/large/9491566bjw1erd0j2s7stj213s0l2qfl.jpg" alt="block的方式遍历数组\字典" /></p>
-
-<h3>Block 的使用注意</h3>
-
-<ul>
-<li>Block 访问外部变量
-
-<ol>
-<li>block 内部可以访问外部的变量，block 默认是将其复制到其数据结构中来实现访问的。</li>
-<li>默认情况下，block 内部不能修改外面的局部变量，因为通过 block 进行闭包的变量是 const 的。</li>
-<li>给局部变量加上 <code>__block</code> 关键字，这个局部变量就可以在 block 内部修改，block 是复制其引用地址来实现访问的。</li>
-</ol>
-</li>
-</ul>
-
-
-<p><img src="http://ww2.sinaimg.cn/large/9491566bjw1erdasuqz67j216s0kqtl6.jpg" alt="block访问外部变量" /></p>
-
-<ul>
-<li>Block 作为属性应该用 copy 修饰
-
-<ol>
-<li>当用 weak、assign 修饰 block 属性时，block 访问外部变量，此时 block 的类型是 <strong>栈 block</strong>。保存在栈中的 block，当 block 所在函数\方法返回\结束，该 block 就会被销毁。在其他方法内部调用访问该 block，就会引发野指针错误 <code>EXC_BAD_ACCESS</code>。</li>
-<li>当用 copy、strong 修饰 block 属性时，block 访问外部变量，此时 block 的类型是 <strong>堆 block</strong>。保存在堆中的 block，当引用计数器为0时被销毁，该类型 block 是由栈类型的 block 从栈中复制到堆中形成的，因此可以在其他方法内部调用该 block。在 ARC 下，<code>strong</code> 和 <code>copy</code> 都可以用来修饰 block，但是建议修饰 block 属性使用 <code>copy</code>。</li>
-</ol>
-</li>
-</ul>
-
-
-<p><img src="http://ww1.sinaimg.cn/large/9491566bjw1erdce4hllbj21kw0j2qc7.jpg" alt="weak修饰block" /></p>
-
-<p><img src="http://ww4.sinaimg.cn/large/9491566bjw1erdfvoacrfj214i0jmqbu.jpg" alt="copy修饰block" /></p>
-
-<p>推荐阅读：<a href="http://www.cocoachina.com/ios/20150109/10891.html">Objective-C中的Block</a></p>
-
-<p class='post-footer'>
-            原始地址：
-            <a href='https://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/'>https://lengmolehongyan.github.io/blog/2015/09/10/block-de-jian-dan-shi-yong/</a><br/>
             written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
