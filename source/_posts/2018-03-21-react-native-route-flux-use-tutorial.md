@@ -51,6 +51,8 @@ export default class App extends Component {
 
 需注意，加载的第一个场景有 `initial={true}` 这个属性，以表示它为初始渲染的场景。
 
+<!--more-->
+
 ## 页面跳转
 
 ### PageOne.js

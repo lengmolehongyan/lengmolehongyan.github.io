@@ -20,6 +20,10 @@ description: #seo 的 desc
 
 当前运行的 Xcode 版本所支持真机调试的系统版本（例：当 Xcode 未升级想调试系统版本高的）
 
+低版本 Xcode 调试高版本 iOS 系统时，只需从进入高版本 Xcode 下面目录拷出对应高版本系统镜像，然后复制到低版本 Xcode 对应目录，完成后重启 Xcode，等读条完，便可以调试了
+
+`/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/`
+
 ### Archives
 
 `/Users/xxxx/Library/Developer/Xcode/Archives`

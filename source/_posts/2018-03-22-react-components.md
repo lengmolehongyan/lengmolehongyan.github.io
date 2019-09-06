@@ -30,6 +30,8 @@ description: React Components
 
 组件生命周期：初始化，加载，渲染，更新，卸载，销毁
 
+<!--more-->
+
 ### Mounting Cycle
 
 * `constructor(object props)`
