@@ -78,6 +78,55 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2016/01/01/auto-layout-without-constraints/">没有约束的自动布局（Auto Layout Without Constraints）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-01T10:38:41+08:00'><span class='date'>2016 年 01 月 01 日</span> <span class='time'>10:38 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>StackView 提供了一种简单的方法，剔除了复杂的约束，利用自动布局的强大来布局界面，单个 StackView 由一行或者一列控件组成，StackView 根据自身的属性布局这些控件。</p>
+
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/axis">axis</a>:（仅 UIStackView）表示 StackView 的方向，纵向或者水平。</li>
+<li>orientation:（仅 NSStackView）表示 StackView 的方向，纵向或者水平。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/distribution">distribution</a>：表示沿着 axis 方向的视图布局方式。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/alignment">alignment</a>：表示纵向于 axis 方向的视图布局方式。</li>
+<li><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/index.html#//apple_ref/occ/instp/UIStackView/spacing">spacing</a>：表示相邻视图之间的间隔。</li>
+</ul>
+
+
+<p>要使用 StackView，在 IB 中拖一个纵向或者水平的 StackView 到画布中，然后拖控件放到 StackView 内。</p>
+
+<p>如果一个视图有自身内容大小，它在 StackView 中将显示为自身的大小。如果没有，IB 将会提供默认的大小，你可以调整它的大小，IB 中添加约束来保持大小不变。</p>
+
+<p>想进一步微调布局，可以在属性检查器（Attributes Inspector） 修改 StackView 的属性。下面这个例子，设置 StackView 的 spacing 属性为 8 个点，distribution 属性为 Fill Equally。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/01/01/auto-layout-without-constraints/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2016/01/01/understanding-auto-layout/">理解自动布局（Understanding Auto Layout）</a></h1>
     
     
@@ -604,54 +653,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/12/kvcde-jian-dan-shi-yong/">KVC 的简单使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-12T22:58:12+08:00'><span class='date'>2015 年 09 月 12 日</span> <span class='time'>10:58 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>KVC 字典转模型</h2>
-
-<ul>
-<li>KVC 中经常使用的就是字典转模型</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// NSObject(NSKeyValueCoding) NSObject 的分类</span>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setValuesForKeysWithDictionary:</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">keyedValues</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/12/kvcde-jian-dan-shi-yong/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -669,6 +670,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/09/06/codepush-archive-and-and-deploy-and-and-adjust-rollout-script-implementation/">CodePush 打包 && 发布 && 调整灰度比例相关脚本实现</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/">Xcode 10 React-native Run-ios Could Not Find Simulator</a>
       </li>
     
@@ -682,10 +687,6 @@
     
       <li class="post">
         <a href="/blog/2018/01/08/ios-develop-commonly-used-directory/">iOS 开发常用目录备忘</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/07/28/git-notebook/">Git Notebook</a>
       </li>
     
   </ul>

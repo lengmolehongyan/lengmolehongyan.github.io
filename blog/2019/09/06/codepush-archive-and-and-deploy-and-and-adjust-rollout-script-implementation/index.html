@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CodePush 打包 && 发布 && 调整灰度比例相关脚本实现 - 冷漠叻荭颜</title>
+  <meta name="author" content="冷漠叻荭颜">
+      
+  
+  <meta name="description" content="CodePush 打包 && 发布 && 调整灰度比例相关脚本实现">
+  <meta name="keywords" content="codepush，打包">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://lengmolehongyan.github.io/blog/2019/09/06/codepush-archive-and-and-deploy-and-and-adjust-rollout-script-implementation/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="冷漠叻荭颜" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.lug.ustc.edu.cn/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+  <meta name="baidu-site-verification" content="nPTv4ta5Ar" />
+  <meta name="baidu-site-verification" content="HpQk78B667" />
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">冷漠叻荭颜</a></h1>
+  
+    <h2>lengmolehongyan’s Blog.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="订阅 RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.baidu.com/" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="lengmolehongyan.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="搜索"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">文章列表</a></li>
+  <li><a href="/awesome_blog">优秀博客</a></li>
+  <!-- <li><a href="/blog/categories/ios_dev_precise_detail/">iOS 开发小细节</a></li> -->
+  <li><a href="/blog/categories/ioskai-fa-xiao-xi-jie/">iOS 开发小细节</a></li>
+  <li><a href="http://weibo.com/lengmolehongyan">我的微博</a></li>
+  
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">CodePush 打包 && 发布 && 调整灰度比例相关脚本实现</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2019-09-06T14:40:36+08:00'><span class='date'>2019 年 09 月 06 日</span> <span class='time'>2:40 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>React Native Bundle 打包命令</h2>
+
+<h3>iOS</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">node</span> <span class="n">node_modules</span><span class="o">/</span><span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">/</span><span class="n">local</span><span class="o">-</span><span class="n">cli</span><span class="o">/</span><span class="n">cli</span><span class="o">.</span><span class="n">js</span> <span class="n">bundle</span> <span class="o">--</span><span class="n">assets</span><span class="o">-</span><span class="n">dest</span> <span class="o">.</span><span class="n">/bundles</span><span class="o">/</span><span class="n">ios</span><span class="o">/</span> <span class="o">--</span><span class="n">bundle</span><span class="o">-</span><span class="n">output</span> <span class="o">.</span><span class="n">/bundles</span><span class="o">/</span><span class="n">ios</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">jsbundle</span> <span class="o">--</span><span class="n">dev</span> <span class="kp">false</span> <span class="o">--</span><span class="n">entry</span><span class="o">-</span><span class="n">file</span> <span class="n">index</span><span class="o">.</span><span class="n">js</span> <span class="o">--</span><span class="n">platform</span> <span class="n">ios</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Android</h3>
+
+<p>Android bundle 包命名必须为 index.android.bundle</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">node</span> <span class="n">node_modules</span><span class="o">/</span><span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">/</span><span class="n">local</span><span class="o">-</span><span class="n">cli</span><span class="o">/</span><span class="n">cli</span><span class="o">.</span><span class="n">js</span> <span class="n">bundle</span> <span class="o">--</span><span class="n">assets</span><span class="o">-</span><span class="n">dest</span> <span class="o">.</span><span class="n">/bundles</span><span class="o">/</span><span class="n">android</span><span class="o">/</span> <span class="o">--</span><span class="n">bundle</span><span class="o">-</span><span class="n">output</span> <span class="o">.</span><span class="n">/bundles</span><span class="o">/</span><span class="n">android</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">bundle</span> <span class="o">--</span><span class="n">dev</span> <span class="kp">false</span> <span class="o">--</span><span class="n">entry</span><span class="o">-</span><span class="n">file</span> <span class="n">index</span><span class="o">.</span><span class="n">js</span> <span class="o">--</span><span class="n">platform</span> <span class="n">android</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上述命令中的 <code>node node_modules/react-native/local-cli/cli.js bundle</code> 与 <code>react-native bundle</code> 相同作用，前提需在一个 react-native 工程中。</p>
+
+<h2>Bundle 及资源文件压缩</h2>
+
+<p>如上 react native bundle 打包后，Android 平台会生成如下文件及目录</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">.</span>
+</span><span class='line'><span class="err">└──</span> <span class="n">android</span>
+</span><span class='line'>    <span class="err">├──</span> <span class="n">drawable</span><span class="o">-</span><span class="n">hdpi</span>
+</span><span class='line'>    <span class="err">├──</span> <span class="n">drawable</span><span class="o">-</span><span class="n">mdpi</span>
+</span><span class='line'>    <span class="err">├──</span> <span class="n">drawable</span><span class="o">-</span><span class="n">xhdpi</span>
+</span><span class='line'>    <span class="err">├──</span> <span class="n">drawable</span><span class="o">-</span><span class="n">xxhdpi</span>
+</span><span class='line'>    <span class="err">├──</span> <span class="n">drawable</span><span class="o">-</span><span class="n">xxxhdpi</span>
+</span><span class='line'>    <span class="err">├──</span> <span class="n">index</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">bundle</span>
+</span><span class='line'>    <span class="err">└──</span> <span class="n">index</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">bundle</span><span class="o">.</span><span class="n">meta</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">6</span> <span class="n">directories</span><span class="p">,</span> <span class="mi">2</span> <span class="n">files</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>iOS 平台会生成如下文件及目录</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">.</span>
+</span><span class='line'><span class="err">└──</span> <span class="n">ios</span>
+</span><span class='line'>    <span class="err">├──</span> <span class="n">assets</span>
+</span><span class='line'>    <span class="err">├──</span> <span class="n">main</span><span class="o">.</span><span class="n">jsbundle</span>
+</span><span class='line'>    <span class="err">└──</span> <span class="n">main</span><span class="o">.</span><span class="n">jsbundle</span><span class="o">.</span><span class="n">meta</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">2</span> <span class="n">directories</span><span class="p">,</span> <span class="mi">2</span> <span class="n">files</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<h3>压缩</h3>
+
+<p>自建 CodePushServer 基础平台–热部署发布平台–创建应用发布，上传代码包时需要是 zip 压缩文件，如下命令可将 ios/android 目录下递归所有文件并压缩</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># fileName 命名规则：当前 Build 号 &amp;&amp; 当前平台 &amp;&amp; 当前打包分支.zip</span>
+</span><span class='line'><span class="err">$</span> <span class="n">zip</span> <span class="o">-</span><span class="n">r</span> <span class="o">.</span><span class="n">/fileName</span> <span class="o">.</span><span class="n">/ios</span><span class="o">/*</span>
+</span><span class='line'><span class="err">$</span> <span class="n">zip</span> <span class="o">-</span><span class="n">r</span> <span class="o">.</span><span class="n">/fileName</span> <span class="o">.</span><span class="n">/android</span><span class="o">/*</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>打包压缩后，需要供内网下载，在 MacPro 上开启 Mac 自带 Apache 服务器，有两种简易方式：</p>
+
+<ol>
+<li>Mac 开启自带 Apache 服务器（<a href="https://www.jianshu.com/p/b1731c4a00ec">https://www.jianshu.com/p/b1731c4a00ec</a>）
+
+<ul>
+<li>缺点：手动配置</li>
+</ul>
+</li>
+<li>VirtualHostX（<a href="https://clickontyler.com/virtualhostx/">https://clickontyler.com/virtualhostx/</a>）
+
+<ul>
+<li>优势：安装完 App 只用无脑点便可以开启</li>
+</ul>
+</li>
+</ol>
+
+
+<p>这里采用的第 2 种方式，配置完后，将刚才压缩后的文件复制到 Apache 服务器相应目录，内网访问相应地址便可以下载</p>
+
+<p><a href="http://macpro.10.11.9.205.xip.io:8080/CodePush/">http://macpro.10.11.9.205.xip.io:8080/CodePush/</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># /opt/Sites/ 为 Apache 服务器根目录</span>
+</span><span class='line'><span class="err">$</span> <span class="n">cp</span> <span class="o">-</span><span class="n">rf</span> <span class="o">.</span><span class="n">/bundles</span><span class="o">/</span><span class="n">fileName</span> <span class="sr">/opt/</span><span class="no">Sites</span><span class="o">/</span><span class="no">CodePush</span><span class="o">/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>CodePush</h2>
+
+<h3>CodePush 发布命令</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># appName 为 CodePush 所注册应用名称</span>
+</span><span class='line'><span class="c1"># platform 为本次对哪个平台发布 ios/android</span>
+</span><span class='line'><span class="c1"># nativeVersion 为本次对该平台哪个原生版本发布</span>
+</span><span class='line'><span class="err">$</span> <span class="n">code</span><span class="o">-</span><span class="n">push</span> <span class="n">release</span><span class="o">-</span><span class="n">react</span> <span class="n">appName</span> <span class="n">platform</span> <span class="o">-</span><span class="n">t</span> <span class="n">nativeVersion</span> <span class="o">--</span><span class="n">dev</span> <span class="kp">false</span> <span class="o">-</span><span class="n">d</span> <span class="no">Production</span> <span class="o">-</span><span class="n">m</span> <span class="o">--</span><span class="n">des</span> <span class="s2">&quot;xxxxxx&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>获取 iOS/Android 平台最新 CodePush Label</h3>
+
+<ol>
+<li>获取某个应用 CodePush 发布记录</li>
+<li>查找匹配 Active 所有行</li>
+<li>在所有行的结果中取出最后一行</li>
+<li>取出最后一行第二个变量</li>
+</ol>
+
+
+<p>综合命令如下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># appName 为 CodePush 所注册应用名称</span>
+</span><span class='line'><span class="err">$</span> <span class="n">code</span><span class="o">-</span><span class="n">push</span> <span class="n">deployment</span> <span class="n">history</span> <span class="n">appName</span> <span class="no">Production</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">&#39;Active&#39;</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="mi">1</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $2}&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>CodePush 更新灰度比例</h3>
+
+<p>依照上一条，可以得出最新发布的 CodePush Label，如果该次发布为灰度发布，想增大灰度比例时，参照如下命令</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># appName 为 CodePush 所注册应用名称</span>
+</span><span class='line'><span class="c1"># vXXX 为调整 CodePush 灰度比例对应的 CodePush Label</span>
+</span><span class='line'><span class="c1"># -r 后面跟的数字为 0~100 之间</span>
+</span><span class='line'><span class="err">$</span> <span class="n">code</span><span class="o">-</span><span class="n">push</span> <span class="n">patch</span> <span class="n">appName</span> <span class="no">Production</span> <span class="o">-</span><span class="n">l</span> <span class="n">vXXX</span> <span class="o">-</span><span class="n">r</span> <span class="mi">100</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>JSON 输出</h3>
+
+<p>查看 CodePush 发布记录可以在命令后追加 <code>format</code> 格式化输出</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># appName 为 CodePush 所注册应用名称</span>
+</span><span class='line'><span class="err">$</span> <span class="n">code</span><span class="o">-</span><span class="n">push</span> <span class="n">deployment</span> <span class="n">history</span> <span class="n">appName</span> <span class="no">Production</span> <span class="o">--</span><span class="nb">format</span><span class="o">=</span><span class="n">json</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>JSON 解析</h3>
+
+<p>jq 是一个可以在终端 shell 中解析 json 输出的工具</p>
+
+<p>官方文档：<a href="https://stedolan.github.io/jq/">https://stedolan.github.io/jq/</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">brew</span> <span class="n">install</span> <span class="n">jq</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>相关解析教程，可以参照官方教程：<a href="https://stedolan.github.io/jq/tutorial/">https://stedolan.github.io/jq/tutorial/</a></p>
+
+<p>结合 CodePush 发布记录的 json 输出和 jq 工具，可以快速得出 CodePush 发布最新版本的更新安装人数</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># appName 为 CodePush 所注册应用名称</span>
+</span><span class='line'><span class="c1"># 获取当前发布记录总个数</span>
+</span><span class='line'><span class="err">$</span> <span class="n">count</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">code</span><span class="o">-</span><span class="n">push</span> <span class="n">deployment</span> <span class="n">history</span> <span class="n">appName</span> <span class="no">Production</span> <span class="o">--</span><span class="nb">format</span><span class="o">=</span><span class="n">json</span> <span class="o">|</span> <span class="n">jq</span> <span class="s1">&#39;length&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># 获取最新一次发布详细数据</span>
+</span><span class='line'><span class="err">$</span> <span class="n">code</span><span class="o">-</span><span class="n">push</span> <span class="n">deployment</span> <span class="n">history</span> <span class="n">appName</span> <span class="no">Production</span> <span class="o">--</span><span class="nb">format</span><span class="o">=</span><span class="n">json</span> <span class="o">|</span> <span class="n">jq</span> <span class="s2">&quot;.[$count-1]&quot;</span>
+</span><span class='line'><span class="c1"># 获取最新一次发布安装人数</span>
+</span><span class='line'><span class="err">$</span> <span class="n">code</span><span class="o">-</span><span class="n">push</span> <span class="n">deployment</span> <span class="n">history</span> <span class="n">appName</span> <span class="no">Production</span> <span class="o">--</span><span class="nb">format</span><span class="o">=</span><span class="n">json</span> <span class="o">|</span> <span class="n">jq</span> <span class="s2">&quot;.[$count-1]&quot;</span> <span class="o">|</span> <span class="n">jq</span> <span class="s1">&#39;.metrics.downloaded&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>获取需求对应开发人员</h2>
+
+<p>当前客户端需求上线前，需要接受 Merge Request 合并代码至线上分支，提 MR 的人就是需求对应开发人员</p>
+
+<h3>获取 Merge Request ID</h3>
+
+<p>在 gitlab 创建 MR 时，会基于该工程生成本次 merge request id，当该 MR 被接受 merge 后，自动生成一次提交记录，而提交记录的详细信息中就有对应的 merge request id</p>
+
+<p>自动生成的提交记录类似如下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Merge</span><span class="p">:</span> <span class="mi">44</span><span class="n">dd8c51</span> <span class="mi">61632</span><span class="n">fed</span>
+</span><span class='line'><span class="ss">Author</span><span class="p">:</span> <span class="n">xx</span>
+</span><span class='line'><span class="ss">Date</span><span class="p">:</span>   <span class="no">Thu</span> <span class="no">Sep</span> <span class="mi">5</span> <span class="mi">15</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">25</span> <span class="mi">2019</span> <span class="o">+</span><span class="mi">0800</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="no">Merge</span> <span class="n">branch</span> <span class="s1">&#39;xxxx&#39;</span> <span class="n">into</span> <span class="s1">&#39;online&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">xxxxxx</span> <span class="n">merge</span> <span class="n">request</span> <span class="n">title</span>
+</span><span class='line'>    <span class="no">See</span> <span class="n">merge</span> <span class="n">request</span> <span class="o">!</span><span class="mi">72</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>依据样例，便可以得出获取 MR ID 的方法：</p>
+
+<ol>
+<li>基于线上代码分支，获取最后一次提交记录</li>
+<li>查找 See merge request</li>
+<li>解析得出 merge request id</li>
+</ol>
+
+
+<p>综合命令如下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 多一次 `sed &#39;s/ //g&#39;` 原因是解析出来的结果包含多余空格</span>
+</span><span class='line'><span class="err">$</span> <span class="n">git</span> <span class="n">log</span> <span class="o">-</span><span class="mi">1</span> <span class="no">Head</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">&#39;See merge request&#39;</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">&#39;s/See merge request !//g&#39;</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">&#39;s/ //g&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>GitLab API</h3>
+
+<p>拿到 merge request id 后，通过 gitlab api 可以获取该 MR 的详细信息，从中便可以获取到本次提 MR 的对应开发人员</p>
+
+<p>gitlab api 官方文档：<a href="https://docs.gitlab.com/ee/api/">https://docs.gitlab.com/ee/api/</a></p>
+
+<p>自建 gitlab 则可以通过 gitlab 域名后追加 help/api 访问 <a href="https://xxx.xxx.xxx/help/api/README.md">https://xxx.xxx.xxx/help/api/README.md</a></p>
+
+<p>Merge Request 相关 API 文档：<a href="https://docs.gitlab.com/ee/api/merge_requests.html">https://docs.gitlab.com/ee/api/merge_requests.html</a></p>
+
+<p>API 访问鉴权方式文档：<a href="https://docs.gitlab.com/ee/api/#authentication">https://docs.gitlab.com/ee/api/#authentication</a></p>
+
+<p>获取提 MR 的对应开发人员方法：</p>
+
+<ol>
+<li>获取 merge request id</li>
+<li>通过 gitlab 接口请求本次 merge request 详细信息
+
+<ul>
+<li>请求接口地址中的 project id 从 gitlab 仓库 Settings → Project settings → Project ID 获取</li>
+</ul>
+</li>
+<li>jq 解析第 2 步的 json 输出，author 就是对应开发人员信息</li>
+</ol>
+
+
+<p>命令如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">mergeRequestId</span><span class="o">=</span><span class="sb">`git log -1 Head | grep &#39;See merge request&#39; | sed &#39;s/See merge request !//g&#39; | sed &#39;s/ //g&#39;`</span>
+</span><span class='line'><span class="c1"># project id 从 gitlab 仓库 Settings → Project settings → Project ID 获取</span>
+</span><span class='line'><span class="err">$</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://xxx.xxx.com/api/v4/projects/projectid/merge_requests/&quot;</span><span class="err">$</span><span class="p">{</span><span class="n">mergeRequestId</span><span class="p">}</span>
+</span><span class='line'><span class="c1"># PRIVATE-TOKEN 获取方式参照上述文档</span>
+</span><span class='line'><span class="err">$</span> <span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;PRIVATE-TOKEN: xxxxxxxxx&#39;</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;content-type: application/json&#39;</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Accept: */*&#39;</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Cache-Control: no-cache&#39;</span> <span class="o">--</span><span class="n">compressed</span> <span class="err">$</span><span class="p">{</span><span class="n">url</span><span class="p">}</span> <span class="o">|</span> <span class="n">jq</span> <span class="s1">&#39;.author.name&#39;</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">&#39;s/\&quot;//g&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>钉钉机器人相关脚本</h2>
+
+<p>钉钉机器人相关脚本可参照钉钉官方文档：<a href="https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq">https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq</a></p>
+
+<p class='post-footer'>
+            原始地址：
+            <a href='https://lengmolehongyan.github.io/blog/2019/09/06/codepush-archive-and-and-deploy-and-and-adjust-rollout-script-implementation/'>https://lengmolehongyan.github.io/blog/2019/09/06/codepush-archive-and-and-deploy-and-and-adjust-rollout-script-implementation/</a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
+            </p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">冷漠叻荭颜</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2019-09-06T14:40:36+08:00'><span class='date'>2019 年 09 月 06 日</span> <span class='time'>2:40 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  
+  <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tools_1"></a>
+    <a class="jiathis_button_tools_2"></a>
+    <a class="jiathis_button_tools_3"></a>
+    <a class="jiathis_button_tools_4"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>
+<!-- UY END -->
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/" title="Previous Post: Xcode 10 react-native run-ios could not find simulator">&laquo; Xcode 10 react-native run-ios could not find simulator</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>最近发表</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2019/09/06/codepush-archive-and-and-deploy-and-and-adjust-rollout-script-implementation/">CodePush 打包 && 发布 && 调整灰度比例相关脚本实现</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/">Xcode 10 React-native Run-ios Could Not Find Simulator</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/03/22/react-components/">React Components</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/03/21/react-native-route-flux-use-tutorial/">React-native-route-flux 使用文档</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/01/08/ios-develop-commonly-used-directory/">iOS 开发常用目录备忘</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+Copyright &copy; 2019 - 冷漠叻荭颜 -
+<span class="credit">Powered by <a href="http://octopress.org">Octopress</a>
+</span>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+     var hm = document.createElement("script");
+     hm.src = "//hm.baidu.com/hm.js?727f61fef5e4fc019e06ad07f7c757e5";
+     var s = document.getElementsByTagName("script")[0];
+     s.parentNode.insertBefore(hm, s);
+     })();
+    </script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+     var hm = document.createElement("script");
+     hm.src = "//hm.baidu.com/hm.js?fce1f6cf0ab15345601c8f25d08185f1";
+     var s = document.getElementsByTagName("script")[0];
+     s.parentNode.insertBefore(hm, s);
+     })();
+    </script>
+<script>
+    (function(){
+     var bp = document.createElement('script');
+     bp.src = '//push.zhanzhang.baidu.com/push.js';
+     var s = document.getElementsByTagName("script")[0];
+     s.parentNode.insertBefore(bp, s);
+     })();
+    </script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256261254'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256261254%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</p>
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

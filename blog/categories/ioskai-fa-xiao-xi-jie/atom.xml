@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios开发小细节 | 冷漠叻荭颜]]></title>
   <link href="https://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/atom.xml" rel="self"/>
   <link href="https://lengmolehongyan.github.io/"/>
-  <updated>2019-08-21T17:40:38+08:00</updated>
+  <updated>2019-09-06T15:12:44+08:00</updated>
   <id>https://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[冷漠叻荭颜]]></name>
@@ -29,6 +29,10 @@
 <p><code>/Users/xxxx/Library/Developer/Xcode/iOS DeviceSupport</code></p>
 
 <p>当前运行的 Xcode 版本所支持真机调试的系统版本（例：当 Xcode 未升级想调试系统版本高的）</p>
+
+<p>低版本 Xcode 调试高版本 iOS 系统时，只需从进入高版本 Xcode 下面目录拷出对应高版本系统镜像，然后复制到低版本 Xcode 对应目录，完成后重启 Xcode，等读条完，便可以调试了</p>
+
+<p><code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/</code></p>
 
 <h3>Archives</h3>
 
