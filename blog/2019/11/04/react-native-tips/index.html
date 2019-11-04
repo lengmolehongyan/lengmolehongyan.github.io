@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>解决 Xcode 升级插件失效 - Layne</title>
+  <title>React Native Tips - Layne</title>
   <meta name="author" content="Layne">
       
   
-  <meta name="description" content="解决 Xcode 升级插件失效">
-  <meta name="keywords" content="解决 Xcode 升级插件失效">
+  <meta name="description" content="react native 小细节备忘">
+  <meta name="keywords" content="react native, rn, tips">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/">
+  <link rel="canonical" href="https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Layne" type="application/atom+xml">
@@ -75,7 +75,7 @@
   
   <header>
     
-      <h1 class="entry-title">解决 Xcode 升级插件失效</h1>
+      <h1 class="entry-title">React Native Tips</h1>
     
     
       <p class="meta">
@@ -84,65 +84,31 @@
 
 
 
-<time class='entry-date' datetime='2015-12-03T23:50:08+08:00'><span class='date'>2015 年 12 月 03 日</span> <span class='time'>11:50 pm</span></time>
+<time class='entry-date' datetime='2019-11-04T11:19:14+08:00'><span class='date'>2019 年 11 月 04 日</span> <span class='time'>11:19 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><ul>
-<li>打开终端，输入以下代码获取到 <code>DVTPlugInCompatibilityUUID</code></li>
-</ul>
+<div class="entry-content"><h3>Fix Xcode 11 build</h3>
 
+<p><a href="https://github.com/facebook/react-native/pull/25146/files#diff-263fc157dfce55895cdc16495b55d190R94">Fix Xcode 11 build</a></p>
 
-<p></p>
+<h3>NetInfo.getConnectionInfo()</h3>
 
+<p><a href="https://github.com/facebook/react-native/issues/19039#issuecomment-386228738">NetInfo.getConnectionInfo() return unknown for iOS</a></p>
 
+<p><a href="https://github.com/react-native-community/react-native-netinfo">react-native-netinfo</a></p>
 
+<h3>&ldquo;config.h&rdquo; file not found</h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>然后输入如下命令，最后一项是上一步获取到的 <code>DVTPlugInCompatibilityUUID</code></li>
-</ul>
-
-
-<p></p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add 此处为上一步获得的 UUID</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>终端执行完上面命令后，打开 Xcode，会有下图提示，点击 <code>Load Bundles</code>，就会加载 Xcode 插件目录中已安装的插件。</li>
-</ul>
-
-
-<p></p>
-
-
-
-
-<!--more-->
-
-
-<p><img src="/images/QQ20151204-0@2x.png" alt="Load Bundles" /></p>
-
-<p>~~~ 😊 OVER 😊 ~~~</p>
-
-<p class='post-footer'>
+<p><a href="https://github.com/facebook/react-native/issues/16097#issuecomment-364947895">&ldquo;config.h&rdquo; file not found</a><p class='post-footer'>
             原始地址：
-            <a href='https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/'>https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/</a><br/>
+            <a href='https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/'><a href="https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/">https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/</a></a><br/>
             written by <a href='https://lengmolehongyan.github.io'>Layne</a>
-            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
-            </p>
-
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'><a href="https://lengmolehongyan.github.io">https://lengmolehongyan.github.io</a></a>
+            </p></p>
 </div>
 
 
@@ -158,14 +124,8 @@
 
 
 
-<time class='entry-date' datetime='2015-12-03T23:50:08+08:00'><span class='date'>2015 年 12 月 03 日</span> <span class='time'>11:50 pm</span></time>
+<time class='entry-date' datetime='2019-11-04T11:19:14+08:00'><span class='date'>2019 年 11 月 04 日</span> <span class='time'>11:19 am</span></time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ioskai-fa-xiao-xi-jie/'>ios开发小细节</a>
-  
-</span>
 
 
     </p>
@@ -198,10 +158,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/" title="Previous Post: Can't add self as subview 崩溃解决办法">&laquo; Can't add self as subview 崩溃解决办法</a>
+        <a class="basic-alignment left" href="/blog/2019/09/06/codepush-archive-and-and-deploy-and-and-adjust-rollout-script-implementation/" title="Previous Post: CodePush 打包 && 发布 && 调整灰度比例相关脚本实现">&laquo; CodePush 打包 && 发布 && 调整灰度比例相关脚本实现</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/" title="Next Post: 计算代码执行时间差">计算代码执行时间差 &raquo;</a>
       
     </p>
   </footer>

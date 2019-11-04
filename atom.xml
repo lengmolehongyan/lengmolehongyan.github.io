@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[冷漠叻荭颜]]></title>
+  <title><![CDATA[Layne]]></title>
   <link href="https://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="https://lengmolehongyan.github.io/"/>
-  <updated>2019-09-06T15:12:44+08:00</updated>
+  <updated>2019-11-04T11:39:02+08:00</updated>
   <id>https://lengmolehongyan.github.io/</id>
   <author>
-    <name><![CDATA[冷漠叻荭颜]]></name>
+    <name><![CDATA[Layne]]></name>
     <email><![CDATA[lengmohongyan@hotmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[React Native Tips]]></title>
+    <link href="https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/"/>
+    <updated>2019-11-04T11:19:14+08:00</updated>
+    <id>https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips</id>
+    <content type="html"><![CDATA[<h3>Fix Xcode 11 build</h3>
+
+<p><a href="https://github.com/facebook/react-native/pull/25146/files#diff-263fc157dfce55895cdc16495b55d190R94">Fix Xcode 11 build</a></p>
+
+<h3>NetInfo.getConnectionInfo()</h3>
+
+<p><a href="https://github.com/facebook/react-native/issues/19039#issuecomment-386228738">NetInfo.getConnectionInfo() return unknown for iOS</a></p>
+
+<p><a href="https://github.com/react-native-community/react-native-netinfo">react-native-netinfo</a></p>
+
+<h3>&ldquo;config.h&rdquo; file not found</h3>
+
+<p><a href="https://github.com/facebook/react-native/issues/16097#issuecomment-364947895">&ldquo;config.h&rdquo; file not found</a><p class='post-footer'>
+            原始地址：
+            <a href='https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/'><a href="https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/">https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/</a></a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'><a href="https://lengmolehongyan.github.io">https://lengmolehongyan.github.io</a></a>
+            </p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CodePush 打包 && 发布 && 调整灰度比例相关脚本实现]]></title>
@@ -320,7 +346,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2019/09/06/codepush-archive-and-and-deploy-and-and-adjust-rollout-script-implementation/'>https://lengmolehongyan.github.io/blog/2019/09/06/codepush-archive-and-and-deploy-and-and-adjust-rollout-script-implementation/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -378,7 +404,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/'>https://lengmolehongyan.github.io/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -485,7 +511,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2018/03/22/react-components/'>https://lengmolehongyan.github.io/blog/2018/03/22/react-components/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -689,7 +715,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2018/03/21/react-native-route-flux-use-tutorial/'>https://lengmolehongyan.github.io/blog/2018/03/21/react-native-route-flux-use-tutorial/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -738,7 +764,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/'>https://lengmolehongyan.github.io/blog/2018/01/08/ios-develop-commonly-used-directory/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -857,7 +883,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/'>https://lengmolehongyan.github.io/blog/2016/07/28/git-notebook/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -1002,7 +1028,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/'>https://lengmolehongyan.github.io/blog/2016/03/26/tableview-layoutconstraints-conflict/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -1490,7 +1516,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/'>https://lengmolehongyan.github.io/blog/2016/01/14/facebook-xctool-de-shi-yong/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -1591,7 +1617,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/'>https://lengmolehongyan.github.io/blog/2016/01/13/ios-jenkins-use/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -2011,7 +2037,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/'>https://lengmolehongyan.github.io/blog/2016/01/02/anatomy-of-a-constraint/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -2068,7 +2094,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/'>https://lengmolehongyan.github.io/blog/2016/01/01/auto-layout-without-constraints/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -2159,7 +2185,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/'>https://lengmolehongyan.github.io/blog/2016/01/01/understanding-auto-layout/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -2265,7 +2291,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/'>https://lengmolehongyan.github.io/blog/2015/12/27/autolayout-guide/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -2319,7 +2345,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/'>https://lengmolehongyan.github.io/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -2406,7 +2432,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/'>https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -2447,7 +2473,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/'>https://lengmolehongyan.github.io/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -2507,7 +2533,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/'>https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -2763,7 +2789,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/'>https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
@@ -3207,45 +3233,7 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/'>https://lengmolehongyan.github.io/blog/2015/10/22/fmdb-xue-xi-zong-jie/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
-            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
-            </p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Directory Not Found for Option]]></title>
-    <link href="https://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/"/>
-    <updated>2015-09-23T10:47:48+08:00</updated>
-    <id>https://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option</id>
-    <content type="html"><![CDATA[<p>在 Xcode7 下编译项目，报了如下警告：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ld: warning: directory not found for option 
-</span><span class='line'>'-F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/Developer/Library/Frameworks'</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这是因为 Xcode7 将 <code>Frameworks</code> 位置改变了。</p>
-
-<!--more-->
-
-
-<p>点击项目，选择 TARGETS 中的工程名 Tests，然后选择 Build Settings，在 Search Paths 下，可以看到此时 <code>Framework Search Paths</code> 路径，此路径为错误路径。</p>
-
-<p><img src="http://i3.tietuku.com/40d46fe638434b1e.png" alt="" /></p>
-
-<p>双击路径，删除 <code>$(SDKROOT)/Developer/Library/Frameworks</code>，增加 <code>$(PLATFORM_DIR)/Developer/Library/Frameworks</code>，此时路径就已经修改成功。</p>
-
-<p><img src="http://i3.tietuku.com/6b824df6fd5bc002.png" alt="" /></p>
-
-<p>修改完成之后，重新编译项目，此警告就修复了。</p>
-
-<p class='post-footer'>
-            原始地址：
-            <a href='https://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/'>https://lengmolehongyan.github.io/blog/2015/09/23/directory-not-found-for-option/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>冷漠叻荭颜</a>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>
 
