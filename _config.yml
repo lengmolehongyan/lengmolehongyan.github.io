@@ -3,11 +3,11 @@
 # ----------------------- #
 
 url: https://lengmolehongyan.github.io
-title: 冷漠叻荭颜        # 网站标题
-subtitle: lengmolehongyan’s Blog.     # 博客副标题
-author: 冷漠叻荭颜     # 博客作者名字
+title: Layne        # 网站标题
+subtitle: Layne’s Blog.     # 博客副标题
+author: Layne     # 博客作者名字
 simple_search: https://www.baidu.com/    # 默认搜索引擎
-description: 冷漠叻荭颜, lengmolehongyan
+description: Layne, layne
 keywords: iOS, iOS开发, iOS development
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
