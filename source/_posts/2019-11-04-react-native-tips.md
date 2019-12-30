@@ -21,3 +21,7 @@ description: react native 小细节备忘
 ### "config.h" file not found
 
 ["config.h" file not found](https://github.com/facebook/react-native/issues/16097#issuecomment-364947895)
+
+### react-native-picker iOS 13 Bug
+
+[iOS 13 react-native-picker Bug](https://github.com/beefe/react-native-picker/issues/392#issuecomment-548924547)
