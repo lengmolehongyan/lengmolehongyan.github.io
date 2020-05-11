@@ -25,3 +25,9 @@ description: react native 小细节备忘
 ### react-native-picker iOS 13 Bug
 
 [iOS 13 react-native-picker Bug](https://github.com/beefe/react-native-picker/issues/392#issuecomment-548924547)
+
+### react-native-navigation iOS 13.4 TabBarButton Icons are not visible
+
+[Bottom Tab Icons are not visible](https://github.com/wix/react-native-navigation/issues/6075)
+
+[Fix styling options on iOS 13.4](https://github.com/wix/react-native-navigation/pull/6087)
