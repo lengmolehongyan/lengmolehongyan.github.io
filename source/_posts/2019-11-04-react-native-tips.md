@@ -31,3 +31,7 @@ description: react native 小细节备忘
 [Bottom Tab Icons are not visible](https://github.com/wix/react-native-navigation/issues/6075)
 
 [Fix styling options on iOS 13.4](https://github.com/wix/react-native-navigation/pull/6087)
+
+### YGValue must be imported from module 'yoga' before it is required
+
+[YGValue must be imported from module 'yoga' before it is required](https://github.com/facebook/react-native/issues/28542#issuecomment-611028155)
