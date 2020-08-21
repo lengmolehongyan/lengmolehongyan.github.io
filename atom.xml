@@ -4,7 +4,7 @@
   <title><![CDATA[Layne]]></title>
   <link href="https://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="https://lengmolehongyan.github.io/"/>
-  <updated>2020-05-11T16:11:35+08:00</updated>
+  <updated>2020-08-21T15:07:39+08:00</updated>
   <id>https://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[Layne]]></name>
@@ -40,7 +40,11 @@
 
 <p><a href="https://github.com/wix/react-native-navigation/issues/6075">Bottom Tab Icons are not visible</a></p>
 
-<p><a href="https://github.com/wix/react-native-navigation/pull/6087">Fix styling options on iOS 13.4</a><p class='post-footer'>
+<p><a href="https://github.com/wix/react-native-navigation/pull/6087">Fix styling options on iOS 13.4</a></p>
+
+<h3>YGValue must be imported from module &lsquo;yoga&rsquo; before it is required</h3>
+
+<p><a href="https://github.com/facebook/react-native/issues/28542#issuecomment-611028155">YGValue must be imported from module &lsquo;yoga&rsquo; before it is required</a><p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/'><a href="https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/">https://lengmolehongyan.github.io/blog/2019/11/04/react-native-tips/</a></a><br/>
             written by <a href='https://lengmolehongyan.github.io'>Layne</a>
