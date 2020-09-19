@@ -4,8 +4,8 @@ title: "JS 常用代码段"
 date: 2020-09-17 17:38:23 +0800
 comments: true
 categories: 
-keywords: JS
-description: JS 常用代码段
+keywords: "JS,code,snippet"
+description: "JS 常用代码段"
 ---
 
 ## 对象
