@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Xcode 项目忽略警告 - Layne</title>
+  <title>Xcode 12 ReactNativeART Crash - Layne</title>
   <meta name="author" content="Layne">
       
   
-  <meta name="description" content="Xcode 忽略警告">
-  <meta name="keywords" content="Xcode 忽略警告">
+  <meta name="description" content="Xcode 12 ReactNativeART Crash">
+  <meta name="keywords" content="Xcode, ReactNative, ART, Crash">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/">
+  <link rel="canonical" href="https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Layne" type="application/atom+xml">
@@ -75,7 +75,7 @@
   
   <header>
     
-      <h1 class="entry-title">Xcode 项目忽略警告</h1>
+      <h1 class="entry-title">Xcode 12 ReactNativeART Crash</h1>
     
     
       <p class="meta">
@@ -84,92 +84,66 @@
 
 
 
-<time class='entry-date' datetime='2015-12-09T23:26:54+08:00'><span class='date'>2015 年 12 月 09 日</span> <span class='time'>11:26 pm</span></time>
+<time class='entry-date' datetime='2020-09-19T09:59:34+08:00'><span class='date'>2020 年 09 月 19 日</span> <span class='time'>9:59 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>对于一个有强迫症的我，每次 <code>⌘B</code> Build 项目时，发现一个 <img src="/images/DVTStatus-Warning@2x.png" width="30"> 警告都要点进去修复了，然而，对于一些无关紧要的警告，我们是否可以选择忽略这个警告，让 Xcode 不提示呢？答案当然是可以的。</p>
+<div class="entry-content"><blockquote><p>本文章为排查一次崩溃的简单记录</p></blockquote>
 
-<p>下面，就介绍一下在项目中忽略警告的三个地方：</p>
+<h3>0x01</h3>
 
-<!--more-->
+<p>项目中需要用到阴影，依赖了 <a href="https://github.com/react-native-community/art">ReactNativeART</a> 库。Xcode 12 正式版发布后，立马更新了，编译 NO Error，运行 NO Error，结果点到使用阴影的地方崩了。。。</p>
 
+<p><img src="https://i.loli.net/2020/09/19/Z6LqHauJlwhcQyB.jpg" alt="crash" /></p>
 
-<h2>在源文件中忽略警告</h2>
+<h3>0x02</h3>
 
-<p>在一些第三方库中，总能看到下面这段代码的身影，这就是用于忽略某个警告</p>
+<p><code>EXC_BAD_ACCESS</code> iOS 很常见的野指针错误，打开僵尸对象后，重新运行，看看究竟是哪个对象引起的</p>
+
+<p><img src="https://i.loli.net/2020/09/19/Rqyg6XQLCv4PTNp.jpg" alt="zombie object" /></p>
+
+<p><img src="https://i.loli.net/2020/09/19/ZU1ivf7LVmhrXo2.jpg" alt="crash detail" /></p>
+
+<p>控制台很明确的告知，对已经释放的 color 对象调用方法，回头看崩溃所在代码 <code>_shadow = shadow;</code>，查看头文件 <code>ARTShadow</code> 为结构体，内部引用了 <code>UIColor</code> 对象</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#pragma clang diagnostic push</span>
-</span><span class='line'><span class="cp">#pragma clang diagnostic ignored &quot;警告标识符&quot;</span>
-</span><span class='line'><span class="p">...</span>
-</span><span class='line'><span class="p">...</span>
-</span><span class='line'><span class="cp">#pragma clang diagnostic pop</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span><span class='line'>  <span class="bp">CGSize</span> <span class="n">offset</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">CGFloat</span> <span class="n">blur</span><span class="p">;</span>
+</span><span class='line'>  <span class="bp">UIColor</span><span class="o">*</span> <span class="n">color</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="n">ARTShadow</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>用法很简单，比如在控制器的 <code>-viewDidLoad</code> 中写了句创建一个 <code>eTestView</code> 的代码</p>
+<p>结构体一般情况下是存储在栈中的（手动分配内存构造存储在堆中），对于存储在栈区的变量，编译器会自动做好垃圾回收。借助 Xcode 编译器特性，会为包含 OC 对象的结构体自动生成隐式的构造、析构函数，即结构体实例创建时，结构体中的所有成员清零，结构体实例销毁时，会自动将其持有的 OC 对象的指针置为 nil 以减少该对象的引用计数</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="bp">UIView</span> <span class="o">*</span><span class="n">eTestView</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIView</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>因此，怀疑 <code>ARTNode</code> 类的成员变量 <code>@property (nonatomic, assign) ARTShadow shadow;</code> ，该结构体持有的 OC 对象存在过早释放问题，触发野指针错误。事情是这样吗？写个 demo 简单测试下</p>
 
+<h3>0x03</h3>
 
-<p>Xcode 会立即报一个警告，提示我们没有使用这个变量</p>
+<p><img src="https://i.loli.net/2020/09/20/EU8F2qHBVx61AXM.png" alt="verify" /></p>
 
-<p><img src="/images/QQ20151213-0@2x.png" alt="Unused variable 'eTestView'" /></p>
+<p>只要多次访问持有 OC 对象的结构体， Xcode 12.0 版本百试百崩，应该是 Xcode 新版本的问题了</p>
 
-<p>只需在创建 <code>eTestView</code> 的前后加上如下几行，黄色警告就消失了😄</p>
+<p>Demo 地址：<a href="https://github.com/lengmolehongyan/StructCrashVerify">demo</a></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#pragma clang diagnostic push</span>
-</span><span class='line'><span class="cp">#pragma clang diagnostic ignored &quot;-Wunused-variable&quot;</span>
-</span><span class='line'><span class="bp">UIView</span> <span class="o">*</span><span class="n">eTestView</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIView</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-</span><span class='line'><span class="cp">#pragma clang diagnostic pop</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>针对该阴影 RN 库的解决办法，我已经提了 <a href="https://github.com/react-native-community/art/pull/70">PR</a></p>
 
+<h3>0x04</h3>
 
-<p>至于警告标识符，鼠标点几下就可以找到。</p>
-
-<p>如下图，右击某个警告，选择 <code>Reveal in Log</code>（有时这个选项可能是置灰状态，不能选择，可以尝试编译下项目，或者退出 Xcode 重新来一次）</p>
-
-<p><img src="/images/QQ20151213-1@2x.png" alt="Reveal in Log" /></p>
-
-<p>下图红色框中，中括号内部的就是警告标识符（先要点击右上角展开警告才能看到这一大堆信息）</p>
-
-<p><img src="/images/QQ20151213-2@2x.png" alt="警告标识符" /></p>
-
-<h2>在 Build Settings 中项目全局忽略警告</h2>
-
-<p>在项目的 <code>Build Settings</code> 中也可以设置忽略某种或多种类型的警告，不过在这设置的影响范围就是整个项目的了，要三思而后行，不然就是给自己挖坑。</p>
-
-<p>还是上面的例子，在 <code>Build Settings</code> 中找到 <code>Custom Compiler Flags</code>，双击 <code>Other Warning Flags</code>（可以配置 <code>Debug</code> 和 <code>Release</code> 环境），填入 <code>-Wno-unused-variable</code>，完成后，编译项目，项目中所有的此类型警告都没有了。</p>
-
-<p><img src="/images/QQ20151213-4@2x.png" alt="Build Settings 中项目全局忽略警告" /></p>
-
-<p>这里所填写的内容规则，仅仅是在第一种方法中找到的警告标识符中的 <code>W</code> 字母后面加上 <code>no-</code> 就可以了。</p>
-
-<h2>CocoaPods 导入第三方库忽略警告</h2>
-
-<p>通过 CocoaPods 给项目导入了一些第三方库，这些库里面或多或少会有些警告，想消除这些警告，很简单，只需在 <code>Podfile</code> 中加上这一句 <code>inhibit_all_warnings!</code>，所有通过 CocoaPods 安装的第三库的警告就没有了。</p>
-
-<p class='post-footer'>
+<p>经过这一茬，Xcode 告诫我们尽量不要在结构体中持有 OC 对象成员，指不定哪天蹦出个莫名其妙的 Crash&hellip;<p class='post-footer'>
             原始地址：
-            <a href='https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/'>https://lengmolehongyan.github.io/blog/2015/12/09/hu-lue-jing-gao/</a><br/>
+            <a href='https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/'><a href="https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/">https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/</a></a><br/>
             written by <a href='https://lengmolehongyan.github.io'>Layne</a>
-            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
-            </p>
-
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'><a href="https://lengmolehongyan.github.io">https://lengmolehongyan.github.io</a></a>
+            </p></p>
 </div>
 
 
@@ -185,14 +159,8 @@
 
 
 
-<time class='entry-date' datetime='2015-12-09T23:26:54+08:00'><span class='date'>2015 年 12 月 09 日</span> <span class='time'>11:26 pm</span></time>
+<time class='entry-date' datetime='2020-09-19T09:59:34+08:00'><span class='date'>2020 年 09 月 19 日</span> <span class='time'>9:59 am</span></time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ioskai-fa-xiao-xi-jie/'>ios开发小细节</a>
-  
-</span>
 
 
     </p>
@@ -225,10 +193,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/" title="Previous Post: 计算代码执行时间差">&laquo; 计算代码执行时间差</a>
+        <a class="basic-alignment left" href="/blog/2020/09/17/js-common-code-snippets/" title="Previous Post: JS 常用代码段">&laquo; JS 常用代码段</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/12/25/zi-ding-yi-tong-zhi-sheng-yin/" title="Next Post: iOS 自定义通知声音">iOS 自定义通知声音 &raquo;</a>
       
     </p>
   </footer>

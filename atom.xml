@@ -4,7 +4,7 @@
   <title><![CDATA[Layne]]></title>
   <link href="https://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="https://lengmolehongyan.github.io/"/>
-  <updated>2020-09-17T18:01:32+08:00</updated>
+  <updated>2020-09-20T02:47:39+08:00</updated>
   <id>https://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[Layne]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Xcode 12 ReactNativeART Crash]]></title>
+    <link href="https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/"/>
+    <updated>2020-09-19T09:59:34+08:00</updated>
+    <id>https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash</id>
+    <content type="html"><![CDATA[<blockquote><p>本文章为排查一次崩溃的简单记录</p></blockquote>
+
+<h3>0x01</h3>
+
+<p>项目中需要用到阴影，依赖了 <a href="https://github.com/react-native-community/art">ReactNativeART</a> 库。Xcode 12 正式版发布后，立马更新了，编译 NO Error，运行 NO Error，结果点到使用阴影的地方崩了。。。</p>
+
+<p><img src="https://i.loli.net/2020/09/19/Z6LqHauJlwhcQyB.jpg" alt="crash" /></p>
+
+<h3>0x02</h3>
+
+<p><code>EXC_BAD_ACCESS</code> iOS 很常见的野指针错误，打开僵尸对象后，重新运行，看看究竟是哪个对象引起的</p>
+
+<p><img src="https://i.loli.net/2020/09/19/Rqyg6XQLCv4PTNp.jpg" alt="zombie object" /></p>
+
+<p><img src="https://i.loli.net/2020/09/19/ZU1ivf7LVmhrXo2.jpg" alt="crash detail" /></p>
+
+<p>控制台很明确的告知，对已经释放的 color 对象调用方法，回头看崩溃所在代码 <code>_shadow = shadow;</code>，查看头文件 <code>ARTShadow</code> 为结构体，内部引用了 <code>UIColor</code> 对象</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span><span class='line'>  <span class="bp">CGSize</span> <span class="n">offset</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">CGFloat</span> <span class="n">blur</span><span class="p">;</span>
+</span><span class='line'>  <span class="bp">UIColor</span><span class="o">*</span> <span class="n">color</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="n">ARTShadow</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>结构体一般情况下是存储在栈中的（手动分配内存构造存储在堆中），对于存储在栈区的变量，编译器会自动做好垃圾回收。借助 Xcode 编译器特性，会为包含 OC 对象的结构体自动生成隐式的构造、析构函数，即结构体实例创建时，结构体中的所有成员清零，结构体实例销毁时，会自动将其持有的 OC 对象的指针置为 nil 以减少该对象的引用计数</p>
+
+<p>因此，怀疑 <code>ARTNode</code> 类的成员变量 <code>@property (nonatomic, assign) ARTShadow shadow;</code> ，该结构体持有的 OC 对象存在过早释放问题，触发野指针错误。事情是这样吗？写个 demo 简单测试下</p>
+
+<h3>0x03</h3>
+
+<p><img src="https://i.loli.net/2020/09/20/EU8F2qHBVx61AXM.png" alt="verify" /></p>
+
+<p>只要多次访问持有 OC 对象的结构体， Xcode 12.0 版本百试百崩，应该是 Xcode 新版本的问题了</p>
+
+<p>Demo 地址：<a href="https://github.com/lengmolehongyan/StructCrashVerify">demo</a></p>
+
+<p>针对该阴影 RN 库的解决办法，我已经提了 <a href="https://github.com/react-native-community/art/pull/70">PR</a></p>
+
+<h3>0x04</h3>
+
+<p>经过这一茬，Xcode 告诫我们尽量不要在结构体中持有 OC 对象成员，指不定哪天蹦出个莫名其妙的 Crash&hellip;<p class='post-footer'>
+            原始地址：
+            <a href='https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/'><a href="https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/">https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/</a></a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'><a href="https://lengmolehongyan.github.io">https://lengmolehongyan.github.io</a></a>
+            </p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JS 常用代码段]]></title>
@@ -2616,262 +2677,6 @@
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/'>https://lengmolehongyan.github.io/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/</a><br/>
-            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
-            &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
-            </p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Can't Add Self as Subview 崩溃解决办法]]></title>
-    <link href="https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/"/>
-    <updated>2015-10-30T23:14:49+08:00</updated>
-    <id>https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
-
-<p>查看项目的崩溃汇总，一直有一个 bug 存在，之前也有注意过，只因这个 bug 的崩溃堆栈日志解析出来并没有什么卵用，也不知该怎么复现，就撂下了。</p>
-
-<p>但现在这个 bug 崩溃发生次数蹭蹭涨，崩溃占比高了起来，不得不重视起来。</p>
-
-<p>点进崩溃详情，只有短短的一句 <code>Can't add self as subview</code>。</p>
-
-<!--more-->
-
-
-<p>崩溃调用堆栈解析出来如下：</p>
-
-<p><img src="http://7xjhyk.com1.z0.glb.clouddn.com/QQ20151031-0@2x.png" alt="崩溃调用堆栈解析" /></p>
-
-<p>对解决问题根本起不了作用，只能依靠 Google 了。</p>
-
-<h2>bug 复现</h2>
-
-<p>在 StackOverflow 上找到复现此 bug 的方法，尝试同时 <code>push</code> 两个控制器，或者同时 <code>push</code> 和 <code>pop</code> 一个控制器。</p>
-
-<p><img src="http://i.stack.imgur.com/93n6V.png" alt="测试同时 push 两个控制器" /></p>
-
-<p>上图是当时一回答此问题人的运行结果，但现在测试并不会引起崩溃，不过同时 <code>push</code> 一个控制器是会导致崩溃的，测试结果如下图：</p>
-
-<p><img src="http://7xjhyk.com1.z0.glb.clouddn.com/QQ20151105-0@2x.png" alt="测试同时 push 一个控制器" /></p>
-
-<p>其实这个崩溃，最简单的情况就是：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">addSubview</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>而这个原因就是同一时间同时 push 多个控制器再返回，动画被打断后引起的崩溃，本质根源是 push 动画还没有完成就急着 push 下一个控制器。</p>
-
-<h2>解决办法</h2>
-
-<p>创建一个分类，拦截控制器入栈\出栈的方法调用，通过安全的方式，确保当有控制器正在进行入栈\出栈操作时，没有其他入栈\出栈操作。</p>
-
-<p>此分类用到运行时 (Runtime) 的方法交换 <code>Method Swizzling</code>，因此只需要复制下面的代码到自己的项目中，此 bug 就不复存在了。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &quot;UINavigationController+Consistent.h&quot;</span>
-</span><span class='line'><span class="cp">#import &lt;objc/runtime.h&gt;</span>
-</span><span class='line'><span class="c1">/// This char is used to add storage for the isPushingViewController property.</span>
-</span><span class='line'><span class="k">static</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="k">const</span> <span class="n">ObjectTagKey</span> <span class="o">=</span> <span class="s">&quot;ObjectTag&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@interface</span> <span class="bp">UINavigationController</span> <span class="p">()</span>
-</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">readwrite</span><span class="p">,</span><span class="k">getter</span> <span class="o">=</span> <span class="n">isViewTransitionInProgress</span><span class="p">)</span> <span class="kt">BOOL</span> <span class="n">viewTransitionInProgress</span><span class="p">;</span>
-</span><span class='line'><span class="k">@end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@implementation</span> <span class="bp">UINavigationController</span> <span class="nl">(Consistent)</span>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setViewTransitionInProgress:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">property</span> <span class="p">{</span>
-</span><span class='line'>    <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">number</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSNumber</span> <span class="nl">numberWithBool</span><span class="p">:</span><span class="n">property</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">objc_setAssociatedObject</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="n">ObjectTagKey</span><span class="p">,</span> <span class="n">number</span> <span class="p">,</span> <span class="n">OBJC_ASSOCIATION_RETAIN</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isViewTransitionInProgress</span> <span class="p">{</span>
-</span><span class='line'>    <span class="bp">NSNumber</span> <span class="o">*</span><span class="n">number</span> <span class="o">=</span> <span class="n">objc_getAssociatedObject</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="n">ObjectTagKey</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">number</span> <span class="n">boolValue</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="cp">#pragma mark - Intercept Pop, Push, PopToRootVC</span>
-</span><span class='line'><span class="c1">/// @name Intercept Pop, Push, PopToRootVC</span>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="nf">safePopToRootViewControllerAnimated:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">viewTransitionInProgress</span><span class="p">)</span> <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">animated</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">viewTransitionInProgress</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="c1">//-- This is not a recursion, due to method swizzling the call below calls the original  method.</span>
-</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">safePopToRootViewControllerAnimated</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="nf">safePopToViewController:</span><span class="p">(</span><span class="bp">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">viewController</span> <span class="nf">animated:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">viewTransitionInProgress</span><span class="p">)</span> <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">animated</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">viewTransitionInProgress</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="c1">//-- This is not a recursion, due to method swizzling the call below calls the original  method.</span>
-</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">safePopToViewController</span><span class="p">:</span><span class="n">viewController</span> <span class="nl">animated</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="bp">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nf">safePopViewControllerAnimated:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">viewTransitionInProgress</span><span class="p">)</span> <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">animated</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">viewTransitionInProgress</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="c1">//-- This is not a recursion, due to method swizzling the call below calls the original  method.</span>
-</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="nb">self</span> <span class="nl">safePopViewControllerAnimated</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">safePushViewController:</span><span class="p">(</span><span class="bp">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">viewController</span> <span class="nf">animated:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nb">self</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
-</span><span class='line'>    <span class="c1">//-- If we are already pushing a view controller, we dont push another one.</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">isViewTransitionInProgress</span> <span class="o">==</span> <span class="nb">NO</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="c1">//-- This is not a recursion, due to method swizzling the call below calls the original  method.</span>
-</span><span class='line'>        <span class="p">[</span><span class="nb">self</span> <span class="nl">safePushViewController</span><span class="p">:</span><span class="n">viewController</span> <span class="nl">animated</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">animated</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nb">self</span><span class="p">.</span><span class="n">viewTransitionInProgress</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// This is confirmed to be App Store safe.</span>
-</span><span class='line'><span class="c1">// If you feel uncomfortable to use Private API, you could also use the delegate method navigationController:didShowViewController:animated:.</span>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">safeDidShowViewController:</span><span class="p">(</span><span class="bp">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">viewController</span> <span class="nf">animated:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span> <span class="p">{</span>
-</span><span class='line'>    <span class="c1">//-- This is not a recursion. Due to method swizzling this is calling the original method.</span>
-</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">safeDidShowViewController</span><span class="p">:</span><span class="n">viewController</span> <span class="nl">animated</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
-</span><span class='line'>    <span class="nb">self</span><span class="p">.</span><span class="n">viewTransitionInProgress</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// If the user doesnt complete the swipe-to-go-back gesture, we need to intercept it and set the flag to NO again.</span>
-</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">navigationController:</span><span class="p">(</span><span class="bp">UINavigationController</span> <span class="o">*</span><span class="p">)</span><span class="nv">navigationController</span> <span class="nf">willShowViewController:</span><span class="p">(</span><span class="bp">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">viewController</span> <span class="nf">animated:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kt">id</span><span class="o">&lt;</span><span class="bp">UIViewControllerTransitionCoordinator</span><span class="o">&gt;</span> <span class="n">tc</span> <span class="o">=</span> <span class="n">navigationController</span><span class="p">.</span><span class="n">topViewController</span><span class="p">.</span><span class="n">transitionCoordinator</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">tc</span> <span class="nl">notifyWhenInteractionEndsUsingBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="kt">id</span><span class="o">&lt;</span><span class="bp">UIViewControllerTransitionCoordinatorContext</span><span class="o">&gt;</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">viewTransitionInProgress</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
-</span><span class='line'>        <span class="c1">//--Reenable swipe back gesture.</span>
-</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">interactivePopGestureRecognizer</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="p">(</span><span class="kt">id</span><span class="o">&lt;</span><span class="bp">UIGestureRecognizerDelegate</span><span class="o">&gt;</span><span class="p">)</span><span class="n">viewController</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">interactivePopGestureRecognizer</span> <span class="nl">setEnabled</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}];</span>
-</span><span class='line'>    <span class="c1">//-- Method swizzling wont work in the case of a delegate so:</span>
-</span><span class='line'>    <span class="c1">//-- forward this method to the original delegate if there is one different than ourselves.</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">navigationController</span><span class="p">.</span><span class="n">delegate</span> <span class="o">!=</span> <span class="nb">self</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="p">[</span><span class="n">navigationController</span><span class="p">.</span><span class="n">delegate</span> <span class="nl">navigationController</span><span class="p">:</span><span class="n">navigationController</span>
-</span><span class='line'>                                     <span class="nl">willShowViewController</span><span class="p">:</span><span class="n">viewController</span>
-</span><span class='line'>                                                   <span class="nl">animated</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">load</span> <span class="p">{</span>
-</span><span class='line'>    <span class="c1">//-- Exchange the original implementation with our custom one.</span>
-</span><span class='line'>    <span class="n">method_exchangeImplementations</span><span class="p">(</span><span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">pushViewController</span><span class="p">:</span><span class="nl">animated</span><span class="p">:)),</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">safePushViewController</span><span class="p">:</span><span class="nl">animated</span><span class="p">:)));</span>
-</span><span class='line'>    <span class="n">method_exchangeImplementations</span><span class="p">(</span><span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">didShowViewController</span><span class="p">:</span><span class="nl">animated</span><span class="p">:)),</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">safeDidShowViewController</span><span class="p">:</span><span class="nl">animated</span><span class="p">:)));</span>
-</span><span class='line'>    <span class="n">method_exchangeImplementations</span><span class="p">(</span><span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">popViewControllerAnimated</span><span class="p">:)),</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">safePopViewControllerAnimated</span><span class="p">:)));</span>
-</span><span class='line'>    <span class="n">method_exchangeImplementations</span><span class="p">(</span><span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">popToRootViewControllerAnimated</span><span class="p">:)),</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">safePopToRootViewControllerAnimated</span><span class="p">:)));</span>
-</span><span class='line'>    <span class="n">method_exchangeImplementations</span><span class="p">(</span><span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">popToViewController</span><span class="p">:</span><span class="nl">animated</span><span class="p">:)),</span> <span class="n">class_getInstanceMethod</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">safePopToViewController</span><span class="p">:</span><span class="nl">animated</span><span class="p">:)));</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="k">@end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p class='post-footer'>
-            原始地址：
-            <a href='https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/'>https://lengmolehongyan.github.io/blog/2015/10/30/cant-add-self-as-subview-beng-kui-jie-jue-ban-fa/</a><br/>
             written by <a href='https://lengmolehongyan.github.io'>Layne</a>
             &nbsp;posted at <a href='https://lengmolehongyan.github.io'>https://lengmolehongyan.github.io</a>
             </p>

@@ -78,6 +78,87 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2020/09/19/xcode-12-reactnativeart-crash/">Xcode 12 ReactNativeART Crash</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2020-09-19T09:59:34+08:00'><span class='date'>2020 年 09 月 19 日</span> <span class='time'>9:59 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>本文章为排查一次崩溃的简单记录</p></blockquote>
+
+<h3>0x01</h3>
+
+<p>项目中需要用到阴影，依赖了 <a href="https://github.com/react-native-community/art">ReactNativeART</a> 库。Xcode 12 正式版发布后，立马更新了，编译 NO Error，运行 NO Error，结果点到使用阴影的地方崩了。。。</p>
+
+<p><img src="https://i.loli.net/2020/09/19/Z6LqHauJlwhcQyB.jpg" alt="crash" /></p>
+
+<h3>0x02</h3>
+
+<p><code>EXC_BAD_ACCESS</code> iOS 很常见的野指针错误，打开僵尸对象后，重新运行，看看究竟是哪个对象引起的</p>
+
+<p><img src="https://i.loli.net/2020/09/19/Rqyg6XQLCv4PTNp.jpg" alt="zombie object" /></p>
+
+<p><img src="https://i.loli.net/2020/09/19/ZU1ivf7LVmhrXo2.jpg" alt="crash detail" /></p>
+
+<p>控制台很明确的告知，对已经释放的 color 对象调用方法，回头看崩溃所在代码 <code>_shadow = shadow;</code>，查看头文件 <code>ARTShadow</code> 为结构体，内部引用了 <code>UIColor</code> 对象</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span><span class='line'>  <span class="bp">CGSize</span> <span class="n">offset</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">CGFloat</span> <span class="n">blur</span><span class="p">;</span>
+</span><span class='line'>  <span class="bp">UIColor</span><span class="o">*</span> <span class="n">color</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="n">ARTShadow</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>结构体一般情况下是存储在栈中的（手动分配内存构造存储在堆中），对于存储在栈区的变量，编译器会自动做好垃圾回收。借助 Xcode 编译器特性，会为包含 OC 对象的结构体自动生成隐式的构造、析构函数，即结构体实例创建时，结构体中的所有成员清零，结构体实例销毁时，会自动将其持有的 OC 对象的指针置为 nil 以减少该对象的引用计数</p>
+
+<p>因此，怀疑 <code>ARTNode</code> 类的成员变量 <code>@property (nonatomic, assign) ARTShadow shadow;</code> ，该结构体持有的 OC 对象存在过早释放问题，触发野指针错误。事情是这样吗？写个 demo 简单测试下</p>
+
+<h3>0x03</h3>
+
+<p><img src="https://i.loli.net/2020/09/20/EU8F2qHBVx61AXM.png" alt="verify" /></p>
+
+<p>只要多次访问持有 OC 对象的结构体， Xcode 12.0 版本百试百崩，应该是 Xcode 新版本的问题了</p>
+
+<p>Demo 地址：<a href="https://github.com/lengmolehongyan/StructCrashVerify">demo</a></p>
+
+<p>针对该阴影 RN 库的解决办法，我已经提了 <a href="https://github.com/react-native-community/art/pull/70">PR</a></p>
+
+<h3>0x04</h3>
+
+<p>经过这一茬，Xcode 告诫我们尽量不要在结构体中持有 OC 对象成员，指不定哪天蹦出个莫名其妙的 Crash&hellip;<p class='post-footer'>
+            原始地址：
+            <a href='https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/'><a href="https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/">https://lengmolehongyan.github.io/blog/2020/09/19/xcode-12-reactnativeart-crash/</a></a><br/>
+            written by <a href='https://lengmolehongyan.github.io'>Layne</a>
+            &nbsp;posted at <a href='https://lengmolehongyan.github.io'><a href="https://lengmolehongyan.github.io">https://lengmolehongyan.github.io</a></a>
+            </p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2020/09/17/js-common-code-snippets/">JS 常用代码段</a></h1>
     
     
@@ -729,55 +810,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/01/14/facebook-xctool-de-shi-yong/">Facebook Xctool 的使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-01-14T18:18:43+08:00'><span class='date'>2016 年 01 月 14 日</span> <span class='time'>6:18 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>xctool</h2>
-
-<p><strong>xctool</strong> 相比苹果的 <strong>xcodebuild</strong>，可以更加简单方便地编译构建和测试 iOS、Mac 项目，对可持续集成 CI 尤其有用。</p>
-
-<h2>特点</h2>
-
-<p><strong>xctool</strong> 在 xcodebuild 的基础上添加了一些额外的功能：</p>
-
-<ul>
-<li><p>格式化输出构建和测试项目结果：</p>
-
-<p>  xctool 将所有构建和测试项目的结果格式化为 JSON 对象，如果你正在构建一个可持续集成系统，使用 xctool 意味着不用再正则解析 xcodebuild 的输出结果了。</p>
-
-<p>  尝试一种日志输出样式，也可以自定义输出结果，或者使用 <code>-reporter json-stream</code> 命令可以查看完整的事件流。</p></li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2016/01/14/facebook-xctool-de-shi-yong/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -793,6 +825,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/09/19/xcode-12-reactnativeart-crash/">Xcode 12 ReactNativeART Crash</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/17/js-common-code-snippets/">JS 常用代码段</a>
       </li>
     
@@ -806,10 +842,6 @@
     
       <li class="post">
         <a href="/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/">Xcode 10 React-native Run-ios Could Not Find Simulator</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2018/03/22/react-components/">React Components</a>
       </li>
     
   </ul>
