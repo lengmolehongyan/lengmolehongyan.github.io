@@ -127,17 +127,32 @@
 
 <p>结构体一般情况下是存储在栈中的（手动分配内存构造存储在堆中），对于存储在栈区的变量，编译器会自动做好垃圾回收。借助 Xcode 编译器特性，会为包含 OC 对象的结构体自动生成隐式的构造、析构函数，即结构体实例创建时，结构体中的所有成员清零，结构体实例销毁时，会自动将其持有的 OC 对象的指针置为 nil 以减少该对象的引用计数</p>
 
-<p>因此，怀疑 <code>ARTNode</code> 类的成员变量 <code>@property (nonatomic, assign) ARTShadow shadow;</code> ，该结构体持有的 OC 对象存在过早释放问题，触发野指针错误。事情是这样吗？写个 demo 简单测试下</p>
+<p>因此，怀疑 <code>ARTNode</code> 类的成员变量 <code>@property (nonatomic, assign) ARTShadow shadow;</code> ，该结构体持有的 OC 对象存在过早释放问题，触发野指针错误。事情是这样吗？写个 <a href="https://github.com/lengmolehongyan/StructCrashVerify">demo</a> 简单测试下</p>
 
 <h3>0x03</h3>
 
 <p><img src="https://i.loli.net/2020/09/20/EU8F2qHBVx61AXM.png" alt="verify" /></p>
 
-<p>只要多次访问持有 OC 对象的结构体， Xcode 12.0 版本百试百崩，应该是 Xcode 新版本的问题了</p>
+<p>如上图，只要多次访问持有 OC 对象的结构体， Xcode 12.0 版本百试百崩，应该是 Xcode 新版本的问题了</p>
 
-<p>Demo 地址：<a href="https://github.com/lengmolehongyan/StructCrashVerify">demo</a></p>
+<p>如何解决呢，改造该结构体成员，让其所有成员只为基本数据类型就不会崩溃了</p>
 
-<p>针对该阴影 RN 库的解决办法，我已经提了 <a href="https://github.com/react-native-community/art/pull/70">PR</a></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span><span class='line'>  <span class="bp">CGSize</span> <span class="n">offset</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">CGFloat</span> <span class="n">blur</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">CGFloat</span> <span class="n">alpha</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">CGFloat</span> <span class="n">color</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="n">ARTShadow</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>针对该阴影 RN 库的解决办法，我已经给官方提了 <a href="https://github.com/react-native-community/art/pull/70">PR</a>，读者可以去 PR 查看详细代码</p>
 
 <h3>0x04</h3>
 
