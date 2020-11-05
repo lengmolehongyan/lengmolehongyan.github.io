@@ -35,3 +35,7 @@ description: react native 小细节备忘
 ### YGValue must be imported from module 'yoga' before it is required
 
 [YGValue must be imported from module 'yoga' before it is required](https://github.com/facebook/react-native/issues/28542#issuecomment-611028155)
+
+### Fail to Building native extensions. on Mac OSX 10.13.6
+
+[Fail to Building native extensions. on Mac OSX 10.13.6, mkmf.rb can't find header files for ruby at /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/ruby/include/ruby.h](https://github.com/castwide/vscode-solargraph/issues/78#issuecomment-535210783)
