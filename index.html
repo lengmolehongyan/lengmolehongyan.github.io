@@ -244,6 +244,46 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>字符串</h2>
+
+<h3>字符串左侧填充</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">padStart</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// syntax</span>
+</span><span class='line'><span class="nx">str</span><span class="p">.</span><span class="nx">padStart</span><span class="p">(</span><span class="nx">targetLength</span> <span class="p">[,</span> <span class="nx">padString</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// example</span>
+</span><span class='line'><span class="s1">&#39;abc&#39;</span><span class="p">.</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">);</span> <span class="c1">// &quot;00000abc&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>字符串右侧填充</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">padEnd</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// syntax</span>
+</span><span class='line'><span class="nx">str</span><span class="p">.</span><span class="nx">padEnd</span><span class="p">(</span><span class="nx">targetLength</span> <span class="p">[,</span> <span class="nx">padString</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// example</span>
+</span><span class='line'><span class="s1">&#39;abc&#39;</span><span class="p">.</span><span class="nx">padEnd</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;123456&#39;</span><span class="p">);</span> <span class="c1">// &quot;abc123&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <p class='post-footer'>
             原始地址：
             <a href='https://lengmolehongyan.github.io/blog/2020/09/17/js-common-code-snippets/'>https://lengmolehongyan.github.io/blog/2020/09/17/js-common-code-snippets/</a><br/>
