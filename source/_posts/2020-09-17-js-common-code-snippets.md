@@ -47,3 +47,29 @@ function isEmptyList(list) {
     return isArray(list) && list.length === 0;
 }
 ```
+
+## 字符串
+
+### 字符串左侧填充
+
+```javascript
+String.prototype.padStart()
+
+// syntax
+str.padStart(targetLength [, padString])
+
+// example
+'abc'.padStart(8, '0'); // "00000abc"
+```
+
+### 字符串右侧填充
+
+```javascript
+String.prototype.padEnd()
+
+// syntax
+str.padEnd(targetLength [, padString])
+
+// example
+'abc'.padEnd(6, '123456'); // "abc123"
+```
