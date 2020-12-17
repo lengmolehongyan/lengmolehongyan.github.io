@@ -4,7 +4,7 @@
   <title><![CDATA[Layne]]></title>
   <link href="https://lengmolehongyan.github.io/atom.xml" rel="self"/>
   <link href="https://lengmolehongyan.github.io/"/>
-  <updated>2020-11-07T16:49:16+08:00</updated>
+  <updated>2020-12-17T15:41:15+08:00</updated>
   <id>https://lengmolehongyan.github.io/</id>
   <author>
     <name><![CDATA[Layne]]></name>
@@ -115,6 +115,25 @@
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">isEmptyObj</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>    <span class="k">return</span> <span class="nx">isObject</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">Reflect</span><span class="p">.</span><span class="nx">ownKeys</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>添加动态 Key</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kr">const</span> <span class="nx">dynamicKey1</span> <span class="o">=</span> <span class="s1">&#39;key1&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">const</span> <span class="nx">dynamicKey2</span> <span class="o">=</span> <span class="s1">&#39;key2&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="nx">dynamicKey1</span><span class="p">]</span><span class="o">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="nx">obj</span><span class="p">[</span><span class="err">`</span><span class="nx">$</span><span class="p">{</span><span class="nx">dynamicKey2</span><span class="p">}</span><span class="err">`</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;value2&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// { key1: &#39;value1&#39;, key2: &#39;value2&#39; }</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

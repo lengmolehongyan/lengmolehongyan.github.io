@@ -214,6 +214,25 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h3>添加动态 Key</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kr">const</span> <span class="nx">dynamicKey1</span> <span class="o">=</span> <span class="s1">&#39;key1&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">const</span> <span class="nx">dynamicKey2</span> <span class="o">=</span> <span class="s1">&#39;key2&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="nx">dynamicKey1</span><span class="p">]</span><span class="o">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="nx">obj</span><span class="p">[</span><span class="err">`</span><span class="nx">$</span><span class="p">{</span><span class="nx">dynamicKey2</span><span class="p">}</span><span class="err">`</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;value2&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// { key1: &#39;value1&#39;, key2: &#39;value2&#39; }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h2>数组</h2>
 
 <h3>判断是否是数组</h3>
