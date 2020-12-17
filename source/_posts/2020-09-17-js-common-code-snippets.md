@@ -24,7 +24,18 @@ function isObject(obj) {
 function isEmptyObj(obj) {
     return isObject(obj) && Reflect.ownKeys(obj).length === 0;
 }
+```
 
+### 添加动态 Key
+
+```javascript
+const dynamicKey1 = 'key1';
+const dynamicKey2 = 'key2';
+const obj = {
+    [dynamicKey1]: 'value1',
+};
+obj[`${dynamicKey2}`] = 'value2';
+console.log(obj); // { key1: 'value1', key2: 'value2' }
 ```
 
 ## 数组
