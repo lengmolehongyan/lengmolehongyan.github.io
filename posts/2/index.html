@@ -78,6 +78,55 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2016/03/26/tableview-layoutconstraints-conflict/">UITableView tableHeaderView, tableFooterView 子控件布局约束警告</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-03-26T09:59:58+08:00'><span class='date'>2016 年 03 月 26 日</span> <span class='time'>9:59 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>带有 <code>tableHeaderView</code>，<code>tableFooterView</code> 的 <code>UITableView</code> 在实际项目中很常见，添加了头部视图或者底部视图，会嵌在 <code>UITableView</code> 的头部或者底部，跟随 <code>UITableView</code> 一起滚动。</p>
+
+<p>有关 <code>tableHeaderView</code>，<code>tableFooterView</code> 介绍，文档和头文件已经说明的很清楚。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 显示在表视图上方的附属视图，默认为 nil，不同于组头视图</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">strong</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="bp">UIView</span> <span class="o">*</span><span class="n">tableHeaderView</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// 显示在表视图下方的附属视图，默认为 nil，不同于组尾视图</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">strong</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="bp">UIView</span> <span class="o">*</span><span class="n">tableFooterView</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/03/26/tableview-layoutconstraints-conflict/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2016/01/14/facebook-xctool-de-shi-yong/">Facebook Xctool 的使用</a></h1>
     
     
@@ -568,76 +617,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/">解决 Xcode 升级插件失效</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-12-03T23:50:08+08:00'><span class='date'>2015 年 12 月 03 日</span> <span class='time'>11:50 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li>打开终端，输入以下代码获取到 <code>DVTPlugInCompatibilityUUID</code></li>
-</ul>
-
-
-<p></p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>然后输入如下命令，最后一项是上一步获取到的 <code>DVTPlugInCompatibilityUUID</code></li>
-</ul>
-
-
-<p></p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add 此处为上一步获得的 UUID</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>终端执行完上面命令后，打开 Xcode，会有下图提示，点击 <code>Load Bundles</code>，就会加载 Xcode 插件目录中已安装的插件。</li>
-</ul>
-
-
-<p></p>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -655,6 +634,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/01/06/reactive-web-basic-learning/">响应式 Web 基础学习</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/xcode-12-reactnativeart-crash/">Xcode 12 ReactNativeART Crash</a>
       </li>
     
@@ -670,10 +653,6 @@
         <a href="/blog/2019/09/06/codepush-archive-and-and-deploy-and-and-adjust-rollout-script-implementation/">CodePush 打包 && 发布 && 调整灰度比例相关脚本实现</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2019/08/21/xcode-10-react-native-run-ios-could-not-find-simulator/">Xcode 10 React-native Run-ios Could Not Find Simulator</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -685,7 +664,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-    Copyright &copy; 2020 - Layne -
+    Copyright &copy; 2021 - Layne -
     <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> </span>
     <script>
         var _hmt = _hmt || [];

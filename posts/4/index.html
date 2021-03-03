@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>分类：ios开发小细节 - Layne</title>
+  <title>Layne</title>
   <meta name="author" content="Layne">
       
   
-  <meta name="description" content="Category: ios开发小细节">
+  <meta name="description" content="Layne, layne">
   <meta name="keywords" content="iOS, iOS开发, iOS development">
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://lengmolehongyan.github.io/blog/categories/ioskai-fa-xiao-xi-jie/">
+  <link rel="canonical" href="https://lengmolehongyan.github.io/posts/4/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Layne" type="application/atom+xml">
@@ -70,102 +70,106 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
-    <h1 class="entry-title">分类：ios开发小细节</h1>
+    
+      <h1 class="entry-title"><a href="/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi/">Swift 基础语法学习</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-05-26T22:12:42+08:00'><span class='date'>2015 年 05 月 26 日</span> <span class='time'>10:12 pm</span></time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
+
+
+  <div class="entry-content"><p>注：此文适用 Swift1.2 版本！</p>
+
+<h2>变量和常量</h2>
+
+<ul>
+<li><code>var</code><strong>变量</strong>，可以修改的</li>
+<li><code>let</code><strong>常量</strong>，一经定义不能修改</li>
+<li>在swift开发中，通常先定义常量<code>let</code>，只有必须修改的时候，再改成<code>var</code></li>
+</ul>
+
+
+<p></p>
 
 
 
-  
-  <h2>2018</h2>
 
-<article>
-  
-<h1><a href="/blog/2018/01/08/ios-develop-commonly-used-directory/">iOS 开发常用目录备忘</a></h1>
-<time datetime="2018-01-08T12:00:48+08:00" pubdate><span class='month'>01-</span><span class='day'>08</span> <span class='year'>2018 年</span></time>
-
-<footer>
-    <span class="categories">分类: <a class='category' href='/blog/categories/ioskai-fa-xiao-xi-jie/'>ios开发小细节</a></span>
-</footer>
-
-
-</article>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="c1">// 实例化一个UIView对象 保存在堆中</span>
+</span><span class='line'><span class="k">let</span> <span class="n">view</span> <span class="o">=</span> <span class="bp">UIView</span><span class="p">(</span><span class="nl">frame</span><span class="p">:</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</span><span class='line'><span class="c1">// 修改的是view的属性 并没有修改view本身的地址</span>
+</span><span class='line'><span class="n">view</span><span class="p">.</span><span class="n">backgroudColor</span> <span class="o">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
+<ul>
+<li>注意点:
 
-  
-  <h2>2016</h2>
-
-<article>
-  
-<h1><a href="/blog/2016/03/26/tableview-layoutconstraints-conflict/">UITableView tableHeaderView, tableFooterView 子控件布局约束警告</a></h1>
-<time datetime="2016-03-26T09:59:58+08:00" pubdate><span class='month'>03-</span><span class='day'>26</span> <span class='year'>2016 年</span></time>
-
-<footer>
-    <span class="categories">分类: <a class='category' href='/blog/categories/ioskai-fa-xiao-xi-jie/'>ios开发小细节</a></span>
-</footer>
+<ul>
+<li>swift是一个对变量类型要求及其严格的语言</li>
+<li>任何数据类型之间，都不能隐式转换，如果要在不同类型之间进行计算，必须转换格式</li>
+<li>数据类型的推导是在给变量设置初始值的时候，根据“右边”来判断的</li>
+<li>在真正初始化的时候，才能决定变量的准确类型</li>
+</ul>
+</li>
+<li>在定义变量的时候，可以直接指定变量的类型，便于后续的计算不需要转换</li>
+</ul>
 
 
-</article>
+<p></p>
 
 
 
-  
-  <h2>2015</h2>
 
-<article>
-  
-<h1><a href="/blog/2015/12/09/hu-lue-jing-gao/">Xcode 项目忽略警告</a></h1>
-<time datetime="2015-12-09T23:26:54+08:00" pubdate><span class='month'>12-</span><span class='day'>09</span> <span class='year'>2015 年</span></time>
-
-<footer>
-    <span class="categories">分类: <a class='category' href='/blog/categories/ioskai-fa-xiao-xi-jie/'>ios开发小细节</a></span>
-</footer>
-
-
-</article>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='swift'><span class='line'><span class="k">let</span> <span class="nl">a</span><span class="p">:</span> <span class="n">Double</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">10.5</span>
+</span><span class='line'><span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 
-<article>
-  
-<h1><a href="/blog/2015/12/05/ji-suan-dai-ma-zhi-xing-shi-jian-chai/">计算代码执行时间差</a></h1>
-<time datetime="2015-12-05T23:53:21+08:00" pubdate><span class='month'>12-</span><span class='day'>05</span> <span class='year'>2015 年</span></time>
-
-<footer>
-    <span class="categories">分类: <a class='category' href='/blog/categories/ioskai-fa-xiao-xi-jie/'>ios开发小细节</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2015/12/03/jie-jue-xcode-sheng-ji-cha-jian-shi-xiao/">解决 Xcode 升级插件失效</a></h1>
-<time datetime="2015-12-03T23:50:08+08:00" pubdate><span class='month'>12-</span><span class='day'>03</span> <span class='year'>2015 年</span></time>
-
-<footer>
-    <span class="categories">分类: <a class='category' href='/blog/categories/ioskai-fa-xiao-xi-jie/'>ios开发小细节</a></span>
-</footer>
-
-
-</article>
 
 </div>
-
   
-</article>
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/05/26/swiftji-chu-yu-fa-xue-xi/">阅读全文</a>
+    </footer>
+  
 
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">文章列表</a>
+    
+    <a class="next" href="/posts/3">Newer &rarr;</a>
+    
+  </div>
 </div>
-
 <aside class="sidebar">
   
     <section>
@@ -199,7 +203,6 @@
 
   
 </aside>
-
 
     </div>
   </div>
